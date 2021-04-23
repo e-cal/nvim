@@ -136,51 +136,56 @@ gls.right[4] = {
 	}
 }
 
-gls.right[5] = {
-    ShowLspClient = {
-        provider = 'GetLspClient',
-        condition = function()
-            local tbl = {['dashboard'] = true, [' '] = true}
-            if tbl[vim.bo.filetype] then return false end
-            return true
-        end,
-        icon = ' ',
-        highlight = {colors.grey, colors.bg}
-    }
-}
 
-gls.right[6] = {
+gls.right[5] = {
 	LineInfo = {
 		provider = {
 			function()
 				return string.format(
-				'%s:%s', vim.fn.line('.'), vim.fn.col('.')
-				)
+                    '%s/%s:%s', 
+                    vim.fn.line('.'), 
+                    vim.fn.line('$'),
+                    vim.fn.col('.')
+                    )
 			end,
 		},
-		separator = '   ',
+		separator = ' ',
 		icon = '',
         separator_highlight = {'NONE', colors.bg},
         highlight = {colors.fg, colors.bg}
     }
 }
 
-gls.right[7] = {
+gls.right[6] = {
     PerCent = {
-        provider = 'LinePercent',
+        provider = 'ScrollBar',
         separator = ' ',
+        separator_highlight = {'NONE', colors.bg},
+        highlight = {colors.yellow, colors.grey}
+    }
+}
+
+gls.right[7] = {
+    BufferType = {
+        provider = 'FileTypeName',
+        condition = condition.hide_in_width,
+        separator = '  ',
         separator_highlight = {'NONE', colors.bg},
         highlight = {colors.fg, colors.bg}
     }
 }
 
 gls.right[8] = {
-    BufferType = {
-        provider = 'FileTypeName',
-        condition = condition.hide_in_width,
-        separator = ' ',
-        separator_highlight = {'NONE', colors.bg},
-        highlight = {colors.fg, colors.bg}
+    ShowLspClient = {
+        provider = 'GetLspClient',
+        condition = function()
+            local tbl = {['dashboard'] = true, [' '] = true}
+            if tbl[vim.bo.filetype] then return false end
+            return condition.hide_in_width()
+        end,
+        icon = ' ',
+		separator = ' ',
+        highlight = {colors.grey, colors.bg}
     }
 }
 
@@ -190,7 +195,7 @@ gls.right[9] = {
         condition = condition.hide_in_width,
         separator = ' ',
         separator_highlight = {'NONE', colors.bg},
-        highlight = {colors.fg, colors.bg}
+        highlight = {colors.grey, colors.bg}
     }
 }
 
