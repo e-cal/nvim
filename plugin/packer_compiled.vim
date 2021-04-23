@@ -71,6 +71,34 @@ end
 time("try_loadstring definition", false)
 time("Defining packer_plugins", true)
 _G.packer_plugins = {
+  ["barbar.nvim"] = {
+    loaded = true,
+    path = "/home/ecal/.local/share/nvim/site/pack/packer/start/barbar.nvim"
+  },
+  ["dashboard-nvim"] = {
+    loaded = true,
+    path = "/home/ecal/.local/share/nvim/site/pack/packer/start/dashboard-nvim"
+  },
+  ["galaxyline.nvim"] = {
+    loaded = true,
+    path = "/home/ecal/.local/share/nvim/site/pack/packer/start/galaxyline.nvim"
+  },
+  ["nvim-autopairs"] = {
+    loaded = true,
+    path = "/home/ecal/.local/share/nvim/site/pack/packer/start/nvim-autopairs"
+  },
+  ["nvim-bqf"] = {
+    loaded = true,
+    path = "/home/ecal/.local/share/nvim/site/pack/packer/start/nvim-bqf"
+  },
+  ["nvim-colorizer.lua"] = {
+    loaded = true,
+    path = "/home/ecal/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua"
+  },
+  ["nvim-comment"] = {
+    loaded = true,
+    path = "/home/ecal/.local/share/nvim/site/pack/packer/start/nvim-comment"
+  },
   ["nvim-compe"] = {
     loaded = true,
     path = "/home/ecal/.local/share/nvim/site/pack/packer/start/nvim-compe"
@@ -83,9 +111,41 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/ecal/.local/share/nvim/site/pack/packer/start/nvim-tree.lua"
   },
+  ["nvim-treesitter"] = {
+    loaded = true,
+    path = "/home/ecal/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
+  },
+  ["nvim-ts-autotag"] = {
+    loaded = true,
+    path = "/home/ecal/.local/share/nvim/site/pack/packer/start/nvim-ts-autotag"
+  },
+  ["nvim-web-devicons"] = {
+    loaded = true,
+    path = "/home/ecal/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
+  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/home/ecal/.local/share/nvim/site/pack/packer/start/packer.nvim"
+  },
+  ["plenary.nvim"] = {
+    loaded = true,
+    path = "/home/ecal/.local/share/nvim/site/pack/packer/start/plenary.nvim"
+  },
+  ["popup.nvim"] = {
+    loaded = true,
+    path = "/home/ecal/.local/share/nvim/site/pack/packer/start/popup.nvim"
+  },
+  ["telescope.nvim"] = {
+    loaded = true,
+    path = "/home/ecal/.local/share/nvim/site/pack/packer/start/telescope.nvim"
+  },
+  ["vim-deus"] = {
+    loaded = true,
+    path = "/home/ecal/.local/share/nvim/site/pack/packer/start/vim-deus"
+  },
+  ["vim-vsnip"] = {
+    loaded = true,
+    path = "/home/ecal/.local/share/nvim/site/pack/packer/start/vim-vsnip"
   }
 }
 
