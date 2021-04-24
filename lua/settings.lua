@@ -26,7 +26,7 @@ vim.o.scrolloff=8                 -- Start scrolling before reaching the bottom
 -- Use undofile instead of swap files for history
 vim.o.swapfile=false
 vim.o.backup=false
-vim.o.undodir="undodir"
+vim.o.undodir="/home/ecal/.cache/nvim/undodir/"
 vim.o.undofile=true
 
 vim.cmd('set ts=4') -- Tabsize = 4 spaces

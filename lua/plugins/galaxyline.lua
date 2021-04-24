@@ -82,32 +82,29 @@ gls.left[3] = {
 gls.left[4] = {
     DiffAdd = {
         provider = 'DiffAdd',
-        condition = condition.hide_in_width,
-        icon = '  ',
+        icon = '  ',
         highlight = {colors.green, colors.bg}
     }
 }
 gls.left[5] = {
     DiffModified = {
         provider = 'DiffModified',
-        condition = condition.hide_in_width,
-        icon = '  ',
-        highlight = {colors.blue, colors.bg}
+        icon = ' ﰣ ',
+        highlight = {colors.yellow, colors.bg}
     }
 }
 gls.left[6] = {
     DiffRemove = {
         provider = 'DiffRemove',
-        condition = condition.hide_in_width,
-        icon = '  ',
+        icon = '  ',
         highlight = {colors.red, colors.bg}
     }
 }
 
 gls.right[1] = {
     DiagnosticError = {
-		provider = 'DiagnosticError', 
-		icon = '  ', 
+		provider = 'DiagnosticError',
+		icon = '  ',
 		highlight = {colors.bright_red, colors.bg}
 	}
 }
@@ -130,8 +127,8 @@ gls.right[3] = {
 
 gls.right[4] = {
 	DiagnosticInfo = {
-		provider = 'DiagnosticInfo', 
-		icon = '  ', 
+		provider = 'DiagnosticInfo',
+		icon = '  ',
 		highlight = {colors.bright_yellow, colors.bg}
 	}
 }
@@ -142,8 +139,8 @@ gls.right[5] = {
 		provider = {
 			function()
 				return string.format(
-                    '%s/%s:%s', 
-                    vim.fn.line('.'), 
+                    '%s/%s:%s',
+                    vim.fn.line('.'),
                     vim.fn.line('$'),
                     vim.fn.col('.')
                     )
@@ -157,15 +154,6 @@ gls.right[5] = {
 }
 
 gls.right[6] = {
-    PerCent = {
-        provider = 'ScrollBar',
-        separator = ' ',
-        separator_highlight = {'NONE', colors.bg},
-        highlight = {colors.yellow, colors.grey}
-    }
-}
-
-gls.right[7] = {
     BufferType = {
         provider = 'FileTypeName',
         condition = condition.hide_in_width,
@@ -175,7 +163,7 @@ gls.right[7] = {
     }
 }
 
-gls.right[8] = {
+gls.right[7] = {
     ShowLspClient = {
         provider = 'GetLspClient',
         condition = function()
@@ -189,7 +177,7 @@ gls.right[8] = {
     }
 }
 
-gls.right[9] = {
+gls.right[8] = {
     FileEncode = {
         provider = 'FileEncode',
         condition = condition.hide_in_width,
@@ -199,7 +187,7 @@ gls.right[9] = {
     }
 }
 
-gls.right[10] = {
+gls.right[9] = {
     Space = {
         provider = function()
             return ' '
@@ -221,15 +209,15 @@ gls.short_line_left[1] = {
 
 gls.short_line_left[2] = {
     SFileName = {
-		provider = 'SFileName', 
-		condition = condition.buffer_not_empty, 
+		provider = 'SFileName',
+		condition = condition.buffer_not_empty,
 		highlight = {colors.fg, colors.bg}
 	}
 }
 
 gls.short_line_right[1] = {
 	BufferIcon = {
-		provider = 'BufferIcon', 
+		provider = 'BufferIcon',
 		highlight = {colors.fg, colors.bg}
 	}
 }

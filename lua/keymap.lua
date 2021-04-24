@@ -34,8 +34,6 @@ vim.api.nvim_set_keymap('n', '<M-TAB>', ':bnext<CR>', { noremap=true, silent=tru
 vim.api.nvim_set_keymap('n', '<C-y>', '3<C-y>', { noremap=true, silent=true })
 vim.api.nvim_set_keymap('n', '<C-e>', '3<C-e>', { noremap=true, silent=true })
 
-
-
 -- ================================ INSERT ====================================
 
 -- ================================ VISUAL ====================================

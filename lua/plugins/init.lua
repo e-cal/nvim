@@ -28,10 +28,14 @@ return require('packer').startup(function(use)
     use 'nvim-lua/popup.nvim'
     use 'nvim-lua/plenary.nvim'
     use 'nvim-telescope/telescope.nvim'
+	-- QuickFix
+    use 'kevinhwang91/nvim-bqf'
+    -- Debugger
+    use 'mfussenegger/nvim-dap'
     -- File explorer
     use 'kyazdani42/nvim-tree.lua'
-    -- QuickFix
-    use 'kevinhwang91/nvim-bqf'
+    -- Git
+    use 'lewis6991/gitsigns.nvim'
     -- Statusline
     use 'glepnir/galaxyline.nvim'
     use 'romgrk/barbar.nvim'
