@@ -7,7 +7,7 @@ vim.g.mapleader = ' '
 vim.api.nvim_set_keymap('n', '<Leader>s', ':w<CR>', { noremap=true, silent=true })
 
 -- quit
-vim.api.nvim_set_keymap('n', '<Leader>q', ':qa<CR>', { noremap=true, silent=true })
+vim.api.nvim_set_keymap('n', '<Leader>q', ':wqa<CR>', { noremap=true, silent=true })
 -- close window
 vim.api.nvim_set_keymap('n', '<Leader>w', ':q<CR>', { noremap=true, silent=true })
 -- close buffer

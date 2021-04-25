@@ -28,6 +28,7 @@ return require('packer').startup(function(use)
     use 'nvim-lua/popup.nvim'
     use 'nvim-lua/plenary.nvim'
     use 'nvim-telescope/telescope.nvim'
+    use 'nvim-telescope/telescope-fzy-native.nvim'
 	-- QuickFix
     use 'kevinhwang91/nvim-bqf'
     -- Debugger
