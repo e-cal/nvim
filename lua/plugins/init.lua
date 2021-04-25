@@ -9,7 +9,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 -- Autocompile
-vim.cmd 'autocmd BufWritePost plugins.lua PackerCompile'
+vim.cmd 'autocmd BufWritePost init.lua PackerCompile'
 
 return require('packer').startup(function(use)
     -- Make packer manage itself
@@ -19,6 +19,8 @@ return require('packer').startup(function(use)
     use 'kyazdani42/nvim-web-devicons'
     -- LSP
     use 'neovim/nvim-lspconfig'
+    use 'glepnir/lspsaga.nvim'
+    use 'kabouzeid/nvim-lspinstall'
     use 'hrsh7th/nvim-compe'
     use 'hrsh7th/vim-vsnip'
     -- Autocomlete
@@ -42,12 +44,11 @@ return require('packer').startup(function(use)
     use 'romgrk/barbar.nvim'
     -- Treesitter
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
-    use 'windwp/nvim-ts-autotag'
     -- Colorizer
     use 'norcalli/nvim-colorizer.lua'
-    -- Theme
-    use 'ajmwagar/vim-deus'
     -- Dashboard
     use 'glepnir/dashboard-nvim'
+    -- Themes
+    use 'ajmwagar/vim-deus'
 end)
 

@@ -1,6 +1,6 @@
 local api = vim.api
 
-function augroups(definitions)
+local function augroups(definitions)
 	for group_name, definition in pairs(definitions) do
 		api.nvim_command('augroup '..group_name)
 		api.nvim_command('autocmd!')
@@ -14,7 +14,7 @@ end
 
 augroups({
 	_global = {
-		{'BufWritePre', '*', ':call TrimWhitespace()'}
+		{'BufWritePre', '*', ':call TrimWhitespace()'},
 	}
 })
 

@@ -1,8 +1,14 @@
 TODO:
 - stop comment continuation
+- bqf
+- toggle show all errors (popup on line if off)
 - telescope keybindings
 - whichkey keybindings
 - dashboard
 - lsp
-- figure out dap
-- merge conflicts?
+- lspinstall
+- lspsaga
+- snippets
+- terminal
+- merge conflicts
+- dap
