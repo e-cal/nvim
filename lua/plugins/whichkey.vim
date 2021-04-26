@@ -1,5 +1,5 @@
 " Timeout
-let g:which_key_timeout = 300
+let g:which_key_timeout = 500
 let g:which_key_use_floating_win = 1
 let g:which_key_disable_default_offset = 0
 
@@ -19,7 +19,7 @@ call which_key#register('<Space>', "g:which_key_map")
 let g:which_key_map =  {}
 
 let g:which_key_map['f'] = [ ':Telescope find_files', 'find files' ]
-let g:which_key_map['h'] = [ ':Dashboard', 'home' ]
+let g:which_key_map['H'] = [ ':Dashboard', 'home' ]
 let g:which_key_map['/'] = [ ':CommentToggle', 'toggle comment' ]
 let g:which_key_map['?'] = [ ':NvimTreeFindFile', 'find current file' ]
 let g:which_key_map['e'] = [ ':NvimTreeToggle', 'explorer' ]
@@ -27,6 +27,9 @@ let g:which_key_map['s'] = [ ':w', 'save' ]
 let g:which_key_map['q'] = [ ':wqa', 'quit' ]
 let g:which_key_map['w'] = [ ':q', 'close window' ]
 let g:which_key_map['x'] = [ ':BufferClose', 'close buffer' ]
+let g:which_key_map['.'] = [ ':luafile %', 'source file' ]
+let g:which_key_map['h'] = [ ':sp', 'split below' ]
+let g:which_key_map['v'] = [ ':sp', 'split right' ]
 
 let g:which_key_map.b = {
       \ 'name' : '+buffer',
@@ -40,12 +43,12 @@ let g:which_key_map.b = {
 
 let g:which_key_map.d = {
       \ 'name' : '+debug' ,
-      \ 'b' : ['DebugToggleBreakpoint', 'toggle breakpoint'],
-      \ 'c' : ['DebugContinue', 'continue'],
-      \ 'i' : ['DebugStepInto', 'step into'],
-      \ 'o' : ['DebugStepOver', 'step over'],
-      \ 'r' : ['DebugToggleRepl', 'toggle repl'],
-      \ 's' : ['DebugStart', 'start'],
+      \ 'b' : [':DebugToggleBreakpoint', 'toggle breakpoint'],
+      \ 'c' : [':DebugContinue', 'continue'],
+      \ 'i' : [':DebugStepInto', 'step into'],
+      \ 'o' : [':DebugStepOver', 'step over'],
+      \ 'r' : [':DebugToggleRepl', 'toggle repl'],
+      \ 's' : [':DebugStart', 'start'],
       \ }
 
 let g:which_key_map.F = {
@@ -64,7 +67,8 @@ let g:which_key_map.F = {
 
 let g:which_key_map.t = {
       \ 'name' : '+telescope' ,
-      \ '.' : [':Telescope filetypes', 'filetypes'],
+      \ '.' : [':lua require("plugins.telescope").search_dotfiles{}', 'config'],
+      \ '?' : [':Telescope filetypes', 'filetypes'],
       \ 'b' : [':Telescope git_branches', 'git branches'],
       \ 'f' : [':Telescope find_files', 'files'],
       \ 'h' : [':Telescope command_history', 'history'],
@@ -75,7 +79,7 @@ let g:which_key_map.t = {
       \ 't' : [':Telescope live_grep', 'text'],
       \ 'r' : [':Telescope registers', 'registers'],
       \ 'w' : [':Telescope file_browser', 'fuzzy find'],
-      \ 's' : [':Telescope colorscheme', 'colorschemes'],
+      \ 'c' : [':Telescope colorscheme', 'colorschemes'],
       \ }
 
 let g:which_key_map.S = {
@@ -120,4 +124,12 @@ let g:which_key_map.l = {
       \ 's' : [':Telescope lsp_document_symbols', 'document symbols'],
       \ 'S' : [':Telescope lsp_workspace_symbols', 'workspace symbols'],
       \ }
+
+let g:which_key_map.m = {
+      \ 'name' : '+markdown' ,
+      \ 'p' : [':MarkdownPreview', 'preview'],
+      \ 's' : [':MarkdownPreviewStop', 'stop preview'],
+      \ 't' : [':MarkdownPreviewToggle', 'toggle preview'],
+      \ }
+
 

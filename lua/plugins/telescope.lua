@@ -2,7 +2,8 @@ local actions = require('telescope.actions')
 require('telescope').setup {
     defaults = {
         file_sorter = require('telescope.sorters').get_fzy_sorter,
-        prompt_prefix = '  ',
+        prompt_prefix = '   ',
+        selection_caret = ' ',
         color_devicons = true,
 
         file_previewer   = require('telescope.previewers').vim_buffer_cat.new,
@@ -14,7 +15,9 @@ require('telescope').setup {
                 ["<C-x>"] = false,
                 ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
                 ["<esc>"] = actions.close,
-				["<CR>"] = actions.select_default + actions.center
+				["<CR>"] = actions.select_default + actions.center,
+                ["<C-j>"] = actions.move_selection_next,
+                ["<C-k>"] = actions.move_selection_previous,
             }
         }
     },
@@ -31,7 +34,7 @@ require('telescope').load_extension('fzy_native')
 local M = {}
 M.search_dotfiles = function()
     require("telescope.builtin").find_files({
-        prompt_title = "< Config >",
+        prompt_title = " Config ",
         cwd = "$HOME/.config/nvim/",
     })
 end

@@ -12,6 +12,7 @@ require('lsp.lua')
 
 -- Plugin configs
 vim.cmd('source ~/.config/nvim/lua/plugins/whichkey.vim')
+vim.cmd('source ~/.config/nvim/lua/plugins/markdown-preview.vim')
 require('plugins.autopairs')
 require('plugins.colorizer')
 require('plugins.comment')

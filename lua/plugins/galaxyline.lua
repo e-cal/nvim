@@ -18,7 +18,7 @@ local colors = {
 	bright_teal  = '#2bcec2',
 	bright_white  = '#ffffff',
 	bg = '#2c323b',
-	fg = '#eaeaea',
+	fg = '#ebdbb2',
 }
 local condition = require('galaxyline.condition')
 local gls = gl.section
@@ -159,7 +159,7 @@ gls.right[6] = {
         condition = condition.hide_in_width,
         separator = '  ',
         separator_highlight = {'NONE', colors.bg},
-        highlight = {colors.fg, colors.bg}
+        highlight = {colors.grey, colors.bg}
     }
 }
 
@@ -171,8 +171,8 @@ gls.right[7] = {
             if tbl[vim.bo.filetype] then return false end
             return condition.hide_in_width()
         end,
-        icon = ' ',
-		separator = ' ',
+        icon = ' ',
+		separator = '  ',
         highlight = {colors.grey, colors.bg}
     }
 }

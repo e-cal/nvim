@@ -13,3 +13,12 @@ vim.cmd('hi BufferCurrentSign guifg=#90C966 ')
 vim.cmd('hi BufferVisibleSign guifg=#73BA9F ')
 vim.cmd('hi BufferInactiveSign guifg=#83A598 ')
 
+vim.cmd('hi Cursor guibg=#EBDBB2')
+vim.cmd('set guicursor=n-v:block-Cursor')
+vim.cmd('hi iCursor guibg=#EBDBB2')
+vim.cmd('set guicursor+=i-c:ver100-iCursor')
+vim.cmd('set guicursor+=r:hor10-iCursor')
+vim.cmd('hi oCursor guibg=#E5C07B')
+vim.cmd('set guicursor+=o:block-oCursor')
+
+

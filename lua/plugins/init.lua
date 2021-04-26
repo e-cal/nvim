@@ -46,7 +46,7 @@ return require('packer').startup(function(use)
     use 'glepnir/galaxyline.nvim'
     use 'romgrk/barbar.nvim'
     -- Treesitter
-    use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+    use {'nvim-treesitter/nvim-treesitter', run=':TSUpdate'}
     -- Colorizer
     use 'norcalli/nvim-colorizer.lua'
     -- Dashboard
@@ -56,5 +56,8 @@ return require('packer').startup(function(use)
     use 'sainnhe/gruvbox-material'
     use 'arcticicestudio/nord-vim'
     use 'rakr/vim-two-firewatch'
+
+    -- Note taking
+    use { 'iamcco/markdown-preview.nvim', run=':call mkdp#util#install()'}
 end)
 

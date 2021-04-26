@@ -95,6 +95,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/ecal/.local/share/nvim/site/pack/packer/start/lspsaga.nvim"
   },
+  ["markdown-preview.nvim"] = {
+    loaded = true,
+    path = "/home/ecal/.local/share/nvim/site/pack/packer/start/markdown-preview.nvim"
+  },
   ["nord-vim"] = {
     loaded = true,
     path = "/home/ecal/.local/share/nvim/site/pack/packer/start/nord-vim"
