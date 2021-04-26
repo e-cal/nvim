@@ -1,14 +1,13 @@
-TODO:
-- stop comment continuation
-- bqf
-- toggle show all errors (popup on line if off)
-- telescope keybindings
-- whichkey keybindings
+## TODO:
+- filter whichkey
+- fill out other keybindings
+- telescope extensions
 - dashboard
-- lsp
-- lspinstall
-- lspsaga
+- fill out lsps
 - snippets
 - terminal
+- floating lazygit
 - merge conflicts
 - dap
+- efm
+- kite / tabnine

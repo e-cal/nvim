@@ -1,21 +1,9 @@
--- https://github.com/sumneko/lua-language-server/wiki/Build-and-Run-(Standalone)
-USER = vim.fn.expand('$USER')
-
-local sumneko_root_path = ""
-local sumneko_binary = ""
-
-if vim.fn.has("mac") == 1 then
-    sumneko_root_path = "/Users/" .. USER .. "/.config/nvim/lsp/lua-language-server"
-    sumneko_binary = "/Users/" .. USER .. "/.config/nvim/lsp/lua-language-server/bin/macOS/lua-language-server"
-elseif vim.fn.has("unix") == 1 then
-    sumneko_root_path = "/home/" .. USER .. "/.config/nvim/lsp/lua-language-server"
-    sumneko_binary = "/home/" .. USER .. "/.config/nvim/lsp/lua-language-server/bin/Linux/lua-language-server"
-else
-    print("Unsupported system for sumneko")
-end
+local sumneko_root_path = DATA_PATH .. "/lspinstall/lua"
+local sumneko_binary = sumneko_root_path .. "/sumneko-lua-language-server"
 
 require'lspconfig'.sumneko_lua.setup {
     cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
+    on_attach = require'lsp'.common_on_attach,
     settings = {
         Lua = {
             runtime = {
@@ -30,9 +18,12 @@ require'lspconfig'.sumneko_lua.setup {
             },
             workspace = {
                 -- Make the server aware of Neovim runtime files
-                library = {[vim.fn.expand('$VIMRUNTIME/lua')] = true, [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true}
+                library = {
+					[vim.fn.expand('$VIMRUNTIME/lua')] = true,
+					[vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true
+				},
+                maxPreload = 10000
             }
         }
     }
 }
-

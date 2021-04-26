@@ -87,9 +87,17 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/ecal/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
   },
+  ["gruvbox-material"] = {
+    loaded = true,
+    path = "/home/ecal/.local/share/nvim/site/pack/packer/start/gruvbox-material"
+  },
   ["lspsaga.nvim"] = {
     loaded = true,
     path = "/home/ecal/.local/share/nvim/site/pack/packer/start/lspsaga.nvim"
+  },
+  ["nord-vim"] = {
+    loaded = true,
+    path = "/home/ecal/.local/share/nvim/site/pack/packer/start/nord-vim"
   },
   ["nvim-autopairs"] = {
     loaded = true,
@@ -159,9 +167,17 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/ecal/.local/share/nvim/site/pack/packer/start/vim-deus"
   },
+  ["vim-two-firewatch"] = {
+    loaded = true,
+    path = "/home/ecal/.local/share/nvim/site/pack/packer/start/vim-two-firewatch"
+  },
   ["vim-vsnip"] = {
     loaded = true,
     path = "/home/ecal/.local/share/nvim/site/pack/packer/start/vim-vsnip"
+  },
+  ["vim-which-key"] = {
+    loaded = true,
+    path = "/home/ecal/.local/share/nvim/site/pack/packer/start/vim-which-key"
   }
 }
 

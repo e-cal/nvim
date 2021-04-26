@@ -15,6 +15,9 @@ return require('packer').startup(function(use)
     -- Make packer manage itself
     use 'wbthomason/packer.nvim'
 
+    -- Whichkey (replace with lua when possible)
+    use 'liuchengxu/vim-which-key'
+
     -- Icons
     use 'kyazdani42/nvim-web-devicons'
     -- LSP
@@ -50,5 +53,8 @@ return require('packer').startup(function(use)
     use 'glepnir/dashboard-nvim'
     -- Themes
     use 'ajmwagar/vim-deus'
+    use 'sainnhe/gruvbox-material'
+    use 'arcticicestudio/nord-vim'
+    use 'rakr/vim-two-firewatch'
 end)
 

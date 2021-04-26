@@ -15,6 +15,20 @@ end
 augroups({
 	_global = {
 		{'BufWritePre', '*', ':call TrimWhitespace()'},
-	}
+        {'BufWinEnter', '*', 'setlocal formatoptions-=c formatoptions-=r formatoptions-=o'},
+        {'BufRead', '*', 'setlocal formatoptions-=c formatoptions-=r formatoptions-=o'},
+        {'BufNewFile', '*', 'setlocal formatoptions-=c formatoptions-=r formatoptions-=o'}
+	},
+    _dashboard = {
+        {
+            'FileType', 'dashboard',
+            'setlocal nocursorline noswapfile synmaxcol& signcolumn=no norelativenumber nocursorcolumn nospell  nolist  nonumber bufhidden=wipe colorcolumn= foldcolumn=0 matchpairs= '
+        },
+        {
+            'FileType',
+            'dashboard',
+            'set showtabline=0 | autocmd BufLeave <buffer> set showtabline=2'
+        }
+    },
 })
 
