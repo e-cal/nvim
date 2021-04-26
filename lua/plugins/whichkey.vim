@@ -16,7 +16,7 @@ nnoremap <silent> <leader> :silent <c-u> :silent WhichKey '<Space>'<CR>
 vnoremap <silent> <leader> :silent <c-u> :silent WhichKeyVisual '<Space>'<CR>
 call which_key#register('<Space>', "g:which_key_map")
 
-let g:which_key_map =  {}
+let g:which_key_map = {}
 
 let g:which_key_map['f'] = [ ':Telescope find_files', 'find files' ]
 let g:which_key_map['H'] = [ ':Dashboard', 'home' ]
@@ -24,7 +24,8 @@ let g:which_key_map['/'] = [ ':CommentToggle', 'toggle comment' ]
 let g:which_key_map['?'] = [ ':NvimTreeFindFile', 'find current file' ]
 let g:which_key_map['e'] = [ ':NvimTreeToggle', 'explorer' ]
 let g:which_key_map['s'] = [ ':w', 'save' ]
-let g:which_key_map['q'] = [ ':wqa', 'quit' ]
+let g:which_key_map['S'] = [ ':SessionSave', 'save session' ]
+let g:which_key_map['q'] = [ ':wqa', 'save & quit' ]
 let g:which_key_map['w'] = [ ':q', 'close window' ]
 let g:which_key_map['x'] = [ ':BufferClose', 'close buffer' ]
 let g:which_key_map['.'] = [ ':luafile %', 'source file' ]
@@ -80,12 +81,6 @@ let g:which_key_map.t = {
       \ 'r' : [':Telescope registers', 'registers'],
       \ 'w' : [':Telescope file_browser', 'fuzzy find'],
       \ 'c' : [':Telescope colorscheme', 'colorschemes'],
-      \ }
-
-let g:which_key_map.S = {
-      \ 'name' : '+session' ,
-      \ 's' : [':SessionSave', 'save session'],
-      \ 'l' : [':SessionLoad', 'load Session'],
       \ }
 
 let g:which_key_map.g = {

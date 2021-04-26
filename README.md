@@ -37,7 +37,8 @@ quickfix, sane keymappings, colorizer, and more...
 Feel free to tackle something or submit a PR to add anything you think is
 missing!
 - [ ] finish documentation
-- [ ] customize dashboard
+- [ ] fix colors for firewatch scheme
+- [x] customize dashboard
 - [ ] fill out lsps
 - [ ] add telescope extensions
 - [ ] add snippets
@@ -89,7 +90,6 @@ missing!
 - [nord-vim](https://www.github.com/arcticicestudio/nord-vim)
 - [vim-two-firewatch](https://www.github.com/rakr/vim-two-firewatch)
 
-
 ## Default Keymap
 ```vim
 <space> - leader
@@ -101,8 +101,18 @@ Press the leader key (space by default) to bring up whichkey help menu. <br>
 If you can't find what you're looking for here, its probably in there
 (or not implemented, in which case open an issue or PR).
 
+## Colorschemes
+You can try out the installed colorschemes with the keymap `<space>-t-c`. To
+make the change permanent, change it in `settings.lua`.
+
+Some themes may require some extra tweaking. The relevant files are
+`lua/colors.lua`, `lua/plugins/galaxyline.lua` and `lua/plugins/barbar.lua`.
+
 ## Need Help?
 - Check the plugin's readme or issues
 - Check old issues (remove `is:open`)
 - Check the help menu `:h thing-giving-me-problems`
 - Or open an issue and I'll take a look!
+
+---
+Inspired by [LunarVim](https://github.com/ChristianChiarulli/LunarVim) and [ThePrimeagen](https://github.com/awesome-streamers/awesome-streamerrc/tree/master/ThePrimeagen)

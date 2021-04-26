@@ -52,10 +52,14 @@ return require('packer').startup(function(use)
     -- Dashboard
     use 'glepnir/dashboard-nvim'
     -- Themes
-    use 'ajmwagar/vim-deus'
-    use 'sainnhe/gruvbox-material'
-    use 'arcticicestudio/nord-vim'
-    use 'rakr/vim-two-firewatch'
+    use {'ajmwagar/vim-deus'       , opt=true}
+    use {'sainnhe/gruvbox-material', opt=true}
+    use {'arcticicestudio/nord-vim', opt=true}
+    use {'rakr/vim-two-firewatch'  , opt=true}
+    use {'tomasiser/vim-code-dark' , opt=true}
+    use {'phanviet/vim-monokai-pro', opt=true}
+    use {'dracula/vim', opt=true}
+    use {'overcache/NeoSolarized', opt=true}
 
     -- Note taking
     use { 'iamcco/markdown-preview.nvim', run=':call mkdp#util#install()'}
