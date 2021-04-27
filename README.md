@@ -112,7 +112,7 @@ quickfix, sane keymappings, undo edits from previous sessions, and more...
 - [vim-two-firewatch](https://www.github.com/rakr/vim-two-firewatch)
 
 ## Default Keymap <a name="keys"></a>
-```vim
+```
 <space> - leader
 
 <C-/> - comment lines (in a direction, <leader>-/ to comment current line)
