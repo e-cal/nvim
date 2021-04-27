@@ -19,9 +19,9 @@ Inspired by [LunarVim](https://github.com/ChristianChiarulli/LunarVim) and [TheP
 <summary>Screenshots</summary>
 
 ![dashboard](https://user-images.githubusercontent.com/47398876/116168679-ff34f080-a6d0-11eb-918f-3d6db514d63b.png)
-	
+
 ![VSCode Colors](https://user-images.githubusercontent.com/47398876/116168709-11169380-a6d1-11eb-94ed-824fcb3202a9.png)
-	
+
 ![errors](https://user-images.githubusercontent.com/47398876/116168721-183da180-a6d1-11eb-9719-34d158643da0.png)
 
 ![full](https://user-images.githubusercontent.com/47398876/116168725-1a9ffb80-a6d1-11eb-8dbb-87189b425a1a.png)
@@ -117,6 +117,32 @@ quickfix, sane keymappings, undo edits from previous sessions, and more...
 ## Default Keymap <a name="keys"></a>
 ```vim
 <space> - leader
+
+<C-/> - comment lines (in a direction, <leader>-/ to comment current line)
+
+<M-h> - focus left
+<M-j> - focus down
+<M-k> - focus up
+<M-l> - focus right
+
+<M-TAB> - next buffer
+
+<C-Up> - increase up/down window size
+<C-Down> - decrease up/down window size
+<C-Right> - increase left/right window size
+<C-Left> - decrease left/right window size
+
+K - show hover docs
+<C-k> - scroll up hover doc
+<C-j> - scroll down hover doc
+
+gd - go to definition
+gD - go to declaration
+gr - go to references
+gi - go to implementation
+
+<C-n> - jump to next diagnostic
+<C-p> - jump to prev diagnostic
 ```
 `<C-key>` = Control + key <br>
 `<M-key>` = Alt + key
