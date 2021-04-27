@@ -1,3 +1,4 @@
+
 <h1>EVim</h1>
 
 A VSCode-like editing experience in neovim. Sane default setup for a pleasant
@@ -12,11 +13,15 @@ along with native LSP for a blazingly fast editing experience.
 <details>
 <summary>Screenshots</summary>
 
-![dashboard](./images/dashboard.png)
-![VSCode Colors](./images/codedark.png)
-![errors](./images/errors.png)
-![full](./images/full.png)
-![whichkey](./images/whichkey.png)
+![dashboard](https://user-images.githubusercontent.com/47398876/116168679-ff34f080-a6d0-11eb-918f-3d6db514d63b.png)
+	
+![VSCode Colors](https://user-images.githubusercontent.com/47398876/116168709-11169380-a6d1-11eb-94ed-824fcb3202a9.png)
+	
+![errors](https://user-images.githubusercontent.com/47398876/116168721-183da180-a6d1-11eb-9719-34d158643da0.png)
+
+![full](https://user-images.githubusercontent.com/47398876/116168725-1a9ffb80-a6d1-11eb-8dbb-87189b425a1a.png)
+
+![whichkey](https://user-images.githubusercontent.com/47398876/116168730-1bd12880-a6d1-11eb-903d-72639ed2d029.png)
 
 </details>
 
