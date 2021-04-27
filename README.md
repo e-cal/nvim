@@ -10,6 +10,10 @@ along with native LSP for a blazingly fast editing experience.
 
 **Requires neovim 0.5.0 or greater.**
 
+---
+Inspired by [LunarVim](https://github.com/ChristianChiarulli/LunarVim) and [ThePrimeagen](https://github.com/awesome-streamers/awesome-streamerrc/tree/master/ThePrimeagen)
+---
+
 <details>
 <summary>Screenshots</summary>
 
@@ -138,7 +142,6 @@ Feel free to tackle something or submit a PR to add anything you think is
 missing!
 - [ ] finish documentation
 - [ ] fix colors for firewatch colorscheme
-- [x] customize dashboard
 - [ ] fill out lsps
 - [ ] add telescope extensions
 - [ ] add snippets
@@ -150,6 +153,3 @@ missing!
 - [ ] support kite / tabnine
 - [ ] fix colors for nord colorscheme
 - [ ] fix colors for codedark colorscheme
-
----
-Inspired by [LunarVim](https://github.com/ChristianChiarulli/LunarVim) and [ThePrimeagen](https://github.com/awesome-streamers/awesome-streamerrc/tree/master/ThePrimeagen)
