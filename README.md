@@ -25,7 +25,6 @@ along with native LSP for a blazingly fast editing experience.
 
 </details>
 
----
 Inspired by [LunarVim](https://github.com/ChristianChiarulli/LunarVim) and [ThePrimeagen](https://github.com/awesome-streamers/awesome-streamerrc/tree/master/ThePrimeagen)
 
 ---
