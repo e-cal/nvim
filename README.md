@@ -10,11 +10,6 @@ along with native LSP for a blazingly fast editing experience.
 
 **Requires neovim 0.5.0 or greater.**
 
----
-Inspired by [LunarVim](https://github.com/ChristianChiarulli/LunarVim) and [ThePrimeagen](https://github.com/awesome-streamers/awesome-streamerrc/tree/master/ThePrimeagen)
-
----
-
 <details>
 <summary>Screenshots</summary>
 
@@ -29,6 +24,9 @@ Inspired by [LunarVim](https://github.com/ChristianChiarulli/LunarVim) and [TheP
 ![whichkey](https://user-images.githubusercontent.com/47398876/116168730-1bd12880-a6d1-11eb-903d-72639ed2d029.png)
 
 </details>
+
+---
+Inspired by [LunarVim](https://github.com/ChristianChiarulli/LunarVim) and [ThePrimeagen](https://github.com/awesome-streamers/awesome-streamerrc/tree/master/ThePrimeagen)
 
 ---
 <!-- [[toc]] -->
