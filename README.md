@@ -9,11 +9,29 @@ along with native LSP for a blazingly fast editing experience.
 
 **Requires neovim 0.5.0 or greater.**
 
+<details>
+<summary>Screenshots</summary>
+
+![dashboard](./images/dashboard.png)
+![VSCode Colors](./images/codedark.png)
+![errors](./images/errors.png)
+![full](./images/full.png)
+![whichkey](./images/whichkey.png)
+
+</details>
+
 ---
-[[toc]]
+<!-- [[toc]] -->
+- [Installation](#install)
+- [Features](#features)
+- [Configuration](#config)
+- [Default Keymap](#keys)
+- [Colorschemes](#colors)
+- [Need Help?](#help)
+- [Todo](#todo)
 ---
 
-## Installation
+## Installation <a name="install"></a>
 1. Make sure the folder `~/.config/nvim` (or equivalent) doesn't already exist.
 	- If you have an old config you don't want to lose:
 	`mv ~/.config/nvim ~/.config/nvim.old`
@@ -21,35 +39,31 @@ along with native LSP for a blazingly fast editing experience.
 3. If you don't already have pynvim installed: `pip3 install pynvim`
 4. Run `nvim` and do `:PackerInstall`
 
-## Features
+## Features <a name="features"></a>
 - Almost entirely lua
 - Native LSP
 	- Completions, linting, formatting, snippets
 	- Easily add a language with `:LspInstall your-language`
 - Whichkey so you don't need to memorize all the keymappings
 - Telescope and nvim-tree for seamless navigation
+- Git integration
+- Markdown previewing for docs and note-takinf (powerful along with telescope
+to search for text in notes)
 - nvim-dap for debugging
 - Improvement of life features: autopairs, strip end-of-line whitespace, better
-quickfix, sane keymappings, colorizer, and more...
+quickfix, sane keymappings, undo edits from previous sessions, and more...
 - Easily configurable and extensible - Make it your own!
 
-## Todo
-Feel free to tackle something or submit a PR to add anything you think is
-missing!
-- [ ] finish documentation
-- [ ] fix colors for firewatch scheme
-- [x] customize dashboard
-- [ ] fill out lsps
-- [ ] add telescope extensions
-- [ ] add snippets
-- [ ] support terminal
-- [ ] add floating lazygit
-- [ ] guide for handling merge conflicts
-- [ ] dap configuration
-- [ ] add efm lsp
-- [ ] support kite / tabnine
+## Configuration <a name="config"></a>
+- General settings in `settings.lua`
+- Add plugins in `lua/plugins/init.lua`
+	- Install after adding with `:PackerSync`
+	- `require` new configs in `init.lua`
+- Non-leader keymappings are defined in `lua/keymap.lua`
+- Leader keymappings
 
-## Plugins
+
+## Plugins <a name="plugins"></a>
 **Plugin manager**
 - [packer](https://www.github.com/wbthomason/packer.nvim)
 
@@ -90,7 +104,7 @@ missing!
 - [nord-vim](https://www.github.com/arcticicestudio/nord-vim)
 - [vim-two-firewatch](https://www.github.com/rakr/vim-two-firewatch)
 
-## Default Keymap
+## Default Keymap <a name="keys"></a>
 ```vim
 <space> - leader
 ```
@@ -101,18 +115,36 @@ Press the leader key (space by default) to bring up whichkey help menu. <br>
 If you can't find what you're looking for here, its probably in there
 (or not implemented, in which case open an issue or PR).
 
-## Colorschemes
+## Colorschemes <a name="colors"></a>
 You can try out the installed colorschemes with the keymap `<space>-t-c`. To
 make the change permanent, change it in `settings.lua`.
 
 Some themes may require some extra tweaking. The relevant files are
 `lua/colors.lua`, `lua/plugins/galaxyline.lua` and `lua/plugins/barbar.lua`.
 
-## Need Help?
+## Need Help? <a name="help"></a>
 - Check the plugin's readme or issues
 - Check old issues (remove `is:open`)
 - Check the help menu `:h thing-giving-me-problems`
 - Or open an issue and I'll take a look!
+
+## Todo <a name="todo"></a>
+Feel free to tackle something or submit a PR to add anything you think is
+missing!
+- [ ] finish documentation
+- [ ] fix colors for firewatch colorscheme
+- [x] customize dashboard
+- [ ] fill out lsps
+- [ ] add telescope extensions
+- [ ] add snippets
+- [ ] support terminal
+- [ ] add floating lazygit
+- [ ] guide for handling merge conflicts
+- [ ] dap configuration
+- [ ] add efm lsp
+- [ ] support kite / tabnine
+- [ ] fix colors for nord colorscheme
+- [ ] fix colors for codedark colorscheme
 
 ---
 Inspired by [LunarVim](https://github.com/ChristianChiarulli/LunarVim) and [ThePrimeagen](https://github.com/awesome-streamers/awesome-streamerrc/tree/master/ThePrimeagen)

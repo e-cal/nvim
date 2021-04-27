@@ -52,6 +52,7 @@ return require('packer').startup(function(use)
     -- Dashboard
     use 'glepnir/dashboard-nvim'
     -- Themes
+    use {'christianchiarulli/nvcode-color-schemes.vim', opt=true}
     use {'ajmwagar/vim-deus'       , opt=true}
     use {'sainnhe/gruvbox-material', opt=true}
     use {'arcticicestudio/nord-vim', opt=true}

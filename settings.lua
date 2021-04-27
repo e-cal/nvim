@@ -1,4 +1,4 @@
-Colorscheme = 'two-firewatch'
+Colorscheme = 'deus'
 
 WrapLine = false
 LineNumbers = true

@@ -30,7 +30,7 @@ let g:which_key_map['w'] = [ ':q', 'close window' ]
 let g:which_key_map['x'] = [ ':BufferClose', 'close buffer' ]
 let g:which_key_map['.'] = [ ':luafile %', 'source file' ]
 let g:which_key_map['h'] = [ ':sp', 'split below' ]
-let g:which_key_map['v'] = [ ':sp', 'split right' ]
+let g:which_key_map['v'] = [ ':vert sp', 'split right' ]
 
 let g:which_key_map.b = {
       \ 'name' : '+buffer',

@@ -110,6 +110,11 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/home/ecal/.local/share/nvim/site/pack/packer/opt/nord-vim"
   },
+  ["nvcode-color-schemes.vim"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/ecal/.local/share/nvim/site/pack/packer/opt/nvcode-color-schemes.vim"
+  },
   ["nvim-autopairs"] = {
     loaded = true,
     path = "/home/ecal/.local/share/nvim/site/pack/packer/start/nvim-autopairs"
