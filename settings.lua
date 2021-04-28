@@ -2,7 +2,7 @@ Colorscheme = 'deus'
 
 WrapLine = false
 LineNumbers = true
-RelativeLineNumbers = false
+RelativeLineNumbers = true
 CursorLine = true
 ColorColumn = 80
 HighlightSearch = false -- Highlight all search matches
