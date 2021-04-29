@@ -10,6 +10,12 @@ require('colors')
 require('lsp')
 require('lsp.lua')
 
+if Python.useKite then
+    require('lsp.kite')
+else
+    require('lsp.python')
+end
+
 -- Plugin configs
 vim.cmd('source ~/.config/nvim/lua/plugins/whichkey.vim')
 vim.cmd('source ~/.config/nvim/lua/plugins/markdown-preview.vim')

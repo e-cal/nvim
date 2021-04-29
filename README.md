@@ -51,10 +51,11 @@ Inspired by [LunarVim](https://github.com/ChristianChiarulli/LunarVim) and [TheP
 - Native LSP
 	- Completions, linting, formatting, snippets
 	- Easily add a language with `:LspInstall your-language`
+	- Supports both [Kite](https://www.kite.com) and Pyright for python development
 - Whichkey so you don't need to memorize all the keymappings
 - Telescope and nvim-tree for seamless navigation
 - Git integration
-- Markdown previewing for docs and note-takinf (powerful along with telescope
+- Markdown previewing for docs and note-taking (powerful along with telescope
 to search for text in notes)
 - nvim-dap for debugging
 - Improvement of life features: autopairs, strip end-of-line whitespace, better
@@ -164,7 +165,7 @@ Some themes may require some extra tweaking. The relevant files are
 ## Todo <a name="todo"></a>
 Feel free to tackle something or submit a PR to add anything you think is
 missing!
-- [ ] finish documentation
+- [x] finish documentation (for now)
 - [ ] fix colors for firewatch colorscheme
 - [ ] fill out lsps
 - [ ] add telescope extensions
@@ -174,6 +175,6 @@ missing!
 - [ ] guide for handling merge conflicts
 - [ ] dap configuration
 - [ ] add efm lsp
-- [ ] support kite / tabnine
+- [x] support kite
 - [ ] fix colors for nord colorscheme
 - [ ] fix colors for codedark colorscheme
