@@ -12,6 +12,9 @@ AutoScroll = 8 -- Scroll when this many lines from top/bottom
 TabSize = 4
 UseSpaces = true
 
+Python = {}
+Python.useKite = true
+
 Font = "FiraCode Nerd Font:h17"
 
 DATA_PATH = vim.fn.stdpath('data')
