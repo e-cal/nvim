@@ -9,6 +9,9 @@ require('colors')
 -- LSP
 require('lsp')
 require('lsp.lua')
+require('lsp.latex')
+require('lsp.bash')
+require('lsp.vim')
 
 if Python.useKite then
     require('lsp.kite')
@@ -17,8 +20,6 @@ else
 end
 
 -- Plugin configs
-vim.cmd('source ~/.config/nvim/lua/plugins/whichkey.vim')
-vim.cmd('source ~/.config/nvim/lua/plugins/markdown-preview.vim')
 require('plugins.autopairs')
 require('plugins.colorizer')
 require('plugins.comment')
@@ -26,8 +27,9 @@ require('plugins.compe')
 require('plugins.dashboard')
 require('plugins.galaxyline')
 require('plugins.gitsigns')
+require('plugins.markdown-preview')
 require('plugins.telescope')
 require('plugins.tree')
 require('plugins.treesitter')
-
-
+require('plugins.ultisnips')
+require('plugins.whichkey')

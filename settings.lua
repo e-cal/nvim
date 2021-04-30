@@ -15,6 +15,10 @@ UseSpaces = true
 Python = {}
 Python.useKite = true
 
+-- true: refresh on edit
+-- false: refresh on save
+MarkdownLivePreview = false
+
 Font = "FiraCode Nerd Font:h17"
 
 DATA_PATH = vim.fn.stdpath('data')

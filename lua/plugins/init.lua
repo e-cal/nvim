@@ -15,8 +15,6 @@ return require('packer').startup(function(use)
     -- Make packer manage itself
     use 'wbthomason/packer.nvim'
 
-    -- Whichkey (replace with lua when possible)
-    use 'liuchengxu/vim-which-key'
 
     -- Icons
     use 'kyazdani42/nvim-web-devicons'
@@ -25,10 +23,11 @@ return require('packer').startup(function(use)
     use 'glepnir/lspsaga.nvim'
     use 'kabouzeid/nvim-lspinstall'
     use 'hrsh7th/nvim-compe'
-    use 'hrsh7th/vim-vsnip'
+    use 'SirVer/ultisnips'
     -- Autocomlete
     use 'windwp/nvim-autopairs'
     use 'terrortylor/nvim-comment'
+    use 'windwp/nvim-ts-autotag'
     -- Telescope
     use 'nvim-lua/popup.nvim'
     use 'nvim-lua/plenary.nvim'
@@ -61,6 +60,8 @@ return require('packer').startup(function(use)
     use {'phanviet/vim-monokai-pro', opt=true}
     use {'dracula/vim', opt=true}
     use {'overcache/NeoSolarized', opt=true}
+    -- Whichkey (replace with lua when possible)
+    use 'folke/which-key.nvim'
 
     -- Note taking
     use { 'iamcco/markdown-preview.nvim', run=':call mkdp#util#install()'}
