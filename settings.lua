@@ -2,22 +2,22 @@ Colorscheme = 'deus'
 
 WrapLine = false
 LineNumbers = true
-RelativeLineNumbers = true
+RelativeLineNumbers = false
 CursorLine = true
 ColorColumn = 80
 HighlightSearch = false -- Highlight all search matches
 SearchIgnoreCase = true
-AutoScroll = 8 -- Scroll when this many lines from top/bottom
+AutoScroll = 1 -- Scroll when this many lines from top/bottom
 
 TabSize = 4
 UseSpaces = true
 
 Python = {}
-Python.useKite = true
+Python.useKite = false
 
 -- true: refresh on edit
 -- false: refresh on save
-MarkdownLivePreview = false
+MarkdownLiveRefresh = false
 
 Font = "FiraCode Nerd Font:h17"
 
