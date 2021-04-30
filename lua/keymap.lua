@@ -1,8 +1,4 @@
 local map = vim.api.nvim_set_keymap
--- ================================ LEADER ====================================
--- unmap space and set it as the leader key
-map('n', '<Space>', '<NOP>', { noremap=true, silent=true })
-vim.g.mapleader = ' '
 
 -- ================================ GLOBAL ====================================
 
@@ -39,9 +35,9 @@ map('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', { noremap=true, sile
 map('n', '<C-p>', ':Lspsaga diagnostic_jump_prev<CR>', { noremap=true, silent=true })
 map('n', '<C-n>', ':Lspsaga diagnostic_jump_next<CR>', { noremap=true, silent=true })
 -- scroll down hover doc or scroll in definition preview
-map('n', '<C-j>', '<cmd>lua require(\'lspsaga.action\').smart_scroll_with_saga(1)<CR>', { noremap=true, silent=true })
+map('n', '<Down>', '<cmd>lua require(\'lspsaga.action\').smart_scroll_with_saga(1)<CR>', { noremap=true, silent=true })
 -- scroll up hover doc
-map('n', '<C-k>', '<cmd>lua require(\'lspsaga.action\').smart_scroll_with_saga(-1)<CR>', { noremap=true, silent=true })
+map('n', '<Up>', '<cmd>lua require(\'lspsaga.action\').smart_scroll_with_saga(-1)<CR>', { noremap=true, silent=true })
 
 -- ================================ INSERT ====================================
 

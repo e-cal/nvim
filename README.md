@@ -1,4 +1,3 @@
-
 <h1>EVim</h1>
 
 A VSCode-like editing experience in neovim. Sane default setup for a pleasant
@@ -57,6 +56,7 @@ Inspired by [LunarVim](https://github.com/ChristianChiarulli/LunarVim) and [TheP
 - Git integration
 - Markdown previewing for docs and note-taking (powerful along with telescope
 to search for text in notes)
+	- Paste images from clipboard with `<leader>-p` or `:PasteImg`
 - nvim-dap for debugging
 - Improvement of life features: autopairs, strip end-of-line whitespace, better
 quickfix, sane keymappings, undo edits from previous sessions, and more...
@@ -168,8 +168,7 @@ missing!
 - [x] finish documentation (for now)
 - [ ] fix colors for firewatch colorscheme
 - [ ] fill out lsps
-- [ ] add telescope extensions
-- [ ] add snippets
+- [x] add snippets
 - [ ] support terminal
 - [ ] add floating lazygit
 - [ ] guide for handling merge conflicts

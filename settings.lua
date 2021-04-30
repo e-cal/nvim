@@ -2,7 +2,7 @@ Colorscheme = 'deus'
 
 WrapLine = false
 LineNumbers = true
-RelativeLineNumbers = false
+RelativeLineNumbers = true
 CursorLine = true
 ColorColumn = 80
 HighlightSearch = false -- Highlight all search matches
@@ -14,6 +14,10 @@ UseSpaces = true
 
 Python = {}
 Python.useKite = true
+
+-- true: refresh on edit
+-- false: refresh on save
+MarkdownLivePreview = false
 
 Font = "FiraCode Nerd Font:h17"
 

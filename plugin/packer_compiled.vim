@@ -155,6 +155,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/ecal/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
   },
+  ["nvim-ts-autotag"] = {
+    loaded = true,
+    path = "/home/ecal/.local/share/nvim/site/pack/packer/start/nvim-ts-autotag"
+  },
   ["nvim-web-devicons"] = {
     loaded = true,
     path = "/home/ecal/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
@@ -178,6 +182,10 @@ _G.packer_plugins = {
   ["telescope.nvim"] = {
     loaded = true,
     path = "/home/ecal/.local/share/nvim/site/pack/packer/start/telescope.nvim"
+  },
+  ultisnips = {
+    loaded = true,
+    path = "/home/ecal/.local/share/nvim/site/pack/packer/start/ultisnips"
   },
   vim = {
     after_files = { "/home/ecal/.local/share/nvim/site/pack/packer/opt/vim/after/plugin/dracula.vim" },
@@ -205,13 +213,9 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/home/ecal/.local/share/nvim/site/pack/packer/opt/vim-two-firewatch"
   },
-  ["vim-vsnip"] = {
+  ["which-key.nvim"] = {
     loaded = true,
-    path = "/home/ecal/.local/share/nvim/site/pack/packer/start/vim-vsnip"
-  },
-  ["vim-which-key"] = {
-    loaded = true,
-    path = "/home/ecal/.local/share/nvim/site/pack/packer/start/vim-which-key"
+    path = "/home/ecal/.local/share/nvim/site/pack/packer/start/which-key.nvim"
   }
 }
 
