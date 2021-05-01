@@ -12,59 +12,41 @@ end
 vim.cmd 'autocmd BufWritePost init.lua PackerCompile'
 
 return require('packer').startup(function(use)
-    -- Make packer manage itself
+    -- Package Manager
     use 'wbthomason/packer.nvim'
-
-
-    -- Icons
-    use 'kyazdani42/nvim-web-devicons'
     -- LSP
     use 'neovim/nvim-lspconfig'
     use 'glepnir/lspsaga.nvim'
     use 'kabouzeid/nvim-lspinstall'
     use 'hrsh7th/nvim-compe'
     use 'SirVer/ultisnips'
-    -- Autocomlete
-    use 'windwp/nvim-autopairs'
-    use 'terrortylor/nvim-comment'
-    use 'windwp/nvim-ts-autotag'
-    -- Telescope
+    -- Navigation
+    use 'kyazdani42/nvim-tree.lua'
     use 'nvim-lua/popup.nvim'
     use 'nvim-lua/plenary.nvim'
     use 'nvim-telescope/telescope.nvim'
     use 'nvim-telescope/telescope-fzy-native.nvim'
     use 'nvim-telescope/telescope-media-files.nvim'
-	-- QuickFix
+    -- Convenience
+    use 'folke/which-key.nvim'
+    use 'windwp/nvim-autopairs'
+    use 'terrortylor/nvim-comment'
     use 'kevinhwang91/nvim-bqf'
-    -- Debugger
-    use 'mfussenegger/nvim-dap'
-    -- File explorer
-    use 'kyazdani42/nvim-tree.lua'
-    -- Git
+    use { 'iamcco/markdown-preview.nvim', run=':call mkdp#util#install()'}
+    use 'norcalli/nvim-colorizer.lua'
     use 'lewis6991/gitsigns.nvim'
-    -- Statusline
+    use 'windwp/nvim-ts-autotag'
+    use 'blackCauldron7/surround.nvim'
+    -- Debugging
+    use 'mfussenegger/nvim-dap'
+    -- Theming
+    use 'kyazdani42/nvim-web-devicons'
     use 'glepnir/galaxyline.nvim'
     use 'romgrk/barbar.nvim'
-    -- Treesitter
     use {'nvim-treesitter/nvim-treesitter', run=':TSUpdate'}
-    -- Colorizer
-    use 'norcalli/nvim-colorizer.lua'
-    -- Dashboard
     use 'glepnir/dashboard-nvim'
-    -- Themes
-    use {'christianchiarulli/nvcode-color-schemes.vim', opt=true}
-    use {'ajmwagar/vim-deus'       , opt=true}
-    use {'sainnhe/gruvbox-material', opt=true}
+    use {'ajmwagar/vim-deus', opt=true}
     use {'arcticicestudio/nord-vim', opt=true}
     use {'rakr/vim-two-firewatch'  , opt=true}
-    use {'tomasiser/vim-code-dark' , opt=true}
-    use {'phanviet/vim-monokai-pro', opt=true}
-    use {'dracula/vim', opt=true}
-    use {'overcache/NeoSolarized', opt=true}
-    -- Whichkey (replace with lua when possible)
-    use 'folke/which-key.nvim'
-
-    -- Note taking
-    use { 'iamcco/markdown-preview.nvim', run=':call mkdp#util#install()'}
+    use {'christianchiarulli/nvcode-color-schemes.vim', opt=true}
 end)
-

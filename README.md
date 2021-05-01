@@ -31,6 +31,7 @@ Inspired by [LunarVim](https://github.com/ChristianChiarulli/LunarVim) and [TheP
 - [Installation](#install)
 - [Features](#features)
 - [Configuration](#config)
+- [Plugins](#plugins)
 - [Default Keymap](#keys)
 - [Colorschemes](#colors)
 - [Need Help?](#help)
@@ -44,6 +45,7 @@ Inspired by [LunarVim](https://github.com/ChristianChiarulli/LunarVim) and [TheP
 2. Clone this repo: `git clone https://github.com/e-cal/evim ~/.config/nvim`
 3. If you don't already have pynvim installed: `pip3 install pynvim`
 4. Run `nvim` and do `:PackerInstall`
+5. Update with `git fetch` + `git pull`
 
 ## Features <a name="features"></a>
 - Almost entirely lua
@@ -80,7 +82,7 @@ quickfix, sane keymappings, undo edits from previous sessions, and more...
 - [lspsaga](https://www.github.com/glepnir/lspsaga.nvim)
 - [nvim-lspinstall](https://www.github.com/kabouzeid/nvim-lspinstall)
 - [nvim-compe](https://www.github.com/hrsh7th/nvim-compe)
-- [vim-vsnip](https://www.github.com/hrsh7th/vim-vsnip)
+- [ultisnips](https://www.github.com/SirVer/ultisnips)
 
 **Navigation**
 - [nvim-tree](https://www.github.com/kyazdani42/nvim-tree.lua)
@@ -88,15 +90,18 @@ quickfix, sane keymappings, undo edits from previous sessions, and more...
 - [plenary (dependency)](https://www.github.com/nvim-lua/plenary.nvim)
 - [telescope](https://www.github.com/nvim-telescope/telescope.nvim)
 - [telescope-fzy-native](https://www.github.com/nvim-telescope/telescope-fzy-native.nvim)
+- [telescope-media-files](https://www.github.com/nvim-telescope/telescope-media-files.nvim)
 
-**Improvement of life**
-- [vim-which-key](https://www.github.com/liuchengxu/vim-which-key)
+**Convenience**
+- [which-key](https://www.github.com/folke/which-key.nvim)
 - [nvim-autopairs](https://www.github.com/windwp/nvim-autopairs)
 - [nvim-comment](https://www.github.com/terrortylor/nvim-comment)
 - [nvim-bqf](https://www.github.com/kevinhwang91/nvim-bqf)
 - [markdown-preview](https://www.github.com/iamcco/markdown-preview.nvim)
 - [nvim-colorizer](https://www.github.com/norcalli/nvim-colorizer.lua)
 - [gitsigns](https://www.github.com/lewis6991/gitsigns.nvim)
+- [nvim-ts-autotag](https://www.github.com/windwp/nvim-ts-autotag)
+- [surround](https://www.github.com/blackCauldron7/surround.nvim)
 
 **Debuging**
 - [nvim-dap](https://www.github.com/mfussenegger/nvim-dap)
@@ -108,7 +113,6 @@ quickfix, sane keymappings, undo edits from previous sessions, and more...
 - [nvim-treesitter](https://www.github.com/nvim-treesitter/nvim-treesitter)
 - [dashboard-nvim](https://www.github.com/glepnir/dashboard-nvim)
 - [vim-deus](https://www.github.com/ajmwagar/vim-deus)
-- [gruvbox-material](https://www.github.com/sainnhe/gruvbox-material)
 - [nord-vim](https://www.github.com/arcticicestudio/nord-vim)
 - [vim-two-firewatch](https://www.github.com/rakr/vim-two-firewatch)
 
