@@ -15,6 +15,13 @@ UseSpaces = true
 Python = {}
 Python.useKite = false
 
+Term = {}
+Term.shell = vim.o.shell -- string with path to shell
+Term.size = 10
+Term.shade = true
+Term.direction = 'horizontal' -- horizontal, vertical, window, or float
+Term.floatBorder = 'shadow' -- single, double, shadow, or curved
+
 -- true: refresh on edit
 -- false: refresh on save
 MarkdownLiveRefresh = false
