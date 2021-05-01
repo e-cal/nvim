@@ -2,18 +2,18 @@ Colorscheme = 'deus'
 
 WrapLine = false
 LineNumbers = true
-RelativeLineNumbers = false
+RelativeLineNumbers = true
 CursorLine = true
 ColorColumn = 80
 HighlightSearch = false -- Highlight all search matches
 SearchIgnoreCase = true
-AutoScroll = 1 -- Scroll when this many lines from top/bottom
+AutoScroll = 8 -- Scroll when this many lines from top/bottom
 
 TabSize = 4
 UseSpaces = true
 
 Python = {}
-Python.useKite = false
+Python.useKite = true
 
 -- true: refresh on edit
 -- false: refresh on save
