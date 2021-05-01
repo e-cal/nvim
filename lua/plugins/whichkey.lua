@@ -75,8 +75,8 @@ local mappings = {
         ['<'] = {'<cmd>BufferMovePrevious<cr>', 'move left'},
         b = {'<cmd>BufferPick<cr>', 'pick buffer'},
         c = {'<cmd>BufferClose<cr>', 'close buffer'},
-        n = {'<cmd>bnext<cr>', 'next buffer'},
-        p = {'<cmd>bprevious<cr>', 'prev buffer'}
+        n = {'<cmd>BufferNext<cr>', 'next buffer'},
+        p = {'<cmd>BufferPrevious<cr>', 'prev buffer'}
     },
 
     d = {
