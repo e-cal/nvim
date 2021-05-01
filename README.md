@@ -55,7 +55,9 @@ Inspired by [LunarVim](https://github.com/ChristianChiarulli/LunarVim) and [TheP
 	- Supports both [Kite](https://www.kite.com) and Pyright for python development
 - Whichkey so you don't need to memorize all the keymappings
 - Telescope and nvim-tree for seamless navigation
+- Better terminal and floating terminals
 - Git integration
+    - + floating lazygit!
 - Markdown previewing for docs and note-taking (powerful along with telescope
 to search for text in notes)
 	- Paste images from clipboard with `<leader>-p` or `:PasteImg`
@@ -102,6 +104,7 @@ quickfix, sane keymappings, undo edits from previous sessions, and more...
 - [gitsigns](https://www.github.com/lewis6991/gitsigns.nvim)
 - [nvim-ts-autotag](https://www.github.com/windwp/nvim-ts-autotag)
 - [surround](https://www.github.com/blackCauldron7/surround.nvim)
+- [nvim-toggleterm](https://www.github.com/akinsho/nvim-toggleterm.lua)
 
 **Debuging**
 - [nvim-dap](https://www.github.com/mfussenegger/nvim-dap)
@@ -173,8 +176,8 @@ missing!
 - [ ] fix colors for firewatch colorscheme
 - [ ] fill out lsps
 - [x] add snippets
-- [ ] support terminal
-- [ ] add floating lazygit
+- [x] support terminal
+- [x] add floating lazygit
 - [ ] guide for handling merge conflicts
 - [ ] dap configuration
 - [ ] add efm lsp
