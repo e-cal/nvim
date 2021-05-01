@@ -9,8 +9,32 @@ fun! TrimWhitespace()
     keeppatterns %s/\s\+$//e
     call winrestview(l:save)
 endfun
-]],
-false)
+]], false)
+
+api.nvim_exec(
+[[
+function! MarkdownLevel()
+    if getline(v:lnum) =~ '^# .*$'
+        return ">1"
+    endif
+    if getline(v:lnum) =~ '^## .*$'
+        return ">2"
+    endif
+    if getline(v:lnum) =~ '^### .*$'
+        return ">3"
+    endif
+    if getline(v:lnum) =~ '^#### .*$'
+        return ">4"
+    endif
+    if getline(v:lnum) =~ '^##### .*$'
+        return ">5"
+    endif
+    if getline(v:lnum) =~ '^###### .*$'
+        return ">6"
+    endif
+    return "="
+endfunction
+]], false)
 
 -- Paste images
 local paste_cmd = 'xclip -selection clipboard -t image/png -o > %s'
@@ -41,7 +65,8 @@ F.paste_img = function ()
 	os.execute(string.format(paste_cmd, path))
 
 	-- text
-	local pasted_txt = string.format('![](%s)', path)
+    local template = '<img src="%s" width=600px />'
+	local pasted_txt = string.format(template, path)
     vim.cmd("normal a"..pasted_txt)
 end
 

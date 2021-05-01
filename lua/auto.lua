@@ -29,5 +29,8 @@ augroups({
             'set showtabline=0 | autocmd BufLeave <buffer> set showtabline=2'
         }
     },
+    _markdown = {
+        {'FileType', 'markdown', 'setlocal spell foldexpr=MarkdownLevel() foldmethod=expr nofoldenable'}
+    }
 })
 
