@@ -71,11 +71,6 @@ end
 time("try_loadstring definition", false)
 time("Defining packer_plugins", true)
 _G.packer_plugins = {
-  NeoSolarized = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/home/ecal/.local/share/nvim/site/pack/packer/opt/NeoSolarized"
-  },
   ["barbar.nvim"] = {
     loaded = true,
     path = "/home/ecal/.local/share/nvim/site/pack/packer/start/barbar.nvim"
@@ -91,11 +86,6 @@ _G.packer_plugins = {
   ["gitsigns.nvim"] = {
     loaded = true,
     path = "/home/ecal/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
-  },
-  ["gruvbox-material"] = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/home/ecal/.local/share/nvim/site/pack/packer/opt/gruvbox-material"
   },
   ["lspsaga.nvim"] = {
     loaded = true,
@@ -175,6 +165,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/ecal/.local/share/nvim/site/pack/packer/start/popup.nvim"
   },
+  ["surround.nvim"] = {
+    loaded = true,
+    path = "/home/ecal/.local/share/nvim/site/pack/packer/start/surround.nvim"
+  },
   ["telescope-fzy-native.nvim"] = {
     loaded = true,
     path = "/home/ecal/.local/share/nvim/site/pack/packer/start/telescope-fzy-native.nvim"
@@ -191,26 +185,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/ecal/.local/share/nvim/site/pack/packer/start/ultisnips"
   },
-  vim = {
-    after_files = { "/home/ecal/.local/share/nvim/site/pack/packer/opt/vim/after/plugin/dracula.vim" },
-    loaded = false,
-    needs_bufread = false,
-    path = "/home/ecal/.local/share/nvim/site/pack/packer/opt/vim"
-  },
-  ["vim-code-dark"] = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/home/ecal/.local/share/nvim/site/pack/packer/opt/vim-code-dark"
-  },
   ["vim-deus"] = {
     loaded = false,
     needs_bufread = false,
     path = "/home/ecal/.local/share/nvim/site/pack/packer/opt/vim-deus"
-  },
-  ["vim-monokai-pro"] = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/home/ecal/.local/share/nvim/site/pack/packer/opt/vim-monokai-pro"
   },
   ["vim-two-firewatch"] = {
     loaded = false,
