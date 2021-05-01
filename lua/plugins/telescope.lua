@@ -25,11 +25,16 @@ require('telescope').setup {
         fzy_native = {
             override_generic_sorter = false,
             override_file_sorter = true,
+        },
+        media_files = {
+            filetypes = {"png", "webp", "jpg", "jpeg", "mp4", "pdf"},
+            find_cmd = "rg"
         }
     }
 }
 
 require('telescope').load_extension('fzy_native')
+require('telescope').load_extension('media_files')
 
 local M = {}
 M.search_dotfiles = function()

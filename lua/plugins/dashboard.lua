@@ -11,7 +11,7 @@ vim.g.dashboard_default_executive = 'telescope'
 
 vim.g.dashboard_custom_section = {
     a = {description = {'  New File       '}, command = 'enew'},
-    b = {description = {'  Find File      '}, command = 'Telescope find_files'},
+    b = {description = {'  Files          '}, command = 'Telescope find_files hidden=true'},
     c = {description = {'  Find Text      '}, command = 'Telescope live_grep'},
     d = {description = {'  Recent Files   '}, command = 'Telescope oldfiles'},
     e = {description = {'  Restore Session'}, command = 'set showtabline=2 | SessionLoad'},

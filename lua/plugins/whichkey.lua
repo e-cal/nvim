@@ -26,20 +26,25 @@ wk.setup {
     window = {
         border = "shadow", -- none, single, double, shadow
         position = "bottom", -- bottom, top
-        margin = { 1, 5, 1, 1 }, -- extra window margin [top, right, bottom, left]
-        padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
+        margin = { 1, 3, 0, 0 }, -- extra window margin [top, right, bottom, left]
+        padding = { 1, 1, 1, 1 }, -- extra window padding [top, right, bottom, left]
     },
     layout = {
-        height = { min = 4, max = 25 }, -- min and max height of the columns
-        width = { min = 20, max = 50 }, -- min and max width of the columns
+        height = { min = 4, max = 10 }, -- min and max height of the columns
+        width = { min = 20, max = 300 }, -- min and max width of the columns
         spacing = 5, -- spacing between columns
     },
     hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ "}, -- hide mapping boilerplate
     show_help = true -- show help message on the command line when the popup is visible
 }
 
+-- vim.api.nvim_set_keymap('n', '<Space>', '<NOP>', {noremap = true, silent = true})
+vim.g.mapleader = ' '
+
+
+-- NORMAL mode
 local opts = {
-    mode = "n", -- NORMAL mode
+    mode = "n",
     prefix = "<leader>",
     buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
     silent = true, -- use `silent` when creating keymaps
@@ -47,10 +52,6 @@ local opts = {
     nowait = false -- use `nowait` when creating keymaps
 }
 
-vim.api.nvim_set_keymap('n', '<Space>', '<NOP>', {noremap = true, silent = true})
-vim.g.mapleader = ' '
-
-vim.api.nvim_exec('command! -nargs=0 LspVirtualTextToggle lua require("lsp.virtual_text").toggle()', false)
 local mappings = {
     [' '] = 'which_key_ignore',
     f = { '<cmd>Telescope find_files<cr>', 'find files' },
@@ -108,31 +109,32 @@ local mappings = {
         ['?'] = {'<cmd>Telescope filetypes<cr>', 'filetypes'},
         b = {'<cmd>Telescope git_branches<cr>', 'git branches'},
         f = {'<cmd>Telescope find_files<cr>', 'files'},
-        h = {'<cmd>Telescope command_history<cr>', 'history'},
+        h = {'<cmd>Telescope command_history<cr>', 'cmd history'},
         p = {'<cmd>Telescope media_files<cr>', 'media'},
         m = {'<cmd>Telescope marks<cr>', 'marks'},
         M = {'<cmd>Telescope man_pages<cr>', 'manuals'},
         o = {'<cmd>Telescope vim_options<cr>', 'options'},
         t = {'<cmd>Telescope live_grep<cr>', 'text'},
-        r = {'<cmd>Telescope registers<cr>', 'registers'},
+        r = {'<cmd>Telescope oldfiles<cr>', 'recents'},
+        R = {'<cmd>Telescope registers<cr>', 'registers'},
         w = {'<cmd>Telescope file_browser<cr>', 'fuzzy find'},
         c = {'<cmd>Telescope colorscheme<cr>', 'colorschemes'},
     },
 
     g = {
         name = '+git' ,
-        b = {'<cmd>GitBlameToggle<cr>', 'blame'},
+        b = {'<cmd>Git blame_line<CR>', 'blame'},
         B = {'<cmd>GBrowse<cr>', 'browse'},
         d = {'<cmd>Git diff<cr>', 'diff'},
-        j = {'<cmd>NextHunk<cr>', 'next hunk'},
-        k = {'<cmd>PrevHunk<cr>', 'prev hunk'},
+        j = {'<cmd>Git next_hunk<CR>', 'next hunk'},
+        k = {'<cmd>Git prev_hunk<CR>', 'prev hunk'},
         l = {'<cmd>Git log<cr>', 'log'},
-        p = {'<cmd>PreviewHunk<cr>', 'preview hunk'},
-        r = {'<cmd>ResetHunk<cr>', 'reset hunk'},
-        R = {'<cmd>ResetBuffer<cr>', 'reset buffer'},
-        s = {'<cmd>StageHunk<cr>', 'stage hunk'},
+        p = {'<cmd>Git preview_hunk<CR>', 'preview hunk'},
+        r = {'<cmd>Git reset_hunk<CR>', 'reset hunk'},
+        R = {'<cmd>Git reset_buffer<CR>', 'reset buffer'},
+        s = {'<cmd>Git stage_hunk<CR>', 'stage hunk'},
         S = {'<cmd>Gstatus<cr>', 'status'},
-        u = {'<cmd>UndoStageHunk<cr>', 'undo stage hunk'},
+        u = {'<cmd>Git undo_stage_hunk<CR>', 'undo stage hunk'},
     },
 
     l = {

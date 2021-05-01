@@ -90,4 +90,19 @@ function lsp_config.tsserver_on_attach(client, bufnr)
     client.resolved_capabilities.document_formatting = false
 end
 
+
+lsp_config.show_vtext = true
+
+lsp_config.toggle_vtext = function()
+    lsp_config.show_vtext = not lsp_config.show_vtext
+    vim.lsp.diagnostic.display(
+        vim.lsp.diagnostic.get(0, 1),
+        0,
+        1,
+        {virtual_text = lsp_config.show_vtext}
+    )
+end
+
+vim.api.nvim_exec('command! -nargs=0 LspVirtualTextToggle lua require("lsp").toggle_vtext()', false)
+
 return lsp_config
