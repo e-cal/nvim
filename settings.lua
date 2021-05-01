@@ -13,7 +13,7 @@ TabSize = 4
 UseSpaces = true
 
 Python = {}
-Python.useKite = true
+Python.useKite = false
 
 -- true: refresh on edit
 -- false: refresh on save
