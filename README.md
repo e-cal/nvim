@@ -52,12 +52,14 @@ Inspired by [LunarVim](https://github.com/ChristianChiarulli/LunarVim) and [TheP
 - Native LSP
 	- Completions, linting, formatting, snippets
 	- Easily add a language with `:LspInstall your-language`
-	- Supports both [Kite](https://www.kite.com) and Pyright for python development
+	- Supports both [Kite](https://www.kite.com) and Pyright for python
+    development
 - Whichkey so you don't need to memorize all the keymappings
 - Telescope and nvim-tree for seamless navigation
 - Better terminal and floating terminals
 - Git integration
-    - + floating lazygit!
+    - Floating [lazygit](https://github.com/jesseduffield/lazygit) with
+    `<leader>-g-l` (extremely useful for handling merge conflicts)
 - Markdown previewing for docs and note-taking (powerful along with telescope
 to search for text in notes)
 	- Paste images from clipboard with `<leader>-p` or `:PasteImg`
@@ -178,7 +180,6 @@ missing!
 - [x] add snippets
 - [x] support terminal
 - [x] add floating lazygit
-- [ ] guide for handling merge conflicts
 - [ ] dap configuration
 - [ ] add efm lsp
 - [x] support kite
