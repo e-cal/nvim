@@ -16,7 +16,7 @@ Python = {}
 Python.useKite = false
 
 Term = {}
-Term.shell = vim.o.shell -- string with path to shell
+Term.shell = '/bin/fish'
 Term.size = 10
 Term.shade = true
 Term.direction = 'horizontal' -- horizontal, vertical, window, or float
