@@ -68,6 +68,7 @@ local mappings = {
     h = { '<cmd>sp<cr>', 'split below' },
     v = { '<cmd>vert sp<cr>', 'split right' },
     p = { '<cmd>PasteImg<cr>', 'paste image' },
+    T = { '<cmd>ToggleTerm<cr>', 'toggle terminal' },
 
     b = {
         name = '+buffer',
@@ -128,13 +129,14 @@ local mappings = {
         d = {'<cmd>Git diff<cr>', 'diff'},
         j = {'<cmd>Git next_hunk<CR>', 'next hunk'},
         k = {'<cmd>Git prev_hunk<CR>', 'prev hunk'},
-        l = {'<cmd>Git log<cr>', 'log'},
+        L = {'<cmd>Git log<cr>', 'log'},
         p = {'<cmd>Git preview_hunk<CR>', 'preview hunk'},
         r = {'<cmd>Git reset_hunk<CR>', 'reset hunk'},
         R = {'<cmd>Git reset_buffer<CR>', 'reset buffer'},
         s = {'<cmd>Git stage_hunk<CR>', 'stage hunk'},
         S = {'<cmd>Gstatus<cr>', 'status'},
         u = {'<cmd>Git undo_stage_hunk<CR>', 'undo stage hunk'},
+        l = {'<cmd>lua lazygit_toggle()<CR>', 'lazygit'},
     },
 
     l = {

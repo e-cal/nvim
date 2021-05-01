@@ -37,6 +37,7 @@ return require('packer').startup(function(use)
     use 'lewis6991/gitsigns.nvim'
     use 'windwp/nvim-ts-autotag'
     use 'blackCauldron7/surround.nvim'
+    use 'akinsho/nvim-toggleterm.lua'
     -- Debugging
     use 'mfussenegger/nvim-dap'
     -- Theming
