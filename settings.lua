@@ -12,15 +12,21 @@ AutoScroll = 8 -- Scroll when this many lines from top/bottom
 TabSize = 4
 UseSpaces = true
 
-Python = {}
-Python.useKite = false
-
 Term = {}
 Term.shell = '/bin/fish'
 Term.size = 10
 Term.shade = true
 Term.direction = 'horizontal' -- horizontal, vertical, window, or float
 Term.floatBorder = 'shadow' -- single, double, shadow, or curved
+
+-- Langage specific
+
+Python = {}
+Python.useKite = false
+Python.autoFormat = true
+
+Lua = {}
+Lua.autoFormat = true
 
 -- true: refresh on edit
 -- false: refresh on save
