@@ -1,16 +1,17 @@
 vim.cmd('luafile ~/.config/nvim/settings.lua')
 require('plugins')
 require('keymap')
-require('settings')
+require('vim-settings')
 require('functions')
 require('auto')
 require('colors')
 
 -- LSP
 require('lsp')
-require('lsp.lua')
-require('lsp.latex')
 require('lsp.bash')
+require('lsp.efm')
+require('lsp.latex')
+require('lsp.lua')
 require('lsp.vim')
 
 if Python.useKite then
