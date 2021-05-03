@@ -55,8 +55,8 @@ Inspired by [LunarVim](https://github.com/ChristianChiarulli/LunarVim) and [TheP
 - Almost entirely lua
 - Native LSP
 	- Completions, linting, formatting, snippets
-    - Enable/disable auto-formatting for a filetype with `:FormatEnable` and
-    `:FormatDisable`
+    - Enable/disable auto-formatting for a filetype with `<leader>-l-F` or
+	`:FormatToggle`
 	- Easily add a language with `:LspInstall your-language`
 	- Supports both [Kite](https://www.kite.com) and Pyright for python
     development
@@ -183,9 +183,9 @@ missing!
 - [x] add snippets
 - [x] support terminal
 - [x] add floating lazygit
-- [x] use efm
 - [x] support kite
-- [ ] auto formatting in python
+- [x] auto formatting
+- [x] add common lsps
 - [ ] xdg-open images from tree
 - [ ] fix colors for firewatch colorscheme
 - [ ] fix colors for nord colorscheme

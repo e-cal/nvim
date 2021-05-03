@@ -40,6 +40,14 @@ Lua = {}
 Lua.formatter = 'lua-format'
 Lua.formatLineLength = 80
 
+JS_TS = {}
+JS_TS.formatter = 'prettier'
+JS_TS.linter = 'eslint'
+
+Shell = {}
+Shell.formatter = 'shfmt'
+Shell.linter = 'shellcheck'
+
 Markdown = {}
 -- true: refresh on edit
 -- false: refresh on save

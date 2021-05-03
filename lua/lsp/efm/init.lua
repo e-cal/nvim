@@ -14,14 +14,37 @@ end
 -- Language specific efm configs
 local python = require('lsp.efm.python')
 local lua = require('lsp.efm.lua')
+local tsserver = require('lsp.efm.tsserver')
+local sh = require('lsp.efm.sh')
+
+local prettier = {
+    formatCommand = "prettier_d_slim --stdin --stdin-filepath ${INPUT}",
+    formatStdin = true
+}
 
 lspconfig.efm.setup {
     init_options = {documentFormatting = true},
     on_attach = on_attach,
-    filetypes = {"python", "lua"}, -- Add new languages here
+    filetypes = {
+        "lua", "python", "javascriptreact", "javascript", "typescript",
+        "typescriptreact", "sh", "html", "css", "json", "yaml", "markdown",
+        "vue"
+    },
     settings = {
         rootMarkers = {".git/"},
-        languages = {python = python, lua = lua} -- and here
+        languages = {
+            python = python,
+            lua = lua,
+            javascript = tsserver,
+            javascriptreact = tsserver,
+            typescript = tsserver,
+            typescriptreact = tsserver,
+            html = {prettier},
+            css = {prettier},
+            json = {prettier},
+            yaml = {prettier},
+            sh = sh
+        }
     }
 }
 

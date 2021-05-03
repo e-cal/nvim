@@ -9,9 +9,11 @@ require('colors')
 -- LSP
 require('lsp')
 require('lsp.bash')
-require('lsp.efm')
+require('lsp.js-ts')
+require('lsp.json')
 require('lsp.latex')
 require('lsp.lua')
+require('lsp.rust')
 require('lsp.vim')
 
 if Python.useKite then
@@ -19,6 +21,8 @@ if Python.useKite then
 else
     require('lsp.python')
 end
+
+require('lsp.efm')
 
 -- Plugin configs
 require('plugins.autopairs')
@@ -29,10 +33,10 @@ require('plugins.dashboard')
 require('plugins.galaxyline')
 require('plugins.gitsigns')
 require('plugins.markdown-preview')
+require('plugins.nvim-tree')
 require('plugins.surround')
 require('plugins.telescope')
 require('plugins.toggleterm')
-require('plugins.tree')
 require('plugins.treesitter')
 require('plugins.ultisnips')
 require('plugins.whichkey')
