@@ -46,6 +46,10 @@ Inspired by [LunarVim](https://github.com/ChristianChiarulli/LunarVim) and [TheP
 3. If you don't already have pynvim installed: `pip3 install pynvim`
 4. Run `nvim` and do `:PackerInstall`
 5. Update with `git fetch` + `git pull`
+- For formatting install [efm-langserver](https://github.com/mattn/efm-langserver)
+    - Seems to be broken when installed with `:LspInstall`
+    - Install with `go get github.com/mattn/efm-langserver` or
+    `brew install efm-langserver` or `pacman -S efm-langserver`
 
 ## Features <a name="features"></a>
 - Almost entirely lua
@@ -174,14 +178,13 @@ Some themes may require some extra tweaking. The relevant files are
 ## Todo <a name="todo"></a>
 Feel free to tackle something or submit a PR to add anything you think is
 missing!
-- [x] finish documentation (for now)
-- [ ] fix colors for firewatch colorscheme
-- [ ] fill out lsps
 - [x] add snippets
 - [x] support terminal
 - [x] add floating lazygit
-- [ ] dap configuration
-- [ ] add efm lsp
+- [x] use efm
 - [x] support kite
+- [ ] auto formatting in python
+- [ ] xdg-open images from tree
+- [ ] fix colors for firewatch colorscheme
 - [ ] fix colors for nord colorscheme
-- [ ] fix colors for codedark colorscheme
+- [ ] dap configuration

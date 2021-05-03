@@ -3,7 +3,7 @@ local configs = require'lspconfig/configs'
 if not lspconfig.kite then
   configs.kite = {
     default_config = {
-      cmd = {'/home/ecal/.local/share/kite/current/kite-lsp'};
+      cmd = {'~/.local/share/kite/current/kite-lsp'};
       filetypes = {'python'};
       root_dir = function(fname)
         return lspconfig.util.find_git_ancestor(fname) or vim.loop.os_homedir()

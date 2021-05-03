@@ -26,7 +26,7 @@ vim.o.scrolloff=AutoScroll                 -- Start scrolling before reaching th
 -- Use undofile instead of swap files for history
 vim.o.swapfile=false
 vim.o.backup=false
-vim.o.undodir="/home/ecal/.cache/nvim/undodir/"
+vim.o.undodir= os.getenv("HOME") .. "/.cache/nvim/undodir/"
 vim.o.undofile=true
 
 vim.cmd('set ts=' .. TabSize)

@@ -69,6 +69,7 @@ local mappings = {
     v = { '<cmd>vert sp<cr>', 'split right' },
     p = { '<cmd>PasteImg<cr>', 'paste image' },
     T = { '<cmd>ToggleTerm<cr>', 'toggle terminal' },
+    [':'] = { '<cmd>setlocal indentkeys-=<:><cr>', 'fix :' },
 
     b = {
         name = '+buffer',
@@ -136,7 +137,7 @@ local mappings = {
         s = {'<cmd>Git stage_hunk<CR>', 'stage hunk'},
         S = {'<cmd>Gstatus<cr>', 'status'},
         u = {'<cmd>Git undo_stage_hunk<CR>', 'undo stage hunk'},
-        l = {'<cmd>lua lazygit_toggle()<CR>', 'lazygit'},
+        l = {'<cmd>lua LazygitToggle()<CR>', 'lazygit'},
     },
 
     l = {
