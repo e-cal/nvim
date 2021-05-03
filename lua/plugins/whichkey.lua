@@ -61,7 +61,7 @@ local mappings = {
     s = {'<cmd>w<cr>', 'save'},
     S = {'<cmd>SessionSave<cr>', 'save session'},
     q = {'<cmd>wqa<cr>', 'save & quit'},
-    w = {'<cmd>q<cr>', 'close window'},
+    W = {'<cmd>close<cr>', 'close window'},
     x = {'<cmd>BufferClose<cr>', 'close buffer'},
     ['.'] = {'<cmd>luafile %<cr>', 'source file'},
     h = {'<cmd>sp<cr>', 'split below'},
@@ -111,7 +111,8 @@ local mappings = {
             'config'
         },
         ['?'] = {'<cmd>Telescope filetypes<cr>', 'filetypes'},
-        b = {'<cmd>Telescope git_branches<cr>', 'git branches'},
+        g = {'<cmd>Telescope git_branches<cr>', 'git branches'},
+        b = {'<cmd>Telescope buffers<cr>', 'buffers'},
         f = {'<cmd>Telescope find_files<cr>', 'files'},
         h = {'<cmd>Telescope command_history<cr>', 'cmd history'},
         p = {'<cmd>Telescope media_files<cr>', 'media'},
@@ -119,6 +120,7 @@ local mappings = {
         M = {'<cmd>Telescope man_pages<cr>', 'manuals'},
         o = {'<cmd>Telescope vim_options<cr>', 'options'},
         t = {'<cmd>Telescope live_grep<cr>', 'text'},
+        s = {'<cmd>Telescope grep_string<cr>', 'selected string'},
         r = {'<cmd>Telescope oldfiles<cr>', 'recents'},
         R = {'<cmd>Telescope registers<cr>', 'registers'},
         w = {'<cmd>Telescope file_browser<cr>', 'fuzzy find'},
@@ -163,7 +165,8 @@ local mappings = {
         T = {'<cmd>LspTypeDefinition<cr>', 'type defintion'},
         x = {'<cmd>cclose<cr>', 'close quickfix'},
         s = {'<cmd>Telescope lsp_document_symbols<cr>', 'document symbols'},
-        S = {'<cmd>Telescope lsp_workspace_symbols<cr>', 'workspace symbols'}
+        S = {'<cmd>Telescope lsp_workspace_symbols<cr>', 'workspace symbols'},
+        R = {'<cmd>LspRestart<cr>', 'restart lsp'}
     },
 
     m = {
@@ -171,6 +174,18 @@ local mappings = {
         p = {'<cmd>MarkdownPreview<cr>', 'preview'},
         s = {'<cmd>MarkdownPreviewStop<cr>', 'stop preview'},
         t = {'<cmd>MarkdownPreviewToggle<cr>', 'toggle preview'}
+    },
+
+    w = {
+        name = '+window',
+        ["<"] = {"<C-w><", "resize left"},
+        [">"] = {"<C-w>>", "resize right"},
+        ["-"] = {"<C-w>-", "resize down"},
+        ["+"] = {"<C-w>+", "resize height"},
+        ["="] = {"<C-w>=", "reset window"},
+        ["h"] = {"<cmd>split<cr>", "split horizontal"},
+        ["v"] = {"<cmd>vsplit<cr>", "split vertical"},
+        ["d"] = {"<cmd>close<cr>", "close split window"}
     }
 
 }

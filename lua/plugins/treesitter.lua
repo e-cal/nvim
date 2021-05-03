@@ -1,11 +1,7 @@
 require'nvim-treesitter.configs'.setup {
     ensure_installed = "all",
-    highlight = {
-        enable = {enabled = true}
-    },
+    ignore_install = {"haskell"},
+    highlight = {enable = {enabled = true}},
     indent = {enable = true},
-    autotag = {
-        enable = true,
-        filetypes = {'html', 'xml', 'markdown'}
-    },
+    autotag = {enable = true}
 }

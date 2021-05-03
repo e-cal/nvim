@@ -183,9 +183,9 @@ missing!
 - [x] add snippets
 - [x] support terminal
 - [x] add floating lazygit
-- [x] use efm
 - [x] support kite
-- [ ] auto formatting in python
+- [x] auto formatting
+- [x] add common lsps
 - [ ] xdg-open images from tree
 - [ ] fix colors for firewatch colorscheme
 - [ ] fix colors for nord colorscheme
