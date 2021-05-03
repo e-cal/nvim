@@ -187,6 +187,6 @@ missing!
 - [x] auto formatting
 - [x] add common lsps
 - [ ] xdg-open images from tree
-- [ ] fix colors for firewatch colorscheme
+- [x] fix colors for firewatch colorscheme
 - [ ] fix colors for nord colorscheme
 - [ ] dap configuration

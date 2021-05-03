@@ -1,24 +1,24 @@
 local gl = require('galaxyline')
 local colors = {
     black = '#242a32',
-	red = '#d54e53',
-	green = '#98c379',
-	yellow = '#e5c07b',
-	orange = '#f4852b',
-	blue = '#83a598',
-	purple = '#c678dd',
-	teal = '#70c0ba',
-	white = '#eaeaea',
-	grey  = '#666666',
-	bright_red  = '#ec3e45',
-	bright_green  = '#90c966',
-	bright_yellow  = '#edbf69',
-	bright_blue  = '#73ba9f',
-	bright_purple  = '#c858e9',
-	bright_teal  = '#2bcec2',
-	bright_white  = '#ffffff',
-	bg = '#2c323b',
-	fg = '#ebdbb2',
+    red = '#d54e53',
+    green = '#98c379',
+    yellow = '#e5c07b',
+    orange = '#f4852b',
+    blue = '#83a598',
+    purple = '#c678dd',
+    teal = '#70c0ba',
+    white = '#eaeaea',
+    grey = '#666666',
+    bright_red = '#ec3e45',
+    bright_green = '#90c966',
+    bright_yellow = '#edbf69',
+    bright_blue = '#73ba9f',
+    bright_purple = '#c858e9',
+    bright_teal = '#2bcec2',
+    bright_white = '#ffffff',
+    bg = '#242a32',
+    fg = '#ebdbb2'
 }
 local condition = require('galaxyline.condition')
 local gls = gl.section
@@ -50,7 +50,8 @@ gls.left[1] = {
                 ['!'] = colors.blue, -- shell command executing
                 t = colors.blue -- terminal
             }
-            vim.api.nvim_command('hi GalaxyViMode guifg=' .. mode_color[vim.fn.mode()])
+            vim.api.nvim_command('hi GalaxyViMode guifg=' ..
+                                     mode_color[vim.fn.mode()])
             return '▊ '
         end,
         highlight = {colors.red, colors.bg}
@@ -103,51 +104,46 @@ gls.left[6] = {
 
 gls.right[1] = {
     DiagnosticError = {
-		provider = 'DiagnosticError',
-		icon = '  ',
-		highlight = {colors.bright_red, colors.bg}
-	}
+        provider = 'DiagnosticError',
+        icon = '  ',
+        highlight = {colors.bright_red, colors.bg}
+    }
 }
 
 gls.right[2] = {
-	DiagnosticWarn = {
-		provider = 'DiagnosticWarn',
-		icon = '  ',
-		highlight = {colors.orange, colors.bg}
-	}
+    DiagnosticWarn = {
+        provider = 'DiagnosticWarn',
+        icon = '  ',
+        highlight = {colors.orange, colors.bg}
+    }
 }
 
 gls.right[3] = {
     DiagnosticHint = {
-		provider = 'DiagnosticHint',
-		icon = '  ',
-		highlight = {colors.bright_blue, colors.bg}
-	}
+        provider = 'DiagnosticHint',
+        icon = '  ',
+        highlight = {colors.bright_blue, colors.bg}
+    }
 }
 
 gls.right[4] = {
-	DiagnosticInfo = {
-		provider = 'DiagnosticInfo',
-		icon = '  ',
-		highlight = {colors.bright_yellow, colors.bg}
-	}
+    DiagnosticInfo = {
+        provider = 'DiagnosticInfo',
+        icon = '  ',
+        highlight = {colors.bright_yellow, colors.bg}
+    }
 }
 
-
 gls.right[5] = {
-	LineInfo = {
-		provider = {
-			function()
-				return string.format(
-                    '%s/%s:%s',
-                    vim.fn.line('.'),
-                    vim.fn.line('$'),
-                    vim.fn.col('.')
-                    )
-			end,
-		},
-		separator = ' ',
-		icon = '',
+    LineInfo = {
+        provider = {
+            function()
+                return string.format('%s/%s:%s', vim.fn.line('.'),
+                                     vim.fn.line('$'), vim.fn.col('.'))
+            end
+        },
+        separator = ' ',
+        icon = '',
         separator_highlight = {'NONE', colors.bg},
         highlight = {colors.fg, colors.bg}
     }
@@ -158,7 +154,7 @@ gls.right[6] = {
         provider = 'FileTypeName',
         condition = condition.hide_in_width,
         separator = '  ',
-        separator_highlight = {'NONE', colors.bg},
+        separator_highlight = {colors.bg, colors.bg},
         highlight = {colors.grey, colors.bg}
     }
 }
@@ -172,7 +168,8 @@ gls.right[7] = {
             return condition.hide_in_width()
         end,
         icon = ' ',
-		separator = '  ',
+        separator = '  ',
+        separator_highlight = {colors.bg, colors.bg},
         highlight = {colors.grey, colors.bg}
     }
 }
@@ -209,15 +206,12 @@ gls.short_line_left[1] = {
 
 gls.short_line_left[2] = {
     SFileName = {
-		provider = 'SFileName',
-		condition = condition.buffer_not_empty,
-		highlight = {colors.fg, colors.bg}
-	}
+        provider = 'SFileName',
+        condition = condition.buffer_not_empty,
+        highlight = {colors.fg, colors.bg}
+    }
 }
 
 gls.short_line_right[1] = {
-	BufferIcon = {
-		provider = 'BufferIcon',
-		highlight = {colors.fg, colors.bg}
-	}
+    BufferIcon = {provider = 'BufferIcon', highlight = {colors.fg, colors.bg}}
 }
