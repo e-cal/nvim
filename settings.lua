@@ -1,10 +1,14 @@
+------------------------------ GENERAL SETTINGS -------------------------------
 Colorscheme = 'deus'
+Font = 'FiraCode Nerd Font:h17'
 
 WrapLine = false
 LineNumbers = true
 RelativeLineNumbers = true
 CursorLine = true
 ColorColumn = 80
+AutoScroll = 1 -- Scroll when this many lines from top/bottom
+
 HighlightSearch = false -- Highlight all search matches
 SearchIgnoreCase = true
 AutoScroll = 8 -- Scroll when this many lines from top/bottom
@@ -19,20 +23,25 @@ Term.shade = true
 Term.direction = 'horizontal' -- horizontal, vertical, window, or float
 Term.floatBorder = 'shadow' -- single, double, shadow, or curved
 
--- Langage specific
+DATA_PATH = vim.fn.stdpath('data')
+CACHE_PATH = vim.fn.stdpath('cache')
+
+-------------------------- LANGAGE SPECIFIC SETTINGS --------------------------
+-- See lua/lsp/efm/<language>.lua to add formatters or linters
+-- Add languages in lua/lsp/efm/init.lua
 
 Python = {}
 Python.useKite = false
-Python.autoFormat = true
+Python.formatter = 'black'
+Python.isort = false
+Python.linter = nil -- add an additional linter for more coverage than pyright
 
 Lua = {}
-Lua.autoFormat = true
+Lua.formatter = 'lua-format'
+Lua.formatLineLength = 80
 
+Markdown = {}
 -- true: refresh on edit
 -- false: refresh on save
-MarkdownLiveRefresh = false
+Markdown.liveRefresh = false
 
-Font = "FiraCode Nerd Font:h17"
-
-DATA_PATH = vim.fn.stdpath('data')
-CACHE_PATH = vim.fn.stdpath('cache')

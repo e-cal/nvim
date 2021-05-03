@@ -1,4 +1,3 @@
-local F = {}
 local api = vim.api
 
 -- Trim whitespace
@@ -57,7 +56,7 @@ local get_name = function ()
 	return 'image'..index
 end
 
-F.paste_img = function ()
+PasteImg = function ()
 	-- image
 	create_dir('img')
 	local name = get_name()
@@ -70,6 +69,7 @@ F.paste_img = function ()
     vim.cmd("normal a"..pasted_txt)
 end
 
-api.nvim_exec("command! PasteImg :lua require'functions'.paste_img()", false)
+api.nvim_command("command! PasteImg :lua PasteImg()")
 
-return F
+api.nvim_command("command! LspFormatting :lua vim.lsp.buf.formatting()")
+
