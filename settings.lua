@@ -4,11 +4,11 @@ Font = 'FiraCode Nerd Font:h17'
 
 WrapLine = false
 LineNumbers = true
-RelativeLineNumbers = true
+RelativeLineNumbers = false
 
 CursorLine = true
 ColorColumn = 80
-AutoScroll = 8 -- Scroll when this many lines from top/bottom
+AutoScroll = 1 -- Scroll when this many lines from top/bottom
 
 HighlightSearch = false -- Highlight all search matches
 SearchIgnoreCase = true
