@@ -37,8 +37,9 @@ M.formatToggle = function(value)
     local var = format_disabled_var()
     vim.g[var] = _if(value ~= nil, value, not vim.g[var])
 end
-vim.cmd [[command! FormatDisable lua require'lsp.formatting'.formatToggle(true)]]
-vim.cmd [[command! FormatEnable lua require'lsp.formatting'.formatToggle(false)]]
+vim.cmd [[command! FormatDisable lua require'lsp.efm.formatting'.formatToggle(true)]]
+vim.cmd [[command! FormatEnable lua require'lsp.efm.formatting'.formatToggle(false)]]
+vim.cmd [[command! FormatToggle lua require'lsp.efm.formatting'.formatToggle()]]
 
 M.format = function()
     if not vim.g[format_disabled_var()] then

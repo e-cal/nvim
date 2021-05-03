@@ -48,13 +48,15 @@ Inspired by [LunarVim](https://github.com/ChristianChiarulli/LunarVim) and [TheP
 5. Update with `git fetch` + `git pull`
 - For formatting install [efm-langserver](https://github.com/mattn/efm-langserver)
     - Seems to be broken when installed with `:LspInstall`
-    - Install with `go get github.com/mattn/efm-langserver` or
+    - I recommend installing with `go get github.com/mattn/efm-langserver` or
     `brew install efm-langserver` or `pacman -S efm-langserver`
 
 ## Features <a name="features"></a>
 - Almost entirely lua
 - Native LSP
 	- Completions, linting, formatting, snippets
+    - Enable/disable auto-formatting for a filetype with `:FormatEnable` and
+    `:FormatDisable`
 	- Easily add a language with `:LspInstall your-language`
 	- Supports both [Kite](https://www.kite.com) and Pyright for python
     development

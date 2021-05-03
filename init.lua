@@ -1,7 +1,7 @@
 vim.cmd('luafile ~/.config/nvim/settings.lua')
 require('plugins')
 require('keymap')
-require('settings')
+require('vim-settings')
 require('functions')
 require('auto')
 require('colors')

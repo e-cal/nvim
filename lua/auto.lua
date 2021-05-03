@@ -1,13 +1,5 @@
 local api = vim.api
 
--- local formatters = {}
-
--- local python_autoformat = {'BufWritePre', '*.py', 'lua vim.lsp.buf.formatting_sync(nil, 1000)'}
--- if Python.autoFormat then table.insert(formatters, python_autoformat) end
-
--- local lua_format = {'BufWritePre', '*.lua', 'lua vim.lsp.buf.formatting_sync(nil, 1000)'}
--- if Lua.autoFormat then table.insert(formatters, lua_format) end
-
 local function augroups(definitions)
 	for group_name, definition in pairs(definitions) do
 		api.nvim_command('augroup '..group_name)
@@ -20,13 +12,20 @@ local function augroups(definitions)
 	end
 end
 
+local _global = {
+    {'BufWritePre', '*', ':call TrimWhitespace()'},
+    {'BufWinEnter', '*', 'setlocal formatoptions-=c formatoptions-=r formatoptions-=o'},
+    {'BufRead', '*', 'setlocal formatoptions-=c formatoptions-=r formatoptions-=o'},
+    {'BufNewFile', '*', 'setlocal formatoptions-=c formatoptions-=r formatoptions-=o'},
+}
+
+if HighlightYank then
+    local yank = {'TextYankPost', '*', 'lua require(\'vim.highlight\').on_yank({higroup = \'Search\', timeout = 200})'}
+    table.insert(_global, yank)
+end
+
 augroups({
-	_global = {
-		{'BufWritePre', '*', ':call TrimWhitespace()'},
-        {'BufWinEnter', '*', 'setlocal formatoptions-=c formatoptions-=r formatoptions-=o'},
-        {'BufRead', '*', 'setlocal formatoptions-=c formatoptions-=r formatoptions-=o'},
-        {'BufNewFile', '*', 'setlocal formatoptions-=c formatoptions-=r formatoptions-=o'}
-	},
+    _global,
     _dashboard = {
         {
             'FileType', 'dashboard',
@@ -46,5 +45,4 @@ augroups({
         {'FileType', 'python', 'setlocal indentkeys-=:'},
         {'BufEnter', '*.py', 'setlocal indentkeys-=<:>'},
     },
-    -- _formatters = formatters
 })
