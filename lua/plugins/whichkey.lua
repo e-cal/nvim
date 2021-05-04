@@ -61,6 +61,7 @@ local mappings = {
     s = {'<cmd>w<cr>', 'save'},
     S = {'<cmd>SessionSave<cr>', 'save session'},
     q = {'<cmd>wqa<cr>', 'save & quit'},
+    Q = {'<cmd>qa!<cr>', 'force quit'},
     W = {'<cmd>close<cr>', 'close window'},
     x = {'<cmd>BufferClose<cr>', 'close buffer'},
     ['.'] = {'<cmd>luafile %<cr>', 'source file'},
