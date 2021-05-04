@@ -123,6 +123,7 @@ quickfix, sane keymappings, undo edits from previous sessions, and more...
 - [barbar](https://www.github.com/romgrk/barbar.nvim)
 - [nvim-treesitter](https://www.github.com/nvim-treesitter/nvim-treesitter)
 - [dashboard-nvim](https://www.github.com/glepnir/dashboard-nvim)
+- [nvcode-color-schemes](https://github.com/ChristianChiarulli/nvcode-color-schemes.vim)
 - [vim-deus](https://www.github.com/ajmwagar/vim-deus)
 - [nord-vim](https://www.github.com/arcticicestudio/nord-vim)
 - [vim-two-firewatch](https://www.github.com/rakr/vim-two-firewatch)
