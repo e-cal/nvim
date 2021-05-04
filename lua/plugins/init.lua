@@ -1,10 +1,13 @@
 local execute = vim.api.nvim_command
 local fn = vim.fn
 
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 
 if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path})
+    fn.system({
+        'git', 'clone', 'https://github.com/wbthomason/packer.nvim',
+        install_path
+    })
     execute 'packadd packer.nvim'
 end
 
@@ -32,10 +35,9 @@ return require('packer').startup(function(use)
     use 'windwp/nvim-autopairs'
     use 'terrortylor/nvim-comment'
     use 'kevinhwang91/nvim-bqf'
-    use { 'iamcco/markdown-preview.nvim', run=':call mkdp#util#install()'}
+    use {'iamcco/markdown-preview.nvim', run = ':call mkdp#util#install()'}
     use 'norcalli/nvim-colorizer.lua'
     use 'lewis6991/gitsigns.nvim'
-    use 'windwp/nvim-ts-autotag'
     use 'blackCauldron7/surround.nvim'
     use 'akinsho/nvim-toggleterm.lua'
     -- Debugging
@@ -44,10 +46,10 @@ return require('packer').startup(function(use)
     use 'kyazdani42/nvim-web-devicons'
     use 'glepnir/galaxyline.nvim'
     use 'romgrk/barbar.nvim'
-    use {'nvim-treesitter/nvim-treesitter', run=':TSUpdate'}
+    use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
     use 'glepnir/dashboard-nvim'
-    use {'ajmwagar/vim-deus', opt=true}
-    use {'arcticicestudio/nord-vim', opt=true}
-    use {'rakr/vim-two-firewatch'  , opt=true}
-    use {'christianchiarulli/nvcode-color-schemes.vim', opt=true}
+    use {'ajmwagar/vim-deus', opt = true}
+    use {'arcticicestudio/nord-vim', opt = true}
+    use {'rakr/vim-two-firewatch', opt = true}
+    use {'christianchiarulli/nvcode-color-schemes.vim', opt = true}
 end)
