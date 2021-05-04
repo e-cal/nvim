@@ -51,5 +51,4 @@ return require('packer').startup(function(use)
     use {'ajmwagar/vim-deus', opt = true}
     use {'arcticicestudio/nord-vim', opt = true}
     use {'rakr/vim-two-firewatch', opt = true}
-    use {'christianchiarulli/nvcode-color-schemes.vim', opt = true}
 end)
