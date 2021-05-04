@@ -5,19 +5,20 @@ Font = 'FiraCode Nerd Font:h17'
 WrapLine = false
 LineNumbers = true
 RelativeLineNumbers = true
+
 CursorLine = true
 ColorColumn = 80
-AutoScroll = 1 -- Scroll when this many lines from top/bottom
+AutoScroll = 8 -- Scroll when this many lines from top/bottom
 
 HighlightSearch = false -- Highlight all search matches
 SearchIgnoreCase = true
-AutoScroll = 8 -- Scroll when this many lines from top/bottom
+HighlightYank = false
 
 TabSize = 4
 UseSpaces = true
 
 Term = {}
-Term.shell = '/bin/fish'
+Term.shell = '/bin/fish' -- or a string with the path to a shell binary
 Term.size = 10
 Term.shade = true
 Term.direction = 'horizontal' -- horizontal, vertical, window, or float
