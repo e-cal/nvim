@@ -142,7 +142,7 @@ local mappings = {
         s = {'<cmd>Git stage_hunk<CR>', 'stage hunk'},
         S = {'<cmd>Gstatus<cr>', 'status'},
         u = {'<cmd>Git undo_stage_hunk<CR>', 'undo stage hunk'},
-        l = {'<cmd>lua LazygitToggle()<CR>', 'lazygit'}
+        g = {'<cmd>lua LazygitToggle()<CR>', 'lazygit'}
     },
 
     l = {

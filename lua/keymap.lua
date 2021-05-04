@@ -57,8 +57,5 @@ map('v', '>', '>gv', {noremap = true, silent = true})
 -- Move line
 map('v', 'K', ':m \'>-2<CR>gv-gv', {noremap = true, silent = true})
 
--- =============================== TERMINAL ===================================
-map('t', '<Esc>', '<C-\\><C-n>', {noremap = true, silent = true})
-
 -- ================================ UNMAP =====================================
 map('n', 'Q', '<NOP>', {noremap = true, silent = true})
