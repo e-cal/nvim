@@ -87,8 +87,10 @@ local mappings = {
         c = {'<cmd>DebugContinue<cr>', 'continue'},
         i = {'<cmd>DebugStepInto<cr>', 'step into'},
         o = {'<cmd>DebugStepOver<cr>', 'step over'},
+        O = {'<cmd>DebugStepOut<cr>', 'step out'},
+        B = {'<cmd>DebugStepBack<cr>', 'step back'},
         r = {'<cmd>DebugToggleRepl<cr>', 'toggle repl'},
-        s = {'<cmd>DebugStart<cr>', 'start'}
+        l = {'<cmd>DebugListBreakpoints<cr>', 'list breakpoints'}
     },
 
     F = {

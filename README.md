@@ -73,6 +73,7 @@ to search for text in notes)
 - Improvement of life features: autopairs, strip end-of-line whitespace, better
 quickfix, sane keymappings, undo edits from previous sessions, and more...
 - Easily configurable and extensible - Make it your own!
+    - Or checkout the `ecal` branch to use my preferred settings
 
 ## Configuration <a name="config"></a>
 - General settings in `settings.lua`
@@ -190,4 +191,4 @@ missing!
 - [ ] xdg-open images from tree
 - [x] fix colors for firewatch colorscheme
 - [ ] fix colors for nord colorscheme
-- [ ] dap configuration
+- [x] dap configuration
