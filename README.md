@@ -35,7 +35,6 @@ Inspired by [LunarVim](https://github.com/ChristianChiarulli/LunarVim) and [TheP
 - [Default Keymap](#keys)
 - [Colorschemes](#colors)
 - [Need Help?](#help)
-- [Todo](#todo)
 ---
 
 ## Installation <a name="install"></a>
@@ -178,17 +177,3 @@ Some themes may require some extra tweaking. The relevant files are
 - Check old issues (remove `is:open`)
 - Check the help menu `:h thing-giving-me-problems`
 - Or open an issue and I'll take a look!
-
-## Todo <a name="todo"></a>
-Feel free to tackle something or submit a PR to add anything you think is
-missing!
-- [x] add snippets
-- [x] support terminal
-- [x] add floating lazygit
-- [x] support kite
-- [x] auto formatting
-- [x] add common lsps
-- [ ] xdg-open images from tree
-- [x] fix colors for firewatch colorscheme
-- [ ] fix colors for nord colorscheme
-- [x] dap configuration
