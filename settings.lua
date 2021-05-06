@@ -54,3 +54,8 @@ Markdown = {}
 -- false: refresh on save
 Markdown.liveRefresh = false
 
+-------------------------- DEBUGGER SETTINGS --------------------------
+Debugger = {}
+Debugger.pythonPath = '/usr/bin/python' -- path to python with debugpy installed
+Debugger.useExternalTerminal = false
+Debugger.externalTerminal = nil -- path to terminal
