@@ -6,7 +6,7 @@ wk.setup {
         -- the presets plugin, adds help for a bunch of default keybindings in Neovim
         -- No actual key bindings are created
         presets = {
-            operators = true, -- adds help for operators like d, y, ... and registers them for motion / text object completion
+            operators = false, -- adds help for operators like d, y, ... and registers them for motion / text object completion
             motions = false, -- adds help for motions
             text_objects = true, -- help for text objects triggered after entering an operator
             windows = true, -- default bindings on <c-w>
@@ -42,7 +42,7 @@ wk.setup {
 vim.g.mapleader = ' '
 
 -- NORMAL mode
-local opts = {
+local nopts = {
     mode = "n",
     prefix = "<leader>",
     buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
@@ -51,7 +51,7 @@ local opts = {
     nowait = false -- use `nowait` when creating keymaps
 }
 
-local mappings = {
+local nmappings = {
     [' '] = 'which_key_ignore',
     f = {'<cmd>Telescope find_files<cr>', 'find files'},
     H = {'<cmd>Dashboard<cr>', 'home'},
@@ -85,12 +85,18 @@ local mappings = {
         name = '+debug',
         b = {'<cmd>DebugToggleBreakpoint<cr>', 'toggle breakpoint'},
         c = {'<cmd>DebugContinue<cr>', 'continue'},
-        i = {'<cmd>DebugStepInto<cr>', 'step into'},
+        j = {'<cmd>DebugStepInto<cr>', 'step into'},
         o = {'<cmd>DebugStepOver<cr>', 'step over'},
         O = {'<cmd>DebugStepOut<cr>', 'step out'},
-        B = {'<cmd>DebugStepBack<cr>', 'step back'},
-        r = {'<cmd>DebugToggleRepl<cr>', 'toggle repl'},
-        l = {'<cmd>DebugListBreakpoints<cr>', 'list breakpoints'}
+        k = {'<cmd>DebugStepBack<cr>', 'step back'},
+        t = {'<cmd>DebugToggleRepl<cr>', 'toggle repl'},
+        l = {'<cmd>DebugListBreakpoints<cr>', 'list breakpoints'},
+        f = {'<cmd>DebugFloatElement<cr>', 'float ui element'},
+        p = {
+            name = '+python',
+            m = {'<cmd>PythonTestMethod<cr>', 'test method'},
+            c = {'<cmd>PythonTestClass<cr>', 'test class'}
+        }
     },
 
     F = {
@@ -193,4 +199,24 @@ local mappings = {
 
 }
 
-wk.register(mappings, opts)
+wk.register(nmappings, nopts)
+
+-- Visual mode
+local vopts = {
+    mode = "v",
+    prefix = "<leader>",
+    buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+    silent = true, -- use `silent` when creating keymaps
+    noremap = true, -- use `noremap` when creating keymaps
+    nowait = false -- use `nowait` when creating keymaps
+}
+
+local vmappings = {
+    d = {
+        name = '+debug',
+        e = {'<cmd>DebugEvaluate<cr>', 'evaluate selected expression'},
+        s = {'<cmd>PythonDebugSelection<cr>', 'py debug selection'}
+    }
+}
+
+wk.register(vmappings, vopts)
