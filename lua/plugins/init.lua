@@ -40,6 +40,7 @@ return require('packer').startup(function(use)
     use 'lewis6991/gitsigns.nvim'
     use 'blackCauldron7/surround.nvim'
     use 'akinsho/nvim-toggleterm.lua'
+    use 'windwp/nvim-ts-autotag'
     -- Debugging
     use 'mfussenegger/nvim-dap'
     use 'rcarriga/nvim-dap-ui' -- temporary while nvim-dap lacks a built-in ui
