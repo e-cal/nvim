@@ -69,7 +69,6 @@ local nmappings = {
     v = {'<cmd>vert sp<cr>', 'split right'},
     p = {'<cmd>PasteImg<cr>', 'paste image'},
     T = {'<cmd>ToggleTerm<cr>', 'toggle terminal'},
-    [':'] = {'<cmd>setlocal indentkeys-=<:><cr>', 'fix :'},
 
     b = {
         name = '+buffer',
