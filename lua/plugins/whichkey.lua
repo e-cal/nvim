@@ -186,14 +186,25 @@ local nmappings = {
 
     w = {
         name = '+window',
-        ["<"] = {"<C-w><", "resize left"},
-        [">"] = {"<C-w>>", "resize right"},
-        ["-"] = {"<C-w>-", "resize down"},
-        ["+"] = {"<C-w>+", "resize height"},
-        ["="] = {"<C-w>=", "reset window"},
-        ["h"] = {"<cmd>split<cr>", "split horizontal"},
-        ["v"] = {"<cmd>vsplit<cr>", "split vertical"},
-        ["d"] = {"<cmd>close<cr>", "close split window"}
+        ['<'] = {'<C-w><', 'resize left'},
+        ['>'] = {'<C-w>>', 'resize right'},
+        ['-'] = {'<C-w>-', 'resize down'},
+        ['+'] = {'<C-w>+', 'resize height'},
+        ['='] = {'<C-w>=', 'reset window'},
+        h = {'<cmd>split<cr>', 'split horizontal'},
+        v = {'<cmd>vsplit<cr>', 'split vertical'},
+        d = {'<cmd>close<cr>', 'close split window'}
+    },
+
+    r = {
+        name = '+run',
+        r = {'<Plug>SnipRunOperator', 'run <movement>'},
+        l = {'<Plug>SnipRun', 'run line'},
+        f = {'<cmd>%SnipRun<cr>', 'run file'},
+        d = {'<Plug>SnipClose', 'clear output'},
+        x = {'<Plug>SnipReset', 'reset'},
+        c = {'<Plug>SnipReplMemoryClean', 'clear memory'},
+        i = {'<Plug>SnipInfo', 'info'}
     }
 
 }
@@ -211,11 +222,14 @@ local vopts = {
 }
 
 local vmappings = {
+    r = {'<Plug>SnipRun', 'run selection'},
+
     d = {
         name = '+debug',
         e = {'<cmd>DebugEvaluate<cr>', 'evaluate selected expression'},
         s = {'<cmd>PythonDebugSelection<cr>', 'py debug selection'}
     }
+
 }
 
 wk.register(vmappings, vopts)
