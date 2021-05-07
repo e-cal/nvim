@@ -116,6 +116,9 @@ quickfix, sane keymappings, undo edits from previous sessions, and more...
 
 **Debuging**
 - [nvim-dap](https://www.github.com/mfussenegger/nvim-dap)
+- [nvim-dap-ui](https://www.github.com/rcarriga/nvim-dap-ui)
+- [nvim-dap-python](https://www.github.com/mfussenegger/nvim-dap-python)
+- [sniprun](https://www.github.com/michaelb/sniprun)
 
 **Theming**
 - [nvim-web-devicons](https://www.github.com/kyazdani42/nvim-web-devicons)
