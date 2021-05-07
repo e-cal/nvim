@@ -2,7 +2,8 @@ local M = {}
 
 if JS_TS.formatter == 'prettier' then
     local prettier = {
-        formatCommand = "prettier --stdin --stdin-filepath ${INPUT}",
+        formatCommand = string.format(
+            "prettier --stdin --stdin-filepath ${INPUT} --tab-width %s", TabSize),
         formatStdin = true
     }
     table.insert(M, prettier)
