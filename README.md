@@ -51,7 +51,7 @@ Inspired by [LunarVim](https://github.com/ChristianChiarulli/LunarVim) and [TheP
     `brew install efm-langserver` or `pacman -S efm-langserver`
 
 ## Features <a name="features"></a>
-- Almost entirely lua
+- Written and configured entirely in lua
 - Native LSP
 	- Completions, linting, formatting, snippets
     - Enable/disable auto-formatting for a filetype with `<leader>-l-F` or
