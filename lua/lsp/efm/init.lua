@@ -18,7 +18,7 @@ local tsserver = require('lsp.efm.tsserver')
 local sh = require('lsp.efm.sh')
 
 local prettier = {
-    formatCommand = "prettier_d_slim --stdin --stdin-filepath ${INPUT}",
+    formatCommand = "prettier --stdin --stdin-filepath ${INPUT}",
     formatStdin = true
 }
 
