@@ -34,7 +34,6 @@ Inspired by [LunarVim](https://github.com/ChristianChiarulli/LunarVim) and [TheP
 - [Plugins](#plugins)
 - [Default Keymap](#keys)
 - [Colorschemes](#colors)
-- [Need Help?](#help)
 ---
 
 ## Installation <a name="install"></a>
@@ -171,11 +170,8 @@ If you can't find what you're looking for here, its probably in there
 You can try out the installed colorschemes with the keymap `<space>-t-c`. To
 make the change permanent, change it in `settings.lua`.
 
-Some themes may require some extra tweaking. The relevant files are
-`lua/colors.lua`, `lua/plugins/galaxyline.lua` and `lua/plugins/barbar.lua`.
+Some themes may require some extra tweaking to get things looking the way you
+want. The relevant files are `lua/colors.lua`, `lua/plugins/galaxyline.lua`
+and `lua/plugins/barbar.lua`.
 
-## Need Help? <a name="help"></a>
-- Check the plugin's readme or issues
-- Check old issues (remove `is:open`)
-- Check the help menu `:h thing-giving-me-problems`
-- Or open an issue and I'll take a look!
+If you add and tweak a colorscheme, put in a PR!
