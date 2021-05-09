@@ -201,9 +201,9 @@ local nmappings = {
         r = {'<Plug>SnipRunOperator', 'run <movement>'},
         l = {'<Plug>SnipRun', 'run line'},
         f = {'<cmd>%SnipRun<cr>', 'run file'},
-        d = {'<Plug>SnipClose', 'clear output'},
+        c = {'<Plug>SnipClose', 'clear output'},
         x = {'<Plug>SnipReset', 'reset'},
-        c = {'<Plug>SnipReplMemoryClean', 'clear memory'},
+        d = {'<Plug>SnipReplMemoryClean', 'clear memory'},
         i = {'<Plug>SnipInfo', 'info'}
     }
 
