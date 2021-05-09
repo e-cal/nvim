@@ -239,22 +239,21 @@ gls.right[9] = {
 }
 
 gls.short_line_left[1] = {
-    BufferType = {
-        provider = 'FileTypeName',
-        separator = ' ',
-        separator_highlight = {'NONE', colors.bg},
-        highlight = {colors.fg, colors.bg}
-    }
+    BufferIcon = {provider = 'BufferIcon', highlight = {colors.fg, colors.bg}}
 }
 
 gls.short_line_left[2] = {
     SFileName = {
         provider = 'SFileName',
         condition = condition.buffer_not_empty,
-        highlight = {colors.fg, colors.bg}
+        highlight = {colors.grey, colors.bg}
     }
 }
 
 gls.short_line_right[1] = {
-    BufferIcon = {provider = 'BufferIcon', highlight = {colors.fg, colors.bg}}
+    BufferType = {
+        provider = 'FileTypeName',
+        highlight = {colors.grey, colors.bg}
+    }
 }
+
