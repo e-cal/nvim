@@ -31,9 +31,9 @@ Inspired by [LunarVim](https://github.com/ChristianChiarulli/LunarVim) and [TheP
 - [Installation](#install)
 - [Features](#features)
 - [Configuration](#config)
-- [Plugins](#plugins)
 - [Default Keymap](#keys)
 - [Colorschemes](#colors)
+- [Plugins](#plugins)
 ---
 
 ## Installation <a name="install"></a>
@@ -82,6 +82,52 @@ quickfix, sane keymappings, undo edits from previous sessions, and more...
 - Non-leader keymappings are defined in `lua/keymap.lua`
 - Leader keymappings
 
+## Default Keymap <a name="keys"></a>
+```
+<space> - leader
+
+<C-/> - comment lines (in a direction, <leader>-/ to comment current line)
+
+<M-h> - focus left
+<M-j> - focus down
+<M-k> - focus up
+<M-l> - focus right
+
+<M-TAB> - next buffer
+
+<C-Up> - increase up/down window size
+<C-Down> - decrease up/down window size
+<C-Right> - increase left/right window size
+<C-Left> - decrease left/right window size
+
+K - show hover docs
+<C-k> - scroll up hover doc
+<C-j> - scroll down hover doc
+
+gd - go to definition
+gD - go to declaration
+gr - go to references
+gi - go to implementation
+
+<C-n> - jump to next diagnostic
+<C-p> - jump to prev diagnostic
+```
+`<C-key>` = Control + key <br>
+`<M-key>` = Alt + key
+
+Press the leader key (space by default) to bring up whichkey help menu. <br>
+If you can't find what you're looking for here, its probably in there
+(or not implemented, in which case open an issue or PR).
+
+## Colorschemes <a name="colors"></a>
+You can try out the installed colorschemes with the keymap `<space>-t-c`. To
+make the change permanent, change it in `settings.lua`.
+
+Some themes may require some extra tweaking to get things looking the way you
+want. The relevant files are `lua/colors.lua`, `lua/plugins/galaxyline.lua`
+and `lua/plugins/barbar.lua`.
+
+If you add and tweak a colorscheme, put in a PR!
 
 ## Plugins <a name="plugins"></a>
 **Plugin manager**
@@ -129,50 +175,3 @@ quickfix, sane keymappings, undo edits from previous sessions, and more...
 - [vim-deus](https://www.github.com/ajmwagar/vim-deus)
 - [nord-vim](https://www.github.com/arcticicestudio/nord-vim)
 - [vim-two-firewatch](https://www.github.com/rakr/vim-two-firewatch)
-
-## Default Keymap <a name="keys"></a>
-```
-<space> - leader
-
-<C-/> - comment lines (in a direction, <leader>-/ to comment current line)
-
-<M-h> - focus left
-<M-j> - focus down
-<M-k> - focus up
-<M-l> - focus right
-
-<M-TAB> - next buffer
-
-<C-Up> - increase up/down window size
-<C-Down> - decrease up/down window size
-<C-Right> - increase left/right window size
-<C-Left> - decrease left/right window size
-
-K - show hover docs
-<C-k> - scroll up hover doc
-<C-j> - scroll down hover doc
-
-gd - go to definition
-gD - go to declaration
-gr - go to references
-gi - go to implementation
-
-<C-n> - jump to next diagnostic
-<C-p> - jump to prev diagnostic
-```
-`<C-key>` = Control + key <br>
-`<M-key>` = Alt + key
-
-Press the leader key (space by default) to bring up whichkey help menu. <br>
-If you can't find what you're looking for here, its probably in there
-(or not implemented, in which case open an issue or PR).
-
-## Colorschemes <a name="colors"></a>
-You can try out the installed colorschemes with the keymap `<space>-t-c`. To
-make the change permanent, change it in `settings.lua`.
-
-Some themes may require some extra tweaking to get things looking the way you
-want. The relevant files are `lua/colors.lua`, `lua/plugins/galaxyline.lua`
-and `lua/plugins/barbar.lua`.
-
-If you add and tweak a colorscheme, put in a PR!

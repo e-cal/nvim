@@ -52,7 +52,8 @@ return require('packer').startup(function(use)
     use 'romgrk/barbar.nvim'
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
     use 'glepnir/dashboard-nvim'
-    use {'ajmwagar/vim-deus', opt = true}
-    use {'arcticicestudio/nord-vim', opt = true}
-    use {'rakr/vim-two-firewatch', opt = true}
+    use 'theniceboy/nvim-deus'
+    use 'arcticicestudio/nord-vim'
+    use 'rakr/vim-two-firewatch'
+    use 'sainnhe/edge'
 end)

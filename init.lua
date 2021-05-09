@@ -43,3 +43,4 @@ require('plugins.toggleterm')
 require('plugins.treesitter')
 require('plugins.ultisnips')
 require('plugins.whichkey')
+
