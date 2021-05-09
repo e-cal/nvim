@@ -17,6 +17,7 @@ local colors = {
     bright_purple = '#c858e9',
     bright_teal = '#2bcec2',
     bright_white = '#ffffff',
+    lightbg = '#343C46',
     bg = '#23282F',
     fg = '#ebdbb2'
 }
@@ -59,6 +60,48 @@ gls.left[1] = {
 }
 
 gls.left[2] = {
+    leftSemi = {
+        provider = function()
+            return ''
+        end,
+        highlight = {colors.lightbg, colors.bg}
+    }
+}
+
+gls.left[3] = {
+    FileIcon = {
+        provider = "FileIcon",
+        condition = condition.buffer_not_empty,
+        highlight = {
+            require("galaxyline.provider_fileinfo").get_file_icon_color,
+            colors.lightbg
+        }
+    }
+}
+
+gls.left[4] = {
+    FileName = {
+        -- provider = "FileName",
+        provider = function()
+            return vim.fn.expand('%:t')
+        end,
+        condition = condition.buffer_not_empty,
+        highlight = {colors.fg, colors.lightbg}
+    }
+}
+
+gls.left[5] = {
+    rightSemi = {
+        provider = function()
+            return ''
+        end,
+        highlight = {colors.lightbg, colors.bg},
+        separator = ' ',
+        separator_highlight = {colors.bg, colors.bg}
+    }
+}
+
+gls.left[6] = {
     GitIcon = {
         provider = function()
             return ' '
@@ -66,11 +109,11 @@ gls.left[2] = {
         condition = condition.check_git_workspace,
         separator = ' ',
         separator_highlight = {'NONE', colors.bg},
-        highlight = {colors.yellow, colors.bg}
+        highlight = {colors.orange, colors.bg}
     }
 }
 
-gls.left[3] = {
+gls.left[7] = {
     GitBranch = {
         provider = 'GitBranch',
         condition = condition.check_git_workspace,
@@ -80,21 +123,21 @@ gls.left[3] = {
     }
 }
 
-gls.left[4] = {
+gls.left[8] = {
     DiffAdd = {
         provider = 'DiffAdd',
         icon = '  ',
         highlight = {colors.green, colors.bg}
     }
 }
-gls.left[5] = {
+gls.left[9] = {
     DiffModified = {
         provider = 'DiffModified',
         icon = ' ﰣ ',
         highlight = {colors.yellow, colors.bg}
     }
 }
-gls.left[6] = {
+gls.left[10] = {
     DiffRemove = {
         provider = 'DiffRemove',
         icon = '  ',
