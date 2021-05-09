@@ -53,6 +53,8 @@ local nopts = {
 
 local nmappings = {
     [' '] = 'which_key_ignore',
+    p = 'print var below',
+    P = 'print var above',
     f = {'<cmd>Telescope find_files<cr>', 'find files'},
     H = {'<cmd>Dashboard<cr>', 'home'},
     ['/'] = {'<cmd>CommentToggle<cr>', 'toggle comment'},
@@ -67,7 +69,7 @@ local nmappings = {
     ['.'] = {'<cmd>luafile %<cr>', 'source file'},
     h = {'<cmd>sp<cr>', 'split below'},
     v = {'<cmd>vert sp<cr>', 'split right'},
-    p = {'<cmd>PasteImg<cr>', 'paste image'},
+    i = {'<cmd>PasteImg<cr>', 'paste image'},
     T = {'<cmd>ToggleTerm<cr>', 'toggle terminal'},
 
     b = {

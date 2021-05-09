@@ -17,7 +17,7 @@ local colors = {
     bright_purple = '#c858e9',
     bright_teal = '#2bcec2',
     bright_white = '#ffffff',
-    bg = '#242a32',
+    bg = '#23282F',
     fg = '#ebdbb2'
 }
 local condition = require('galaxyline.condition')
