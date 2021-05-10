@@ -50,9 +50,11 @@ Shell.formatter = 'shfmt'
 Shell.linter = 'shellcheck'
 
 Markdown = {}
--- true: refresh on edit
--- false: refresh on save
-Markdown.liveRefresh = false
+Markdown.liveRefresh = false -- false: refresh on save
+Markdown.imagePasteCommand = 'xclip -selection clipboard -t image/png -o > %s' -- Paste to file command
+Markdown.imageDir = 'img' -- Sub-directory to save the image to
+Markdown.imagePasteSyntax = 'html' -- Image syntax to use (html, obsidian, or a format string)
+Markdown.imageDefaultWidth = 600 -- Default width of images in px (or nil for no scaling)
 
 -------------------------- DEBUGGER SETTINGS --------------------------
 Debugger = {}
