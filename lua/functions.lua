@@ -35,7 +35,7 @@ endfunction
 ]], false)
 
 -- Paste images
-local paste_cmd = 'xclip -selection clipboard -t image/png -o > %s'
+local paste_cmd = Markdown.imagePasteCommand
 
 local create_dir = function(dir)
     if vim.fn.isdirectory(dir) == 0 then vim.fn.mkdir(dir, 'p') end
@@ -54,14 +54,28 @@ local get_name = function()
 end
 
 PasteImg = function()
-    -- image
-    create_dir('img')
+    create_dir(Markdown.imageDir)
     local name = get_name()
-    local path = 'img/' .. name .. '.png'
+    local path = string.format(Markdown.imageDir .. '/%s.png', name)
     os.execute(string.format(paste_cmd, path))
 
-    -- text
-    local template = '<img src="%s" width=600px />'
+    local template
+    local size = Markdown.imageDefaultWidth
+    if Markdown.imagePasteSyntax == 'html' then
+        if size ~= nil then
+            template = '<img src="%s" width=' .. size .. 'px />'
+        else
+            template = '<img src="%s" />'
+        end
+    elseif Markdown.imagePasteSyntax == 'obsidian' then
+        if size ~= nil then
+            template = '![[%s|' .. size .. ']]'
+        else
+            template = '![[%s]]'
+        end
+    else
+        template = Markdown.imagePasteSyntax
+    end
     local pasted_txt = string.format(template, path)
     vim.cmd("normal a" .. pasted_txt)
 end
