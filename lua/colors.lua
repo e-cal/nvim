@@ -15,6 +15,8 @@ vim.cmd('set guicursor+=r:hor10-iCursor')
 vim.cmd('hi oCursor guibg=#E5C07B')
 vim.cmd('set guicursor+=o:block-oCursor')
 
+vim.cmd('hi MatchParen guibg=#F4852B guifg=#2C323B')
+
 if Colorscheme == 'deus' then
     vim.cmd('hi ColorColumn guibg=#343B46')
     vim.cmd('hi GitSignsChange guifg=#E5C07B')
