@@ -16,9 +16,11 @@ local python = require('lsp.efm.python')
 local lua = require('lsp.efm.lua')
 local tsserver = require('lsp.efm.tsserver')
 local sh = require('lsp.efm.sh')
+local css = require('lsp.efm.css')
 
 local prettier = {
-    formatCommand = "prettier --stdin --stdin-filepath ${INPUT}",
+    formatCommand = string.format(
+        "prettier --stdin --stdin-filepath ${INPUT} --tab-width %s", TabSize),
     formatStdin = true
 }
 
@@ -27,8 +29,8 @@ lspconfig.efm.setup {
     on_attach = on_attach,
     filetypes = {
         "lua", "python", "javascriptreact", "javascript", "typescript",
-        "typescriptreact", "sh", "html", "css", "json", "yaml", "markdown",
-        "vue"
+        "typescriptreact", "sh", "html", "css", "scss", "json", "yaml",
+        "markdown", "vue"
     },
     settings = {
         rootMarkers = {".git/"},
@@ -40,7 +42,8 @@ lspconfig.efm.setup {
             typescript = tsserver,
             typescriptreact = tsserver,
             html = {prettier},
-            css = {prettier},
+            css = css,
+            scss = css,
             json = {prettier},
             yaml = {prettier},
             sh = sh
