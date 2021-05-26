@@ -220,9 +220,48 @@ def get_dir_and_file_name(snip):
 	return os.getcwd().split(os.sep)[-1] + '.' + snip.basename
 
 endglobal
-# eg (marks end of globals to sneak to)
 
-snippet def "define a function" bA
+snippet /(^|(?<=\W))\./ "self." r
+self.
+endsnippet
+
+snippet from "from module import name" b
+from ${1:module} import ${2:Stuff}
+endsnippet
+
+snippet class "class with docstrings" b
+class ${1:MyClass}(${2:object}):
+
+	`!p snip.rv = triple_quotes(snip)`${3:Docstring for $1. }`!p snip.rv = triple_quotes(snip)`
+
+	def __init__(self$4):
+		`!p snip.rv = triple_quotes(snip)`${5:TODO: to be defined.}`!p
+snip.rv = ""
+snip >> 2
+
+args = get_args(t[4])
+
+write_docstring_args(args, snip)
+if args:
+	snip.rv += '\n' + snip.mkline('', indent='')
+	snip += '{0}'.format(triple_quotes(snip))
+
+write_init_body(args, t[2], snip)
+`
+		$0
+endsnippet
+
+
+snippet def "function with docstrings" b
+def ${1:function}(`!p
+if snip.indent:
+	snip.rv = 'self' + (", " if len(t[2]) else "")`${2:arg1}):
+	`!p snip.rv = triple_quotes(snip)`${4:TODO: Docstring for $1.}`!p
+write_function_docstring(t, snip) `
+	${5:${VISUAL:pass}}
+endsnippet
+
+snippet deff "define a function" b
 def ${1:function}(`!p snip.rv = "self" if snip.indent else ""`$2):
 	${0:${VISUAL:pass}}
 endsnippet
