@@ -12,6 +12,7 @@ map('n', '<M-l>', '<C-w>l', {silent = true})
 -- Buffer navigation
 map('n', '<C-T>', ':BufferNext<CR>', {noremap = true, silent = true})
 map('n', '<M-TAB>', ':BufferNext<CR>', {noremap = true, silent = true})
+map('n', '<S-TAB>', ':BufferPrev<CR>', {noremap = true, silent = true})
 
 -- File navigation
 map('n', '<C-y>', '3<C-y>', {noremap = true, silent = true})
