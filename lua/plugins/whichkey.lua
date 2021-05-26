@@ -71,6 +71,8 @@ local nmappings = {
     v = {'<cmd>vert sp<cr>', 'split right'},
     i = {'<cmd>PasteImg<cr>', 'paste image'},
     T = {'<cmd>ToggleTerm<cr>', 'toggle terminal'},
+    n = {'<cmd>enew<cr>', 'new buffer'},
+    R = {'<cmd>e<cr>', 'reload buffer'},
 
     b = {
         name = '+buffer',
@@ -176,7 +178,8 @@ local nmappings = {
         x = {'<cmd>cclose<cr>', 'close quickfix'},
         s = {'<cmd>Telescope lsp_document_symbols<cr>', 'document symbols'},
         S = {'<cmd>Telescope lsp_workspace_symbols<cr>', 'workspace symbols'},
-        R = {'<cmd>LspRestart<cr>', 'restart lsp'}
+        R = {'<cmd>LspRestart<cr>', 'restart lsp'},
+        i = {'<cmd>normal A  # type: ignore<cr>bbbbhhh', 'pyright ignore'}
     },
 
     m = {
@@ -202,11 +205,22 @@ local nmappings = {
         name = '+run',
         r = {'<Plug>SnipRunOperator', 'run <movement>'},
         l = {'<Plug>SnipRun', 'run line'},
-        f = {'<cmd>%SnipRun<cr>', 'run file'},
+        a = {'<cmd>%SnipRun<cr>', 'run all'},
         c = {'<Plug>SnipClose', 'clear output'},
         x = {'<Plug>SnipReset', 'reset'},
         d = {'<Plug>SnipReplMemoryClean', 'clear memory'},
-        i = {'<Plug>SnipInfo', 'info'}
+        i = {'<Plug>SnipInfo', 'info'},
+        p = {
+            name = "+ipython",
+            p = {'<cmd>IPython<cr>', 'start kernel'},
+            r = {'<Plug>(IPy-RunOp)', 'run'},
+            c = {'<Plug>(IPy-RunCell)', 'run cell'},
+            a = {'<Plug>(IPy-RunAll)', 'run all'},
+            l = {'<Plug>(IPy-Run)', 'run line'},
+            i = {'<Plug>(IPy-WordObjInfo)', 'inspect'},
+            x = {'<Plug>(IPy-Interrupt)', 'interrupt kernel'},
+            q = {'<Plug>(IPy-Terminate)', 'terminate kernel'}
+        }
     }
 
 }
@@ -225,6 +239,7 @@ local vopts = {
 
 local vmappings = {
     r = {'<Plug>SnipRun', 'run selection'},
+    p = {'<Plug>(IPy-Run)', 'ipython run selection'},
 
     d = {
         name = '+debug',
