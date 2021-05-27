@@ -30,9 +30,11 @@ vim.o.undodir = os.getenv("HOME") .. "/.cache/nvim/undodir/"
 vim.o.undofile = true
 
 vim.cmd('set ts=' .. TabSize)
+vim.cmd('set sts=' .. TabSize)
 vim.cmd('set sw=' .. TabSize)
 vim.o.expandtab = UseSpaces -- Convert tabs to spaces
 vim.o.smartindent = true -- Makes indenting smart
+vim.o.smarttab = true
 vim.o.autoindent = true -- Auto indent
 
 vim.o.fileencoding = "utf-8" -- File encoding
