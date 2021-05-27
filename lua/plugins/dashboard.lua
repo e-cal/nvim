@@ -10,7 +10,7 @@ vim.g.dashboard_custom_header = {
 vim.g.dashboard_default_executive = 'telescope'
 
 vim.g.dashboard_custom_section = {
-    e = {
+    a = {
         description = {'  Restore Session'},
         command = 'set showtabline=2 | SessionLoad'
     },
@@ -23,7 +23,7 @@ vim.g.dashboard_custom_section = {
         command = 'Telescope live_grep'
     },
     d = {description = {'  Recent Files   '}, command = 'Telescope oldfiles'},
-    a = {description = {'  New File       '}, command = 'enew'},
+    e = {description = {'  New File       '}, command = 'enew'},
     f = {
         description = {'  Settings       '},
         command = 'e ~/.config/nvim/settings.lua'
