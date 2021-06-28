@@ -48,7 +48,7 @@ Utils.make_command("DebugEvaluate", "require'dapui'.eval")
 
 -- Python
 local opts = {}
-if Debugger.useExternalTerminal then opts.console = 'externalConsole' end
+if Debugger.useExternalTerminal then opts.console = 'externalTerminal' end
 require('dap-python').setup(Debugger.pythonPath, opts)
 
 Utils.make_command("PythonTestMethod", "require'dap-python'.test_method")

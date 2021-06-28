@@ -59,5 +59,5 @@ Markdown.imageDefaultWidth = 600 -- Default width of images in px (or nil for no
 -------------------------- DEBUGGER SETTINGS --------------------------
 Debugger = {}
 Debugger.pythonPath = '/usr/bin/python' -- path to python with debugpy installed
-Debugger.useExternalTerminal = true
+Debugger.useExternalTerminal = false
 Debugger.externalTerminal = '/usr/bin/alacritty' -- path to terminal

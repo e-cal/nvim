@@ -71,7 +71,7 @@ local nmappings = {
     v = {'<cmd>vert sp<cr>', 'split right'},
     i = {'<cmd>PasteImg<cr>', 'paste image'},
     T = {'<cmd>ToggleTerm<cr>', 'toggle terminal'},
-    n = {'<cmd>enew<cr>', 'new buffer'},
+    N = {'<cmd>enew<cr>', 'new buffer'},
     R = {'<cmd>e<cr>', 'reload buffer'},
 
     b = {
@@ -221,6 +221,12 @@ local nmappings = {
             x = {'<Plug>(IPy-Interrupt)', 'interrupt kernel'},
             q = {'<Plug>(IPy-Terminate)', 'terminate kernel'}
         }
+    },
+
+    n = {
+        name = '+notebook',
+        c = {'<cmd>norm i# %%<cr>o', 'code cell'},
+        m = {'<cmd>norm i# %% [markdown]<cr>o# ', 'markdown cell'}
     }
 
 }

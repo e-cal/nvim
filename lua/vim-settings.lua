@@ -3,10 +3,8 @@ vim.cmd('syntax on') -- syntax highlighting
 vim.cmd('set iskeyword+=-') -- treat dash separated words as a word text object"
 vim.cmd('set shortmess+=c') -- Don't pass messages to |ins-completion-menu|.
 vim.cmd('set inccommand=split') -- Make substitution work in realtime
-vim.o.title = true
-TERMINAL = vim.fn.expand('$TERMINAL')
-vim.cmd('let &titleold="' .. TERMINAL .. '"')
-vim.o.titlestring = "%<%F%=%l/%L - nvim"
+
+vim.cmd('set shell=/bin/bash')
 
 vim.o.showtabline = 2 -- Always show buffer tabs
 vim.o.hidden = true -- Allow multiple buffers to be open
