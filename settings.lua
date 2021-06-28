@@ -8,7 +8,7 @@ RelativeLineNumbers = true
 
 CursorLine = true
 ColorColumn = 80
-AutoScroll = 8 -- Scroll when this many lines from top/bottom
+AutoScroll = 1 -- Scroll when this many lines from top/bottom
 
 HighlightSearch = false -- Highlight all search matches
 SearchIgnoreCase = true
@@ -18,7 +18,7 @@ TabSize = 4
 UseSpaces = true
 
 Term = {}
-Term.shell = '/bin/fish' -- or a string with the path to a shell binary
+Term.shell = vim.o.shell -- or a string with the path to a shell binary
 Term.size = 10
 Term.shade = true
 Term.direction = 'horizontal' -- horizontal, vertical, window, or float
@@ -53,11 +53,11 @@ Markdown = {}
 Markdown.liveRefresh = false -- false: refresh on save
 Markdown.imagePasteCommand = 'xclip -selection clipboard -t image/png -o > %s' -- Paste to file command
 Markdown.imageDir = 'img' -- Sub-directory to save the image to
-Markdown.imagePasteSyntax = 'obsidian' -- Image syntax to use (html, obsidian, or a format string)
+Markdown.imagePasteSyntax = 'html' -- Image syntax to use (html, obsidian, or a format string)
 Markdown.imageDefaultWidth = 600 -- Default width of images in px (or nil for no scaling)
 
 -------------------------- DEBUGGER SETTINGS --------------------------
 Debugger = {}
 Debugger.pythonPath = '/usr/bin/python' -- path to python with debugpy installed
 Debugger.useExternalTerminal = false
-Debugger.externalTerminal = '/usr/bin/alacritty' -- path to terminal
+Debugger.externalTerminal = nil -- path to terminal
