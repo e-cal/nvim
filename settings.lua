@@ -4,7 +4,7 @@ Font = 'FiraCode Nerd Font:h17'
 
 WrapLine = false
 LineNumbers = true
-RelativeLineNumbers = true
+RelativeLineNumbers = false
 
 CursorLine = true
 ColorColumn = 80
