@@ -38,7 +38,7 @@ return require('packer').startup(function(use)
     use {'iamcco/markdown-preview.nvim', run = ':call mkdp#util#install()'}
     use 'norcalli/nvim-colorizer.lua'
     use 'lewis6991/gitsigns.nvim'
-    use 'blackCauldron7/surround.nvim'
+    use 'tpope/vim-surround'
     use 'akinsho/nvim-toggleterm.lua'
     use 'windwp/nvim-ts-autotag'
     use 'bfredl/nvim-ipy'
