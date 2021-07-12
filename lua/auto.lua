@@ -15,14 +15,13 @@ end
 local _global = {
     {'BufWritePre', '*', ':call TrimWhitespace()'}, {
         'BufWinEnter', '*',
-        'setlocal formatoptions-=c formatoptions-=r formatoptions-=o'
-    },
-    {
+        'setlocal formatoptions-=c formatoptions-=r formatoptions-=o formatoptions-=t'
+    }, {
         'BufRead', '*',
-        'setlocal formatoptions-=c formatoptions-=r formatoptions-=o'
+        'setlocal formatoptions-=c formatoptions-=r formatoptions-=o formatoptions-=t'
     }, {
         'BufNewFile', '*',
-        'setlocal formatoptions-=c formatoptions-=r formatoptions-=o'
+        'setlocal formatoptions-=c formatoptions-=r formatoptions-=o formatoptions-=t'
     }
 }
 
@@ -49,7 +48,8 @@ augroups({
         {
             'FileType', 'markdown',
             'setlocal spell foldexpr=MarkdownLevel() foldmethod=expr nofoldenable'
-        }
+        }, {'FileType', 'markdown', 'syntax match markdownIgnore "\\v\\w_\\w"'}
+
     },
     _python = {
         -- Don't mess up my indents

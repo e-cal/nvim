@@ -15,6 +15,7 @@ vim.o.cursorline = CursorLine -- Highlight current line
 vim.o.splitbelow = true -- Hsplit below
 vim.o.splitright = true -- Vsplit to the right
 vim.cmd('set colorcolumn=' .. ColorColumn)
+vim.cmd('set textwidth=' .. ColorColumn)
 vim.o.hlsearch = HighlightSearch -- Don't highlight search matches
 vim.o.ignorecase = SearchIgnoreCase -- Default case insensitive search
 vim.o.smartcase = true -- Case sensitive if search has a capital letter
