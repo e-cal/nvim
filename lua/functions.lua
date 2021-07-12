@@ -43,13 +43,7 @@ end
 
 local get_name = function()
     local index = 1
-    for output in io.popen('ls img'):lines() do
-        if output == 'image' .. index .. '.png' then
-            index = index + 1
-        else
-            break
-        end
-    end
+    for _ in io.popen('ls img'):lines() do index = index + 1 end
     return 'image' .. index
 end
 
