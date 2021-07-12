@@ -1,14 +1,14 @@
 ------------------------------ GENERAL SETTINGS -------------------------------
 Colorscheme = 'deus'
-Font = 'FiraCode Nerd Font:h17'
+Font = 'FiraCode Nerd Font:h18'
 
 WrapLine = false
 LineNumbers = true
-RelativeLineNumbers = false
+RelativeLineNumbers = true
 
 CursorLine = true
 ColorColumn = 80
-AutoScroll = 1 -- Scroll when this many lines from top/bottom
+AutoScroll = 8 -- Scroll when this many lines from top/bottom
 
 HighlightSearch = false -- Highlight all search matches
 SearchIgnoreCase = true
@@ -18,7 +18,7 @@ TabSize = 4
 UseSpaces = true
 
 Term = {}
-Term.shell = vim.o.shell -- or a string with the path to a shell binary
+Term.shell = '/usr/bin/fish' -- or a string with the path to a shell binary
 Term.size = 10
 Term.shade = true
 Term.direction = 'horizontal' -- horizontal, vertical, window, or float
