@@ -1,6 +1,6 @@
 vim.g.bufferline = {
-    closable = false,
-    animation = false,
+    closable = true,
+    animation = true,
     semantic_letters = true,
     no_name_title = ""
 }

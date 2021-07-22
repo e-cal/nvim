@@ -20,7 +20,7 @@ vim.g.dashboard_custom_section = {
     },
     c = {
         description = {'  Find Text      '},
-        command = 'Telescope live_grep'
+        command = 'Telescope grep_string search="" only_sort_text=true'
     },
     d = {description = {'  Recent Files   '}, command = 'Telescope oldfiles'},
     e = {description = {'  New File       '}, command = 'enew'},
