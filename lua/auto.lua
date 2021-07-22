@@ -42,7 +42,8 @@ augroups({
         }, {
             'FileType', 'dashboard',
             'set showtabline=0 | autocmd BufLeave <buffer> set showtabline=2'
-        }, {'FileType', 'dashboard', 'nnoremap <silent> <buffer> q :q<CR>'}
+        }, {'FileType', 'dashboard', 'nnoremap <silent> <buffer> q :q<CR>'},
+        {'FileType', 'dashboard', 'IndentBlanklineDisable'}
     },
     _markdown = {
         {

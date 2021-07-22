@@ -53,9 +53,8 @@ local nopts = {
 
 local nmappings = {
     [' '] = 'which_key_ignore',
-    p = 'print var below',
-    P = 'print var above',
     f = {'<cmd>Telescope find_files<cr>', 'find files'},
+    p = {'<cmd>Telescope find_files<cr>', 'find files'},
     H = {'<cmd>Dashboard<cr>', 'home'},
     ['/'] = {'<cmd>CommentToggle<cr>', 'toggle comment'},
     ['?'] = {'<cmd>NvimTreeFindFile<cr>', 'find current file'},
@@ -66,6 +65,7 @@ local nmappings = {
     Q = {'<cmd>qa!<cr>', 'force quit'},
     W = {'<cmd>close<cr>', 'close window'},
     x = {'<cmd>BufferClose<cr>', 'close buffer'},
+    X = {'<cmd>BufferClose!<cr>', 'close buffer'},
     ['.'] = {'<cmd>luafile %<cr>', 'source file'},
     h = {'<cmd>sp<cr>', 'split below'},
     v = {'<cmd>vert sp<cr>', 'split right'},
@@ -73,6 +73,7 @@ local nmappings = {
     T = {'<cmd>ToggleTerm<cr>', 'toggle terminal'},
     N = {'<cmd>enew<cr>', 'new buffer'},
     R = {'<cmd>e<cr>', 'reload buffer'},
+    I = {'<cmd>IndentBlanklineToggle<cr>', 'toggle indent lines'},
 
     b = {
         name = '+buffer',
@@ -81,7 +82,15 @@ local nmappings = {
         b = {'<cmd>BufferPick<cr>', 'pick buffer'},
         c = {'<cmd>BufferClose<cr>', 'close buffer'},
         n = {'<cmd>BufferNext<cr>', 'next buffer'},
-        p = {'<cmd>BufferPrevious<cr>', 'prev buffer'}
+        p = {'<cmd>BufferPrevious<cr>', 'prev buffer'},
+        t = {
+            name = '+tab',
+            t = {'<cmd>tabnew<cr>', 'new tab'},
+            c = {'<cmd>tabclose<cr>', 'close tab'},
+            n = {'<cmd>tabn<cr>', 'next tab'},
+            p = {'<cmd>tabp<cr>', 'prev tab'},
+            l = {'<cmd>tabs<cr>', 'list tabs'}
+        }
     },
 
     d = {
@@ -127,15 +136,19 @@ local nmappings = {
         b = {'<cmd>Telescope buffers<cr>', 'buffers'},
         f = {'<cmd>Telescope find_files<cr>', 'files'},
         h = {'<cmd>Telescope command_history<cr>', 'cmd history'},
-        p = {'<cmd>Telescope media_files<cr>', 'media'},
+        i = {'<cmd>Telescope media_files<cr>', 'media'},
         m = {'<cmd>Telescope marks<cr>', 'marks'},
         M = {'<cmd>Telescope man_pages<cr>', 'manuals'},
         o = {'<cmd>Telescope vim_options<cr>', 'options'},
-        t = {'<cmd>Telescope live_grep<cr>', 'text'},
-        s = {'<cmd>Telescope grep_string<cr>', 'selected string'},
+        t = {
+            '<cmd>Telescope grep_string search="" only_sort_text=true<cr>',
+            'text'
+        },
+        T = {'<cmd>Telescope live_grep<cr>', 'exact text'},
+        s = {'<cmd>Telescope grep_string<cr>', 'selection'},
         r = {'<cmd>Telescope oldfiles<cr>', 'recents'},
-        R = {'<cmd>Telescope registers<cr>', 'registers'},
-        w = {'<cmd>Telescope file_browser<cr>', 'fuzzy find'},
+        p = {'<cmd>Telescope registers<cr>', 'registers'},
+        e = {'<cmd>Telescope file_browser<cr>', 'fuzzy explorer'},
         c = {'<cmd>Telescope colorscheme<cr>', 'colorschemes'}
     },
 
