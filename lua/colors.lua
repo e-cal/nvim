@@ -7,17 +7,17 @@ vim.cmd('let g:deus_termcolors=256')
 
 vim.cmd('colorscheme ' .. Colorscheme)
 
-vim.cmd('hi Cursor guibg=#EBDBB2')
-vim.cmd('set guicursor=n-v:block-Cursor')
-vim.cmd('hi iCursor guibg=#EBDBB2')
-vim.cmd('set guicursor+=i-c:ver100-iCursor')
-vim.cmd('set guicursor+=r:hor10-iCursor')
-vim.cmd('hi oCursor guibg=#E5C07B')
-vim.cmd('set guicursor+=o:block-oCursor')
+-- vim.cmd('hi Cursor guibg=#EBDBB2')
+-- vim.cmd('set guicursor=n-v:block-Cursor')
+-- vim.cmd('hi iCursor guibg=#EBDBB2')
+-- vim.cmd('set guicursor+=i-c:ver100-iCursor')
+-- vim.cmd('set guicursor+=r:hor10-iCursor')
+-- vim.cmd('hi oCursor guibg=#E5C07B')
+-- vim.cmd('set guicursor+=o:block-oCursor')
 
 vim.cmd('hi Visual guibg=#E5C07B guifg=Black gui=none')
 
-vim.cmd('hi MatchParen guibg=#F4852B guifg=#2C323B')
+vim.cmd('hi MatchParen cterm=bold guifg=#F4852B guibg=#5C5C5C')
 
 if Colorscheme == 'deus' then
     vim.cmd('hi ColorColumn guibg=#343B46')
