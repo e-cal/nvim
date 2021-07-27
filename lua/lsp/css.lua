@@ -1,10 +1,14 @@
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
 require'lspconfig'.cssls.setup {
-    cmd = {
-        "node", DATA_PATH ..
-            "/lspinstall/css/vscode-css/css-language-features/server/dist/node/cssServerMain.js",
-        "--stdio"
+    cmd = {"vscode-css-language-server", "--stdio"},
+    settings = {
+        css = {validate = false},
+        scss = {validate = false},
+        less = {validate = true}
     },
-    settings = {css = {validate = false}, scss = {validate = false}},
     on_attach = require'lsp'.common_on_attach,
-    filetypes = {'css', 'scss', 'less', 'sass'}
+    filetypes = {'css', 'scss', 'less', 'sass'},
+    capabilities = capabilities
 }
