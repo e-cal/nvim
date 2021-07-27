@@ -12,6 +12,7 @@ SINGLE_QUOTES = "'"
 DOUBLE_QUOTES = '"'
 
 
+
 class Arg(object):
 	def __init__(self, arg):
 		self.arg = arg
@@ -292,4 +293,12 @@ endsnippet
 snippet main "if name == main" bA
 if __name__ == "__main__":
 	${0:main()}
+endsnippet
+
+snippet exception "custom exception" bA
+class ${1:CustomException}(Exception):
+	def __init__(self, ${2:*args}, message=None):
+		if message is None:
+			message = f"${0:message}"
+		super().__init__(message)
 endsnippet
