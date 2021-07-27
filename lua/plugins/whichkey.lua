@@ -211,7 +211,9 @@ local nmappings = {
         ['='] = {'<C-w>=', 'reset window'},
         h = {'<cmd>split<cr>', 'split horizontal'},
         v = {'<cmd>vsplit<cr>', 'split vertical'},
-        d = {'<cmd>close<cr>', 'close split window'}
+        d = {'<cmd>close<cr>', 'close split window'},
+        j = {'<C-w>J', 'move to bottom'},
+        H = {'<C-w>J<C-w>k<C-w>H<C-w>l<C-w>j', 'move under'}
     },
 
     r = {
