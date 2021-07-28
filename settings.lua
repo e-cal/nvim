@@ -1,4 +1,6 @@
 ------------------------------ GENERAL SETTINGS -------------------------------
+LeaderKey = ' '
+
 Colorscheme = 'deus'
 Font = 'FiraCode Nerd Font:h18'
 
@@ -8,6 +10,7 @@ RelativeLineNumbers = true
 
 CursorLine = true
 ColorColumn = 80
+IndentGuide = false -- enabled by default? (still toggleable with <leader>-I)
 AutoScroll = 8 -- Scroll when this many lines from top/bottom
 
 HighlightSearch = false -- Highlight all search matches
@@ -18,7 +21,7 @@ TabSize = 4
 UseSpaces = true
 
 Term = {}
-Term.shell = '/usr/bin/fish' -- or a string with the path to a shell binary
+Term.shell =  '/usr/bin/fish' -- vim.o.shell or the path to a shell executable
 Term.size = 10
 Term.shade = true
 Term.direction = 'horizontal' -- horizontal, vertical, window, or float

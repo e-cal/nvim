@@ -39,7 +39,7 @@ wk.setup {
 }
 
 -- vim.api.nvim_set_keymap('n', '<Space>', '<NOP>', {noremap = true, silent = true})
-vim.g.mapleader = ' '
+vim.g.mapleader = LeaderKey
 
 -- NORMAL mode
 local nopts = {
