@@ -74,13 +74,21 @@ local nmappings = {
     N = {'<cmd>enew<cr>', 'new buffer'},
     R = {'<cmd>e<cr>', 'reload buffer'},
     I = {'<cmd>IndentBlanklineToggle<cr>', 'toggle indent lines'},
+    -- Quick surround
+    ['"'] = {'ciw"<C-r>""<esc>', '""'},
+    ["'"] = {"ciw'<C-r>\"'<esc>", "''"},
+    ['`'] = {'ciw`<C-r>"`<esc>', '``'},
+    [')'] = {'ciw(<C-r>")<esc>', '()'},
+    ['}'] = {'ciw{<C-r>"}<esc>', '{}'},
+    [']'] = {'ciw[<C-r>"]<esc>', '[]'},
 
     b = {
         name = '+buffer',
         ['>'] = {'<cmd>BufferMoveNext<cr>', 'move right'},
         ['<'] = {'<cmd>BufferMovePrevious<cr>', 'move left'},
         b = {'<cmd>BufferPick<cr>', 'pick buffer'},
-        c = {'<cmd>BufferClose<cr>', 'close buffer'},
+        x = {'<cmd>BufferClose<cr>', 'close buffer'},
+        c = {'<cmd>BufferCloseAllButCurrent<cr>', 'close all other buffers'},
         n = {'<cmd>BufferNext<cr>', 'next buffer'},
         p = {'<cmd>BufferPrevious<cr>', 'prev buffer'},
         t = {
