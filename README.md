@@ -46,8 +46,7 @@ Inspired by [LunarVim](https://github.com/ChristianChiarulli/LunarVim) and [TheP
 5. Update with `git fetch` + `git pull`
 - For formatting install [efm-langserver](https://github.com/mattn/efm-langserver)
     - Seems to be broken when installed with `:LspInstall`
-    - I recommend installing with `go get github.com/mattn/efm-langserver` or
-    `brew install efm-langserver` or `pacman -S efm-langserver`
+    - I recommend installing with `go get github.com/mattn/efm-langserver`
 	- wsl2 requires some additional manual setup (environment variables)
 
 ## Features <a name="features"></a>
