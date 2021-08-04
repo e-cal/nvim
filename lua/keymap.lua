@@ -48,9 +48,6 @@ map('n', '<Up>',
     '<cmd>lua require(\'lspsaga.action\').smart_scroll_with_saga(-1)<CR>',
     {noremap = true, silent = true})
 
--- Y -> y$
-map('n', 'Y', 'y$', {noremap = true, silent = true})
-
 -- Reindent paste
 map('n', 'p', 'p`[v`[=', {noremap = true, silent = true})
 
