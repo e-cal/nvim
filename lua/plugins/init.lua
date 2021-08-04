@@ -20,7 +20,6 @@ return require('packer').startup(function(use)
     -- LSP
     use 'neovim/nvim-lspconfig'
     use 'glepnir/lspsaga.nvim'
-    use 'kabouzeid/nvim-lspinstall'
     use 'hrsh7th/nvim-compe'
     use 'SirVer/ultisnips'
     -- Navigation
