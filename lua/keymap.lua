@@ -48,6 +48,27 @@ map('n', '<Up>',
     '<cmd>lua require(\'lspsaga.action\').smart_scroll_with_saga(-1)<CR>',
     {noremap = true, silent = true})
 
+-- Reindent paste
+map('n', 'p', 'p`[v`[=', {noremap = true, silent = true})
+
+-- Stay centered
+map('n', 'n', 'nzzzv', {noremap = true, silent = true})
+map('n', 'N', 'Nzzzv', {noremap = true, silent = true})
+map('n', 'J', 'mzJ`z', {noremap = true, silent = true})
+
+-- Disable arrow keys
+map('n', '<down>', '<nop>', {noremap = true, silent = true})
+map('n', '<up>', '<nop>', {noremap = true, silent = true})
+map('n', '<left>', '<nop>', {noremap = true, silent = true})
+map('n', '<right>', '<nop>', {noremap = true, silent = true})
+map('i', '<down>', '<nop>', {noremap = true, silent = true})
+map('i', '<up>', '<nop>', {noremap = true, silent = true})
+map('i', '<left>', '<nop>', {noremap = true, silent = true})
+map('i', '<right>', '<nop>', {noremap = true, silent = true})
+
+-- 0 to first char (^)
+map('n', '0', '^', {noremap = true, silent = true})
+
 -- ================================ INSERT ====================================
 
 -- ================================ VISUAL ====================================
@@ -55,8 +76,9 @@ map('n', '<Up>',
 map('v', '<', '<gv', {noremap = true, silent = true})
 map('v', '>', '>gv', {noremap = true, silent = true})
 
--- Move line
-map('v', 'K', ':m \'>-2<CR>gv-gv', {noremap = true, silent = true})
+-- Move selection
+map('v', 'K', ":m '<-2<CR>gv=gv", {noremap = true, silent = true})
+map('v', 'J', ":m '>+1<CR>gv=gv", {noremap = true, silent = true})
 
 -- ================================ UNMAP =====================================
 map('n', 'Q', '<NOP>', {noremap = true, silent = true})
