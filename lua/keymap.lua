@@ -56,7 +56,7 @@ map('n', 'n', 'nzzzv', {noremap = true, silent = true})
 map('n', 'N', 'Nzzzv', {noremap = true, silent = true})
 map('n', 'J', 'mzJ`z', {noremap = true, silent = true})
 
--- Arrows mess me up
+-- Disable arrow keys
 map('n', '<down>', '<nop>', {noremap = true, silent = true})
 map('n', '<up>', '<nop>', {noremap = true, silent = true})
 map('n', '<left>', '<nop>', {noremap = true, silent = true})
