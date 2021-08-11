@@ -66,8 +66,9 @@ map('i', '<up>', '<nop>', {noremap = true, silent = true})
 map('i', '<left>', '<nop>', {noremap = true, silent = true})
 map('i', '<right>', '<nop>', {noremap = true, silent = true})
 
--- 0 to first char (^)
+-- Swap 0 and ^
 map('n', '0', '^', {noremap = true, silent = true})
+map('n', '^', '0', {noremap = true, silent = true})
 
 -- ================================ INSERT ====================================
 
