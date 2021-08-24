@@ -253,6 +253,29 @@ local nmappings = {
         name = '+notebook',
         c = {'<cmd>norm i# %%<cr>o', 'code cell'},
         m = {'<cmd>norm i# %% [markdown]<cr>o# ', 'markdown cell'}
+    },
+
+    o = {
+        name = '+neorg',
+        t = {
+            name = '+todo',
+            d = {
+                '<cmd>Neorg keybind norg core.norg.qol.todo_items.todo.task_done<cr>',
+                'done'
+            },
+            u = {
+                '<cmd>Neorg keybind norg core.norg.qol.todo_items.todo.task_undone<cr>',
+                'undone'
+            },
+            p = {
+                '<cmd>Neorg keybind norg core.norg.qol.todo_items.todo.task_pending<cr>',
+                'pending'
+            },
+            [' '] = {
+                '<cmd>Neorg keybind norg core.norg.qol.todo_items.todo.task_cycle<cr>',
+                'cycle'
+            }
+        }
     }
 
 }

@@ -43,6 +43,7 @@ return require('packer').startup(function(use)
     use 'bfredl/nvim-ipy'
     use {'kkoomen/vim-doge', run = ':call doge#install()'}
     use 'lukas-reineke/indent-blankline.nvim'
+    use 'vhyrro/neorg'
     -- Debugging
     use 'mfussenegger/nvim-dap'
     use 'rcarriga/nvim-dap-ui' -- temporary while nvim-dap lacks a built-in ui
