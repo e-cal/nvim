@@ -51,7 +51,11 @@ augroups({
         {
             'FileType', 'markdown',
             'setlocal spell foldexpr=MarkdownLevel() foldmethod=expr nofoldenable'
-        }, {'FileType', 'markdown', 'syntax match markdownIgnore "\\v\\w_\\w"'}
+        }, {'FileType', 'markdown', 'syntax match markdownIgnore "\\v\\w_\\w"'},
+        {
+            'FileType', 'markdown',
+            'lua require"cmp".setup.buffer { sources = { {name="buffer"}, {name="spell"} } }'
+        }
 
     },
     _python = {
