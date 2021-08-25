@@ -21,8 +21,12 @@ return require('packer').startup(function(use)
     use 'neovim/nvim-lspconfig'
     use 'glepnir/lspsaga.nvim'
     use 'kabouzeid/nvim-lspinstall'
-    use 'hrsh7th/nvim-compe'
     use 'SirVer/ultisnips'
+    use 'hrsh7th/nvim-cmp'
+    use 'hrsh7th/cmp-buffer'
+    use 'hrsh7th/cmp-nvim-lua'
+    use 'hrsh7th/cmp-nvim-lsp'
+    use 'quangnguyen30192/cmp-nvim-ultisnips'
     -- Navigation
     use 'kyazdani42/nvim-tree.lua'
     use 'nvim-lua/popup.nvim'
