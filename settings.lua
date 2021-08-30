@@ -21,7 +21,7 @@ TabSize = 4
 UseSpaces = true
 
 Term = {}
-Term.shell =  '/usr/bin/fish' -- vim.o.shell or the path to a shell executable
+Term.shell = '/usr/bin/fish' -- vim.o.shell or the path to a shell executable
 Term.size = 10
 Term.shade = true
 Term.direction = 'horizontal' -- horizontal, vertical, window, or float
@@ -56,7 +56,7 @@ Markdown = {}
 Markdown.liveRefresh = false -- false: refresh on save
 Markdown.imagePasteCommand = 'xclip -selection clipboard -t image/png -o > %s' -- Paste to file command
 Markdown.imageDir = 'img' -- Sub-directory to save the image to
-Markdown.imagePasteSyntax = 'html' -- Image syntax to use (html, obsidian, or a format string)
+Markdown.imagePasteSyntax = 'obsidian' -- Image syntax to use (html, obsidian, or a format string)
 Markdown.imageDefaultWidth = 600 -- Default width of images in px (or nil for no scaling)
 
 -------------------------- DEBUGGER SETTINGS --------------------------
