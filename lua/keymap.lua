@@ -56,6 +56,10 @@ map('n', 'n', 'nzzzv', {noremap = true, silent = true})
 map('n', 'N', 'Nzzzv', {noremap = true, silent = true})
 map('n', 'J', 'mzJ`z', {noremap = true, silent = true})
 
+-- H and L for line jumping
+map('n', 'H', '^', {noremap = true, silent = true})
+map('n', 'L', '$', {noremap = true, silent = true})
+
 -- Disable arrow keys
 map('n', '<down>', '<nop>', {noremap = true, silent = true})
 map('n', '<up>', '<nop>', {noremap = true, silent = true})
