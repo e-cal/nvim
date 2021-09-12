@@ -300,7 +300,9 @@ local vmappings = {
         name = '+debug',
         e = {'<cmd>DebugEvaluate<cr>', 'evaluate selected expression'},
         s = {'<cmd>PythonDebugSelection<cr>', 'py debug selection'}
-    }
+    },
+
+    gq = 'format line length'
 
 }
 

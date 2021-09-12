@@ -37,14 +37,13 @@ cmp.setup {
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<CR>'] = cmp.mapping.confirm({
             behavior = cmp.ConfirmBehavior.Insert,
-            select = true
+            select = false
         })
     },
 
     sources = {
         {name = 'buffer'}, {name = 'path'}, {name = 'calc'},
         {name = 'nvim_lsp'}, {name = 'nvim_lua'}, {name = 'ultisnips'}
-
     },
     formatting = {
         format = function(entry, vim_item)
