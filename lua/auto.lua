@@ -50,7 +50,7 @@ augroups({
     _markdown = {
         {
             'FileType', 'markdown',
-            'setlocal spell foldexpr=MarkdownLevel() foldmethod=expr nofoldenable'
+            'setlocal spell foldexpr=MarkdownLevel() foldmethod=expr nofoldenable tw=83'
         }, {'FileType', 'markdown', 'syntax match markdownIgnore "\\v\\w_\\w"'},
         {
             'FileType', 'markdown',
@@ -62,7 +62,8 @@ augroups({
         -- Don't mess up my indents
         {'FileType', 'python', 'setlocal indentkeys-=:'},
         {'BufEnter', '*.py', 'setlocal indentkeys-=<:>'}
-    }
+    },
+    _xonsh = {{'BufEnter', '*.xsh', 'setlocal syntax=xonsh'}}
 })
 
 local _store = {}
