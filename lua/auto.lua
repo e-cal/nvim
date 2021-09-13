@@ -15,14 +15,15 @@ end
 local _global = {
     {'BufWritePre', '*', ':call TrimWhitespace()'}, {
         'BufWinEnter', '*',
-        'setlocal formatoptions-=c formatoptions-=r formatoptions-=o formatoptions-=t'
-    }, {
+        'setlocal formatoptions-=c formatoptions-=r formatoptions-=o'
+    },
+    {
         'BufRead', '*',
-        'setlocal formatoptions-=c formatoptions-=r formatoptions-=o formatoptions-=t'
+        'setlocal formatoptions-=c formatoptions-=r formatoptions-=o'
     }, {
         'BufNewFile', '*',
-        'setlocal formatoptions-=c formatoptions-=r formatoptions-=o formatoptions-=t'
-    }
+        'setlocal formatoptions-=c formatoptions-=r formatoptions-=o'
+    }, {'FileType', '*', 'setlocal formatoptions-=t'}
 }
 
 if HighlightYank then
@@ -50,7 +51,7 @@ augroups({
     _markdown = {
         {
             'FileType', 'markdown',
-            'setlocal spell foldexpr=MarkdownLevel() foldmethod=expr nofoldenable tw=83'
+            'setlocal spell foldexpr=MarkdownLevel() foldmethod=expr nofoldenable formatoptions+=t tw=88'
         }, {'FileType', 'markdown', 'syntax match markdownIgnore "\\v\\w_\\w"'},
         {
             'FileType', 'markdown',

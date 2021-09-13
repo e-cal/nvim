@@ -302,6 +302,9 @@ local vmappings = {
         s = {'<cmd>PythonDebugSelection<cr>', 'py debug selection'}
     },
 
+    b = {'c**<C-r>"**<esc>', 'bold'},
+    i = {'c_<C-r>"_<esc>', 'italic'},
+
     gq = 'format line length'
 
 }
