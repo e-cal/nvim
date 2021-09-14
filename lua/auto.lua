@@ -15,15 +15,14 @@ end
 local _global = {
     {'BufWritePre', '*', ':call TrimWhitespace()'}, {
         'BufWinEnter', '*',
-        'setlocal formatoptions-=c formatoptions-=r formatoptions-=o'
-    },
-    {
+        'setlocal formatoptions-=c formatoptions-=r formatoptions-=o formatoptions-=t'
+    }, {
         'BufRead', '*',
-        'setlocal formatoptions-=c formatoptions-=r formatoptions-=o'
+        'setlocal formatoptions-=c formatoptions-=r formatoptions-=o formatoptions-=t'
     }, {
         'BufNewFile', '*',
-        'setlocal formatoptions-=c formatoptions-=r formatoptions-=o'
-    }, {'FileType', '*', 'setlocal formatoptions-=t'}
+        'setlocal formatoptions-=c formatoptions-=r formatoptions-=o formatoptions-=t'
+    }
 }
 
 if HighlightYank then
@@ -51,11 +50,11 @@ augroups({
     _markdown = {
         {
             'FileType', 'markdown',
-            'setlocal spell foldexpr=MarkdownLevel() foldmethod=expr nofoldenable formatoptions+=t tw=88'
+            'setlocal spell foldexpr=MarkdownLevel() foldmethod=expr nofoldenable'
         }, {'FileType', 'markdown', 'syntax match markdownIgnore "\\v\\w_\\w"'},
         {
             'FileType', 'markdown',
-            'lua require"cmp".setup.buffer { sources = { {name="buffer"}, {name="spell"} } }'
+            'lua require"cmp".setup.buffer { sources = { {name="buffer"}, {name="spell"}, {name="path"}, {name="ultisnips"}, {name="calc"}} }'
         }
 
     },
