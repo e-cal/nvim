@@ -59,6 +59,8 @@ map('n', 'J', 'mzJ`z', {noremap = true, silent = true})
 -- H and L for line jumping
 map('n', 'H', '^', {noremap = true, silent = true})
 map('n', 'L', '$', {noremap = true, silent = true})
+map('v', 'H', '^', {noremap = true, silent = true})
+map('v', 'L', '$', {noremap = true, silent = true})
 
 -- Disable arrow keys
 map('n', '<down>', '<nop>', {noremap = true, silent = true})
@@ -69,10 +71,6 @@ map('i', '<down>', '<nop>', {noremap = true, silent = true})
 map('i', '<up>', '<nop>', {noremap = true, silent = true})
 map('i', '<left>', '<nop>', {noremap = true, silent = true})
 map('i', '<right>', '<nop>', {noremap = true, silent = true})
-
--- Swap 0 and ^
-map('n', '0', '^', {noremap = true, silent = true})
-map('n', '^', '0', {noremap = true, silent = true})
 
 -- ================================ INSERT ====================================
 
