@@ -21,7 +21,7 @@ TabSize = 4
 UseSpaces = true
 
 Term = {}
-Term.shell = '/usr/bin/fish' -- vim.o.shell or the path to a shell executable
+Term.shell = '/usr/bin/xonsh' -- vim.o.shell or the path to a shell executable
 Term.size = 10
 Term.shade = true
 Term.direction = 'horizontal' -- horizontal, vertical, window, or float
