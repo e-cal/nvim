@@ -304,6 +304,7 @@ local vmappings = {
 
     b = {'c**<C-r>"**<esc>', 'bold'},
     i = {'c_<C-r>"_<esc>', 'italic'},
+    t = {'c<details><cr><summary> </summary><esc>po</details><esc>', 'toggle'},
 
     gq = 'format line length'
 

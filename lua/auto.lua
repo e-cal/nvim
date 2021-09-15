@@ -50,7 +50,7 @@ augroups({
     _markdown = {
         {
             'FileType', 'markdown',
-            'setlocal spell foldexpr=MarkdownLevel() foldmethod=expr nofoldenable'
+            'setlocal spell foldexpr=MarkdownLevel() foldmethod=expr nofoldenable ts=2 sts=2 sw=2'
         }, {'FileType', 'markdown', 'syntax match markdownIgnore "\\v\\w_\\w"'},
         {
             'FileType', 'markdown',
