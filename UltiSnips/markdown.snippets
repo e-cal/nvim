@@ -31,6 +31,12 @@ snippet -x "todo done" bA
 - [x] ${0}
 endsnippet
 
-snippet inlink "internal link"
-[[${1:file}#${2:heading}|${3:text}]]
+snippet [l "internal link" A
+[[${1:file}#${2:heading}|${3:text}]
+endsnippet
+
+snippet \cases "latex cases" A
+\begin{cases}
+${0}
+\end{cases}
 endsnippet
