@@ -44,7 +44,15 @@ end
 local get_name = function()
     local index = 1
     for _ in io.popen('ls img'):lines() do index = index + 1 end
-    return 'image' .. index
+    local prefix = ''
+    if index < 10 then
+        prefix = '000'
+    elseif index < 100 then
+        prefix = '00'
+    elseif index < 1000 then
+        prefix = '0'
+    end
+    return 'image' .. prefix .. index
 end
 
 PasteImg = function()
