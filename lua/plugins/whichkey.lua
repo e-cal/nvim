@@ -180,7 +180,7 @@ local nmappings = {
         g = {'<cmd>lua LazygitToggle()<CR>', 'lazygit'}
     },
 
-    L = {
+    l = {
         name = '+lsp',
         a = {'<cmd>Lspsaga code_action<cr>', 'code action'},
         A = {'<cmd>Lspsaga range_code_action<cr>', 'selected action'},
@@ -279,7 +279,7 @@ local nmappings = {
         }
     },
 
-    l = {
+    L = {
         name = '+symbols (logic)',
         n = {'<cmd>norm a¬<cr>', '¬'},
         a = {'<cmd>norm a∧<cr>', '∧'},
