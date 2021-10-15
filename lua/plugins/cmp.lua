@@ -1,13 +1,5 @@
 local cmp = require('cmp')
 
-local t = function(str)
-    return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
-local check_back_space = function()
-    local col = vim.fn.col '.' - 1
-    return col == 0 or vim.fn.getline('.'):sub(col, col):match '%s' ~= nil
-end
-
 cmp.setup {
     snippet = {
         expand = function(args)
@@ -17,17 +9,16 @@ cmp.setup {
 
     mapping = {
         ['<Tab>'] = cmp.mapping(function(fallback)
-            if vim.fn.pumvisible() == 1 then
-                vim.fn.feedkeys(t("<C-n>"), "n")
-            elseif check_back_space() then
-                vim.fn.feedkeys(t("<tab>"), "n")
+            print(vim.fn.pumvisible())
+            if cmp.visible() then
+                cmp.select_next_item()
             else
                 fallback()
             end
         end, {"i", "s"}),
         ["<S-tab>"] = cmp.mapping(function(fallback)
-            if vim.fn.pumvisible() == 1 then
-                vim.fn.feedkeys(t("<C-p>"), "n")
+            if cmp.visible() then
+                cmp.select_prev_item()
             else
                 fallback()
             end
