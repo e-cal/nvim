@@ -211,7 +211,7 @@ local nmappings = {
         p = {'<cmd>MarkdownPreview<cr>', 'preview'},
         s = {'<cmd>MarkdownPreviewStop<cr>', 'stop preview'},
         t = {'<cmd>MarkdownPreviewToggle<cr>', 'toggle preview'},
-        i = {'A  %_', 'fix italics'}
+        i = {'A  %_<esc>', 'fix italics'}
     },
 
     w = {
