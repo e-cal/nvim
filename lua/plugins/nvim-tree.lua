@@ -1,5 +1,24 @@
 vim.g.nvim_tree_quit_on_open = 1
-vim.g.nvim_tree_auto_open = 1
+
+require'nvim-tree'.setup {
+    disable_netrw = true,
+    hijack_netrw = true,
+    open_on_setup = true,
+    ignore_ft_on_setup = {},
+    auto_close = false,
+    open_on_tab = false,
+    hijack_cursor = false,
+    update_cwd = false,
+    lsp_diagnostics = false,
+    update_focused_file = {enable = false, update_cwd = false, ignore_list = {}},
+    system_open = {cmd = nil, args = {}},
+    view = {
+        width = 30,
+        side = 'left',
+        auto_resize = false,
+        mappings = {custom_only = false, list = {}}
+    }
+}
 
 function NvimTreeXdgOpen()
     local lib = require 'nvim-tree.lib'
