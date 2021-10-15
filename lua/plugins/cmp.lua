@@ -9,7 +9,6 @@ cmp.setup {
 
     mapping = {
         ['<Tab>'] = cmp.mapping(function(fallback)
-            print(vim.fn.pumvisible())
             if cmp.visible() then
                 cmp.select_next_item()
             else
