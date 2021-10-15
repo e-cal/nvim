@@ -10,6 +10,7 @@ require('colors')
 -- LSP
 require('lsp')
 require('lsp.bash')
+require('lsp.c')
 require('lsp.css')
 require('lsp.js-ts')
 require('lsp.json')
