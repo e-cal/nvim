@@ -49,7 +49,7 @@ map('n', '<Up>',
     {noremap = true, silent = true})
 
 -- Reindent paste
-map('n', 'p', 'p`[v`[=', {noremap = true, silent = true})
+-- map('n', 'p', 'p`[v`[=', {noremap = true, silent = true})
 
 -- Stay centered
 map('n', 'n', 'nzzzv', {noremap = true, silent = true})
