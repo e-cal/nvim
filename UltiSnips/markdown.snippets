@@ -1,12 +1,30 @@
-snippet >> "toggle" bA
+global !p
+def create_table(snip):
+    # retrieving single line from current string and treat it like tabstops count
+    placeholders_string = snip.buffer[snip.line].strip()[2:].split("x",1)
+    rows_amount = int(placeholders_string[0])
+    columns_amount = int(placeholders_string[1])
+
+    # erase current line
+    snip.buffer[snip.line] = ''
+
+    # create anonymous snippet with expected content and number of tabstops
+    anon_snippet_title = ' | '.join(['$' + str(col) for col in range(1,columns_amount+1)]) + "\n"
+    anon_snippet_delimiter = ':-|' * (columns_amount-1) + ":-\n"
+    anon_snippet_body = ""
+    for row in range(1,rows_amount+1):
+        anon_snippet_body += ' | '.join(['$' + str(row*columns_amount+col) for col in range(1,columns_amount+1)]) + "\n"
+    anon_snippet_table = anon_snippet_title + anon_snippet_delimiter + anon_snippet_body
+
+    # expand anonymous snippet
+    snip.expand_anon(anon_snippet_table)
+endglobal
+
+snippet :tog "toggle" A
 <details>
 <summary>${1:Toggle}</summary>
 ${0}
 </details>
-endsnippet
-
-snippet inline "inline equation"
-$${0}$
 endsnippet
 
 snippet $$ "latex" bA
@@ -15,8 +33,38 @@ ${0}
 $$
 endsnippet
 
-snippet txt "\text"
+snippet \text "text" A
 \text{${0}}
+endsnippet
+
+snippet \frac "frac" A
+\frac{${1}}{${2}} ${0}
+endsnippet
+
+snippet \dfrac "dfrac" A
+\dfrac{${1}}{${2}} ${0}
+endsnippet
+
+snippet \cases "latex cases" A
+\begin{cases}
+${0}
+\end{cases}
+endsnippet
+
+snippet \align "latex align" A
+\begin{align}
+${0}
+\end{align}
+endsnippet
+
+snippet \mat "bmatrix" A
+\begin{bmatrix}
+${1} & ${2}
+\end{bmatrix}
+endsnippet
+
+snippet \sum\lim "limits" A
+\sum\limits_{${1}}^{${2}} ${0}
 endsnippet
 
 snippet ast "asterisks"
@@ -35,18 +83,21 @@ snippet [l "internal link" A
 [[${1:file}#${2:heading}|${3:text}]
 endsnippet
 
-snippet \cases "latex cases" A
-\begin{cases}
-${0}
-\end{cases}
-endsnippet
-
-snippet \align "latex align" A
-\begin{align}
-${0}
-\end{align}
-endsnippet
 
 snippet :in "indent" A
-$\kern1em$${0}
+$\quad$ ${0}
+endsnippet
+
+snippet :where "where ..." A
+_where_
+  $\quad$ $${0}$
+endsnippet
+
+snippet || "euclidean distance" A
+||${0}||
+endsnippet
+
+
+pre_expand "create_table(snip)"
+snippet "tb\d+x\d+" "Fancy table" brA
 endsnippet
