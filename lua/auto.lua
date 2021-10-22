@@ -54,7 +54,7 @@ augroups({
         }, {'FileType', 'markdown', 'syntax match markdownIgnore "\\v\\w_\\w"'},
         {
             'FileType', 'markdown',
-            'lua require"cmp".setup.buffer { sources = { {name="buffer"}, {name="spell"}, {name="path"}, {name="ultisnips"}, {name="calc"}, {name="latex_symbols"} } }'
+            'lua require"cmp".setup.buffer { sources = { {name="buffer"}, {name="spell"}, {name="latex_symbols"}, {name="path"}, {name="ultisnips"}, {name="calc"}} }'
         }
 
     },

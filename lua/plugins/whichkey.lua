@@ -208,10 +208,15 @@ local nmappings = {
 
     m = {
         name = '+markdown',
-        p = {'<cmd>MarkdownPreview<cr>', 'preview'},
-        s = {'<cmd>MarkdownPreviewStop<cr>', 'stop preview'},
-        t = {'<cmd>MarkdownPreviewToggle<cr>', 'toggle preview'},
-        i = {'A  %_<esc>', 'fix italics'}
+        p = {'<cmd>MarkdownPreviewToggle<cr>', 'toggle preview'},
+        i = {'A  %_<esc>', 'fix italics'},
+        c = {'mzb~`z', 'capitalize'},
+        C = {
+            '<cmd>s/\\(\\s[a-z]\\)\\|^\\([a-z]\\)/\\U\\2\\U\\1/g<CR>',
+            'capitalize line'
+        },
+        s = {'z=1<cr><cr>', 'fix spelling'}
+
     },
 
     w = {
@@ -314,7 +319,7 @@ local vmappings = {
 
     b = {'c**<C-r>"**<esc>', 'bold'},
     i = {'c_<C-r>"_<esc>', 'italic'},
-    t = {'c<details><cr><summary> </summary><esc>po</details><esc>', 'toggle'},
+    l = {'c[[./<C-r>"#<C-r>"|<C-r>"]]<esc>', 'inlink'},
 
     gq = 'format line length'
 
