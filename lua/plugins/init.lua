@@ -57,7 +57,6 @@ return require("packer").startup(
         use "windwp/nvim-ts-autotag"
         use "bfredl/nvim-ipy"
         use "lukas-reineke/indent-blankline.nvim"
-        use "vhyrro/neorg"
         -- Debugging
         use "mfussenegger/nvim-dap"
         use "rcarriga/nvim-dap-ui" -- temporary while nvim-dap lacks a built-in ui
