@@ -1,4 +1,4 @@
-local sumneko_root_path = "/usr/lib/lua-language-server"
+local sumneko_root_path = "/home/ecal/projects/lua-language-server"
 local sumneko_binary = "/usr/bin/lua-language-server"
 
 require'lspconfig'.sumneko_lua.setup {
