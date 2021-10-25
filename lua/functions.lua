@@ -1,16 +1,20 @@
 local api = vim.api
 
 -- Trim whitespace
-api.nvim_exec([[
+api.nvim_exec(
+    [[
 fun! TrimWhitespace()
     let l:save = winsaveview()
     keeppatterns %s/\s\+$//e
     call winrestview(l:save)
 endfun
-]], false)
+]],
+    false
+)
 
 -- Folds in markdown
-api.nvim_exec([[
+api.nvim_exec(
+    [[
 function! MarkdownLevel()
     if getline(v:lnum) =~ '^# .*$'
         return ">1"
@@ -32,48 +36,54 @@ function! MarkdownLevel()
     endif
     return "="
 endfunction
-]], false)
+]],
+    false
+)
 
 -- Paste images
 local paste_cmd = Markdown.imagePasteCommand
 
 local create_dir = function(dir)
-    if vim.fn.isdirectory(dir) == 0 then vim.fn.mkdir(dir, 'p') end
+    if vim.fn.isdirectory(dir) == 0 then
+        vim.fn.mkdir(dir, "p")
+    end
 end
 
 local get_name = function()
     local index = 1
-    for _ in io.popen('ls img'):lines() do index = index + 1 end
-    local prefix = ''
-    if index < 10 then
-        prefix = '000'
-    elseif index < 100 then
-        prefix = '00'
-    elseif index < 1000 then
-        prefix = '0'
+    for _ in io.popen("ls img"):lines() do
+        index = index + 1
     end
-    return 'image' .. prefix .. index
+    local prefix = ""
+    if index < 10 then
+        prefix = "000"
+    elseif index < 100 then
+        prefix = "00"
+    elseif index < 1000 then
+        prefix = "0"
+    end
+    return "image" .. prefix .. index
 end
 
 PasteImg = function()
     create_dir(Markdown.imageDir)
     local name = get_name()
-    local path = string.format(Markdown.imageDir .. '/%s.png', name)
+    local path = string.format(Markdown.imageDir .. "/%s.png", name)
     os.execute(string.format(paste_cmd, path))
 
     local template
     local size = Markdown.imageDefaultWidth
-    if Markdown.imagePasteSyntax == 'html' then
+    if Markdown.imagePasteSyntax == "html" then
         if size ~= nil then
-            template = '<img src="%s" width=' .. size .. 'px />'
+            template = '<img src="%s" width=' .. size .. "px />"
         else
             template = '<img src="%s" />'
         end
-    elseif Markdown.imagePasteSyntax == 'obsidian' then
+    elseif Markdown.imagePasteSyntax == "obsidian" then
         if size ~= nil then
-            template = '![[%s|' .. size .. ']]'
+            template = "![[%s|" .. size .. "]]"
         else
-            template = '![[%s]]'
+            template = "![[%s]]"
         end
     else
         template = Markdown.imagePasteSyntax
@@ -82,8 +92,23 @@ PasteImg = function()
     vim.cmd("normal a" .. pasted_txt)
 end
 
-Utils.make_command("PasteImg") -- need to be str
+FormatToggle = function()
+    local enabled = api.nvim_get_var("formatOnSave")
+    if enabled == 1 then
+        api.nvim_set_var("formatOnSave", 0)
+    else
+        api.nvim_set_var("formatOnSave", 1)
+    end
+end
+
+FormatOnSave = function()
+    local enabled = api.nvim_get_var("formatOnSave")
+    if enabled == 1 then
+        api.nvim_command("FormatWrite")
+    end
+end
+
+-- Utils.make_command("PasteImg") -- need to be str
 api.nvim_command("command! PasteImg :lua PasteImg()")
-
-api.nvim_command("command! LspFormatting :lua vim.lsp.buf.formatting()")
-
+api.nvim_command("command! FormatOnSave :lua FormatOnSave()")
+api.nvim_command("command! FormatToggle :lua FormatToggle()")
