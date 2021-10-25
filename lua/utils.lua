@@ -6,4 +6,3 @@ Utils.make_command = function(command, func)
     local str = string.format("command! %s lua %s()", command, func)
     api.nvim_command(str)
 end
-

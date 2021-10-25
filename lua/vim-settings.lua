@@ -56,3 +56,4 @@ vim.o.guifont = Font
 -- autocmd BufNewFile,BufRead *.md filetype plugin indent off
 -- let g:python3_host_prog = '~/.local/share/virtualenvs/nvim/bin/python'
 
+vim.g.formatOnSave = 1
