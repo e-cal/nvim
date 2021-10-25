@@ -1,39 +1,18 @@
-vim.fn.sign_define("LspDiagnosticsSignError", {
-    texthl = "LspDiagnosticsSignError",
-    text = "",
-    numhl = "LspDiagnosticsSignError"
-})
-vim.fn.sign_define("LspDiagnosticsSignWarning", {
-    texthl = "LspDiagnosticsSignWarning",
-    text = "",
-    numhl = "LspDiagnosticsSignWarning"
-})
-vim.fn.sign_define("LspDiagnosticsSignHint", {
-    texthl = "LspDiagnosticsSignHint",
-    text = "",
-    numhl = "LspDiagnosticsSignHint"
-})
-vim.fn.sign_define("LspDiagnosticsSignInformation", {
-    texthl = "LspDiagnosticsSignInformation",
-    text = "",
-    numhl = "LspDiagnosticsSignInformation"
-})
+local signs = {Error = " ", Warn = " ", Hint = " ", Info = " "}
 
--- symbols for autocomplete
-vim.lsp.protocol.CompletionItemKind = {
-    "   (Text) ", "   (Method)", "   (Function)",
-    "   (Constructor)", "   (Field)", "[] (Variable)", "   (Class)",
-    " ﰮ  (Interface)", "   (Module)", "  (Property)", "   (Unit)",
-    "   (Value)", " 練 (Enum)", "   (Keyword)", " ﬌  (Snippet)",
-    "   (Color)", "   (File)", "   (Reference)", "   (Folder)",
-    "   (EnumMember)", " ﲀ  (Constant)", "   (Struct)", "   (Event)",
-    "   (Operator)", "   (TypeParameter)"
-}
+for type, icon in pairs(signs) do
+    local hl = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl, {text = icon, texthl = hl, numhl = hl})
+end
+
+-- auto show diagnostics in hover window
+vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.lsp.diagnostic.show_line_diagnostics({focusable=false})]]
 
 local function documentHighlight(client, bufnr)
     -- Set autocommands conditional on server_capabilities
     if client.resolved_capabilities.document_highlight then
-        vim.api.nvim_exec([[
+        vim.api.nvim_exec(
+            [[
       hi LspReferenceRead cterm=bold ctermbg=red guibg=#464646
       hi LspReferenceText cterm=bold ctermbg=red guibg=#464646
       hi LspReferenceWrite cterm=bold ctermbg=red guibg=#464646
@@ -42,7 +21,9 @@ local function documentHighlight(client, bufnr)
         autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
         autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
       augroup END
-    ]], false)
+    ]],
+            false
+        )
     end
 end
 
@@ -61,12 +42,17 @@ lsp_config.show_vtext = true
 
 lsp_config.toggle_vtext = function()
     lsp_config.show_vtext = not lsp_config.show_vtext
-    vim.lsp.diagnostic.display(vim.lsp.diagnostic.get(0, 1), 0, 1,
-                               {virtual_text = lsp_config.show_vtext})
+    vim.lsp.diagnostic.display(
+        vim.lsp.diagnostic.get(0, 1),
+        0,
+        1,
+        {virtual_text = lsp_config.show_vtext}
+    )
 end
 
 vim.api.nvim_exec(
     'command! -nargs=0 LspVirtualTextToggle lua require("lsp").toggle_vtext()',
-    false)
+    false
+)
 
 return lsp_config
