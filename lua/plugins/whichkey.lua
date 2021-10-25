@@ -182,28 +182,32 @@ local nmappings = {
 
     l = {
         name = '+lsp',
-        a = {'<cmd>Lspsaga code_action<cr>', 'code action'},
-        A = {'<cmd>Lspsaga range_code_action<cr>', 'selected action'},
+        a = {'<cmd>lua vim.lsp.buf.code_action<cr>', 'code action'},
         d = {'<cmd>Telescope lsp_document_diagnostics<cr>', 'doc diagnostics'},
         D = {
             '<cmd>Telescope lsp_workspace_diagnostics<cr>',
             'workspace diagnostics'
         },
-        f = {'<cmd>LspFormatting<cr>', 'format'},
+        f = {'<cmd>Format<cr>', 'format'},
         F = {'<cmd>FormatToggle<cr>', 'toggle formatting'},
         ['?'] = {'<cmd>LspInfo<cr>', 'lsp info'},
         v = {'<cmd>LspVirtualTextToggle<cr>', 'toggle virtual text'},
-        l = {'<cmd>Lspsaga lsp_finder<cr>', 'lsp finder'},
-        L = {'<cmd>Lspsaga show_line_diagnostics<cr>', 'line diagnostics'},
-        p = {'<cmd>Lspsaga preview_definition<cr>', 'preview definition'},
+        L = {'<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>', 'line diagnostics'},
+        p = {'<cmd>lua vim.lsp.buf.definition()<cr>', 'preview definition'},
         q = {'<cmd>Telescope quickfix<cr>', 'quickfix'},
-        r = {'<cmd>Lspsaga rename<cr>', 'rename'},
-        T = {'<cmd>LspTypeDefinition<cr>', 'type defintion'},
+        r = {'<cmd>lua vim.lsp.buf.rename()<cr>', 'rename'},
+        T = {'<cmd>lua vim.lsp.buf.type_definition()<cr>', 'type defintion'},
         x = {'<cmd>cclose<cr>', 'close quickfix'},
         s = {'<cmd>Telescope lsp_document_symbols<cr>', 'document symbols'},
         S = {'<cmd>Telescope lsp_workspace_symbols<cr>', 'workspace symbols'},
         R = {'<cmd>LspRestart<cr>', 'restart lsp'},
-        i = {'<cmd>normal A  # type: ignore<cr>bbbbhhh', 'pyright ignore'}
+        i = {'<cmd>normal A  # type: ignore<cr>bbbbhhh', 'pyright ignore'},
+        w = {
+            name = '+workspace',
+            a = {'<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>','add workspace'},
+            d = {'<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>','remove workspace'},
+            l = {'<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>','remove workspace'}
+      }
     },
 
     m = {
