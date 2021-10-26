@@ -1,10 +1,10 @@
 -- Variable settings defined in ../settings.lua
-vim.cmd('syntax on') -- syntax highlighting
-vim.cmd('set iskeyword+=-') -- treat dash separated words as a word text object"
-vim.cmd('set shortmess+=c') -- Don't pass messages to |ins-completion-menu|.
-vim.cmd('set inccommand=split') -- Make substitution work in realtime
+vim.cmd("syntax on") -- syntax highlighting
+vim.cmd("set iskeyword+=-") -- treat dash separated words as a word text object"
+vim.cmd("set shortmess+=c") -- Don't pass messages to |ins-completion-menu|.
+vim.cmd("set inccommand=split") -- Make substitution work in realtime
 
-vim.cmd('set shell=/bin/bash')
+vim.cmd("set shell=/usr/bin/zsh")
 
 vim.o.showtabline = 2 -- Always show buffer tabs
 vim.o.hidden = true -- Allow multiple buffers to be open
@@ -14,8 +14,8 @@ vim.wo.relativenumber = RelativeLineNumbers
 vim.o.cursorline = CursorLine -- Highlight current line
 vim.o.splitbelow = true -- Hsplit below
 vim.o.splitright = true -- Vsplit to the right
-vim.cmd('set colorcolumn=' .. ColorColumn)
-vim.cmd('set textwidth=' .. ColorColumn)
+vim.cmd("set colorcolumn=" .. ColorColumn)
+vim.cmd("set textwidth=" .. ColorColumn)
 vim.o.hlsearch = HighlightSearch -- Don't highlight search matches
 vim.o.ignorecase = SearchIgnoreCase -- Default case insensitive search
 vim.o.smartcase = true -- Case sensitive if search has a capital letter
@@ -28,9 +28,9 @@ vim.o.backup = false
 vim.o.undodir = os.getenv("HOME") .. "/.cache/nvim/undodir/"
 vim.o.undofile = true
 
-vim.cmd('set ts=' .. TabSize)
-vim.cmd('set sts=' .. TabSize)
-vim.cmd('set sw=' .. TabSize)
+vim.cmd("set ts=" .. TabSize)
+vim.cmd("set sts=" .. TabSize)
+vim.cmd("set sw=" .. TabSize)
 vim.o.expandtab = UseSpaces -- Convert tabs to spaces
 vim.o.smartindent = true -- Makes indenting smart
 vim.o.smarttab = true
