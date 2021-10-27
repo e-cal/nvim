@@ -1,19 +1,22 @@
-local actions = require('telescope.actions')
-require('telescope').setup {
+local actions = require("telescope.actions")
+require("telescope").setup {
     defaults = {
         vimgrep_arguments = {
-            'rg', '--color=never', '--no-heading', '--with-filename',
-            '--line-number', '--column', '--smart-case'
+            "rg",
+            "--color=never",
+            "--no-heading",
+            "--with-filename",
+            "--line-number",
+            "--column",
+            "--smart-case"
         },
-        file_sorter = require('telescope.sorters').get_fzy_sorter,
-        prompt_prefix = '   ',
-        selection_caret = ' ',
+        file_sorter = require("telescope.sorters").get_fzy_sorter,
+        prompt_prefix = "   ",
+        selection_caret = " ",
         color_devicons = true,
-
-        file_previewer = require('telescope.previewers').vim_buffer_cat.new,
-        grep_previewer = require('telescope.previewers').vim_buffer_vimgrep.new,
-        qflist_previewer = require('telescope.previewers').vim_buffer_qflist.new,
-
+        file_previewer = require("telescope.previewers").vim_buffer_cat.new,
+        grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
+        qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
         mappings = {
             i = {
                 ["<C-x>"] = false,
@@ -41,25 +44,38 @@ require('telescope').setup {
     }
 }
 
-require('telescope').load_extension('fzy_native')
-require('telescope').load_extension('media_files')
+require("telescope").load_extension("fzy_native")
+require("telescope").load_extension("media_files")
 
 local M = {}
-
-M.search_dotfiles = function()
-    require("telescope.builtin").find_files(
-        {prompt_title = " Config ", cwd = "$DOTFILES/.config/nvim"})
-end
 
 M.git_branches = function()
     require("telescope.builtin").git_branches(
         {
             attach_mappings = function(_, map)
-                map('i', '<c-d>', actions.git_delete_branch)
-                map('n', '<c-d>', actions.git_delete_branch)
+                map("i", "<c-d>", actions.git_delete_branch)
+                map("n", "<c-d>", actions.git_delete_branch)
                 return true
             end
-        })
+        }
+    )
+end
+
+M.search_dotfiles = function()
+    require("telescope.builtin").find_files(
+        {prompt_title = " Config ", cwd = "$DOTFILES/.config/nvim"}
+    )
+end
+
+M.search_dir = function()
+    local dir = vim.fn.input("Search from: ")
+    if (dir ~= "" and dir ~= nil) then
+        require("telescope.builtin").find_files(
+            {prompt_title = string.format(" Searching %s ", dir), cwd = dir}
+        )
+    else
+        require("telescope.builtin").find_files()
+    end
 end
 
 return M
