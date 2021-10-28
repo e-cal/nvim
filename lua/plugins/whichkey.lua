@@ -81,9 +81,7 @@ local nmappings = {
     ["("] = {'ciw(<C-r>")<esc>', "()"},
     ["{"] = {'ciw{<C-r>"}<esc>', "{}"},
     ["["] = {'ciw[<C-r>"]<esc>', "[]"},
-    [")"] = {'ciw(<C-r>")<esc>', "()"},
-    ["}"] = {'ciw{<C-r>"}<esc>', "{}"},
-    ["]"] = {'ciw[<C-r>"]<esc>', "[]"},
+    -- Menus
     b = {
         name = "+buffer",
         [">"] = {"<cmd>BufferMoveNext<cr>", "move right"},
@@ -159,27 +157,28 @@ local nmappings = {
         r = {"<cmd>Telescope oldfiles<cr>", "recents"},
         p = {"<cmd>Telescope registers<cr>", "registers"},
         e = {"<cmd>Telescope file_browser<cr>", "fuzzy explorer"},
-        c = {"<cmd>Telescope colorscheme<cr>", "colorschemes"}
+        c = {"<cmd>Telescope colorscheme<cr>", "colorschemes"},
+        q = {"<cmd>Telescope quickfix<cr>", "quickfix"}
     },
     g = {
         name = "+git",
         b = {"<cmd>Git blame_line<CR>", "blame"},
-        B = {"<cmd>GBrowse<cr>", "browse"},
-        d = {"<cmd>Git diff<cr>", "diff"},
+        p = {"<cmd>Git preview_hunk<cr>", "preview hunk"},
+        d = {"<cmd>Git toggle_word_diff<CR>", "word diff"},
+        D = {"<cmd>Git diffthis<CR>", "file diff"},
         j = {"<cmd>Git next_hunk<CR>", "next hunk"},
         k = {"<cmd>Git prev_hunk<CR>", "prev hunk"},
-        L = {"<cmd>Git log<cr>", "log"},
-        p = {"<cmd>Git preview_hunk<CR>", "preview hunk"},
         r = {"<cmd>Git reset_hunk<CR>", "reset hunk"},
         R = {"<cmd>Git reset_buffer<CR>", "reset buffer"},
-        s = {"<cmd>Git stage_hunk<CR>", "stage hunk"},
-        S = {"<cmd>Gstatus<cr>", "status"},
+        a = {"<cmd>Git stage_hunk<CR>", "stage hunk"},
+        A = {"<cmd>Git stage_buffer<cr>", "stage buffer"},
         u = {"<cmd>Git undo_stage_hunk<CR>", "undo stage hunk"},
+        q = {"<cmd>Git setqflist<CR>", "quickfix"},
         g = {"<cmd>lua LazygitToggle()<CR>", "lazygit"}
     },
     l = {
         name = "+lsp",
-        a = {"<cmd>lua vim.lsp.buf.code_action<cr>", "code action"},
+        a = {"<cmd>lua vim.lsp.buf.code_action()<cr>", "code action"},
         d = {"<cmd>Telescope lsp_document_diagnostics<cr>", "doc diagnostics"},
         D = {
             "<cmd>Telescope lsp_workspace_diagnostics<cr>",
@@ -189,12 +188,10 @@ local nmappings = {
         F = {"<cmd>FormatToggle<cr>", "toggle formatting"},
         ["?"] = {"<cmd>LspInfo<cr>", "lsp info"},
         v = {"<cmd>LspVirtualTextToggle<cr>", "toggle virtual text"},
-        L = {
+        l = {
             "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>",
             "line diagnostics"
         },
-        p = {"<cmd>lua vim.lsp.buf.definition()<cr>", "preview definition"},
-        q = {"<cmd>Telescope quickfix<cr>", "quickfix"},
         r = {"<cmd>lua vim.lsp.buf.rename()<cr>", "rename"},
         T = {"<cmd>lua vim.lsp.buf.type_definition()<cr>", "type defintion"},
         x = {"<cmd>cclose<cr>", "close quickfix"},
@@ -231,10 +228,10 @@ local nmappings = {
     },
     w = {
         name = "+window",
-        ["<"] = {"<C-w><", "resize left"},
-        [">"] = {"<C-w>>", "resize right"},
-        ["-"] = {"<C-w>-", "resize down"},
-        ["+"] = {"<C-w>+", "resize height"},
+        ["<"] = {"<C-w><", "-x"},
+        [">"] = {"<C-w>>", "+x"},
+        ["-"] = {"<C-w>-", "-y"},
+        ["+"] = {"<C-w>+", "+y"},
         ["="] = {"<C-w>=", "reset window"},
         h = {"<cmd>split<cr>", "split horizontal"},
         v = {"<cmd>vsplit<cr>", "split vertical"},
@@ -267,36 +264,6 @@ local nmappings = {
         name = "+notebook",
         c = {"<cmd>norm i# %%<cr>o", "code cell"},
         m = {"<cmd>norm i# %% [markdown]<cr>o# ", "markdown cell"}
-    },
-    o = {
-        name = "+neorg",
-        t = {
-            name = "+todo",
-            d = {
-                "<cmd>Neorg keybind norg core.norg.qol.todo_items.todo.task_done<cr>",
-                "done"
-            },
-            u = {
-                "<cmd>Neorg keybind norg core.norg.qol.todo_items.todo.task_undone<cr>",
-                "undone"
-            },
-            p = {
-                "<cmd>Neorg keybind norg core.norg.qol.todo_items.todo.task_pending<cr>",
-                "pending"
-            },
-            [" "] = {
-                "<cmd>Neorg keybind norg core.norg.qol.todo_items.todo.task_cycle<cr>",
-                "cycle"
-            }
-        }
-    },
-    L = {
-        name = "+symbols (logic)",
-        n = {"<cmd>norm a¬<cr>", "¬"},
-        a = {"<cmd>norm a∧<cr>", "∧"},
-        o = {"<cmd>norm a∨<cr>", "∨"},
-        i = {"<cmd>norm a→<cr>", "→"},
-        e = {"<cmd>norm a⊢<cr>", "⊢"}
     }
 }
 
