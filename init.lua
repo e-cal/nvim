@@ -1,4 +1,5 @@
 vim.cmd("luafile ~/.config/nvim/settings.lua")
+require("utils")
 require("plugins")
 require("keymap")
 require("vim-settings")
