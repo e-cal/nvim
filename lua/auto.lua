@@ -72,7 +72,16 @@ augroups(
             {
                 "FileType",
                 "markdown",
-                'lua require"cmp".setup.buffer { sources = { {name="buffer", keyword_length=4}, {name="spell", keyword_length=4}, {name="latex_symbols"}, {name="path"}, {name="ultisnips"}, {name="calc"}} }'
+                [[lua require"cmp".setup.buffer {
+                    sources = {
+                        {name="buffer", keyword_length=4},
+                        {name="spell", keyword_length=4},
+                        {name="latex_symbols"},
+                        {name="path"},
+                        {name="ultisnips"},
+                        {name="calc"}
+                    }
+                }]]
             }
         },
         _python = {
