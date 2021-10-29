@@ -108,7 +108,6 @@ FormatOnSave = function()
     end
 end
 
--- Utils.make_command("PasteImg") -- need to be str
-api.nvim_command("command! PasteImg :lua PasteImg()")
-api.nvim_command("command! FormatOnSave :lua FormatOnSave()")
-api.nvim_command("command! FormatToggle :lua FormatToggle()")
+Utils.make_command("PasteImg")
+Utils.make_command("FormatOnSave")
+Utils.make_command("FormatToggle")
