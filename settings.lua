@@ -1,7 +1,7 @@
 ------------------------------ GENERAL SETTINGS -------------------------------
 LeaderKey = " "
 
-Colorscheme = "deus"
+Colorscheme = "edge"
 Font = "FiraCode Nerd Font:h18"
 
 WrapLine = false

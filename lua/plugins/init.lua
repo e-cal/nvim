@@ -44,6 +44,8 @@ return require("packer").startup(
         use "nvim-telescope/telescope.nvim"
         use "nvim-telescope/telescope-fzy-native.nvim"
         use "nvim-telescope/telescope-media-files.nvim"
+        use "ggandor/lightspeed.nvim"
+        use "numToStr/Navigator.nvim"
         -- Convenience
         use "folke/which-key.nvim"
         use "windwp/nvim-autopairs"
@@ -72,5 +74,6 @@ return require("packer").startup(
         use "arcticicestudio/nord-vim"
         use "rakr/vim-two-firewatch"
         use "sainnhe/edge"
+        use "sainnhe/sonokai"
     end
 )

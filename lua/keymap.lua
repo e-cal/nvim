@@ -1,13 +1,19 @@
 local map = vim.api.nvim_set_keymap
+local opts = {noremap = true, silent = true}
 
 -- ================================ GLOBAL ====================================
 
 -- ================================ NORMAL ====================================
 -- Split navigation
-map("n", "<M-h>", "<C-w>h", {silent = true})
-map("n", "<M-j>", "<C-w>j", {silent = true})
-map("n", "<M-k>", "<C-w>k", {silent = true})
-map("n", "<M-l>", "<C-w>l", {silent = true})
+-- map("n", "<M-h>", "<C-w>h", {silent = true})
+-- map("n", "<M-j>", "<C-w>j", {silent = true})
+-- map("n", "<M-k>", "<C-w>k", {silent = true})
+-- map("n", "<M-l>", "<C-w>l", {silent = true})
+
+map("n", "<M-h>", "<cmd>lua require('Navigator').left()<cr>", opts)
+map("n", "<M-l>", "<cmd>lua require('Navigator').right()<cr>", opts)
+map("n", "<M-k>", "<cmd>lua require('Navigator').up()<cr>", opts)
+map("n", "<M-j>", "<cmd>lua require('Navigator').down()<cr>", opts)
 
 -- Buffer navigation
 map("n", "<C-T>", ":BufferNext<CR>", {noremap = true, silent = true})
