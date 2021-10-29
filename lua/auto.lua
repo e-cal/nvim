@@ -84,6 +84,7 @@ augroups(
     }
 )
 
+-- way too much code to set the toggle term mappings
 local _store = {}
 function _Create(f)
     table.insert(_store, f)

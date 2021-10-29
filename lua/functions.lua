@@ -105,7 +105,6 @@ FormatOnSave = function()
     local enabled = api.nvim_get_var("formatOnSave")
     if enabled == 1 then
         api.nvim_command("FormatWrite")
-        api.nvim_command("e")
     end
 end
 
