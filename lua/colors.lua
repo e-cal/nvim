@@ -37,4 +37,10 @@ elseif Colorscheme == "edge" then
     vim.cmd("hi BufferVisibleSign guifg=#7f8490 guibg=#33353f")
     vim.cmd("hi BufferVisibleIndex guifg=#7f8490 guibg=#33353f")
     vim.cmd("hi BufferVisibleMod guifg=#deb974 guibg=#33353f")
+
+    vim.cmd("hi VirtualTextError guifg=#ec7279")
+    vim.cmd("hi ErrorText guisp=#ec7279")
+    vim.cmd("hi VirtualTextWarning guifg=#deb974")
+    vim.cmd("hi VirtualTextInfo guifg=#6cb6eb")
+    vim.cmd("hi VirtualTextHint guifg=#a0c980")
 end
