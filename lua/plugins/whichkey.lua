@@ -239,27 +239,6 @@ local nmappings = {
         j = {"<C-w>J", "move to bottom"},
         H = {"<C-w>J<C-w>k<C-w>H<C-w>l<C-w>j", "move under"}
     },
-    r = {
-        name = "+run",
-        r = {"<Plug>SnipRunOperator", "run <movement>"},
-        l = {"<Plug>SnipRun", "run line"},
-        a = {"<cmd>%SnipRun<cr>", "run all"},
-        c = {"<Plug>SnipClose", "clear output"},
-        x = {"<Plug>SnipReset", "reset"},
-        d = {"<Plug>SnipReplMemoryClean", "clear memory"},
-        i = {"<Plug>SnipInfo", "info"},
-        p = {
-            name = "+ipython",
-            p = {"<cmd>IPython<cr>", "start kernel"},
-            r = {"<Plug>(IPy-RunOp)", "run"},
-            c = {"<Plug>(IPy-RunCell)", "run cell"},
-            a = {"<Plug>(IPy-RunAll)", "run all"},
-            l = {"<Plug>(IPy-Run)", "run line"},
-            i = {"<Plug>(IPy-WordObjInfo)", "inspect"},
-            x = {"<Plug>(IPy-Interrupt)", "interrupt kernel"},
-            q = {"<Plug>(IPy-Terminate)", "terminate kernel"}
-        }
-    },
     n = {
         name = "+notebook",
         c = {"<cmd>norm i# %%<cr>o", "code cell"},
