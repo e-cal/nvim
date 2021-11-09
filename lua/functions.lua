@@ -94,16 +94,16 @@ end
 
 FormatToggle = function()
     local enabled = api.nvim_get_var("formatOnSave")
-    if enabled == 1 then
-        api.nvim_set_var("formatOnSave", 0)
+    if enabled then
+        api.nvim_set_var("formatOnSave", false)
     else
-        api.nvim_set_var("formatOnSave", 1)
+        api.nvim_set_var("formatOnSave", true)
     end
 end
 
 FormatOnSave = function()
     local enabled = api.nvim_get_var("formatOnSave")
-    if enabled == 1 then
+    if enabled then
         api.nvim_command("FormatWrite")
     end
 end

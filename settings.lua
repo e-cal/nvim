@@ -1,7 +1,7 @@
 ------------------------------ GENERAL SETTINGS -------------------------------
 LeaderKey = " "
 
-Colorscheme = "edge"
+Colorscheme = "deus"
 Font = "FiraCode Nerd Font:h18"
 
 WrapLine = false
@@ -19,6 +19,8 @@ HighlightYank = false
 
 TabSize = 4
 UseSpaces = true
+
+FormatOnSave = true
 
 Term = {}
 Term.shell = vim.o.shell -- vim.o.shell or the path to a shell executable

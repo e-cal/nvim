@@ -6,6 +6,7 @@ vim.cmd("set inccommand=split") -- Make substitution work in realtime
 
 vim.cmd("set shell=/usr/bin/zsh")
 
+vim.o.guifont = Font
 vim.o.showtabline = 2 -- Always show buffer tabs
 vim.o.hidden = true -- Allow multiple buffers to be open
 vim.wo.wrap = WrapLine -- Don't wrap line
@@ -35,6 +36,7 @@ vim.o.expandtab = UseSpaces -- Convert tabs to spaces
 vim.o.smartindent = true -- Makes indenting smart
 vim.o.smarttab = true
 vim.o.autoindent = true -- Auto indent
+vim.cmd("filetype plugin indent on")
 
 vim.o.fileencoding = "utf-8" -- File encoding
 vim.o.pumheight = 10 -- Popup menu height
@@ -48,12 +50,4 @@ vim.o.timeoutlen = 500 -- By default timeoutlen is 1000 ms
 vim.o.clipboard = "unnamedplus" -- Copy paste between vim and everything else
 vim.wo.signcolumn = "yes"
 
-vim.o.guifont = Font
-
--- vim.cmd('let g:python_highlight_space_errors = 0') -- Disable red whitespace in python
--- vim.cmd('let g:polyglot_disabled = ['autoindent']') -- Disable polyglot autoindent
--- vim.cmd('let g:vim_markdown_conceal_code_blocks = 0')
--- autocmd BufNewFile,BufRead *.md filetype plugin indent off
--- let g:python3_host_prog = '~/.local/share/virtualenvs/nvim/bin/python'
-
-vim.g.formatOnSave = 1
+vim.g.formatOnSave = FormatOnSave
