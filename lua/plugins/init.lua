@@ -63,7 +63,6 @@ return require("packer").startup(
         use "mfussenegger/nvim-dap"
         use "rcarriga/nvim-dap-ui" -- temporary while nvim-dap lacks a built-in ui
         use "mfussenegger/nvim-dap-python"
-        use {"michaelb/sniprun", run = "bash ./install.sh"}
         -- Theming
         use "kyazdani42/nvim-web-devicons"
         use "glepnir/galaxyline.nvim"
