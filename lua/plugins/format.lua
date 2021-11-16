@@ -24,6 +24,11 @@ require "format".setup {
     markdown = {
         {cmd = {"prettier -w"}}
     },
+    java = {
+        {
+            cmd = {"google-java-format --replace"}
+        }
+    },
     vim = {
         {
             cmd = {"luafmt -w replace"},
