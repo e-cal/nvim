@@ -16,117 +16,75 @@ map("n", "<M-k>", "<cmd>lua require('Navigator').up()<cr>", opts)
 map("n", "<M-j>", "<cmd>lua require('Navigator').down()<cr>", opts)
 
 -- Buffer navigation
-map("n", "<C-T>", ":BufferNext<CR>", {noremap = true, silent = true})
-map("n", "<M-TAB>", ":BufferNext<CR>", {noremap = true, silent = true})
-map("n", "<S-TAB>", ":BufferPrev<CR>", {noremap = true, silent = true})
+map("n", "<C-T>", ":BufferNext<CR>", opts)
+map("n", "<M-TAB>", ":BufferNext<CR>", opts)
+map("n", "<S-TAB>", ":BufferPrev<CR>", opts)
 
 -- Scroll
-map("n", "<C-y>", "3<C-y>", {noremap = true, silent = true})
-map("n", "<C-e>", "3<C-e>", {noremap = true, silent = true})
+map("n", "<C-y>", "3<C-y>", opts)
+map("n", "<C-e>", "3<C-e>", opts)
 
 -- Resizing
-map("n", "<C-Up>", ":resize +2<CR>", {noremap = true, silent = true})
-map("n", "<C-Down>", ":resize -2<CR>", {noremap = true, silent = true})
-map("n", "<C-Right>", ":vert resize +2<CR>", {noremap = true, silent = true})
-map("n", "<C-Left>", ":vert resize -2<CR>", {noremap = true, silent = true})
+map("n", "<C-Up>", ":resize +2<CR>", opts)
+map("n", "<C-Down>", ":resize -2<CR>", opts)
+map("n", "<C-Right>", ":vert resize +2<CR>", opts)
+map("n", "<C-Left>", ":vert resize -2<CR>", opts)
 
 -- LSP
-map(
-    "n",
-    "K",
-    "<cmd>lua vim.lsp.buf.hover()<CR>",
-    {noremap = true, silent = true}
-)
-map(
-    "n",
-    "<C-k>",
-    "<cmd>lua vim.lsp.buf.signature_help()<CR>",
-    {noremap = true, silent = true}
-)
-map(
-    "i",
-    "<C-k>",
-    "<cmd>lua vim.lsp.buf.signature_help()<CR>",
-    {noremap = true, silent = true}
-)
-map(
-    "n",
-    "gd",
-    "<cmd>lua vim.lsp.buf.definition()<CR>",
-    {noremap = true, silent = true}
-)
-map(
-    "n",
-    "gD",
-    "<cmd>lua vim.lsp.buf.declaration()<CR>",
-    {noremap = true, silent = true}
-)
-map(
-    "n",
-    "gr",
-    "<cmd>lua vim.lsp.buf.references()<CR>",
-    {noremap = true, silent = true}
-)
-map(
-    "n",
-    "gi",
-    "<cmd>lua vim.lsp.buf.implementation()<CR>",
-    {noremap = true, silent = true}
-)
-map(
-    "n",
-    "<C-p>",
-    "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>",
-    {noremap = true, silent = true}
-)
-map(
-    "n",
-    "<C-n>",
-    "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>",
-    {noremap = true, silent = true}
-)
+map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+map("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+map("i", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+map("n", "<C-p>", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
+map("n", "<C-n>", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
 
 -- Reindent paste
--- map('n', 'p', 'p`[v`[=', {noremap = true, silent = true})
+-- map('n', 'p', 'p`[v`[=', opts)
 
 -- Stay centered
-map("n", "n", "nzzzv", {noremap = true, silent = true})
-map("n", "N", "Nzzzv", {noremap = true, silent = true})
-map("n", "J", "mzJ`z", {noremap = true, silent = true})
+map("n", "n", "nzzzv", opts)
+map("n", "N", "Nzzzv", opts)
+map("n", "J", "mzJ`z", opts)
 
 -- H and L for line jumping
-map("n", "H", "^", {noremap = true, silent = true})
-map("n", "L", "$", {noremap = true, silent = true})
-map("v", "H", "^", {noremap = true, silent = true})
-map("v", "L", "$", {noremap = true, silent = true})
+map("n", "H", "^", opts)
+map("n", "L", "$", opts)
+map("v", "H", "^", opts)
+map("v", "L", "$", opts)
 
 -- Disable arrow keys
-map("n", "<down>", "<nop>", {noremap = true, silent = true})
-map("n", "<up>", "<nop>", {noremap = true, silent = true})
-map("n", "<left>", "<nop>", {noremap = true, silent = true})
-map("n", "<right>", "<nop>", {noremap = true, silent = true})
-map("i", "<down>", "<nop>", {noremap = true, silent = true})
-map("i", "<up>", "<nop>", {noremap = true, silent = true})
-map("i", "<left>", "<nop>", {noremap = true, silent = true})
-map("i", "<right>", "<nop>", {noremap = true, silent = true})
+map("n", "<down>", "<nop>", opts)
+map("n", "<up>", "<nop>", opts)
+map("n", "<left>", "<nop>", opts)
+map("n", "<right>", "<nop>", opts)
+map("i", "<down>", "<nop>", opts)
+map("i", "<up>", "<nop>", opts)
+map("i", "<left>", "<nop>", opts)
+map("i", "<right>", "<nop>", opts)
 
 -- ================================ INSERT ====================================
 
 -- Undo checkpoints
-map("i", ",", ",<C-g>u", {noremap = true, silent = true})
-map("i", ".", ".<C-g>u", {noremap = true, silent = true})
-map("i", "!", "!<C-g>u", {noremap = true, silent = true})
-map("i", "?", "?<C-g>u", {noremap = true, silent = true})
+map("i", ",", ",<C-g>u", opts)
+map("i", ".", ".<C-g>u", opts)
+map("i", "!", "!<C-g>u", opts)
+map("i", "?", "?<C-g>u", opts)
+
+-- fix tab
+map("i", "^[[Z", "<S-Tab>", {noremap = true, silent = true})
 
 -- ================================ VISUAL ====================================
 -- Indenting
-map("v", "<", "<gv", {noremap = true, silent = true})
-map("v", ">", ">gv", {noremap = true, silent = true})
+map("v", "<", "<gv", opts)
+map("v", ">", ">gv", opts)
 
 -- Move selection
-map("v", "K", ":m '<-2<CR>gv=gv", {noremap = true, silent = true})
-map("v", "J", ":m '>+1<CR>gv=gv", {noremap = true, silent = true})
+map("v", "K", ":m '<-2<CR>gv=gv", opts)
+map("v", "J", ":m '>+1<CR>gv=gv", opts)
 
 -- ================================ UNMAP =====================================
-map("n", "Q", "<NOP>", {noremap = true, silent = true})
-map("n", "Y", "Y", {noremap = true, silent = true})
+map("n", "Q", "<NOP>", opts)
+map("n", "Y", "Y", opts)

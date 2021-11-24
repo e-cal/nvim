@@ -35,7 +35,10 @@ wk.setup {
         spacing = 5 -- spacing between columns
     },
     hidden = {"<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ "}, -- hide mapping boilerplate
-    show_help = true -- show help message on the command line when the popup is visible
+    show_help = true, -- show help message on the command line when the popup is visible
+    triggers_blacklist = {
+        i = {"^"}
+    }
 }
 
 -- vim.api.nvim_set_keymap('n', '<Space>', '<NOP>', {noremap = true, silent = true})
