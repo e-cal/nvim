@@ -1,4 +1,3 @@
--- temp
 vim.cmd("luafile ~/.config/nvim/settings.lua")
 require("utils")
 require("plugins")
