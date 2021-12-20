@@ -30,7 +30,8 @@ require("telescope").setup {
     },
     pickers = {
         file_browser = {path_display = {}},
-        grep_string = {path_display = {"tail"}}
+        grep_string = {path_display = {"tail"}},
+        find_files = {hidden = true}
     },
     extensions = {
         fzy_native = {
