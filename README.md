@@ -24,64 +24,65 @@ along with native LSP for a blazingly fast editing experience.
 
 </details>
 
-Inspired by [LunarVim](https://github.com/ChristianChiarulli/LunarVim) and [ThePrimeagen](https://github.com/awesome-streamers/awesome-streamerrc/tree/master/ThePrimeagen)
+> Inspired by [LunarVim](https://github.com/ChristianChiarulli/LunarVim) and [ThePrimeagen](https://github.com/ThePrimeagen/.dotfiles/tree/master/nvim/.config/nvim)
 
 ---
+
 <!-- [[toc]] -->
+
 - [Installation](#install)
 - [Features](#features)
 - [Configuration](#config)
 - [Default Keymap](#keys)
 - [Colorschemes](#colors)
 - [Plugins](#plugins)
+
 ---
 
 ## Installation <a name="install"></a>
+
 1. Make sure the folder `~/.config/nvim` (or equivalent) doesn't already exist.
-	- If you have an old config you don't want to lose:
-	`mv ~/.config/nvim ~/.config/nvim.old`
+   - If you have an old config you don't want to lose:
+     `mv ~/.config/nvim ~/.config/nvim.old`
 2. Clone this repo: `git clone https://github.com/e-cal/evim ~/.config/nvim`
 3. If you don't already have pynvim installed: `pip3 install pynvim`
 4. Run `nvim` and do `:PackerInstall`
-5. Update with `git fetch` + `git pull`
-- For formatting install [efm-langserver](https://github.com/mattn/efm-langserver)
-    - Seems to be broken when installed with `:LspInstall`
-    - I recommend installing with `go get github.com/mattn/efm-langserver`
-	- wsl2 requires some additional manual setup (environment variables)
+5. Update with `git fetch` + `git pull`, update plugins with `:PackerSync`
 
 ## Features <a name="features"></a>
+
 - Written and configured entirely in lua
 - Native LSP
-	- Completions, linting, formatting, snippets
+  - Completions, linting, formatting, snippets
     - Enable/disable auto-formatting for a filetype with `<leader>-l-F` or
-	`:FormatToggle`
-	- Easily add a language with `:LspInstall your-language`
-	- Supports both [Kite](https://www.kite.com) and Pyright for python
+      `:FormatToggle`
+  - Easily add a language with `:LspInstall your-language`
+  - Supports both [Kite](https://www.kite.com) and Pyright for python
     development
 - Whichkey so you don't need to memorize all the keymappings
 - Telescope and nvim-tree for seamless navigation
 - Better terminal and floating terminals
 - Git integration
-    - Floating [lazygit](https://github.com/jesseduffield/lazygit) with
+  - Floating [lazygit](https://github.com/jesseduffield/lazygit) with
     `<leader>-g-l` (extremely useful for handling merge conflicts)
 - Markdown previewing for docs and note-taking (powerful along with telescope
-to search for text in notes)
-	- Paste images from clipboard with `<leader>-p` or `:PasteImg`
+  to search for text in notes) - Paste images from clipboard with `<leader>-p` or `:PasteImg`
 - nvim-dap for debugging
 - Improvement of life features: autopairs, strip end-of-line whitespace, better
-quickfix, sane keymappings, undo edits from previous sessions, and more...
+  quickfix, sane keymappings, tmux integration, and more...
 - Easily configurable and extensible - Make it your own!
-    - Or checkout the `ecal` branch to use my preferred settings
 
 ## Configuration <a name="config"></a>
+
 - General settings in `settings.lua`
 - Add plugins in `lua/plugins/init.lua`
-	- Install after adding with `:PackerSync`
-	- `require` new configs in `init.lua`
+  - Install after adding with `:PackerSync`
+  - `require` new configs in `init.lua`
 - Non-leader keymappings are defined in `lua/keymap.lua`
-- Leader keymappings
+- Leader keymappings in `lua/plugins/whichkey.lua`
 
 ## Default Keymap <a name="keys"></a>
+
 ```
 <space> - leader
 
@@ -111,6 +112,7 @@ gi - go to implementation
 <C-n> - jump to next diagnostic
 <C-p> - jump to prev diagnostic
 ```
+
 `<C-key>` = Control + key <br>
 `<M-key>` = Alt + key
 
@@ -119,6 +121,7 @@ If you can't find what you're looking for here, its probably in there
 (or not implemented, in which case open an issue or PR).
 
 ## Colorschemes <a name="colors"></a>
+
 You can try out the installed colorschemes with the keymap `<space>-t-c`. To
 make the change permanent, change it in `settings.lua`.
 
@@ -129,25 +132,32 @@ and `lua/plugins/barbar.lua`.
 If you add and tweak a colorscheme, put in a PR!
 
 ## Plugins <a name="plugins"></a>
+
 **Plugin manager**
+
 - [packer](https://www.github.com/wbthomason/packer.nvim)
 
 **LSP**
+
 - [nvim-lspconfig](https://www.github.com/neovim/nvim-lspconfig)
-- [lspsaga](https://www.github.com/glepnir/lspsaga.nvim)
 - [nvim-lspinstall](https://www.github.com/kabouzeid/nvim-lspinstall)
-- [nvim-compe](https://www.github.com/hrsh7th/nvim-compe)
 - [ultisnips](https://www.github.com/SirVer/ultisnips)
+- [format.nvim](https://github.com/lukas-reineke/format.nvim)
+- [lsp_signature.nvim](https://github.com/ray-x/lsp_signature.nvim)
+
+**Completion**
+
+- [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
 
 **Navigation**
+
 - [nvim-tree](https://www.github.com/kyazdani42/nvim-tree.lua)
-- [popup (dependency)](https://www.github.com/nvim-lua/popup.nvim)
-- [plenary (dependency)](https://www.github.com/nvim-lua/plenary.nvim)
 - [telescope](https://www.github.com/nvim-telescope/telescope.nvim)
-- [telescope-fzy-native](https://www.github.com/nvim-telescope/telescope-fzy-native.nvim)
-- [telescope-media-files](https://www.github.com/nvim-telescope/telescope-media-files.nvim)
+- [lightspeed.nvim](https://github.com/ggandor/lightspeed.nvim)
+- [Navigator.nvim](https://github.com/numToStr/Navigator.nvim)
 
 **Convenience**
+
 - [which-key](https://www.github.com/folke/which-key.nvim)
 - [nvim-autopairs](https://www.github.com/windwp/nvim-autopairs)
 - [nvim-comment](https://www.github.com/terrortylor/nvim-comment)
@@ -156,21 +166,25 @@ If you add and tweak a colorscheme, put in a PR!
 - [nvim-colorizer](https://www.github.com/norcalli/nvim-colorizer.lua)
 - [gitsigns](https://www.github.com/lewis6991/gitsigns.nvim)
 - [nvim-ts-autotag](https://www.github.com/windwp/nvim-ts-autotag)
-- [surround](https://www.github.com/blackCauldron7/surround.nvim)
+- [vim-surround](https://www.github.com/tpope/vim-surround)
 - [nvim-toggleterm](https://www.github.com/akinsho/nvim-toggleterm.lua)
+- [indent-blankline.nvim](https://www.github.com/lukas-reineke/indent-blankline.nvim)
 
 **Debuging**
+
 - [nvim-dap](https://www.github.com/mfussenegger/nvim-dap)
 - [nvim-dap-ui](https://www.github.com/rcarriga/nvim-dap-ui)
 - [nvim-dap-python](https://www.github.com/mfussenegger/nvim-dap-python)
-- [sniprun](https://www.github.com/michaelb/sniprun)
 
 **Theming**
+
 - [nvim-web-devicons](https://www.github.com/kyazdani42/nvim-web-devicons)
 - [galaxyline](https://www.github.com/glepnir/galaxyline.nvim)
 - [barbar](https://www.github.com/romgrk/barbar.nvim)
 - [nvim-treesitter](https://www.github.com/nvim-treesitter/nvim-treesitter)
 - [dashboard-nvim](https://www.github.com/glepnir/dashboard-nvim)
-- [vim-deus](https://www.github.com/ajmwagar/vim-deus)
+- [nvim-deus](https://www.github.com/theniceboy/nvim-deus)
 - [nord-vim](https://www.github.com/arcticicestudio/nord-vim)
 - [vim-two-firewatch](https://www.github.com/rakr/vim-two-firewatch)
+- [edge](https://www.github.com/sainnhe/edge)
+- [sonokai](https://www.github.com/sainnhe/sonokai)

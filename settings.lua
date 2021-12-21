@@ -2,7 +2,6 @@
 LeaderKey = " "
 
 Colorscheme = "deus"
-Font = "FiraCode Nerd Font:h18"
 
 WrapLine = false
 LineNumbers = true
