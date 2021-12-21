@@ -6,7 +6,6 @@ vim.cmd("set inccommand=split") -- Make substitution work in realtime
 
 vim.cmd("set shell=/usr/bin/zsh")
 
-vim.o.guifont = Font
 vim.o.showtabline = 2 -- Always show buffer tabs
 vim.o.hidden = true -- Allow multiple buffers to be open
 vim.wo.wrap = WrapLine -- Don't wrap line

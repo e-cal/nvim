@@ -57,7 +57,6 @@ return require("packer").startup(
         use "tpope/vim-surround"
         use "akinsho/nvim-toggleterm.lua"
         use "windwp/nvim-ts-autotag"
-        use "bfredl/nvim-ipy"
         use "lukas-reineke/indent-blankline.nvim"
         -- Debugging
         use "mfussenegger/nvim-dap"
