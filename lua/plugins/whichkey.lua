@@ -66,7 +66,7 @@ local nmappings = {
     S = {"<cmd>SessionSave<cr>", "save session"},
     q = {"<cmd>wqa<cr>", "save & quit"},
     Q = {"<cmd>qa!<cr>", "force quit"},
-    W = {"<cmd>close<cr>", "close window"},
+    w = {"<cmd>close<cr>", "close window"},
     x = {"<cmd>BufferClose<cr>", "close buffer"},
     X = {"<cmd>BufferClose!<cr>", "close buffer"},
     ["."] = {"<cmd>luafile %<cr>", "source file"},
@@ -166,11 +166,11 @@ local nmappings = {
     g = {
         name = "+git",
         b = {"<cmd>Git blame_line<CR>", "blame"},
-        p = {"<cmd>Git preview_hunk<cr>", "preview hunk"},
+        P = {"<cmd>Git preview_hunk<cr>", "preview hunk"},
         d = {"<cmd>Git toggle_word_diff<CR>", "word diff"},
         D = {"<cmd>Git diffthis<CR>", "file diff"},
-        j = {"<cmd>Git next_hunk<CR>", "next hunk"},
-        k = {"<cmd>Git prev_hunk<CR>", "prev hunk"},
+        n = {"<cmd>Git next_hunk<CR>", "next hunk"},
+        p = {"<cmd>Git prev_hunk<CR>", "prev hunk"},
         r = {"<cmd>Git reset_hunk<CR>", "reset hunk"},
         R = {"<cmd>Git reset_buffer<CR>", "reset buffer"},
         a = {"<cmd>Git stage_hunk<CR>", "stage hunk"},
@@ -229,7 +229,7 @@ local nmappings = {
         },
         s = {"z=1<cr><cr>", "fix spelling"}
     },
-    w = {
+    W = {
         name = "+window",
         ["<"] = {"<C-w><", "-x"},
         [">"] = {"<C-w>>", "+x"},
