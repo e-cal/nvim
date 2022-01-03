@@ -139,6 +139,11 @@ _G.packer_plugins = {
     path = "/home/ecal/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
     url = "https://github.com/lewis6991/gitsigns.nvim"
   },
+  ["gkeep.nvim"] = {
+    loaded = true,
+    path = "/home/ecal/.local/share/nvim/site/pack/packer/start/gkeep.nvim",
+    url = "https://github.com/stevearc/gkeep.nvim"
+  },
   ["indent-blankline.nvim"] = {
     loaded = true,
     path = "/home/ecal/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",

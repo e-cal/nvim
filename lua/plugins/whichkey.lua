@@ -246,6 +246,16 @@ local nmappings = {
         name = "+notebook",
         c = {"<cmd>norm i# %%<cr>o", "code cell"},
         m = {"<cmd>norm i# %% [markdown]<cr>o# ", "markdown cell"}
+    },
+    k = {
+        name = "+keep",
+        t = {"<cmd>GkeepToggle<cr>", "toggle"},
+        n = {"<cmd>GkeepNew note<cr>", "new note"},
+        b = {"<cmd>GkeepBrowse<cr>", "open in browser"},
+        c = {"<cmd>GkeepCheck<cr>", "toggle checkbox"},
+        C = {"<cmd>GkeepSortChecked<cr>", "sort checkboxes"},
+        x = {"<cmd>GkeepClearChecked<cr>", "clear checked"},
+        r = {"<cmd>GkeepSync<cr>", "sync"}
     }
 }
 
