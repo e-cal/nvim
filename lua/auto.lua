@@ -85,10 +85,8 @@ augroups(
             }
         },
         _python = {
-            -- Don't mess up my indents
             {"FileType", "python", "setlocal indentkeys-=:"},
-            {"BufEnter", "*.py", "setlocal indentkeys-=<:>"},
-            {"BufEnter", "*.py", "TSBufDisable indent"}
+            {"BufEnter", "*.py", "setlocal indentkeys-=<:>"}
         },
         _xonsh = {{"BufEnter", "*.xsh", "setlocal syntax=xonsh"}},
         _java = {
