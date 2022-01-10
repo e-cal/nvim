@@ -20,6 +20,7 @@ TabSize = 4
 UseSpaces = true
 
 FormatOnSave = true
+AddBlankLine = true -- add a blank line to the end of files?
 
 Term = {}
 Term.shell = vim.o.shell -- vim.o.shell or the path to a shell executable
@@ -65,3 +66,4 @@ Debugger = {}
 Debugger.pythonPath = "/usr/bin/python" -- path to python with debugpy installed
 Debugger.useExternalTerminal = false
 Debugger.externalTerminal = nil -- path to terminal
+

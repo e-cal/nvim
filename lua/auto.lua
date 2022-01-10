@@ -13,7 +13,7 @@ local function augroups(definitions)
 end
 
 local _global = {
-    {"BufWritePre", "*", ":call TrimWhitespace()"},
+    {"BufWritePre", "*", "TrimWhitespace"},
     {"BufWritePost", "*", "FormatOnSave"},
     {
         "BufWinEnter",
@@ -153,3 +153,4 @@ augroup_util(
         }
     }
 )
+

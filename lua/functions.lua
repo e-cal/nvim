@@ -1,16 +1,20 @@
 local api = vim.api
 
 -- Trim whitespace
-api.nvim_exec(
-    [[
-fun! TrimWhitespace()
-    let l:save = winsaveview()
-    keeppatterns %s/\s\+$//e
-    call winrestview(l:save)
-endfun
-]],
-    false
-)
+TrimWhitespace = function()
+    api.nvim_exec(
+        [[
+    let _save = winsaveview()
+    keeppatterns %s/\s\+$\|^$//e
+    silent! keeppatterns %s#\($\n\s*\)\+\%$##
+    ]],
+        false
+    )
+    if AddBlankLine then
+        api.nvim_exec("keeppatterns norm Go", false)
+    end
+    api.nvim_exec("call winrestview(_save)", false)
+end
 
 -- Folds in markdown
 api.nvim_exec(
@@ -108,6 +112,8 @@ FormatOnSave = function()
     end
 end
 
+Utils.make_command("TrimWhitespace")
 Utils.make_command("PasteImg")
 Utils.make_command("FormatOnSave")
 Utils.make_command("FormatToggle")
+
