@@ -20,7 +20,7 @@ TabSize = 4
 UseSpaces = true
 
 FormatOnSave = true
-AddBlankLine = true -- add a blank line to the end of files?
+AddBlankLine = false -- add a blank line to the end of files?
 
 Term = {}
 Term.shell = vim.o.shell -- vim.o.shell or the path to a shell executable
