@@ -5,14 +5,10 @@ TrimWhitespace = function()
     api.nvim_exec(
         [[
     let _save = winsaveview()
-    keeppatterns %s/\s\+$\|^$//e
     keeppatterns silent! %s#\($\n\s*\)\+\%$##
     ]],
         false
     )
-    if AddBlankLine then
-        api.nvim_exec("keeppatterns norm Go", false)
-    end
     api.nvim_exec("call winrestview(_save)", false)
 end
 
@@ -116,4 +112,3 @@ Utils.make_command("TrimWhitespace")
 Utils.make_command("PasteImg")
 Utils.make_command("FormatOnSave")
 Utils.make_command("FormatToggle")
-
