@@ -55,6 +55,7 @@ return require("packer").startup(
         use "norcalli/nvim-colorizer.lua"
         use "lewis6991/gitsigns.nvim"
         use "tpope/vim-surround"
+        use "tpope/vim-repeat"
         use "akinsho/nvim-toggleterm.lua"
         use "windwp/nvim-ts-autotag"
         use "lukas-reineke/indent-blankline.nvim"
