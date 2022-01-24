@@ -167,6 +167,7 @@ If you add and tweak a colorscheme, put in a PR!
 - [gitsigns](https://www.github.com/lewis6991/gitsigns.nvim)
 - [nvim-ts-autotag](https://www.github.com/windwp/nvim-ts-autotag)
 - [vim-surround](https://www.github.com/tpope/vim-surround)
+- [vim-repeat](https://www.github.com/tpope/vim-repeat)
 - [nvim-toggleterm](https://www.github.com/akinsho/nvim-toggleterm.lua)
 - [indent-blankline.nvim](https://www.github.com/lukas-reineke/indent-blankline.nvim)
 
