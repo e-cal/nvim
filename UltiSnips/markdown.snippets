@@ -75,7 +75,6 @@ snippet [l "internal link" A
 [[${1:file}#${2:heading}|${3:text}]
 endsnippet
 
-
 snippet :in "indent" A
 $\quad$ ${0}
 endsnippet
@@ -85,10 +84,13 @@ _where_
   $\quad$ $${0}$
 endsnippet
 
-snippet || "euclidean distance" A
-||${0}||
+snippet :dr "down right arrow" A
+↳ ${0}
 endsnippet
 
+snippet |> "down right arrow" A
+↳ ${0}
+endsnippet
 
 pre_expand "create_table(snip)"
 snippet "tb\d+x\d+" "Fancy table" brA
