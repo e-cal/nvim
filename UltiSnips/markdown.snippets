@@ -81,16 +81,17 @@ endsnippet
 
 snippet :where "where ..." A
 _where_
-  $\quad$ $${0}$
+$\quad$ $${1:var}$ - ${0}
 endsnippet
 
-snippet :dr "down right arrow" A
+snippet \- "down right arrow" A
 ↳ ${0}
 endsnippet
 
-snippet |> "down right arrow" A
-↳ ${0}
+snippet "(.*)\\NP" "𝒩𝒫" rA
+`!p snip.rv = match.group(1)`𝒩𝒫
 endsnippet
+
 
 pre_expand "create_table(snip)"
 snippet "tb\d+x\d+" "Fancy table" brA
