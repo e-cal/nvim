@@ -1,7 +1,7 @@
-local tree_cb = require'nvim-tree.config'.nvim_tree_callback
+local tree_cb = require "nvim-tree.config".nvim_tree_callback
 vim.g.nvim_tree_quit_on_open = 1
 
-require'nvim-tree'.setup {
+require "nvim-tree".setup {
     disable_netrw = true,
     hijack_netrw = true,
     open_on_setup = true,
@@ -13,9 +13,12 @@ require'nvim-tree'.setup {
     diagnostics = {enable = false},
     update_focused_file = {enable = false, update_cwd = false, ignore_list = {}},
     system_open = {cmd = nil, args = {}},
+    git = {
+        ignore = false
+    },
     view = {
         width = 30,
-        side = 'left',
+        side = "left",
         auto_resize = false,
         mappings = {
             custom_only = false,
@@ -55,15 +58,15 @@ require'nvim-tree'.setup {
             }
         }
     }
-
 }
 
 function NvimTreeXdgOpen()
-    local lib = require 'nvim-tree.lib'
+    local lib = require "nvim-tree.lib"
     local node = lib.get_node_at_cursor()
     if node then
-        vim.fn.jobstart("xdg-open '" .. node.absolute_path .. "' &",
-                        {detach = true})
+        vim.fn.jobstart(
+            "xdg-open '" .. node.absolute_path .. "' &",
+            {detach = true}
+        )
     end
 end
-
