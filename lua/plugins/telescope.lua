@@ -1,4 +1,5 @@
 local actions = require("telescope.actions")
+
 require("telescope").setup {
     defaults = {
         vimgrep_arguments = {
@@ -47,6 +48,7 @@ require("telescope").setup {
 
 require("telescope").load_extension("fzy_native")
 require("telescope").load_extension("media_files")
+require("telescope").load_extension("file_browser")
 
 local M = {}
 
