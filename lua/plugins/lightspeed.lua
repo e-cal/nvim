@@ -1,4 +1,5 @@
 require "lightspeed".setup {
+    exit_after_idle_msecs = {unlabeled = 5000, labeled = nil},
     jump_to_unique_chars = true,
     match_only_the_start_of_same_char_seqs = true,
     limit_ft_matches = 5,

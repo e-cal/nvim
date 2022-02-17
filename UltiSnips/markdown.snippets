@@ -64,7 +64,7 @@ ${1} & ${2}
 endsnippet
 
 snippet \sum\lim "limits" A
-\sum\limits^{${1}}_{${2}} ${0}
+\sum\limits^{${1}}_ {${2}} ${0}
 endsnippet
 
 snippet ast "asterisks"
@@ -92,6 +92,9 @@ snippet "(.*)\\NP" "𝒩𝒫" rA
 `!p snip.rv = match.group(1)`𝒩𝒫
 endsnippet
 
+snippet stdev "standard deviation" A
+σ
+endsnippet
 
 pre_expand "create_table(snip)"
 snippet "tb\d+x\d+" "Fancy table" brA
