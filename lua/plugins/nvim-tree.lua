@@ -54,7 +54,8 @@ require "nvim-tree".setup {
                 {key = "]c", cb = tree_cb("next_git_item")},
                 {key = "-", cb = tree_cb("dir_up")},
                 {key = "q", cb = tree_cb("close")},
-                {key = "g?", cb = tree_cb("toggle_help")}
+                {key = "g?", cb = tree_cb("toggle_help")},
+                {key = "s", cb = "<Plug>Lightspeed_gs"}
             }
         }
     }
