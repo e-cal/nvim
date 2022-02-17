@@ -222,12 +222,15 @@ local nmappings = {
         name = "+markdown",
         p = {"<cmd>MarkdownPreviewToggle<cr>", "toggle preview"},
         i = {"A  %_<esc>", "fix italics"},
-        c = {"mzb~`z", "capitalize"},
         C = {
             "<cmd>s/\\(\\s[a-z]\\)\\|^\\([a-z]\\)/\\U\\2\\U\\1/g<CR>",
             "capitalize line"
         },
-        s = {"z=1<cr><cr>", "fix spelling"}
+        s = {"z=1<cr><cr>", "fix spelling"},
+        c = {
+            string.format("mz<cmd>%s<cr>'z", Markdown.cleanTextFunc),
+            "clean text"
+        }
     },
     W = {
         name = "+window",
@@ -282,6 +285,7 @@ local vmappings = {
     },
     b = {'c**<C-r>"**<esc>', "bold"},
     i = {'c_<C-r>"_<esc>', "italic"},
+    B = {'c_**<C-r>"**_<esc>', "bold & italic"},
     l = {'c[[./<C-r>"#<C-r>"|<C-r>"]]<esc>', "inlink"},
     gq = "format line length"
 }

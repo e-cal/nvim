@@ -11,6 +11,7 @@ TrimWhitespace = function()
     )
     api.nvim_exec("call winrestview(_save)", false)
 end
+Utils.make_command("TrimWhitespace")
 
 -- Folds in markdown
 api.nvim_exec(
@@ -91,6 +92,7 @@ PasteImg = function()
     local pasted_txt = string.format(template, path)
     vim.cmd("normal a" .. pasted_txt)
 end
+Utils.make_command("PasteImg")
 
 FormatToggle = function()
     local enabled = api.nvim_get_var("formatOnSave")
@@ -100,6 +102,7 @@ FormatToggle = function()
         api.nvim_set_var("formatOnSave", true)
     end
 end
+Utils.make_command("FormatOnSave")
 
 FormatOnSave = function()
     local enabled = api.nvim_get_var("formatOnSave")
@@ -107,8 +110,20 @@ FormatOnSave = function()
         api.nvim_command("FormatWrite")
     end
 end
-
-Utils.make_command("TrimWhitespace")
-Utils.make_command("PasteImg")
-Utils.make_command("FormatOnSave")
 Utils.make_command("FormatToggle")
+
+CleanTextSoft = function()
+    api.nvim_command("%s/–\\|•/-/ge")
+    api.nvim_command("%s/■/- /ge")
+    api.nvim_command("%s/❑/↳ /ge")
+    api.nvim_command("%s/’/'/ge")
+    api.nvim_command('%s/“\\|”/"/ge')
+end
+Utils.make_command("CleanTextSoft")
+
+CleanTextInv = function()
+    api.nvim_command("%s/–\\|•/- /ge")
+    api.nvim_command("%s/’/'/ge")
+    api.nvim_command('%s/“\\|”/"/ge')
+end
+Utils.make_command("CleanTextInv")
