@@ -88,6 +88,7 @@ augroups(
             {"FileType", "python", "setlocal indentkeys-=:"},
             {"BufEnter", "*.py", "setlocal indentkeys-=<:>"}
         },
+        _pddl = {{"BufEnter", "*.pddl", "setf pddl"}},
         _xonsh = {{"BufEnter", "*.xsh", "setlocal syntax=xonsh"}},
         _java = {
             {
@@ -153,4 +154,3 @@ augroup_util(
         }
     }
 )
-
