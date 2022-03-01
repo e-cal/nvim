@@ -285,7 +285,8 @@ local vmappings = {
     },
     b = {'c**<C-r>"**<esc>', "bold"},
     i = {'c_<C-r>"_<esc>', "italic"},
-    B = {'c_**<C-r>"**_<esc>', "bold & italic"},
+    B = {'c**_<C-r>"_**<esc>', "bold & italic"},
+    c = {'c<span style="color: "><C-r>"</span><esc>T:a', "color"},
     l = {'c[[./<C-r>"#<C-r>"|<C-r>"]]<esc>', "inlink"},
     gq = "format line length"
 }

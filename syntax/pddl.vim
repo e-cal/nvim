@@ -12,9 +12,9 @@ syn keyword pddlBuiltin end all over minimize maximize total-time
 
 syn match pddlUses ':\(strips\|typing\|equality\|adl\|fluents\|\)'
 syn match pddlUses ':\(disjunctive\|negative\|existential\|universal\)\-preconditions'
-syn match pddlUses ':\(durative\-actions\|derived\-predicates\|timed\-initial\-literls\)'
+syn match pddlUses ':\(durative\-actions\|derived\-predicates\|timed\-initial\-literls\|conditional-effects\)'
 
-syn match pddlKeyword ':\(requirements\|types\|constants\|predicates\|action\|durative-action\|domain\|parameters\|effect\|precondition\|objects\|init\|goal\|functions\|duration\|condition\|derived\|metric\)'
+syn match pddlKeyword ':\(requirements\|types\|constants\|predicates\|action\|durative-action\|domain\|parameters\|effect\|precondition\|objects\|init\|goal\|functions\|duration\|derived\|metric\)'
 
 let b:current_syntax = "pddl"
 highlight def link pddlBuiltin Function
