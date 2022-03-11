@@ -43,7 +43,7 @@ cmp.setup {
         {name = "nvim_lsp"},
         {name = "path"},
         {name = "ultisnips"},
-        {name = "buffer", keyword_length = 4},
+        {name = "buffer", keyword_length = 3},
         {name = "calc"}
     },
     formatting = {

@@ -74,8 +74,8 @@ augroups(
                 "markdown",
                 [[lua require"cmp".setup.buffer {
                     sources = {
-                        {name="buffer", keyword_length=4},
-                        {name="spell", keyword_length=4},
+                        {name="buffer", keyword_length=3},
+                        {name="spell", keyword_length=3},
                         {name="latex_symbols"},
                         {name="path"},
                         {name="ultisnips"},
