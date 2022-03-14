@@ -59,7 +59,7 @@ Markdown.imagePasteCommand = "xclip -selection clipboard -t image/png -o > %s" -
 Markdown.imageDir = "img" -- Sub-directory to save the image to
 Markdown.imagePasteSyntax = "obsidian" -- Image syntax to use (html, obsidian, or a format string)
 Markdown.imageDefaultWidth = 600 -- Default width of images in px (or nil for no scaling)
-Markdown.cleanTextFunc = "CleanTextInv"
+Markdown.cleanTextFunc = "CleanTextSoft"
 
 -------------------------- DEBUGGER SETTINGS --------------------------
 Debugger = {}
