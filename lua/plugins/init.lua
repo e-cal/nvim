@@ -26,7 +26,7 @@ return require("packer").startup(
         use "neovim/nvim-lspconfig"
         use "kabouzeid/nvim-lspinstall"
         use "SirVer/ultisnips"
-        use "lukas-reineke/format.nvim"
+        use "lukas-reineke/lsp-format.nvim"
         use "ray-x/lsp_signature.nvim"
         -- Completion
         use "hrsh7th/nvim-cmp"

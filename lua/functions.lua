@@ -107,7 +107,7 @@ Utils.make_command("FormatOnSave")
 FormatOnSave = function()
     local enabled = api.nvim_get_var("formatOnSave")
     if enabled then
-        api.nvim_command("FormatWrite")
+        api.nvim_command("Format")
     end
 end
 Utils.make_command("FormatToggle")

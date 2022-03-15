@@ -1,4 +1,4 @@
-require "format".setup {
+require("lsp-format").setup {
     lua = {
         {
             cmd = {
