@@ -113,7 +113,7 @@ end
 Utils.make_command("FormatToggle")
 
 CleanTextSoft = function()
-    api.nvim_command("%s/–\\|•/-/ge")
+    api.nvim_command("%s/–\\|•\\|▪/-/ge")
     api.nvim_command("%s/■/- /ge")
     api.nvim_command("%s/❑/↳ /ge")
     api.nvim_command("%s/’/'/ge")
