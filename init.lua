@@ -23,9 +23,9 @@ require("lsp.signature")
 require("lsp.vim")
 
 if Python.useKite then
-    require("lsp.kite")
+	require("lsp.kite")
 else
-    require("lsp.python")
+	require("lsp.python")
 end
 
 --require('lsp.efm')
