@@ -128,3 +128,8 @@ CleanTextInv = function()
 	api.nvim_command('%s/“\\|”/"/ge')
 end
 Utils.make_command("CleanTextInv")
+
+PS = function()
+	api.nvim_command("PackerSync")
+end
+Utils.make_command("PS")
