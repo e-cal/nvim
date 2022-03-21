@@ -102,16 +102,19 @@ FormatToggle = function()
 		api.nvim_set_var("formatOnSave", true)
 	end
 end
-Utils.make_command("FormatOnSave")
+Utils.make_command("FormatToggle")
 
 FormatOnSave = function()
 	local enabled = api.nvim_get_var("formatOnSave")
 	if enabled then
-		-- api.nvim_command("lua vim.lsp.buf.formatting_sync()")
-		vim.lsp.buf.formatting_sync()
+		if AsyncFormatting then
+			vim.lsp.buf.formatting()
+		else
+			vim.lsp.buf.formatting_sync()
+		end
 	end
 end
-Utils.make_command("FormatToggle")
+Utils.make_command("FormatOnSave")
 
 CleanTextSoft = function()
 	api.nvim_command("%s/–\\|•\\|▪/-/ge")
