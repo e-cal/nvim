@@ -1,1 +1,1 @@
-require("lspconfig").jdtls.setup {cmd = {"jdtls"}}
+require("lspconfig").jdtls.setup({ cmd = { "jdtls" } })

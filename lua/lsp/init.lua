@@ -1,18 +1,18 @@
-local signs = {Error = " ", Warn = " ", Hint = " ", Info = " "}
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 
 for type, icon in pairs(signs) do
-    local hl = "DiagnosticSign" .. type
-    vim.fn.sign_define(hl, {text = icon, texthl = hl, numhl = hl})
+	local hl = "DiagnosticSign" .. type
+	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
 -- auto show diagnostics in hover window
 -- vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.lsp.diagnostic.show_line_diagnostics({focusable=false})]]
 
 local function documentHighlight(client, bufnr)
-    -- Set autocommands conditional on server_capabilities
-    if client.resolved_capabilities.document_highlight then
-        vim.api.nvim_exec(
-            [[
+	-- Set autocommands conditional on server_capabilities
+	if client.resolved_capabilities.document_highlight then
+		vim.api.nvim_exec(
+			[[
       hi LspReferenceRead cterm=bold ctermbg=red guibg=#464646
       hi LspReferenceText cterm=bold ctermbg=red guibg=#464646
       hi LspReferenceWrite cterm=bold ctermbg=red guibg=#464646
@@ -22,37 +22,24 @@ local function documentHighlight(client, bufnr)
         autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
       augroup END
     ]],
-            false
-        )
-    end
+			false
+		)
+	end
 end
 
 local lsp_config = {}
 
 function lsp_config.common_on_attach(client, bufnr)
-    documentHighlight(client, bufnr)
-end
-
-function lsp_config.tsserver_on_attach(client, bufnr)
-    lsp_config.common_on_attach(client, bufnr)
-    client.resolved_capabilities.document_formatting = false
+	documentHighlight(client, bufnr)
 end
 
 lsp_config.show_vtext = true
 
 lsp_config.toggle_vtext = function()
-    lsp_config.show_vtext = not lsp_config.show_vtext
-    vim.lsp.diagnostic.display(
-        vim.lsp.diagnostic.get(0, 1),
-        0,
-        1,
-        {virtual_text = lsp_config.show_vtext}
-    )
+	lsp_config.show_vtext = not lsp_config.show_vtext
+	vim.lsp.diagnostic.display(vim.lsp.diagnostic.get(0, 1), 0, 1, { virtual_text = lsp_config.show_vtext })
 end
 
-vim.api.nvim_exec(
-    'command! -nargs=0 LspVirtualTextToggle lua require("lsp").toggle_vtext()',
-    false
-)
+vim.api.nvim_exec('command! -nargs=0 LspVirtualTextToggle lua require("lsp").toggle_vtext()', false)
 
 return lsp_config

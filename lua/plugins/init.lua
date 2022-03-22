@@ -17,11 +17,13 @@ end
 vim.cmd("autocmd BufWritePost init.lua PackerCompile")
 
 return require("packer").startup(function(use)
-	-- Package Manager
+	-- Utils
 	use("wbthomason/packer.nvim")
+	use("nvim-lua/popup.nvim")
+	use("nvim-lua/plenary.nvim")
 	-- LSP
 	use("neovim/nvim-lspconfig")
-	use("kabouzeid/nvim-lspinstall")
+	use("williamboman/nvim-lsp-installer")
 	use("SirVer/ultisnips")
 	use("ray-x/lsp_signature.nvim")
 	use("jose-elias-alvarez/null-ls.nvim")
@@ -36,8 +38,6 @@ return require("packer").startup(function(use)
 	use("f3fora/cmp-spell")
 	-- Navigation
 	use("kyazdani42/nvim-tree.lua")
-	use("nvim-lua/popup.nvim")
-	use("nvim-lua/plenary.nvim")
 	use("nvim-telescope/telescope.nvim")
 	use("nvim-telescope/telescope-fzy-native.nvim")
 	use("nvim-telescope/telescope-media-files.nvim")
@@ -54,7 +54,6 @@ return require("packer").startup(function(use)
 	use("lewis6991/gitsigns.nvim")
 	use("tpope/vim-surround")
 	use("tpope/vim-repeat")
-	use("akinsho/nvim-toggleterm.lua")
 	use("windwp/nvim-ts-autotag")
 	use("lukas-reineke/indent-blankline.nvim")
 	-- Debugging

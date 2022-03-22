@@ -56,9 +56,13 @@ along with native LSP for a blazingly fast editing experience.
   - Completions, linting, formatting, snippets
     - Enable/disable auto-formatting for a filetype with `<leader>-l-F` or
       `:FormatToggle`
-  - Easily add a language with `:LspInstall your-language`
-  - Supports both [Kite](https://www.kite.com) and Pyright for python
-    development
+    - Add formatters in `lua/lsp/null-ls`
+  - Easily add LSP for a language with `:LspInstall`
+    - configure language servers installed this way in `lua/lsp/lsp-installer`
+    - see [here](https://github.com/williamboman/nvim-lsp-installer) for more info
+  - Alternatively, manually install a language server and add a corresponding file
+    `lua/lsp/<language>` (don't forget to `require` in `init.lua`)
+    - see the [nvim lspconfig docs](https://github.com/neovim/nvim-lspconfig) for more detailed instructions
 - Whichkey so you don't need to memorize all the keymappings
 - Telescope and nvim-tree for seamless navigation
 - Better terminal and floating terminals
@@ -66,7 +70,8 @@ along with native LSP for a blazingly fast editing experience.
   - Floating [lazygit](https://github.com/jesseduffield/lazygit) with
     `<leader>-g-l` (extremely useful for handling merge conflicts)
 - Markdown previewing for docs and note-taking (powerful along with telescope
-  to search for text in notes) - Paste images from clipboard with `<leader>-p` or `:PasteImg`
+  to search for text in notes)
+- Paste an image from your clipboard with `<leader>-p` or `:PasteImg`
 - nvim-dap for debugging
 - Improvement of life features: autopairs, strip end-of-line whitespace, better
   quickfix, sane keymappings, tmux integration, and more...
@@ -140,18 +145,20 @@ If you add and tweak a colorscheme, put in a PR!
 **LSP**
 
 - [nvim-lspconfig](https://www.github.com/neovim/nvim-lspconfig)
-- [nvim-lspinstall](https://www.github.com/kabouzeid/nvim-lspinstall)
+- [nvim-lsp-installer](https://github.com/williamboman/nvim-lsp-installer)
 - [ultisnips](https://www.github.com/SirVer/ultisnips)
 - [format.nvim](https://github.com/lukas-reineke/format.nvim)
 - [lsp_signature.nvim](https://github.com/ray-x/lsp_signature.nvim)
+- [null-ls.nvim](https://github.com/jose-elias-alvarez/null-ls.nvim)
 
 **Completion**
 
 - [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
+  ↳ + a bunch of extra sources
 
 **Navigation**
 
-- [nvim-tree](https://www.github.com/kyazdani42/nvim-tree.lua)
+- [nvim-tree.lua](https://www.github.com/kyazdani42/nvim-tree.lua)
 - [telescope](https://www.github.com/nvim-telescope/telescope.nvim)
 - [lightspeed.nvim](https://github.com/ggandor/lightspeed.nvim)
 - [Navigator.nvim](https://github.com/numToStr/Navigator.nvim)
@@ -165,10 +172,9 @@ If you add and tweak a colorscheme, put in a PR!
 - [markdown-preview](https://www.github.com/iamcco/markdown-preview.nvim)
 - [nvim-colorizer](https://www.github.com/norcalli/nvim-colorizer.lua)
 - [gitsigns](https://www.github.com/lewis6991/gitsigns.nvim)
-- [nvim-ts-autotag](https://www.github.com/windwp/nvim-ts-autotag)
 - [vim-surround](https://www.github.com/tpope/vim-surround)
 - [vim-repeat](https://www.github.com/tpope/vim-repeat)
-- [nvim-toggleterm](https://www.github.com/akinsho/nvim-toggleterm.lua)
+- [nvim-ts-autotag](https://www.github.com/windwp/nvim-ts-autotag)
 - [indent-blankline.nvim](https://www.github.com/lukas-reineke/indent-blankline.nvim)
 
 **Debuging**
