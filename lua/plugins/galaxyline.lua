@@ -18,6 +18,7 @@ local colors = {
 	bright_teal = "#2bcec2",
 	bright_white = "#ffffff",
 	lightbg = "#343C46",
+	darkfg = "#A9A18C",
 	bg = "#23282F",
 	fg = "#ebdbb2",
 }
@@ -125,21 +126,21 @@ gls.left[7] = {
 gls.left[8] = {
 	DiffAdd = {
 		provider = "DiffAdd",
-		icon = "  ",
+		icon = " ",
 		highlight = { colors.green, colors.bg },
 	},
 }
 gls.left[9] = {
 	DiffModified = {
 		provider = "DiffModified",
-		icon = " ﰣ ",
+		icon = " ﰣ",
 		highlight = { colors.yellow, colors.bg },
 	},
 }
 gls.left[10] = {
 	DiffRemove = {
 		provider = "DiffRemove",
-		icon = "  ",
+		icon = " ",
 		highlight = { colors.red, colors.bg },
 	},
 }
@@ -176,33 +177,37 @@ gls.right[4] = {
 	},
 }
 
+local get_lsp_client = function(msg)
+	msg = msg or "LSP Inactive"
+	local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
+	local clients = vim.lsp.get_active_clients()
+	if next(clients) == nil then
+		return msg
+	end
+	local lsps = ""
+	for _, client in ipairs(clients) do
+		local filetypes = client.config.filetypes
+		if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+			if lsps == "" then
+				lsps = client.name
+			else
+				if not string.find(lsps, client.name) then
+					lsps = lsps .. "," .. client.name
+				end
+			end
+		end
+	end
+	if lsps == "" then
+		return msg
+	else
+		return lsps
+	end
+end
+
 gls.right[5] = {
-	LineInfo = {
-		provider = {
-			function()
-				return string.format("%s/%s:%s", vim.fn.line("."), vim.fn.line("$"), vim.fn.col("."))
-			end,
-		},
-		separator = " ",
-		icon = "",
-		separator_highlight = { "NONE", colors.bg },
-		highlight = { colors.fg, colors.bg },
-	},
-}
-
-gls.right[6] = {
-	BufferType = {
-		provider = "FileTypeName",
-		condition = condition.hide_in_width,
-		separator = "  ",
-		separator_highlight = { colors.bg, colors.bg },
-		highlight = { colors.grey, colors.bg },
-	},
-}
-
-gls.right[7] = {
 	ShowLspClient = {
-		provider = "GetLspClient",
+		-- provider = "GetLspClient",
+		provider = get_lsp_client,
 		condition = function()
 			local tbl = { ["dashboard"] = true, [" "] = true }
 			if tbl[vim.bo.filetype] then
@@ -210,49 +215,130 @@ gls.right[7] = {
 			end
 			return condition.hide_in_width()
 		end,
-		icon = "",
-		separator = "  ",
+		icon = " ",
+		separator = " ",
 		separator_highlight = { colors.bg, colors.bg },
 		highlight = { colors.grey, colors.bg },
 	},
 }
 
-gls.right[8] = {
-	FileEncode = {
-		provider = "FileEncode",
-		condition = condition.hide_in_width,
-		separator = " ",
+gls.right[6] = {
+	LineInfo = {
+		provider = {
+			function()
+				return string.format("%s/%s:%s", vim.fn.line("."), vim.fn.line("$"), vim.fn.col("."))
+			end,
+		},
+		separator = "  ",
+		icon = "",
 		separator_highlight = { "NONE", colors.bg },
-		highlight = { colors.grey, colors.bg },
+		highlight = { colors.fg, colors.bg },
 	},
 }
+
+-- gls.right[6] = {
+-- 	BufferType = {
+-- 		provider = "FileTypeName",
+-- 		condition = condition.hide_in_width,
+-- 		separator = "  ",
+-- 		separator_highlight = { colors.bg, colors.bg },
+-- 		highlight = { colors.grey, colors.bg },
+-- 	},
+-- }
+
+-- gls.right[8] = {
+-- 	FileEncode = {
+-- 		provider = "FileEncode",
+-- 		condition = condition.hide_in_width,
+-- 		separator = " ",
+-- 		separator_highlight = { "NONE", colors.bg },
+-- 		highlight = { colors.grey, colors.bg },
+-- 	},
+-- }
 
 gls.right[9] = {
 	Space = {
 		provider = function()
 			return " "
 		end,
-		separator = " ",
+		separator = "",
 		separator_highlight = { "NONE", colors.bg },
 		highlight = { colors.orange, colors.bg },
 	},
 }
 
-gls.short_line_left[1] = {
-	BufferIcon = { provider = "BufferIcon", highlight = { colors.fg, colors.bg } },
-}
+-- =================================================================
 
-gls.short_line_left[2] = {
-	SFileName = {
-		provider = "SFileName",
-		condition = condition.buffer_not_empty,
-		highlight = { colors.grey, colors.bg },
+gls.short_line_left[1] = {
+	leftSemi = {
+		provider = function()
+			return ""
+		end,
+		highlight = { colors.lightbg, colors.bg },
 	},
 }
 
-gls.short_line_right[1] = {
-	BufferType = {
-		provider = "FileTypeName",
-		highlight = { colors.grey, colors.bg },
+gls.short_line_left[2] = {
+	FileIcon = {
+		provider = "FileIcon",
+		-- condition = condition.buffer_not_empty,
+		condition = function()
+			local tbl = { ["NvimTree"] = true, ["dashboard"] = true, [" "] = true }
+			if tbl[vim.bo.filetype] then
+				return false
+			end
+			return true
+		end,
+		highlight = {
+			require("galaxyline.provider_fileinfo").get_file_icon_color,
+			colors.lightbg,
+		},
+		separator = "",
+	},
+}
+
+gls.short_line_left[3] = {
+	BufferIcon = {
+		provider = "BufferIcon",
+		condition = function()
+			local tbl = { ["NvimTree"] = true }
+			if tbl[vim.bo.filetype] then
+				return true
+			end
+			return false
+		end,
+		highlight = {
+			require("galaxyline.provider_fileinfo").get_file_icon_color,
+			colors.lightbg,
+		},
+		separator = "",
+	},
+}
+
+gls.short_line_left[4] = {
+	FileNameShort = {
+		provider = function()
+			return vim.fn.expand("%:t")
+		end,
+		condition = function()
+			local tbl = { ["NvimTree"] = true, ["dashboard"] = true, [" "] = true }
+			if tbl[vim.bo.filetype] then
+				return false
+			end
+			return condition.buffer_not_empty
+		end,
+		highlight = { colors.darkfg, colors.lightbg },
+		separator = "",
+	},
+}
+
+gls.short_line_left[5] = {
+	rightSemi = {
+		provider = function()
+			return ""
+		end,
+		highlight = { colors.lightbg, colors.bg },
+		separator = "",
+		separator_highlight = { colors.bg, colors.bg },
 	},
 }
