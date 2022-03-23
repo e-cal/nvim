@@ -118,7 +118,7 @@ Utils.make_command("FormatOnSave")
 
 CleanTextSoft = function()
 	api.nvim_command("%s/–\\|•\\|▪/-/ge")
-	api.nvim_command("%s/■/- /ge")
+	api.nvim_command("%s/■/-/ge")
 	api.nvim_command("%s/❑/↳ /ge")
 	api.nvim_command("%s/’/'/ge")
 	api.nvim_command('%s/“\\|”/"/ge')
