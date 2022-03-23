@@ -20,6 +20,10 @@ def create_table(snip):
     snip.expand_anon(anon_snippet_table)
 endglobal
 
+pre_expand "create_table(snip)"
+snippet "tb\d+x\d+" "Fancy table" brA
+endsnippet
+
 snippet :tog "toggle" A
 <details>
 <summary>${1:Toggle}</summary>
@@ -100,7 +104,10 @@ snippet stdev "standard deviation" A
 σ
 endsnippet
 
+snippet -[o "checkbox" bA
+- [ 
+endsnippet
 
-pre_expand "create_table(snip)"
-snippet "tb\d+x\d+" "Fancy table" brA
+snippet -[x "checkbox" bA
+- [x
 endsnippet
