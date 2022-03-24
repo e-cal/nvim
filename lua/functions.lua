@@ -50,8 +50,8 @@ local create_dir = function(dir)
 	end
 end
 
-local get_name = function()
-	local index = 1
+local get_name = function(start)
+	local index = start
 	for _ in io.popen("ls img"):lines() do
 		index = index + 1
 	end
@@ -68,7 +68,7 @@ end
 
 PasteImg = function()
 	create_dir(Markdown.imageDir)
-	local name = get_name()
+	local name = get_name(1)
 	local path = string.format(Markdown.imageDir .. "/%s.png", name)
 	os.execute(string.format(paste_cmd, path))
 
@@ -93,6 +93,13 @@ PasteImg = function()
 	vim.cmd("normal a" .. pasted_txt)
 end
 Utils.make_command("PasteImg")
+
+DelLastImg = function()
+	local name = get_name(0)
+	local path = string.format(Markdown.imageDir .. "/%s.png", name)
+	os.execute(string.format("rm %s", path))
+end
+Utils.make_command("DelLastImg")
 
 FormatToggle = function()
 	local enabled = api.nvim_get_var("formatOnSave")
