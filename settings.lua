@@ -17,7 +17,7 @@ SearchIgnoreCase = true
 HighlightYank = false
 
 TabSize = 4
-UseSpaces = true
+UseSpaces = false
 
 FormatOnSave = true
 AsyncFormatting = true -- WARNING: less reliable; see https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Async-formatting

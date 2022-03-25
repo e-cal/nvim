@@ -55,7 +55,7 @@ gls.left[1] = {
 			vim.api.nvim_command("hi GalaxyViMode guifg=" .. mode_color[vim.fn.mode()])
 			return "▊ "
 		end,
-		highlight = { colors.red, colors.bg },
+		highlight = { colors.fg, colors.bg },
 	},
 }
 
@@ -64,6 +64,7 @@ gls.left[2] = {
 		provider = function()
 			return ""
 		end,
+		condition = condition.buffer_not_empty,
 		highlight = { colors.lightbg, colors.bg },
 	},
 }
@@ -95,6 +96,7 @@ gls.left[5] = {
 		provider = function()
 			return ""
 		end,
+		condition = condition.buffer_not_empty,
 		highlight = { colors.lightbg, colors.bg },
 		separator = " ",
 		separator_highlight = { colors.bg, colors.bg },
@@ -226,7 +228,7 @@ gls.right[6] = {
 	LineInfo = {
 		provider = {
 			function()
-				return string.format("%s/%s:%s", vim.fn.line("."), vim.fn.line("$"), vim.fn.col("."))
+				return string.format("%s:%s", vim.fn.line("."), vim.fn.col("."))
 			end,
 		},
 		separator = "  ",
@@ -236,24 +238,45 @@ gls.right[6] = {
 	},
 }
 
+gls.right[7] = {
+	Percentage = {
+		provider = {
+			function()
+				local p = math.floor((vim.fn.line(".") / vim.fn.line("$")) * 100)
+				if vim.fn.line(".") == 1 then
+					return "ﬢ"
+				elseif vim.fn.line(".") == vim.fn.line("$") then
+					return "ﬠ"
+				else
+					return string.format("(%s%%)", p)
+				end
+			end,
+		},
+		separator = " ",
+		icon = "",
+		separator_highlight = { "NONE", colors.bg },
+		highlight = { colors.grey, colors.bg },
+	},
+}
+
 -- gls.right[6] = {
--- 	BufferType = {
--- 		provider = "FileTypeName",
--- 		condition = condition.hide_in_width,
--- 		separator = "  ",
--- 		separator_highlight = { colors.bg, colors.bg },
--- 		highlight = { colors.grey, colors.bg },
--- 	},
+--  BufferType = {
+--      provider = "FileTypeName",
+--      condition = condition.hide_in_width,
+--      separator = "  ",
+--      separator_highlight = { colors.bg, colors.bg },
+--      highlight = { colors.grey, colors.bg },
+--  },
 -- }
 
 -- gls.right[8] = {
--- 	FileEncode = {
--- 		provider = "FileEncode",
--- 		condition = condition.hide_in_width,
--- 		separator = " ",
--- 		separator_highlight = { "NONE", colors.bg },
--- 		highlight = { colors.grey, colors.bg },
--- 	},
+--  FileEncode = {
+--      provider = "FileEncode",
+--      condition = condition.hide_in_width,
+--      separator = " ",
+--      separator_highlight = { "NONE", colors.bg },
+--      highlight = { colors.grey, colors.bg },
+--  },
 -- }
 
 gls.right[9] = {
@@ -298,8 +321,10 @@ gls.short_line_left[2] = {
 }
 
 gls.short_line_left[3] = {
-	BufferIcon = {
-		provider = "BufferIcon",
+	NvimTreeIcon = {
+		provider = function()
+			return " "
+		end,
 		condition = function()
 			local tbl = { ["NvimTree"] = true }
 			if tbl[vim.bo.filetype] then
@@ -311,17 +336,19 @@ gls.short_line_left[3] = {
 			require("galaxyline.provider_fileinfo").get_file_icon_color,
 			colors.lightbg,
 		},
-		separator = "",
 	},
 }
 
 gls.short_line_left[4] = {
 	FileNameShort = {
 		provider = function()
+			if vim.bo.filetype == "NvimTree" then
+				return "File Explorer"
+			end
 			return vim.fn.expand("%:t")
 		end,
 		condition = function()
-			local tbl = { ["NvimTree"] = true, ["dashboard"] = true, [" "] = true }
+			local tbl = { ["dashboard"] = true, [" "] = true }
 			if tbl[vim.bo.filetype] then
 				return false
 			end
