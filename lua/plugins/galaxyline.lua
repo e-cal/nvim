@@ -180,7 +180,7 @@ gls.right[4] = {
 }
 
 local get_lsp_client = function(msg)
-	msg = msg or "LSP Inactive"
+	msg = msg or nil
 	local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
 	local clients = vim.lsp.get_active_clients()
 	if next(clients) == nil then
@@ -215,7 +215,7 @@ gls.right[5] = {
 			if tbl[vim.bo.filetype] then
 				return false
 			end
-			return condition.hide_in_width()
+			return condition.hide_in_width() and get_lsp_client()
 		end,
 		icon = " ",
 		separator = " ",
