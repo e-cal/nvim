@@ -6,6 +6,7 @@ TrimWhitespace = function()
 		[[
     let _save = winsaveview()
     keeppatterns silent! %s#\($\n\s*\)\+\%$##
+	keeppatterns silent! %s/\s\+$//e
     ]],
 		false
 	)

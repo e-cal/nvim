@@ -20,7 +20,7 @@ TabSize = 4
 UseSpaces = false
 
 FormatOnSave = true
-AsyncFormatting = true -- WARNING: less reliable; see https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Async-formatting
+AsyncFormatting = false -- WARNING: less reliable; see https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Async-formatting
 
 Term = {}
 Term.shell = vim.o.shell -- vim.o.shell or the path to a shell executable
