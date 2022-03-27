@@ -218,8 +218,6 @@ gls.right[5] = {
 			return condition.hide_in_width() and get_lsp_client()
 		end,
 		icon = " ",
-		separator = " ",
-		separator_highlight = { colors.bg, colors.bg },
 		highlight = { colors.grey, colors.bg },
 	},
 }
@@ -231,10 +229,10 @@ gls.right[6] = {
 				return string.format("%s:%s", vim.fn.line("."), vim.fn.col("."))
 			end,
 		},
-		separator = "  ",
 		icon = "",
-		separator_highlight = { "NONE", colors.bg },
 		highlight = { colors.fg, colors.bg },
+		separator = " ",
+		separator_highlight = { "NONE", colors.bg },
 	},
 }
 
@@ -252,10 +250,10 @@ gls.right[7] = {
 				end
 			end,
 		},
-		separator = " ",
 		icon = "",
-		separator_highlight = { "NONE", colors.bg },
 		highlight = { colors.grey, colors.bg },
+		separator = " ",
+		separator_highlight = { "NONE", colors.bg },
 	},
 }
 
