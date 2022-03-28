@@ -1,17 +1,5 @@
 local api = vim.api
 
-local function augroups(definitions)
-	for group_name, definition in pairs(definitions) do
-		api.nvim_command("augroup " .. group_name)
-		api.nvim_command("autocmd!")
-		for _, def in ipairs(definition) do
-			local command = table.concat(vim.tbl_flatten({ "autocmd", def }), " ")
-			api.nvim_command(command)
-		end
-		api.nvim_command("augroup END")
-	end
-end
-
 local _global = {
 	{ "BufWritePre", "*", "TrimWhitespace" },
 	{
@@ -40,7 +28,7 @@ if HighlightYank then
 	table.insert(_global, yank)
 end
 
-augroups({
+Utils.make_augroups({
 	_global,
 	_dashboard = {
 		{
@@ -64,7 +52,7 @@ augroups({
 		{
 			"FileType",
 			"markdown",
-			"setlocal spell foldexpr=MarkdownLevel() foldmethod=expr nofoldenable ts=2 sts=2 sw=2",
+			"setlocal spell foldexpr=MarkdownFold() foldmethod=expr nofoldenable ts=2 sts=2 sw=2",
 		},
 		{ "FileType", "markdown", 'syntax match markdownIgnore "\\v\\w_\\w"' },
 		{
@@ -87,7 +75,6 @@ augroups({
 		{ "BufEnter", "*.py", "setlocal indentkeys-=<:>" },
 	},
 	_pddl = { { "BufEnter", "*.pddl", "setf pddl" } },
-	_xonsh = { { "BufEnter", "*.xsh", "setlocal syntax=xonsh" } },
 	_java = {
 		{
 			"FileType",
@@ -95,56 +82,5 @@ augroups({
 			"setlocal ts=2 sts=2 sw=2",
 		},
 	},
-})
-
--- way too much code to set the toggle term mappings
-local _store = {}
-function _Create(f)
-	table.insert(_store, f)
-	return #_store
-end
-
-function _Execute(id, args)
-	_store[id](args)
-end
-
-local function augroup_util(name, commands)
-	vim.cmd("augroup " .. name)
-	vim.cmd("autocmd!")
-	for _, c in ipairs(commands) do
-		local command = c.command
-		if type(command) == "function" then
-			local fn_id = _Create(command)
-			command = string.format("lua _Execute(%s)", fn_id)
-		end
-		vim.cmd(
-			string.format(
-				"autocmd %s %s %s %s",
-				table.concat(c.events, ","),
-				table.concat(c.targets or {}, ","),
-				table.concat(c.modifiers or {}, " "),
-				command
-			)
-		)
-	end
-	vim.cmd("augroup END")
-end
-
-local map = vim.api.nvim_buf_set_keymap
-
-augroup_util("AddTerminalMappings", {
-	{
-		events = { "TermOpen" },
-		targets = { "term://*" },
-		command = function()
-			if vim.bo.filetype == "" or vim.bo.filetype == "toggleterm" then
-				local opts = { silent = false, noremap = true }
-				map(0, "t", "<esc>", [[<C-\><C-n>]], opts)
-				map(0, "t", "<C-h>", [[<C-\><C-n><C-W>h]], opts)
-				map(0, "t", "<C-j>", [[<C-\><C-n><C-W>j]], opts)
-				map(0, "t", "<C-k>", [[<C-\><C-n><C-W>k]], opts)
-				map(0, "t", "<C-l>", [[<C-\><C-n><C-W>l]], opts)
-			end
-		end,
-	},
+	_xonsh = { { "BufEnter", "*.xsh", "setlocal syntax=xonsh" } },
 })
