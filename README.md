@@ -71,7 +71,7 @@ along with native LSP for a blazingly fast editing experience.
     `<leader>-g-l` (extremely useful for handling merge conflicts)
 - Markdown previewing for docs and note-taking (powerful along with telescope
   to search for text in notes)
-- Paste an image from your clipboard with `<leader>-p` or `:PasteImg`
+  - Paste images from your clipboard with `<leader>-i` or `:PasteImg`
 - nvim-dap for debugging
 - Improvement of life features: autopairs, strip end-of-line whitespace, better
   quickfix, sane keymappings, tmux integration, and more...
