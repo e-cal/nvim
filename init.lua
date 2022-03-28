@@ -1,4 +1,4 @@
-vim.cmd("luafile ~/.config/nvim/settings.lua")
+dofile(os.getenv("HOME") .. "/.config/nvim/settings.lua")
 require("utils")
 require("plugins")
 require("keymap")
