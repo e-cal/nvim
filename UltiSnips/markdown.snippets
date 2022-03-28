@@ -79,19 +79,6 @@ snippet [l "internal link" A
 [[${1:file}#${2:heading}|${3:text}]
 endsnippet
 
-snippet :in "indent" A
-$\quad$ ${0}
-endsnippet
-
-snippet :where "where ..." A
-_where_
-$\quad$ $${1:var}$ - ${0}
-endsnippet
-
-snippet :color "span color" A
-<span style="color: ${1:color}">${2:text}</span>
-endsnippet
-
 snippet \- "down right arrow" A
 ↳
 endsnippet
@@ -105,9 +92,26 @@ snippet stdev "standard deviation" A
 endsnippet
 
 snippet -[o "checkbox" bA
-- [ 
+- [
 endsnippet
 
 snippet -[x "checkbox" bA
 - [x
+endsnippet
+
+snippet :in "indent" A
+$\quad$ ${0}
+endsnippet
+
+snippet :where "where ..." A
+_where_
+$\quad$ $${1:var}$ - ${0}
+endsnippet
+
+snippet :color "span color" A
+<span style="color: ${1:color}">${2:text}</span>
+endsnippet
+
+snippet "(.*):sub" "subscript" rA
+`!p snip.rv = match.group(1)`$_ \text{${1}}$${0}
 endsnippet

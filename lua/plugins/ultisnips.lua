@@ -1,3 +1,3 @@
 vim.g.UltiSnipsExpandTrigger = "<C-space>"
-vim.g.UltiSnipsJumpForwardTrigger = "<C-J>"
-vim.g.UltiSnipsJumpBackwardTrigger = "<C-K>"
+vim.g.UltiSnipsJumpForwardTrigger = "<C-n>"
+vim.g.UltiSnipsJumpBackwardTrigger = "<C-p>"
