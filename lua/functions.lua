@@ -2,15 +2,17 @@ local api = vim.api
 
 -- Trim whitespace
 TrimWhitespace = function()
-	api.nvim_exec(
-		[[
-    let _save = winsaveview()
-    keeppatterns silent! %s#\($\n\s*\)\+\%$##
-	keeppatterns silent! %s/\s\+$//e
-    ]],
-		false
-	)
-	api.nvim_exec("call winrestview(_save)", false)
+	local patterns = {
+		[[%s/\s\+$//e]],
+		[[%s/\($\n\s*\)\+\%$//]],
+		[[%s/\%^\n\+//]],
+		[[%s/\(\n\n\)\n\+/\1/]],
+	}
+	local save = vim.fn.winsaveview()
+	for _, v in pairs(patterns) do
+		api.nvim_exec(string.format("keepjumps keeppatterns silent! %s", v), false)
+	end
+	vim.fn.winrestview(save)
 end
 Utils.make_command("TrimWhitespace")
 
