@@ -195,3 +195,4 @@ If you add and tweak a colorscheme, put in a PR!
 - [vim-two-firewatch](https://www.github.com/rakr/vim-two-firewatch)
 - [edge](https://www.github.com/sainnhe/edge)
 - [sonokai](https://www.github.com/sainnhe/sonokai)
+- [kanagawa](https://github.com/rebelot/kanagawa.nvim)

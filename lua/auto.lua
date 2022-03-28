@@ -19,7 +19,7 @@ local _global = {
 	},
 }
 
-if HighlightYank then
+if HighlightOnYank then
 	local yank = {
 		"TextYankPost",
 		"*",

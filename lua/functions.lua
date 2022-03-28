@@ -98,21 +98,14 @@ FormatOnSave = function()
 end
 Utils.make_command("FormatOnSave")
 
-CleanTextSoft = function()
+CleanText = function()
 	api.nvim_command("%s/–\\|•\\|▪/-/ge")
 	api.nvim_command("%s/■/-/ge")
 	api.nvim_command("%s/❑/↳ /ge")
 	api.nvim_command("%s/’/'/ge")
 	api.nvim_command('%s/“\\|”/"/ge')
 end
-Utils.make_command("CleanTextSoft")
-
-CleanTextInv = function()
-	api.nvim_command("%s/–\\|•/- /ge")
-	api.nvim_command("%s/’/'/ge")
-	api.nvim_command('%s/“\\|”/"/ge')
-end
-Utils.make_command("CleanTextInv")
+Utils.make_command("CleanText")
 
 PS = function()
 	api.nvim_command("PackerSync")

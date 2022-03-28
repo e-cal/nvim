@@ -1,68 +1,44 @@
 ------------------------------ GENERAL SETTINGS -------------------------------
 LeaderKey = " "
 
-Colorscheme = "deus"
+Colorscheme = "kanagawa"
 
 WrapLine = false
 LineNumbers = true
 RelativeLineNumbers = true
 
-CursorLine = true
+HighlightCursorLine = true
 ColorColumn = 80
 IndentGuide = false -- enabled by default? (still toggleable with <leader>-I)
-AutoScroll = 8 -- Scroll when this many lines from top/bottom
+AutoScroll = 8 -- Scroll when this many lines from top/bottom (0 to disable)
 
-HighlightSearch = false -- Highlight all search matches
+HighlightAllSearchMatches = false
 SearchIgnoreCase = true
-HighlightYank = false
+HighlightOnYank = false
 
 TabSize = 4
 UseSpaces = false
 
 FormatOnSave = true
-AsyncFormatting = false -- WARNING: less reliable; see https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Async-formatting
-
-Term = {}
-Term.shell = vim.o.shell -- vim.o.shell or the path to a shell executable
-Term.size = 10
-Term.shade = true
-Term.direction = "horizontal" -- horizontal, vertical, window, or float
-Term.floatBorder = "shadow" -- single, double, shadow, or curved
+AsyncFormatting = false -- WARNING: async formatting is less reliable - see https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Async-formatting
 
 DATA_PATH = vim.fn.stdpath("data")
 CACHE_PATH = vim.fn.stdpath("cache")
 
 -------------------------- LANGAGE SPECIFIC SETTINGS --------------------------
--- See lua/lsp/efm/<language>.lua to add formatters or linters
--- Add languages in lua/lsp/efm/init.lua
+-- Most language specific behavior should be configured in lua/lsp/
+-- See lua/lsp/null-ls.lua for formatting, code actions, and other language specific features
 
-Python = {}
-Python.useKite = false
-Python.formatter = "black"
-Python.isort = false
-Python.linter = nil -- add an additional linter for more coverage than pyright
-
-Lua = {}
-Lua.formatter = "lua-format"
-Lua.formatLineLength = 80
-
-JS_TS = {}
-JS_TS.formatter = "prettier"
-JS_TS.linter = "eslint"
-
-Shell = {}
-Shell.formatter = "shfmt"
-Shell.linter = "shellcheck"
+PythonUseKite = false
 
 Markdown = {}
-Markdown.liveRefresh = false -- false: refresh on save
+Markdown.previewLiveRefresh = false -- false = refresh on save
 Markdown.imagePasteCommand = "xclip -selection clipboard -t image/png -o > %s" -- Paste to file command
 Markdown.imageDir = "img" -- Sub-directory to save the image to
 Markdown.imagePasteSyntax = "obsidian" -- Image syntax to use (html, obsidian, or a format string)
 Markdown.imageDefaultWidth = 600 -- Default width of images in px (or nil for no scaling)
-Markdown.cleanTextFunc = "CleanTextSoft"
 
--------------------------- DEBUGGER SETTINGS --------------------------
+------------------------------ DEBUGGER SETTINGS ------------------------------
 Debugger = {}
 Debugger.pythonPath = "/usr/bin/python" -- path to python with debugpy installed
 Debugger.useExternalTerminal = false

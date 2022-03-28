@@ -16,7 +16,7 @@ require("lsp.lsp-installer")
 require("lsp.lua")
 require("lsp.null-ls")
 
-if Python.useKite then
+if PythonUseKite then
 	require("lsp.kite")
 else
 	require("lsp.python")

@@ -227,10 +227,7 @@ local nmappings = {
 			"capitalize line",
 		},
 		s = { "z=1<cr><cr>", "fix spelling" },
-		c = {
-			string.format("mz<cmd>%s<cr>'z", Markdown.cleanTextFunc),
-			"clean text",
-		},
+		c = { "mz<cmd>CleanText<cr>'z", "clean text" },
 	},
 	W = {
 		name = "+window",
