@@ -23,16 +23,17 @@ null_ls.setup({
 	-- root_dir = u.root_pattern(".null-ls-root", "Makefile", ".git"),
 	update_in_insert = false,
 	sources = {
+		-- List of builtins: https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
+
 		-- Code Actions
 		null_ls.builtins.code_actions.refactoring,
 
 		-- Formatting
-		-- python
+
 		null_ls.builtins.formatting.black,
 		null_ls.builtins.formatting.isort,
-		-- lua
 		null_ls.builtins.formatting.stylua,
-		-- js/ts/css/md etc
 		null_ls.builtins.formatting.prettier,
+		null_ls.builtins.formatting.shfmt,
 	},
 })
