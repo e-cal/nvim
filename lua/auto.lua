@@ -1,7 +1,5 @@
-local api = vim.api
-
 local _global = {
-	{ "BufWritePre", "*", "TrimWhitespace" },
+	-- formatting: lua/lsp/null-ls.lua
 	{
 		"BufWinEnter",
 		"*",

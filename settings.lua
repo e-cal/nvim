@@ -1,9 +1,10 @@
 ------------------------------ GENERAL SETTINGS -------------------------------
 LeaderKey = " "
 
-Colorscheme = "kanagawa"
+Colorscheme = "deus"
 
 WrapLine = false
+
 LineNumbers = true
 RelativeLineNumbers = true
 
@@ -21,6 +22,7 @@ UseSpaces = false
 
 FormatOnSave = true
 AsyncFormatting = false -- WARNING: async formatting is less reliable - see https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Async-formatting
+AlwaysTrimWhitespace = true -- trim whitespace even when formatting is disabled
 
 DATA_PATH = vim.fn.stdpath("data")
 CACHE_PATH = vim.fn.stdpath("cache")
@@ -45,3 +47,5 @@ Debugger = {}
 Debugger.pythonPath = "/usr/bin/python" -- path to python with debugpy installed
 Debugger.useExternalTerminal = false
 Debugger.externalTerminal = nil -- path to terminal
+
+-- Other settings: lua/vim-settings.lua

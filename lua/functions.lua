@@ -16,6 +16,35 @@ TrimWhitespace = function()
 end
 Utils.make_command("TrimWhitespace")
 
+-- Formatting
+FormatToggle = function()
+	local enabled = api.nvim_get_var("formatOnSave")
+	if enabled then
+		api.nvim_set_var("formatOnSave", false)
+	else
+		api.nvim_set_var("formatOnSave", true)
+	end
+end
+Utils.make_command("FormatToggle")
+
+FormatOnSave = function()
+	if AlwaysTrimWhitespace then
+		TrimWhitespace()
+	end
+	local enabled = api.nvim_get_var("formatOnSave")
+	if enabled then
+		if AsyncFormatting then
+			vim.lsp.buf.formatting()
+		else
+			vim.lsp.buf.formatting_sync()
+		end
+		if not AlwaysTrimWhitespace then
+			TrimWhitespace()
+		end
+	end
+end
+Utils.make_command("FormatOnSave")
+
 -- Paste images
 local paste_cmd = Markdown.imagePasteCommand
 
@@ -75,28 +104,6 @@ DelLastImg = function()
 	os.execute(string.format("rm %s", path))
 end
 Utils.make_command("DelLastImg")
-
-FormatToggle = function()
-	local enabled = api.nvim_get_var("formatOnSave")
-	if enabled then
-		api.nvim_set_var("formatOnSave", false)
-	else
-		api.nvim_set_var("formatOnSave", true)
-	end
-end
-Utils.make_command("FormatToggle")
-
-FormatOnSave = function()
-	local enabled = api.nvim_get_var("formatOnSave")
-	if enabled then
-		if AsyncFormatting then
-			vim.lsp.buf.formatting()
-		else
-			vim.lsp.buf.formatting_sync()
-		end
-	end
-end
-Utils.make_command("FormatOnSave")
 
 CleanText = function()
 	api.nvim_command("%s/–\\|•\\|▪/-/ge")
