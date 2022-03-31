@@ -27,6 +27,10 @@ AlwaysTrimWhitespace = true -- trim whitespace even when formatting is disabled
 DATA_PATH = vim.fn.stdpath("data")
 CACHE_PATH = vim.fn.stdpath("cache")
 
+-- other general settings: lua/vim-settings.lua
+-- plugin settings: lua/plugins/<plugin>.lua
+-- ↳ refer to the plugin's github (linked to in README.md) or :h plugin
+
 -------------------------- LANGAGE SPECIFIC SETTINGS --------------------------
 -- Most language specific behavior should be configured in lua/lsp/
 -- See lua/lsp/null-ls.lua for formatting, code actions, and other language specific features
@@ -47,5 +51,3 @@ Debugger = {}
 Debugger.pythonPath = "/usr/bin/python" -- path to python with debugpy installed
 Debugger.useExternalTerminal = false
 Debugger.externalTerminal = nil -- path to terminal
-
--- Other settings: lua/vim-settings.lua
