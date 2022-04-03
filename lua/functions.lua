@@ -56,8 +56,10 @@ end
 
 local get_name = function(start)
 	local index = start
-	for _ in io.popen("ls img"):lines() do
-		index = index + 1
+	for f in io.popen("ls img"):lines() do
+		if string.find(f, "image%d%d%d%d.png") then
+			index = index + 1
+		end
 	end
 	local prefix = ""
 	if index < 10 then
