@@ -53,20 +53,6 @@ Utils.make_augroups({
 			"setlocal spell foldexpr=MarkdownFold() foldmethod=expr nofoldenable ts=2 sts=2 sw=2",
 		},
 		{ "FileType", "markdown", 'syntax match markdownIgnore "\\v\\w_\\w"' },
-		{
-			"FileType",
-			"markdown",
-			[[lua require"cmp".setup.buffer {
-                    sources = {
-                        {name="buffer", keyword_length=3},
-                        {name="spell", keyword_length=3},
-                        {name="latex_symbols"},
-                        {name="path"},
-                        {name="ultisnips"},
-                        {name="calc"}
-                    }
-                }]],
-		},
 	},
 	_python = {
 		{ "FileType", "python", "setlocal indentkeys-=:" },

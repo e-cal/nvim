@@ -47,7 +47,7 @@ cmp.setup({
 				path = "[PTH]",
 				ultisnips = "[SNP]",
 				buffer = "[BUF]",
-				calc = "[CLC]",
+				calc = "[CAL]",
 				spell = "[SPL]",
 				latex_symbols = "[LTX]",
 				cmp_tabnine = "[TN]",
@@ -79,17 +79,38 @@ cmp.setup({
 				Event = "  Event",
 				Operator = "  Operator",
 				TypeParameter = "  TypeParam",
-				Calc = "  Calc",
 			})[vim_item.kind]
 
 			if entry.source.name == "cmp_tabnine" then
 				vim_item.kind = "  Tabnine"
+			elseif entry.source.name == "calc" then
+				vim_item.kind = "  Calc"
 			end
 
 			return vim_item
 		end,
 	},
 	experimental = { native_menu = false, ghost_text = true },
+})
+
+cmp.setup.filetype("markdown", {
+	sources = {
+		{ name = "buffer", keyword_length = 3 },
+		{ name = "spell", keyword_length = 3 },
+		{ name = "latex_symbols" },
+		{ name = "path" },
+		{ name = "ultisnips" },
+		{ name = "calc" },
+		{ name = "cmp_tabnine" },
+	},
+})
+
+cmp.setup.cmdline(":", {
+	sources = cmp.config.sources({
+		{ name = "path" },
+	}, {
+		{ name = "cmdline" },
+	}),
 })
 
 vim.cmd("hi CmpItemAbbr guifg=foreground")
