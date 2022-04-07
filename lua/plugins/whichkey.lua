@@ -20,14 +20,14 @@ wk.setup({
 	operators = { ["<C-_>"] = "Comments" },
 	icons = {
 		breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
-		separator = "", -- symbol used between a key and it's label
+		separator = "⟶ ", -- symbol used between a key and it's label
 		group = "", -- symbol prepended to a group
 	},
 	window = {
 		border = "shadow", -- none, single, double, shadow
 		position = "bottom", -- bottom, top
-		margin = { 1, 3, 0, 0 }, -- extra window margin [top, right, bottom, left]
-		padding = { 1, 1, 1, 1 }, -- extra window padding [top, right, bottom, left]
+		margin = { 0, 0, 0, 0 }, -- extra window margin [top, left, bottom, right]
+		padding = { 1, 1, 1, 1 }, -- extra window padding [top, left, bottom, right]
 	},
 	layout = {
 		height = { min = 4, max = 10 }, -- min and max height of the columns
@@ -41,19 +41,9 @@ wk.setup({
 	},
 })
 
--- vim.api.nvim_set_keymap('n', '<Space>', '<NOP>', {noremap = true, silent = true})
 vim.g.mapleader = LeaderKey
 
--- NORMAL mode
-local nopts = {
-	mode = "n",
-	prefix = "<leader>",
-	buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-	silent = true, -- use `silent` when creating keymaps
-	noremap = true, -- use `noremap` when creating keymaps
-	nowait = false, -- use `nowait` when creating keymaps
-}
-
+-- Normal mode
 local nmappings = {
 	[" "] = "which_key_ignore",
 	f = { "<cmd>Telescope find_files<cr>", "find files" },
@@ -85,7 +75,7 @@ local nmappings = {
 	["["] = { 'ciw[<C-r>"]<esc>', "[]" },
 	-- Menus
 	b = {
-		name = "+buffer",
+		name = "buffer",
 		[">"] = { "<cmd>BufferMoveNext<cr>", "move right" },
 		["<"] = { "<cmd>BufferMovePrevious<cr>", "move left" },
 		b = { "<cmd>BufferPick<cr>", "pick buffer" },
@@ -95,7 +85,7 @@ local nmappings = {
 		j = { "<cmd>BufferNext<cr>", "next buffer" },
 		k = { "<cmd>BufferPrevious<cr>", "prev buffer" },
 		t = {
-			name = "+tab",
+			name = "tab",
 			t = { "<cmd>tabnew<cr>", "new tab" },
 			c = { "<cmd>tabclose<cr>", "close tab" },
 			n = { "<cmd>tabn<cr>", "next tab" },
@@ -104,7 +94,7 @@ local nmappings = {
 		},
 	},
 	d = {
-		name = "+debug",
+		name = "debug",
 		b = { "<cmd>DebugToggleBreakpoint<cr>", "toggle breakpoint" },
 		c = { "<cmd>DebugContinue<cr>", "continue" },
 		j = { "<cmd>DebugStepInto<cr>", "step into" },
@@ -115,13 +105,13 @@ local nmappings = {
 		l = { "<cmd>DebugListBreakpoints<cr>", "list breakpoints" },
 		f = { "<cmd>DebugFloatElement<cr>", "float ui element" },
 		p = {
-			name = "+python",
+			name = "python",
 			m = { "<cmd>PythonTestMethod<cr>", "test method" },
 			c = { "<cmd>PythonTestClass<cr>", "test class" },
 		},
 	},
 	F = {
-		name = "+fold",
+		name = "fold",
 		O = { "<cmd>set foldlevel=20<cr>", "open all" },
 		C = { "<cmd>set foldlevel=0<cr>", "close all" },
 		c = { "<cmd>foldclose<cr>", "close" },
@@ -134,7 +124,7 @@ local nmappings = {
 		["6"] = { "<cmd>set foldlevel=6<cr>", "level6" },
 	},
 	t = {
-		name = "+telescope",
+		name = "telescope",
 		["."] = {
 			'<cmd>lua require("plugins.telescope").search_dotfiles{}<cr>',
 			"config",
@@ -164,7 +154,7 @@ local nmappings = {
 		q = { "<cmd>Telescope quickfix<cr>", "quickfix" },
 	},
 	g = {
-		name = "+git",
+		name = "git",
 		b = { "<cmd>Git blame_line<CR>", "blame" },
 		P = { "<cmd>Git preview_hunk<cr>", "preview hunk" },
 		d = { "<cmd>Git toggle_word_diff<CR>", "word diff" },
@@ -180,7 +170,7 @@ local nmappings = {
 		g = { "<cmd>lua LazygitToggle()<CR>", "lazygit" },
 	},
 	l = {
-		name = "+lsp",
+		name = "lsp",
 		a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "code action" },
 		d = { "<cmd>Telescope lsp_document_diagnostics<cr>", "doc diagnostics" },
 		D = {
@@ -203,7 +193,7 @@ local nmappings = {
 		R = { "<cmd>LspRestart<cr>", "restart lsp" },
 		i = { "<cmd>normal A  # type: ignore<cr>bbbbhhh", "pyright ignore" },
 		w = {
-			name = "+workspace",
+			name = "workspace",
 			a = {
 				"<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>",
 				"add workspace",
@@ -219,7 +209,7 @@ local nmappings = {
 		},
 	},
 	m = {
-		name = "+markdown",
+		name = "markdown",
 		p = { "<cmd>MarkdownPreviewToggle<cr>", "toggle preview" },
 		i = { "A  %_<esc>", "fix italics" },
 		C = {
@@ -230,7 +220,7 @@ local nmappings = {
 		c = { "mz<cmd>CleanText<cr>'z", "clean text" },
 	},
 	W = {
-		name = "+window",
+		name = "window",
 		["<"] = { "<C-w><", "-x" },
 		[">"] = { "<C-w>>", "+x" },
 		["-"] = { "<C-w>-", "-y" },
@@ -243,12 +233,12 @@ local nmappings = {
 		H = { "<C-w>J<C-w>k<C-w>H<C-w>l<C-w>j", "move under" },
 	},
 	n = {
-		name = "+notebook",
+		name = "notebook",
 		c = { "<cmd>norm i# %%<cr>o", "code cell" },
 		m = { "<cmd>norm i# %% [markdown]<cr>o# ", "markdown cell" },
 	},
 	k = {
-		name = "+keep",
+		name = "keep",
 		t = { "<cmd>GkeepToggle<cr>", "toggle" },
 		n = { "<cmd>GkeepNew note<cr>", "new note" },
 		b = { "<cmd>GkeepBrowse<cr>", "open in browser" },
@@ -259,33 +249,43 @@ local nmappings = {
 	},
 }
 
-wk.register(nmappings, nopts)
+wk.register(nmappings, {
+	mode = "n",
+	prefix = "<leader>",
+	buffer = nil,
+	silent = true,
+	noremap = true,
+	nowait = false,
+})
 
 -- Visual mode
-local vopts = {
-	mode = "v",
-	prefix = "<leader>",
-	buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-	silent = true, -- use `silent` when creating keymaps
-	noremap = true, -- use `noremap` when creating keymaps
-	nowait = false, -- use `nowait` when creating keymaps
-}
-
 local vmappings = {
 	s = { "<cmd>Telescope grep_string<cr>", "search selection" },
 	r = { "<Plug>SnipRun", "run selection" },
 	p = { "<Plug>(IPy-Run)", "ipython run selection" },
 	d = {
-		name = "+debug",
+		name = "debug",
 		e = { "<cmd>DebugEvaluate<cr>", "evaluate selected expression" },
 		s = { "<cmd>PythonDebugSelection<cr>", "py debug selection" },
 	},
 	b = { 'c**<C-r>"**<esc>', "bold" },
 	i = { 'c_<C-r>"_<esc>', "italic" },
 	B = { 'c**_<C-r>"_**<esc>', "bold & italic" },
+	m = { 'c$<C-r>"$<esc>', "inline math" },
 	c = { 'c<span style="color: "><C-r>"</span><esc>T:a', "color" },
 	l = { 'c[[./<C-r>"#<C-r>"|<C-r>"]]<esc>', "inlink" },
-	gq = "format line length",
+	a = { ':s/=/\\&=/g<cr>gvc\\begin{align}<cr><C-r>"<backspace><space>\\\\<cr>\\end{align}<esc>O&= ', "align" },
+	g = {
+		name = "format line",
+		q = "format line length",
+	},
 }
 
-wk.register(vmappings, vopts)
+wk.register(vmappings, {
+	mode = "v",
+	prefix = "<leader>",
+	buffer = nil,
+	silent = true,
+	noremap = true,
+	nowait = false,
+})

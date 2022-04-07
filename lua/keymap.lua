@@ -65,7 +65,7 @@ map("i", "!", "!<C-g>u", default_opts)
 map("i", "?", "?<C-g>u", default_opts)
 
 -- Fix tab
-map("i", "^[[Z", "<S-Tab>", { noremap = true, silent = true })
+map("i", "^[[Z", "<S-Tab>", { noremap = true, silent = true, nowait = true })
 
 -- ================================ VISUAL ====================================
 -- Indenting
