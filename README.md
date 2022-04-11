@@ -47,7 +47,10 @@ along with native LSP for a blazingly fast editing experience.
 2. Clone this repo: `git clone https://github.com/e-cal/evim ~/.config/nvim`
 3. If you don't already have pynvim installed: `pip3 install pynvim`
 4. Run `nvim` and do `:PackerInstall`
-5. Update with `git fetch` + `git pull`, update plugins with `:PackerSync`
+5. Update with `git fetch` + `git pull`, update plugins with `:PackerSync` (or `:PS` for short)
+
+> Note: in order for symbols to display properly you need a patched font.
+> Any font from [here](https://www.nerdfonts.com/font-downloads) will work.
 
 ## Features <a name="features"></a>
 
