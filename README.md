@@ -57,37 +57,34 @@ along with native LSP for a blazingly fast editing experience.
 - Written and configured entirely in lua
 - Native LSP
   - Completions, linting, formatting, snippets
-    - Enable/disable auto-formatting for a filetype with `<leader>-l-F` or
-      `:FormatToggle`
-    - Add formatters in `lua/lsp/null-ls`
   - Easily add LSP for a language with `:LspInstall`
-    - configure language servers installed this way in `lua/lsp/lsp-installer`
-    - see [here](https://github.com/williamboman/nvim-lsp-installer) for more info
-  - Alternatively, manually install a language server and add a corresponding file
-    `lua/lsp/<language>` (don't forget to `require` in `init.lua`)
-    - see the [nvim lspconfig docs](https://github.com/neovim/nvim-lspconfig) for more detailed instructions
+  - Enable/disable auto-formatting with `<leader>-l-F` or `:FormatToggle` (change the default in `settings.lua`)
 - Whichkey so you don't need to memorize all the keymappings
 - Telescope and nvim-tree for seamless navigation
-- Better terminal and floating terminals
 - Git integration
-  - Floating [lazygit](https://github.com/jesseduffield/lazygit) with
-    `<leader>-g-l` (extremely useful for handling merge conflicts)
 - Markdown previewing for docs and note-taking (powerful along with telescope
   to search for text in notes)
   - Paste images from your clipboard with `<leader>-i` or `:PasteImg`
-- nvim-dap for debugging
+- Built in debugger
 - Improvement of life features: autopairs, strip end-of-line whitespace, better
-  quickfix, sane keymappings, tmux integration, and more...
+  quickfix, sane keymappings, tmux integration, and much more...
 - Easily configurable and extensible - Make it your own!
 
 ## Configuration <a name="config"></a>
 
 - General settings in `settings.lua`
+- Regular keymappings are defined in `lua/keymap.lua`
+- Leader-key keymappings in `lua/plugins/whichkey.lua`
+- Configure language servers installed through `:LspInstall` in `lua/lsp/lsp-installer`
+  ↳ see [here](https://github.com/williamboman/nvim-lsp-installer) for more info
+  - Alternatively, you can manually install a language server and add a corresponding file
+    `lua/lsp/<language>.lua` (don't forget to `require` it in `init.lua`)
+    ↳ see the [nvim lspconfig docs](https://github.com/neovim/nvim-lspconfig) for more detailed instructions
+- Add & configure formatters in `lua/lsp/null-ls`
 - Add plugins in `lua/plugins/init.lua`
-  - Install after adding with `:PackerSync`
-  - `require` new configs in `init.lua`
-- Non-leader keymappings are defined in `lua/keymap.lua`
-- Leader keymappings in `lua/plugins/whichkey.lua`
+  ↳ install after adding with `:PackerSync`
+  ↳ add new plugin config in `lua/plugins/<plugin-name>.lua`
+  ↳ `require` new configs in `init.lua`
 
 ## Default Keymap <a name="keys"></a>
 
