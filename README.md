@@ -75,15 +75,15 @@ along with native LSP for a blazingly fast editing experience.
 - General settings in `settings.lua`
 - Regular keymappings are defined in `lua/keymap.lua`
 - Leader-key keymappings in `lua/plugins/whichkey.lua`
-- Configure language servers installed through `:LspInstall` in `lua/lsp/lsp-installer`
+- Configure language servers installed through `:LspInstall` in `lua/lsp/lsp-installer`\
   ↳ see [here](https://github.com/williamboman/nvim-lsp-installer) for more info
   - Alternatively, you can manually install a language server and add a corresponding file
-    `lua/lsp/<language>.lua` (don't forget to `require` it in `init.lua`)
+    `lua/lsp/<language>.lua` (don't forget to `require` it in `init.lua`)\
     ↳ see the [nvim lspconfig docs](https://github.com/neovim/nvim-lspconfig) for more detailed instructions
 - Add & configure formatters in `lua/lsp/null-ls`
-- Add plugins in `lua/plugins/init.lua`
-  ↳ install after adding with `:PackerSync`
-  ↳ add new plugin config in `lua/plugins/<plugin-name>.lua`
+- Add plugins in `lua/plugins/init.lua`\
+  ↳ install after adding with `:PackerSync`\
+  ↳ add new plugin config in `lua/plugins/<plugin-name>.lua`\
   ↳ `require` new configs in `init.lua`
 
 ## Default Keymap <a name="keys"></a>
@@ -153,7 +153,7 @@ If you add and tweak a colorscheme, put in a PR!
 
 **Completion**
 
-- [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
+- [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)\
   ↳ + a bunch of extra sources
 
 **Navigation**
