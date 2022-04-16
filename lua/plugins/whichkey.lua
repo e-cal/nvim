@@ -66,6 +66,7 @@ local nmappings = {
 	N = { "<cmd>enew<cr><cmd>lua print('enter file name:')<cr>:f ", "new buffer" },
 	R = { "<cmd>e<cr>", "reload buffer" },
 	I = { "<cmd>IndentBlanklineToggle<cr>", "toggle indent lines" },
+	u = { "'u", "undo 'undo jump'" },
 	-- Quick surround
 	['"'] = { 'ciw"<C-r>""<esc>', '""' },
 	["'"] = { "ciw'<C-r>\"'<esc>", "''" },

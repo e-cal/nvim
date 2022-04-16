@@ -38,6 +38,7 @@ cmp.setup({
 		{ name = "buffer", keyword_length = 3 },
 		{ name = "calc" },
 		{ name = "cmp_tabnine" },
+		{ name = "latex_symbols" },
 	},
 	formatting = {
 		format = function(entry, vim_item)

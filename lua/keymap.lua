@@ -56,6 +56,9 @@ map("i", "<up>", "<nop>", default_opts)
 map("i", "<left>", "<nop>", default_opts)
 map("i", "<right>", "<nop>", default_opts)
 
+-- Save place on undo
+map("n", "u", "muu", default_opts)
+
 -- ================================ INSERT ====================================
 
 -- Undo checkpoints
