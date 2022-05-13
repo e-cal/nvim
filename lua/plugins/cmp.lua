@@ -106,13 +106,14 @@ cmp.setup.filetype("markdown", {
 	},
 })
 
-cmp.setup.cmdline(":", {
-	sources = cmp.config.sources({
-		{ name = "path" },
-	}, {
-		{ name = "cmdline" },
-	}),
-})
+-- TODO: only enable if connected to wifi
+-- cmp.setup.cmdline(":", {
+-- 	sources = cmp.config.sources({
+-- 		{ name = "path" },
+-- 	}, {
+-- 		{ name = "cmdline" },
+-- 	}),
+-- })
 
 vim.cmd("hi CmpItemAbbr guifg=foreground")
 vim.cmd("hi CmpItemAbbrDepreceated guifg=error")
