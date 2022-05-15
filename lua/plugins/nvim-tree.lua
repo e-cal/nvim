@@ -25,7 +25,7 @@ vim.g.nvim_tree_icons = {
 }
 
 require("nvim-tree").setup({
-	nvim_tree_quit_on_open = true,
+	-- nvim_tree_quit_on_open = true,
 	disable_netrw = true,
 	hijack_netrw = true,
 	open_on_setup = false,

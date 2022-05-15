@@ -12,7 +12,7 @@ lsp_installer.on_server_ready(function(server)
 		-- Disable tsserver formatting
 		opts.on_attach = function(client, bufnr)
 			require("lsp").common_on_attach(client, bufnr)
-			client.resolved_capabilities.document_formatting = false
+			client.server_capabilities.document_formatting = false
 		end
 		opts.settings = { documentFormatting = false }
 	end
