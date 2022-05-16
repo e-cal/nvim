@@ -120,3 +120,9 @@ PS = function()
 	api.nvim_command("PackerSync")
 end
 Utils.make_command("PS")
+
+NewFile = function()
+	local name = vim.fn.input("File name: ", "", "file")
+	api.nvim_command("e " .. name)
+end
+Utils.make_command("NewFile")
