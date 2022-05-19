@@ -111,7 +111,7 @@ CleanText = function()
 	api.nvim_command("%s/–\\|•\\|▪/-/ge")
 	api.nvim_command("%s/■/-/ge")
 	api.nvim_command("%s/❑/↳ /ge")
-	api.nvim_command("%s/’/'/ge")
+	api.nvim_command("%s/’\\|‘/'/ge")
 	api.nvim_command('%s/“\\|”/"/ge')
 end
 Utils.make_command("CleanText")
