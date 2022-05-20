@@ -9,7 +9,7 @@ null_ls.setup({
 	fallback_severity = vim.diagnostic.severity.ERROR,
 	log = { enable = true, level = "warn", use_console = "async" },
 	on_attach = function(client)
-		if client.server_capabilities.document_formatting then
+		if client.server_capabilities.documentFormattingProvider then
 			vim.cmd([[
             augroup LspFormatting
                 autocmd! * <buffer>

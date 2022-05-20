@@ -3,7 +3,10 @@ local sumneko_binary = "/usr/bin/lua-language-server"
 
 require("lspconfig").sumneko_lua.setup({
 	cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
-	on_attach = require("lsp").common_on_attach,
+	on_attach = function(client, bufnr)
+		require("lsp").common_on_attach(client, bufnr)
+		client.server_capabilities.documentFormattingProvider = false
+	end,
 	settings = {
 		Lua = {
 			runtime = {
