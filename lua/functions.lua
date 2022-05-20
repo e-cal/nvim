@@ -27,17 +27,18 @@ FormatToggle = function()
 end
 Utils.make_command("FormatToggle")
 
+Format = function()
+	vim.lsp.buf.format()
+end
+Utils.make_command("Format")
+
 FormatOnSave = function()
 	if AlwaysTrimWhitespace then
 		TrimWhitespace()
 	end
 	local enabled = api.nvim_get_var("formatOnSave")
 	if enabled then
-		if AsyncFormatting then
-			vim.lsp.buf.formatting()
-		else
-			vim.lsp.buf.formatting_sync()
-		end
+		Format()
 		if not AlwaysTrimWhitespace then
 			TrimWhitespace()
 		end
