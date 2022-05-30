@@ -1,29 +1,5 @@
 local tree_cb = require("nvim-tree.config").nvim_tree_callback
 
-vim.g.nvim_tree_icons = {
-	default = "",
-	symlink = "",
-	git = {
-		unstaged = "",
-		staged = "✓",
-		unmerged = "",
-		renamed = "➜",
-		untracked = "",
-		deleted = "",
-		ignored = "◌",
-	},
-	folder = {
-		arrow_open = "",
-		arrow_closed = "",
-		default = "",
-		open = "",
-		empty = "",
-		empty_open = "",
-		symlink = "",
-		symlink_open = "",
-	},
-}
-
 require("nvim-tree").setup({
 	-- nvim_tree_quit_on_open = true,
 	disable_netrw = true,
@@ -93,6 +69,33 @@ require("nvim-tree").setup({
 				{ key = "q", cb = tree_cb("close") },
 				{ key = "g?", cb = tree_cb("toggle_help") },
 				{ key = "s", cb = "<Plug>Lightspeed_gs" },
+			},
+		},
+	},
+	renderer = {
+		icons = {
+			glyphs = {
+				default = "",
+				symlink = "",
+				git = {
+					unstaged = "",
+					staged = "✓",
+					unmerged = "",
+					renamed = "➜",
+					untracked = "",
+					deleted = "",
+					ignored = "◌",
+				},
+				folder = {
+					arrow_open = "",
+					arrow_closed = "",
+					default = "",
+					open = "",
+					empty = "",
+					empty_open = "",
+					symlink = "",
+					symlink_open = "",
+				},
 			},
 		},
 	},
