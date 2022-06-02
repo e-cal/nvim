@@ -217,7 +217,7 @@ local nmappings = {
 			"<cmd>s/\\(\\s[a-z]\\)\\|^\\([a-z]\\)/\\U\\2\\U\\1/g<CR>",
 			"capitalize line",
 		},
-		s = { "z=1<cr><cr>", "fix spelling" },
+		s = { "1z=", "fix spelling" },
 		c = { "mz<cmd>CleanText<cr>'z", "clean text" },
 	},
 	W = {
