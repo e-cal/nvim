@@ -32,8 +32,8 @@ map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", default_opts)
 map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", default_opts)
 map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", default_opts)
 map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", default_opts)
-map("n", "<C-p>", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", default_opts)
-map("n", "<C-n>", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", default_opts)
+map("n", "<C-p>", "<cmd>lua vim.diagnostic.goto_prev()<CR>", default_opts)
+map("n", "<C-n>", "<cmd>lua vim.diagnostic.goto_next()<CR>", default_opts)
 
 -- Stay centered when jumping around
 map("n", "n", "nzzzv", default_opts)
