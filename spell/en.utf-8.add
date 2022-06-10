@@ -620,3 +620,7 @@ Autoregression
 autoregression
 hyperparameter
 SARIMA
+datatypes
+deduplication
+dir
+dunder
