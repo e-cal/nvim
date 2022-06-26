@@ -67,4 +67,7 @@ Utils.make_augroups({
 		},
 	},
 	_xonsh = { { "BufEnter", "*.xsh", "setlocal syntax=xonsh" } },
+	_sql = {
+		{ "FileType", "sql", "let formatOnSave=v:false" },
+	},
 })

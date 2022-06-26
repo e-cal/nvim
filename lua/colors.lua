@@ -15,7 +15,7 @@ vim.cmd("colorscheme " .. Colorscheme)
 -- vim.cmd('hi oCursor guibg=#E5C07B')
 -- vim.cmd('set guicursor+=o:block-oCursor')
 
-vim.cmd("hi Visual guibg=#E5C07B guifg=Black gui=none")
+vim.cmd("hi Visual guibg=#E5C07B guifg=black gui=none")
 
 if Colorscheme == "deus" then
 	vim.cmd("hi MatchParen cterm=bold guifg=#F4852B guibg=#5C5C5C")
@@ -43,4 +43,11 @@ elseif Colorscheme == "edge" then
 	vim.cmd("hi VirtualTextWarning guifg=#deb974")
 	vim.cmd("hi VirtualTextInfo guifg=#6cb6eb")
 	vim.cmd("hi VirtualTextHint guifg=#a0c980")
+elseif Colorscheme == "palenightfall" then
+	require("palenightfall").setup({
+		highlight_overrides = {
+			Normal = { bg = "#292D3E" },
+			Visual = { bg = "#E5C07B", fg = "black" },
+		},
+	})
 end
