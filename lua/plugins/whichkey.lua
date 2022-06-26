@@ -178,7 +178,7 @@ local nmappings = {
 			"<cmd>Telescope lsp_workspace_diagnostics<cr>",
 			"workspace diagnostics",
 		},
-		f = { "<cmd>lua vim.lsp.buf.formatting_sync()<cr>", "format" },
+		f = { "<cmd>lua vim.lsp.buf.format({ timeout_ms=30000 })<cr>", "format" },
 		F = { "<cmd>FormatToggle<cr>", "toggle formatting" },
 		["?"] = { "<cmd>LspInfo<cr>", "lsp info" },
 		v = { "<cmd>LspVirtualTextToggle<cr>", "toggle virtual text" },

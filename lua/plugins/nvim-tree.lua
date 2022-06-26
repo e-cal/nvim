@@ -78,12 +78,12 @@ require("nvim-tree").setup({
 				default = "",
 				symlink = "",
 				git = {
-					unstaged = "",
-					staged = "✓",
+					unstaged = "",
+					staged = "",
 					unmerged = "",
 					renamed = "➜",
-					untracked = "",
-					deleted = "",
+					untracked = "ﱐ",
+					deleted = "",
 					ignored = "◌",
 				},
 				folder = {
