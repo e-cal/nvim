@@ -316,3 +316,10 @@ snippet printhead "print DataFrame head" bA
 with pd.option_context("display.max_columns", None), pd.option_context("display.width", None), pd.option_context("display.max_colwidth", None):  # type: ignore
 	print(df.head())
 endsnippet
+
+
+snippet syspath "append to system path" bA
+import sys
+
+sys.path.extend([".", ".."])
+endsnippet

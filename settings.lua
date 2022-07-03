@@ -1,7 +1,7 @@
 ------------------------------ GENERAL SETTINGS -------------------------------
 LeaderKey = " "
 
-Colorscheme = "palenight"
+Colorscheme = "deus"
 
 WrapLine = false
 
