@@ -67,6 +67,7 @@ local nmappings = {
 	R = { "<cmd>e<cr>", "reload buffer" },
 	I = { "<cmd>IndentBlanklineToggle<cr>", "toggle indent lines" },
 	u = { "'u", "undo 'undo jump'" },
+	[";"] = { "A;<esc>", "Add ;" },
 	-- Quick surround
 	['"'] = { 'ciw"<C-r>""<esc>', '""' },
 	["'"] = { "ciw'<C-r>\"'<esc>", "''" },

@@ -1,4 +1,5 @@
 local null_ls = require("null-ls")
+local u = require("null-ls.utils")
 
 null_ls.setup({
 	cmd = { "nvim" },
@@ -20,7 +21,7 @@ null_ls.setup({
 	end,
 	on_init = nil,
 	on_exit = nil,
-	-- root_dir = u.root_pattern(".null-ls-root", "Makefile", ".git"),
+	root_dir = u.root_pattern(".null-ls-root", "Makefile", ".git"),
 	update_in_insert = false,
 	sources = {
 		-- List of builtins: https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
@@ -37,6 +38,23 @@ null_ls.setup({
 		null_ls.builtins.formatting.shfmt,
 		null_ls.builtins.formatting.sqlfluff.with({
 			extra_args = { "--dialect", "bigquery" },
+		}),
+		null_ls.builtins.formatting.rustfmt.with({
+			extra_args = function(params)
+				local Path = require("plenary.path")
+				local cargo_toml = Path:new(params.root .. "/" .. "Cargo.toml")
+
+				if cargo_toml:exists() and cargo_toml:is_file() then
+					for _, line in ipairs(cargo_toml:readlines()) do
+						local edition = line:match([[^edition%s*=%s*%"(%d+)%"]])
+						if edition then
+							return { "--edition=" .. edition }
+						end
+					end
+				end
+				-- default edition when we don't find `Cargo.toml` or the `edition` in it.
+				return { "--edition=2021" }
+			end,
 		}),
 	},
 })

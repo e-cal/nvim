@@ -15,14 +15,8 @@ require("lsp.java")
 require("lsp.lsp-installer")
 require("lsp.lua")
 require("lsp.null-ls")
-
-if PythonUseKite then
-	require("lsp.kite")
-else
-	require("lsp.python")
-end
-
---require('lsp.efm')
+require("lsp.rust")
+require("lsp.python")
 
 -- Plugin configs
 require("plugins.autopairs")
