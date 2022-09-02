@@ -1,21 +1,21 @@
--- Settings
-vim.g.indent_blankline_enabled = IndentGuide
-vim.g.indent_blankline_use_treesitter = true
+-- OOC = out of context, IC = in context
+vim.cmd([[highlight IndentBlanklineOOC guifg=#46474A gui=nocombine]])
+vim.cmd([[highlight IndentBlanklineIC guifg=#F4C069 gui=nocombine]])
 
--- BACKGROUND HIGHLIGHTS
---[[
-vim.cmd("highlight IndentOdd guifg=NONE guibg=NONE gui=nocombine")
-vim.cmd("highlight IndentEven guifg=NONE guibg=#242A32 gui=nocombine")
-vim.g.indent_blankline_char_highlight_list = {"IndentOdd", "IndentEven"}
-vim.g.indent_blankline_space_char_highlight_list = {"IndentOdd", "IndentEven"}
-
-vim.g.indent_blankline_char = " "
-vim.g.indent_blankline_space_char = " "
-
-vim.g.indent_blankline_show_trailing_blankline_indent = false
-]] --
---
--- LINES
-vim.g.indent_blankline_char = "▏"
-vim.g.indent_blankline_space_char_blankline = " "
-vim.g.indent_blankline_show_end_of_line = true
+require("indent_blankline").setup({
+	enabled = IndentGuide,
+	-- char = "▏",
+	char = "⎸",
+	context_char = "│",
+	-- char_blankline = " ",
+	space_char_blankline = " ",
+	use_treesitter = true,
+	show_current_context = true,
+	show_current_context_start = false,
+	char_highlight_list = {
+		"IndentBlanklineOOC",
+	},
+	context_highlight_list = {
+		"IndentBlanklineIC",
+	},
+})

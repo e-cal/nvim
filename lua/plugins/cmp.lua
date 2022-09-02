@@ -1,6 +1,7 @@
 local cmp = require("cmp")
 
 cmp.setup({
+	preselect = false,
 	snippet = {
 		expand = function(args)
 			vim.fn["UltiSnips#Anon"](args.body)
@@ -21,10 +22,9 @@ cmp.setup({
 				fallback()
 			end
 		end, { "i", "s" }),
-		["<C-k>"] = cmp.mapping.scroll_docs(-4),
-		["<C-j>"] = cmp.mapping.scroll_docs(4),
+		["<C-y>"] = cmp.mapping.scroll_docs(-4),
+		["<C-e>"] = cmp.mapping.scroll_docs(4),
 		["<C-Space>"] = cmp.mapping.complete(),
-		["<C-e>"] = cmp.mapping.close(),
 		["<CR>"] = cmp.mapping.confirm({
 			behavior = cmp.ConfirmBehavior.Insert,
 			select = false,
@@ -105,15 +105,6 @@ cmp.setup.filetype("markdown", {
 		{ name = "cmp_tabnine" },
 	},
 })
-
--- TODO: only enable if connected to wifi
--- cmp.setup.cmdline(":", {
--- 	sources = cmp.config.sources({
--- 		{ name = "path" },
--- 	}, {
--- 		{ name = "cmdline" },
--- 	}),
--- })
 
 vim.cmd("hi CmpItemAbbr guifg=foreground")
 vim.cmd("hi CmpItemAbbrDepreceated guifg=error")
