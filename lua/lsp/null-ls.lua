@@ -9,14 +9,17 @@ null_ls.setup({
 	diagnostics_format = "[#{c}] #{m} (#{s})",
 	fallback_severity = vim.diagnostic.severity.ERROR,
 	log = { enable = true, level = "warn", use_console = "async" },
-	on_attach = function(client)
+	on_attach = function(client, bufnr)
 		if client.server_capabilities.documentFormattingProvider then
+			-- tmp fix gq not working
+			vim.api.nvim_buf_set_option(bufnr, "formatexpr", "")
+			-- keep
 			vim.cmd([[
-            augroup LspFormatting
-                autocmd! * <buffer>
-                autocmd BufWritePre <buffer> FormatOnSave
-            augroup END
-            ]])
+	            augroup LspFormatting
+	                autocmd! * <buffer>
+	                autocmd BufWritePre <buffer> FormatOnSave
+	            augroup END
+	            ]])
 		end
 	end,
 	on_init = nil,

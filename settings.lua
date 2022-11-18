@@ -1,7 +1,12 @@
 ------------------------------ GENERAL SETTINGS -------------------------------
 LeaderKey = " "
 
-Colorscheme = "deus"
+-- Colorschemes: deus, nord, two-firewatch, kanagawa, palenightfall, catppuccin
+Colorscheme = "catppuccin"
+
+if Colorscheme == "catppuccin" then
+	vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
+end
 
 WrapLine = false
 
