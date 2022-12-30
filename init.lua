@@ -18,12 +18,17 @@ require("lsp.null-ls")
 require("lsp.rust")
 require("lsp.python")
 
+if UseTabnine then
+	require("plugins.tabnine")
+end
+
 -- Plugin configs
 require("plugins.autopairs")
 require("plugins.barbar")
 require("plugins.cmp")
 require("plugins.colorizer")
 require("plugins.comment")
+require("plugins.copilot")
 require("plugins.dashboard")
 require("plugins.galaxyline")
 require("plugins.gitsigns")
@@ -36,7 +41,6 @@ require("plugins.navigator")
 require("plugins.nvim-dap")
 
 require("plugins.nvim-tree")
-require("plugins.tabnine")
 require("plugins.telescope")
 require("plugins.treesitter")
 require("plugins.ultisnips")

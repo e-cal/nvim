@@ -1,5 +1,19 @@
 local cmp = require("cmp")
 
+local sources = {
+	{ name = "nvim_lua" },
+	{ name = "nvim_lsp" },
+	{ name = "path" },
+	{ name = "ultisnips" },
+	{ name = "buffer", keyword_length = 3 },
+	{ name = "calc" },
+	{ name = "latex_symbols" },
+}
+
+if UseTabnine then
+	sources.insert({ name = "cmp_tabnine" })
+end
+
 cmp.setup({
 	preselect = false,
 	snippet = {
@@ -30,16 +44,7 @@ cmp.setup({
 			select = false,
 		}),
 	},
-	sources = {
-		{ name = "nvim_lua" },
-		{ name = "nvim_lsp" },
-		{ name = "path" },
-		{ name = "ultisnips" },
-		{ name = "buffer", keyword_length = 3 },
-		{ name = "calc" },
-		{ name = "cmp_tabnine" },
-		{ name = "latex_symbols" },
-	},
+	sources = sources,
 	formatting = {
 		format = function(entry, vim_item)
 			vim_item.menu = ({
