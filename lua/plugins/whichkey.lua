@@ -238,6 +238,8 @@ local nmappings = {
 		name = "notebook",
 		c = { "<cmd>norm i# %%<cr>o", "code cell" },
 		m = { "<cmd>norm i# %% [markdown]<cr>o# ", "markdown cell" },
+		r = { "<Plug>JupyterExecute", "run cell" },
+		R = { "<Plug>JupyterExecuteAll", "run all cells" },
 	},
 	k = {
 		name = "keep",

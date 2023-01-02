@@ -39,7 +39,6 @@ return require("packer").startup(function(use)
 	use("quangnguyen30192/cmp-nvim-ultisnips")
 	use("f3fora/cmp-spell")
 	use({ "tzachar/cmp-tabnine", run = "./install.sh" })
-	use("github/copilot.vim")
 	-- Navigation
 	use("kyazdani42/nvim-tree.lua")
 	use("nvim-telescope/telescope.nvim")

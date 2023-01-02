@@ -308,8 +308,17 @@ snippet divider "print divider" bA
 print("=" * 80)
 endsnippet
 
+snippet cell% "new jupyter cell" bA
+# %%
+endsnippet
+
 snippet %% "new jupyter cell" bA
 # %%
+endsnippet
+
+snippet md% "new markdown cell" bA
+# %% [markdown]
+# 
 endsnippet
 
 snippet printhead "print DataFrame head" bA
@@ -324,30 +333,12 @@ import sys
 sys.path.extend([".", ".."])
 endsnippet
 
-snippet importbq "import packages for big query" bA
+snippet aiimports "" bA
+import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
-import pandas_gbq
-from google.oauth2.service_account import Credentials
-
-def upload():
-	df = pd.read_csv("demo_products_ts.csv")
-	df.columns = df.columns.map(lambda x: x.lower())
-	df = df.fillna(0)
-	df["date"] = pd.to_datetime(df["date"])
-
-	print("uploading...")
-	pandas_gbq.to_gbq(
-		df,
-		destination_table=f"demo.lululemon_products",
-		project_id="umg-praxis",
-		chunksize=None,
-		if_exists="replace",
-		table_schema=[{"name": "date", "type": "DATE"}],
-		progress_bar=True,
-		credentials=Credentials.from_service_account_file(
-			"../umg-praxis-service-account.json"
-		),
-	)
-
-# upload()
+import plotly.express as px
+import torch
+import torch.functional as F
+import torch.nn as nn
 endsnippet
