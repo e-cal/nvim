@@ -40,10 +40,6 @@ CACHE_PATH = vim.fn.stdpath("cache")
 -- Most language specific behavior should be configured in lua/lsp/
 -- See lua/lsp/null-ls.lua for formatting, code actions, and other language specific features
 
-UseTabnine = false
-
-PythonUseKite = false -- disables pyright to avoid duplicate completions
-
 Markdown = {}
 Markdown.previewLiveRefresh = false -- false = refresh on save
 Markdown.imagePasteCommand = "xclip -selection clipboard -t image/png -o > %s" -- Paste to file command

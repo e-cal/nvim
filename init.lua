@@ -18,10 +18,6 @@ require("lsp.null-ls")
 require("lsp.rust")
 require("lsp.python")
 
-if UseTabnine then
-	require("plugins.tabnine")
-end
-
 -- Plugin configs
 require("plugins.autopairs")
 require("plugins.barbar")

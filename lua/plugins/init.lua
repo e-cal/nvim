@@ -38,7 +38,6 @@ return require("packer").startup(function(use)
 	use("kdheepak/cmp-latex-symbols")
 	use("quangnguyen30192/cmp-nvim-ultisnips")
 	use("f3fora/cmp-spell")
-	use({ "tzachar/cmp-tabnine", run = "./install.sh" })
 	-- Navigation
 	use("kyazdani42/nvim-tree.lua")
 	use("nvim-telescope/telescope.nvim")

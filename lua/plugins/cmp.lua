@@ -10,10 +10,6 @@ local sources = {
 	{ name = "latex_symbols" },
 }
 
-if UseTabnine then
-	sources.insert({ name = "cmp_tabnine" })
-end
-
 cmp.setup({
 	preselect = false,
 	snippet = {
@@ -56,7 +52,6 @@ cmp.setup({
 				calc = "[CAL]",
 				spell = "[SPL]",
 				latex_symbols = "[LTX]",
-				cmp_tabnine = "[TN]",
 			})[entry.source.name]
 
 			vim_item.kind = ({
@@ -87,9 +82,7 @@ cmp.setup({
 				TypeParameter = "  TypeParam",
 			})[vim_item.kind]
 
-			if entry.source.name == "cmp_tabnine" then
-				vim_item.kind = "  Tabnine"
-			elseif entry.source.name == "calc" then
+			if entry.source.name == "calc" then
 				vim_item.kind = "  Calc"
 			end
 
@@ -107,7 +100,6 @@ cmp.setup.filetype("markdown", {
 		{ name = "path" },
 		{ name = "ultisnips" },
 		{ name = "calc" },
-		{ name = "cmp_tabnine" },
 	},
 })
 
