@@ -4,8 +4,8 @@ vim.cmd("set iskeyword+=-") -- treat dash separated words as a word text object"
 vim.cmd("set shortmess+=c") -- Don't pass messages to |ins-completion-menu|.
 vim.cmd("set inccommand=split") -- Make substitution work in realtime
 
-vim.o.showtabline = 2 -- Always show buffer tabs
-vim.o.hidden = true -- Allow multiple buffers to be open
+vim.o.showtabline = 0 -- 2: Always show buffer tabs
+vim.o.hidden = false -- Allow multiple buffers to be open
 vim.wo.wrap = WrapLine -- Don't wrap line
 vim.wo.number = LineNumbers
 vim.wo.relativenumber = RelativeLineNumbers

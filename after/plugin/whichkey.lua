@@ -46,27 +46,25 @@ vim.g.mapleader = LeaderKey
 -- Normal mode
 local nmappings = {
 	[" "] = "which_key_ignore",
-	f = { "<cmd>Telescope find_files<cr>", "find files" },
 	p = { "<cmd>Telescope find_files<cr>", "find files" },
 	H = { "<cmd>Dashboard<cr>", "home" },
 	["/"] = { "<cmd>CommentToggle<cr>", "toggle comment" },
 	["?"] = { "<cmd>NvimTreeFindFile<cr>", "find current file" },
 	e = { "<cmd>NvimTreeToggle<cr>", "explorer" },
 	s = { "<cmd>w<cr>", "save" },
-	S = { "<cmd>SessionSave<cr>", "save session" },
 	q = { "<cmd>wqa<cr>", "save & quit" },
 	Q = { "<cmd>qa!<cr>", "force quit" },
 	w = { "<cmd>close<cr>", "close window" },
 	x = { "<cmd>BufferClose<cr>", "close buffer" },
 	X = { "<cmd>BufferClose!<cr>", "close buffer" },
 	["."] = { "<cmd>luafile %<cr>", "source file" },
-	h = { "<cmd>sp<cr>", "split below" },
 	v = { "<cmd>vert sp<cr>", "split right" },
+	V = { "<cmd>sp<cr>", "split below" },
 	i = { "<cmd>PasteImg<cr>2b", "paste image" },
 	N = { "<cmd>NewFile<cr>", "new buffer" },
 	R = { "<cmd>e<cr>", "reload buffer" },
 	I = { "<cmd>IndentBlanklineToggle<cr>", "toggle indent lines" },
-	u = { "'u", "undo 'undo jump'" },
+	u = { "<cmd>UndotreeToggle<cr>", "toggle undo tree" },
 	[";"] = { "A;<esc>", "Add ;" },
 	-- Quick surround
 	['"'] = { 'ciw"<C-r>""<esc>', '""' },
@@ -75,26 +73,15 @@ local nmappings = {
 	["("] = { 'ciw(<C-r>")<esc>', "()" },
 	["{"] = { 'ciw{<C-r>"}<esc>', "{}" },
 	["["] = { 'ciw[<C-r>"]<esc>', "[]" },
+	-- Harpoon
+	a = { "<cmd>lua require('harpoon.mark').add_file()<cr>", "add file" },
+	h = { "<cmd>lua require('harpoon.ui').nav_file(1)<cr>", "goto file 1" },
+	t = { "<cmd>lua require('harpoon.ui').nav_file(2)<cr>", "goto file 2" },
+	n = { "<cmd>lua require('harpoon.ui').nav_file(3)<cr>", "goto file 3" },
+	["-"] = { "<cmd>lua require('harpoon.ui').nav_file(4)<cr>", "goto file 4" },
+	l = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "quick menu" },
+	b = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "quick menu" },
 	-- Menus
-	b = {
-		name = "buffer",
-		[">"] = { "<cmd>BufferMoveNext<cr>", "move right" },
-		["<"] = { "<cmd>BufferMovePrevious<cr>", "move left" },
-		b = { "<cmd>BufferPick<cr>", "pick buffer" },
-		x = { "<cmd>BufferClose<cr>", "close buffer" },
-		c = { "<cmd>BufferCloseAllButCurrent<cr>", "close all other buffers" },
-		p = { "<cmd>BufferPin<cr>", "pin buffer" },
-		j = { "<cmd>BufferNext<cr>", "next buffer" },
-		k = { "<cmd>BufferPrevious<cr>", "prev buffer" },
-		t = {
-			name = "tab",
-			t = { "<cmd>tabnew<cr>", "new tab" },
-			c = { "<cmd>tabclose<cr>", "close tab" },
-			n = { "<cmd>tabn<cr>", "next tab" },
-			p = { "<cmd>tabp<cr>", "prev tab" },
-			l = { "<cmd>tabs<cr>", "list tabs" },
-		},
-	},
 	d = {
 		name = "debug",
 		b = { "<cmd>DebugToggleBreakpoint<cr>", "toggle breakpoint" },
@@ -125,7 +112,7 @@ local nmappings = {
 		["5"] = { "<cmd>set foldlevel=5<cr>", "level5" },
 		["6"] = { "<cmd>set foldlevel=6<cr>", "level6" },
 	},
-	t = {
+	f = {
 		name = "telescope",
 		["."] = {
 			'<cmd>lua require("plugins.telescope").search_dotfiles{}<cr>',
@@ -171,7 +158,7 @@ local nmappings = {
 		q = { "<cmd>Git setqflist<CR>", "quickfix" },
 		g = { "<cmd>lua LazygitToggle()<CR>", "lazygit" },
 	},
-	l = {
+	L = {
 		name = "lsp",
 		a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "code action" },
 		d = { "<cmd>Telescope lsp_document_diagnostics<cr>", "doc diagnostics" },
@@ -233,23 +220,6 @@ local nmappings = {
 		d = { "<cmd>close<cr>", "close split window" },
 		j = { "<C-w>J", "move to bottom" },
 		H = { "<C-w>J<C-w>k<C-w>H<C-w>l<C-w>j", "move under" },
-	},
-	n = {
-		name = "notebook",
-		c = { "<cmd>norm i# %%<cr>o", "code cell" },
-		m = { "<cmd>norm i# %% [markdown]<cr>o# ", "markdown cell" },
-		r = { "<Plug>JupyterExecute", "run cell" },
-		R = { "<Plug>JupyterExecuteAll", "run all cells" },
-	},
-	k = {
-		name = "keep",
-		t = { "<cmd>GkeepToggle<cr>", "toggle" },
-		n = { "<cmd>GkeepNew note<cr>", "new note" },
-		b = { "<cmd>GkeepBrowse<cr>", "open in browser" },
-		c = { "<cmd>GkeepCheck<cr>", "toggle checkbox" },
-		C = { "<cmd>GkeepSortChecked<cr>", "sort checkboxes" },
-		x = { "<cmd>GkeepClearChecked<cr>", "clear checked" },
-		r = { "<cmd>GkeepSync<cr>", "sync" },
 	},
 }
 

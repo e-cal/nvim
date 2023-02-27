@@ -10,9 +10,8 @@ map("n", "<M-k>", "<cmd>lua require('Navigator').up()<cr>", default_opts)
 map("n", "<M-j>", "<cmd>lua require('Navigator').down()<cr>", default_opts)
 
 -- Buffer navigation
-map("n", "<C-T>", ":BufferNext<CR>", default_opts)
-map("n", "<M-TAB>", ":BufferNext<CR>", default_opts)
-map("n", "<S-TAB>", ":BufferPrev<CR>", default_opts)
+map("n", "<C-T>", "<C-^>", default_opts)
+map("n", "<M-TAB>", "<C-^>", default_opts)
 
 -- Scroll
 map("n", "<C-y>", "3<C-y>", default_opts)

@@ -1,5 +1,4 @@
 local _global = {
-	-- formatting: lua/lsp/null-ls.lua
 	{
 		"BufWinEnter",
 		"*",

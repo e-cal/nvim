@@ -5,7 +5,7 @@ LeaderKey = " "
 Colorscheme = "catppuccin"
 
 if Colorscheme == "catppuccin" then
-	vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
+	vim.g.catppuccin_flavour = "macchiato"
 end
 
 WrapLine = false
