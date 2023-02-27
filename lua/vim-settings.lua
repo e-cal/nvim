@@ -46,5 +46,6 @@ vim.o.updatetime = 300 -- Faster completion
 vim.o.timeoutlen = 500 -- By default timeoutlen is 1000 ms
 vim.o.clipboard = "unnamedplus" -- Copy paste between vim and everything else
 vim.wo.signcolumn = "yes"
+vim.opt.isfname:append("@-@")
 
 vim.g.formatOnSave = FormatOnSave

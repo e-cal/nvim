@@ -26,14 +26,21 @@ map("n", "<C-Left>", ":vert resize -2<CR>", default_opts)
 
 -- LSP
 map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", default_opts)
-map("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", default_opts)
-map("i", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", default_opts)
 map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", default_opts)
 map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", default_opts)
-map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", default_opts)
 map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", default_opts)
+map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", default_opts)
+map("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", default_opts)
+map("i", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", default_opts)
 map("n", "<C-p>", "<cmd>lua vim.diagnostic.goto_prev()<CR>", default_opts)
 map("n", "<C-n>", "<cmd>lua vim.diagnostic.goto_next()<CR>", default_opts)
+
+map("i", "<C-n>", "<Plug>(copilot-next)", { noremap = false })
+map("i", "<C-p>", "<Plug>(copilot-previous)", { noremap = false })
+map("i", "<C-x>", "<Plug>(copilot-dismiss)", { noremap = false })
+map("i", "<C-f>", "<Plug>(copilot-suggest)", { noremap = false })
+vim.g.copilot_no_tab_map = true
+vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true, noremap = false })
 
 -- Stay centered when jumping around
 map("n", "n", "nzzzv", default_opts)

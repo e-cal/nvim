@@ -1,3 +1,25 @@
+local lsp = require("lsp-zero")
+
+lsp.preset({ name = "recommended", set_lsp_keymaps = false, manage_nvim_cmp = true, suggest_lsp_servers = false })
+
+lsp.ensure_installed({
+	"tsserver",
+	"rust_analyzer",
+	"pyright",
+	"lua_ls",
+})
+
+lsp.configure("lua_ls", {
+	settings = {
+		Lua = {
+			diagnostics = {
+				globals = { "vim" },
+			},
+		},
+	},
+})
+lsp.setup()
+
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 
 for type, icon in pairs(signs) do
@@ -6,7 +28,7 @@ for type, icon in pairs(signs) do
 end
 
 -- auto show diagnostics in hover window
--- vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.lsp.diagnostic.show_line_diagnostics({focusable=false})]]
+-- vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.lsp.diagnostic.show_line_diagnostics({focusable=false})]])
 
 local function documentHighlight(client, bufnr)
 	-- Set autocommands conditional on server_capabilities

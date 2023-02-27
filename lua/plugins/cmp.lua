@@ -32,8 +32,8 @@ cmp.setup({
 				fallback()
 			end
 		end, { "i", "s" }),
-		["<C-y>"] = cmp.mapping.scroll_docs(-4),
-		["<C-e>"] = cmp.mapping.scroll_docs(4),
+		["<C-d>"] = cmp.mapping.scroll_docs(-4),
+		["<C-u>"] = cmp.mapping.scroll_docs(4),
 		["<C-Space>"] = cmp.mapping.complete(),
 		["<CR>"] = cmp.mapping.confirm({
 			behavior = cmp.ConfirmBehavior.Insert,
@@ -89,7 +89,7 @@ cmp.setup({
 			return vim_item
 		end,
 	},
-	experimental = { native_menu = false, ghost_text = true },
+	experimental = { native_menu = false, ghost_text = false },
 })
 
 cmp.setup.filetype("markdown", {
