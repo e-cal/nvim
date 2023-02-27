@@ -21,13 +21,8 @@ return require("packer").startup(function(use)
 	use("wbthomason/packer.nvim")
 	use("nvim-lua/popup.nvim")
 	use("nvim-lua/plenary.nvim")
-	-- LSP
-	use("neovim/nvim-lspconfig")
-	-- use("williamboman/nvim-lsp-installer")
-	use("SirVer/ultisnips")
-	use("ray-x/lsp_signature.nvim")
-	use("jose-elias-alvarez/null-ls.nvim")
 
+	-- LSP
 	use({
 		"VonHeikemen/lsp-zero.nvim",
 		branch = "v1.x",
@@ -48,13 +43,11 @@ return require("packer").startup(function(use)
 			-- Snippets
 			{ "L3MON4D3/LuaSnip" },
 			{ "rafamadriz/friendly-snippets" },
+			{ "SirVer/ultisnips" },
 		},
 	})
-
-	-- Completion
-	use("hrsh7th/nvim-cmp")
-	use("hrsh7th/cmp-buffer")
-	use("hrsh7th/cmp-path")
+	use("ray-x/lsp_signature.nvim")
+	use("jose-elias-alvarez/null-ls.nvim")
 	use("hrsh7th/cmp-nvim-lua")
 	use("hrsh7th/cmp-nvim-lsp")
 	use("hrsh7th/cmp-cmdline")
@@ -63,6 +56,7 @@ return require("packer").startup(function(use)
 	use("quangnguyen30192/cmp-nvim-ultisnips")
 	use("f3fora/cmp-spell")
 	use("github/copilot.vim")
+
 	-- Navigation
 	use("kyazdani42/nvim-tree.lua")
 	use("nvim-telescope/telescope.nvim")
@@ -71,6 +65,8 @@ return require("packer").startup(function(use)
 	use("nvim-telescope/telescope-file-browser.nvim")
 	use("ggandor/lightspeed.nvim")
 	use("numToStr/Navigator.nvim")
+	use("theprimeagen/harpoon")
+
 	-- Convenience
 	use("folke/which-key.nvim")
 	use("windwp/nvim-autopairs")
@@ -84,16 +80,20 @@ return require("packer").startup(function(use)
 	use("windwp/nvim-ts-autotag")
 	use("lukas-reineke/indent-blankline.nvim")
 	use("untitled-ai/jupyter_ascending.vim")
+
 	-- Debugging
 	use("mfussenegger/nvim-dap")
 	use("rcarriga/nvim-dap-ui") -- temporary while nvim-dap lacks a built-in ui
 	use("mfussenegger/nvim-dap-python")
+
 	-- Theming
 	use("kyazdani42/nvim-web-devicons")
 	use("glepnir/galaxyline.nvim")
 	use("romgrk/barbar.nvim")
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
-	use("glepnir/dashboard-nvim")
+	use("nvim-treesitter/playground")
+	-- use("glepnir/dashboard-nvim")
+
 	-- Colorschemes
 	use("theniceboy/nvim-deus")
 	use("arcticicestudio/nord-vim")
