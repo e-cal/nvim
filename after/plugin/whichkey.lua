@@ -47,7 +47,6 @@ vim.g.mapleader = LeaderKey
 local nmappings = {
 	[" "] = "which_key_ignore",
 	p = { "<cmd>Telescope find_files<cr>", "find files" },
-	H = { "<cmd>Dashboard<cr>", "home" },
 	["/"] = { "<cmd>CommentToggle<cr>", "toggle comment" },
 	["?"] = { "<cmd>NvimTreeFindFile<cr>", "find current file" },
 	e = { "<cmd>NvimTreeToggle<cr>", "explorer" },
@@ -65,7 +64,7 @@ local nmappings = {
 	R = { "<cmd>e<cr>", "reload buffer" },
 	I = { "<cmd>IndentBlanklineToggle<cr>", "toggle indent lines" },
 	u = { "<cmd>UndotreeToggle<cr>", "toggle undo tree" },
-	[";"] = { "A;<esc>", "Add ;" },
+	r = { ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", "rename" },
 	-- Quick surround
 	['"'] = { 'ciw"<C-r>""<esc>', '""' },
 	["'"] = { "ciw'<C-r>\"'<esc>", "''" },
@@ -235,8 +234,8 @@ wk.register(nmappings, {
 -- Visual mode
 local vmappings = {
 	s = { "<cmd>Telescope grep_string<cr>", "search selection" },
-	r = { "<Plug>SnipRun", "run selection" },
-	p = { "<Plug>(IPy-Run)", "ipython run selection" },
+	r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "rename" },
+	p = { '"_dP', "paste no copy" },
 	d = {
 		name = "debug",
 		e = { "<cmd>DebugEvaluate<cr>", "evaluate selected expression" },

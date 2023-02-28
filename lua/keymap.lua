@@ -1,91 +1,80 @@
-local map = vim.api.nvim_set_keymap
-local default_opts = { noremap = true, silent = true }
+local map = vim.keymap.set
 
 -- ================================ NORMAL ====================================
 
 -- Split navigation
-map("n", "<M-h>", "<cmd>lua require('Navigator').left()<cr>", default_opts)
-map("n", "<M-l>", "<cmd>lua require('Navigator').right()<cr>", default_opts)
-map("n", "<M-k>", "<cmd>lua require('Navigator').up()<cr>", default_opts)
-map("n", "<M-j>", "<cmd>lua require('Navigator').down()<cr>", default_opts)
+map("n", "<M-h>", "<cmd>lua require('Navigator').left()<cr>")
+map("n", "<M-l>", "<cmd>lua require('Navigator').right()<cr>")
+map("n", "<M-k>", "<cmd>lua require('Navigator').up()<cr>")
+map("n", "<M-j>", "<cmd>lua require('Navigator').down()<cr>")
 
 -- Buffer navigation
-map("n", "<C-T>", "<C-^>", default_opts)
-map("n", "<M-TAB>", "<C-^>", default_opts)
+map("n", "<C-T>", "<C-^>")
+map("n", "<M-TAB>", "<C-^>")
 
 -- Scroll
-map("n", "<C-y>", "3<C-y>", default_opts)
-map("n", "<C-e>", "3<C-e>", default_opts)
+map("n", "<C-y>", "3<C-y>")
+map("n", "<C-e>", "3<C-e>")
 
 -- Resizing
-map("n", "<C-Up>", ":resize +2<CR>", default_opts)
-map("n", "<C-Down>", ":resize -2<CR>", default_opts)
-map("n", "<C-Right>", ":vert resize +2<CR>", default_opts)
-map("n", "<C-Left>", ":vert resize -2<CR>", default_opts)
+map("n", "<C-Up>", ":resize +2<CR>")
+map("n", "<C-Down>", ":resize -2<CR>")
+map("n", "<C-Right>", ":vert resize +2<CR>")
+map("n", "<C-Left>", ":vert resize -2<CR>")
 
 -- LSP
-map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", default_opts)
-map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", default_opts)
-map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", default_opts)
-map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", default_opts)
-map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", default_opts)
-map("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", default_opts)
-map("i", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", default_opts)
-map("n", "<C-p>", "<cmd>lua vim.diagnostic.goto_prev()<CR>", default_opts)
-map("n", "<C-n>", "<cmd>lua vim.diagnostic.goto_next()<CR>", default_opts)
+map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
+map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
+map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
+map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>")
+map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>")
+map("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
+map("i", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
+map("n", "<C-p>", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
+map("n", "<C-n>", "<cmd>lua vim.diagnostic.goto_next()<CR>")
 
 map("i", "<C-n>", "<Plug>(copilot-next)", { noremap = false })
 map("i", "<C-p>", "<Plug>(copilot-previous)", { noremap = false })
 map("i", "<C-x>", "<Plug>(copilot-dismiss)", { noremap = false })
 map("i", "<C-f>", "<Plug>(copilot-suggest)", { noremap = false })
+
 vim.g.copilot_no_tab_map = true
-vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true, noremap = false })
+map("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true, noremap = false })
 
 -- Stay centered when jumping around
-map("n", "n", "nzzzv", default_opts)
-map("n", "N", "Nzzzv", default_opts)
-map("n", "J", "mzJ`z", default_opts)
+map("n", "n", "nzzzv")
+map("n", "N", "Nzzzv")
+map("n", "J", "mzJ`z")
+map("n", "<C-d>", "<C-d>zz")
+map("n", "<C-u>", "<C-u>zz")
 
 -- H/L for beginning/end of line
-map("n", "H", "^", default_opts)
-map("v", "H", "^", default_opts)
-map("n", "L", "$", default_opts)
-map("v", "L", "$", default_opts)
-
--- Disable arrow keys
-map("n", "<down>", "<nop>", default_opts)
-map("n", "<up>", "<nop>", default_opts)
-map("n", "<left>", "<nop>", default_opts)
-map("n", "<right>", "<nop>", default_opts)
-map("i", "<down>", "<nop>", default_opts)
-map("i", "<up>", "<nop>", default_opts)
-map("i", "<left>", "<nop>", default_opts)
-map("i", "<right>", "<nop>", default_opts)
-
--- Save place on undo
-map("n", "u", "muu", default_opts)
+map("n", "H", "^")
+map("v", "H", "^")
+map("n", "L", "$")
+map("v", "L", "$")
 
 -- ================================ INSERT ====================================
 
 -- Undo checkpoints
-map("i", ",", ",<C-g>u", default_opts)
-map("i", ".", ".<C-g>u", default_opts)
-map("i", "!", "!<C-g>u", default_opts)
-map("i", "?", "?<C-g>u", default_opts)
+map("i", ",", ",<C-g>u")
+map("i", ".", ".<C-g>u")
+map("i", "!", "!<C-g>u")
+map("i", "?", "?<C-g>u")
 
 -- Fix tab
 map("i", "^[[Z", "<S-Tab>", { noremap = true, silent = true, nowait = true })
 
 -- ================================ VISUAL ====================================
 -- Indenting
-map("v", "<", "<gv", default_opts)
-map("v", ">", ">gv", default_opts)
+map("v", "<", "<gv")
+map("v", ">", ">gv")
 
 -- Move selection
-map("v", "K", ":m '<-2<CR>gv=gv", default_opts)
-map("v", "J", ":m '>+1<CR>gv=gv", default_opts)
+map("v", "K", ":m '<-2<CR>gv=gv")
+map("v", "J", ":m '>+1<CR>gv=gv")
 
 -- ================================ UNMAP =====================================
-map("n", "Q", "<NOP>", default_opts)
-map("i", "<c-n>", "<NOP>", default_opts)
-map("i", "<c-p>", "<NOP>", default_opts)
+map("n", "Q", "<NOP>")
+map("i", "<c-n>", "<NOP>")
+map("i", "<c-p>", "<NOP>")
