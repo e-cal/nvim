@@ -39,7 +39,7 @@ map("i", "<C-x>", "<Plug>(copilot-dismiss)", { noremap = false })
 map("i", "<C-f>", "<Plug>(copilot-suggest)", { noremap = false })
 
 vim.g.copilot_no_tab_map = true
-map("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true, noremap = false })
+map("i", "<C-j>", 'copilot#Accept("<CR>")', { silent = true, expr = true, noremap = true, replace_keycodes = false })
 
 -- Stay centered when jumping around
 map("n", "n", "nzzzv")
@@ -47,6 +47,8 @@ map("n", "N", "Nzzzv")
 map("n", "J", "mzJ`z")
 map("n", "<C-d>", "<C-d>zz")
 map("n", "<C-u>", "<C-u>zz")
+map("n", "<C-o>", "<C-o>zz")
+map("n", "<C-i>", "<C-i>zz")
 
 -- H/L for beginning/end of line
 map("n", "H", "^")

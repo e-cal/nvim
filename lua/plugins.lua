@@ -88,11 +88,10 @@ return require("packer").startup(function(use)
 
 	-- Theming
 	use("kyazdani42/nvim-web-devicons")
-	use("glepnir/galaxyline.nvim")
+	use("nvim-lualine/lualine.nvim")
 	-- use("romgrk/barbar.nvim")
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
 	use("nvim-treesitter/playground")
-	-- use("glepnir/dashboard-nvim")
 
 	-- Colorschemes
 	use("theniceboy/nvim-deus")
