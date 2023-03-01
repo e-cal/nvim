@@ -2,16 +2,58 @@ local lualine = require("lualine")
 local utils = require("lualine.utils.utils")
 
 local colors = {
-	normal = utils.extract_color_from_hllist("fg", { "Label" }, "#000000"),
-	insert = utils.extract_color_from_hllist("fg", { "String" }, "#000000"),
-	replace = utils.extract_color_from_hllist("fg", { "Number", "Type" }, "#000000"),
-	visual = utils.extract_color_from_hllist("fg", { "Special", "Boolean", "Constant" }, "#000000"),
-	command = utils.extract_color_from_hllist("fg", { "Identifier" }, "#000000"),
-	bg = utils.extract_color_from_hllist("bg", { "Normal", "StatusLineNC" }, "#000000"),
-	fg = utils.extract_color_from_hllist("fg", { "Normal", "StatusLine" }, "#000000"),
-	bg2 = utils.extract_color_from_hllist("bg", { "CursorLine" }, "#000000"),
-	grey = "#666666",
+	normal = utils.extract_color_from_hllist("fg", { "Label" }, "#ff0000"),
+	insert = utils.extract_color_from_hllist("fg", { "String" }, "#ff0000"),
+	replace = utils.extract_color_from_hllist("fg", { "Number", "Type" }, "#ff0000"),
+	visual = utils.extract_color_from_hllist("fg", { "Special", "Boolean", "Constant" }, "#ff0000"),
+	command = utils.extract_color_from_hllist("fg", { "Identifier" }, "#ff0000"),
+	fg = utils.extract_color_from_hllist("fg", { "Normal", "StatusLine" }, "#ff0000"),
+	bg = utils.extract_color_from_hllist("bg", { "CursorLine" }, "#ff0000"),
+	grey = utils.extract_color_from_hllist("fg", { "Comment" }, "#ff0000"),
 }
+
+-- =============================================================================
+-- Adding modified colors (brightness)
+
+-- Turns #rrggbb -> { red, green, blue }
+local function rgb_str2num(rgb_color_str)
+	if rgb_color_str:find("#") == 1 then
+		rgb_color_str = rgb_color_str:sub(2, #rgb_color_str)
+	end
+	local red = tonumber(rgb_color_str:sub(1, 2), 16)
+	local green = tonumber(rgb_color_str:sub(3, 4), 16)
+	local blue = tonumber(rgb_color_str:sub(5, 6), 16)
+	return { red = red, green = green, blue = blue }
+end
+
+-- Turns { red, green, blue } -> #rrggbb
+local function rgb_num2str(rgb_color_num)
+	local rgb_color_str = string.format("#%02x%02x%02x", rgb_color_num.red, rgb_color_num.green, rgb_color_num.blue)
+	return rgb_color_str
+end
+
+-- Clamps the val between left and right
+local function clamp(val, left, right)
+	if val > right then
+		return right
+	end
+	if val < left then
+		return left
+	end
+	return val
+end
+
+-- Changes brightness of rgb_color by percentage
+local function brightness_modifier(rgb_color, parcentage)
+	local color = rgb_str2num(rgb_color)
+	color.red = clamp(color.red + (color.red * parcentage / 100), 0, 255)
+	color.green = clamp(color.green + (color.green * parcentage / 100), 0, 255)
+	color.blue = clamp(color.blue + (color.blue * parcentage / 100), 0, 255)
+	return rgb_num2str(color)
+end
+
+colors.bg_bright = brightness_modifier(colors.bg, 40)
+-- =============================================================================
 
 local conditions = {
 	buffer_not_empty = function()
@@ -108,14 +150,14 @@ ins_left({
 	function()
 		return ""
 	end,
-	color = { fg = colors.bg2, bg = colors.bg },
+	color = { fg = colors.bg_bright, bg = colors.bg },
 	padding = { left = 0, right = 0 },
 })
 
 ins_left({
 	"filetype",
 	icon_only = true,
-	color = { fg = colors.fg, bg = colors.bg2 },
+	color = { fg = colors.fg, bg = colors.bg_bright },
 	padding = { left = 0, right = 1 },
 })
 
@@ -127,7 +169,7 @@ ins_left({
 		elseif not vim.bo.modifiable then
 			fg = colors.replace -- readonly
 		end
-		vim.cmd("hi! lualine_filename_status gui=bold guibg=" .. colors.bg2 .. " guifg=" .. fg)
+		vim.cmd("hi! lualine_filename_status gui=bold guibg=" .. colors.bg_bright .. " guifg=" .. fg)
 
 		return "%t"
 	end,
@@ -140,7 +182,7 @@ ins_left({
 	function()
 		return ""
 	end,
-	color = { fg = colors.bg2, bg = colors.bg },
+	color = { fg = colors.bg_bright, bg = colors.bg },
 	padding = { left = 0, right = 0 },
 })
 
@@ -199,16 +241,22 @@ ins_right({
 ins_right({
 	-- Lsp server name .
 	function()
-		local msg = "No Active Lsp"
+		local msg = "No LSP"
 		local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
 		local clients = vim.lsp.get_active_clients()
 		if next(clients) == nil then
 			return msg
 		end
+		local msg = ""
 		for _, client in ipairs(clients) do
-			local filetypes = client.config.filetypes
-			if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-				return client.name
+			-- local filetypes = client.config.filetypes
+			-- if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+			-- return client.name
+			-- end
+			if msg == "" then
+				msg = client.name
+			else
+				msg = msg .. "/" .. client.name
 			end
 		end
 		return msg
@@ -219,8 +267,11 @@ ins_right({
 })
 
 ins_right({
-	"location",
-	icon = "",
+	function()
+		local line = vim.fn.line(".")
+		local col = vim.fn.virtcol(".")
+		return string.format(" %d:%-2d", line, col)
+	end,
 	color = { fg = colors.fg },
 })
 
@@ -229,9 +280,9 @@ ins_right({
 		local cur = vim.fn.line(".")
 		local total = vim.fn.line("$")
 		if cur == 1 then
-			return "ﬢ"
+			return "  ﬢ "
 		elseif cur == total then
-			return "ﬠ"
+			return "   ﬠ "
 		else
 			return "(" .. math.floor(cur / total * 100) .. "%%)"
 		end

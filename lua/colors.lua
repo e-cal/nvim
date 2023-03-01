@@ -5,6 +5,9 @@ vim.cmd('let &t_8f = "\\<Esc>[38;2;%lu;%lu;%lum"')
 vim.cmd('let &t_8b = "\\<Esc>[48;2;%lu;%lu;%lum"')
 vim.cmd("let g:deus_termcolors=256")
 
+if Colorscheme == "catppuccin" then
+	vim.g.catppuccin_flavour = "macchiato"
+end
 vim.cmd("colorscheme " .. Colorscheme)
 
 -- vim.cmd('hi Cursor guibg=#EBDBB2')
