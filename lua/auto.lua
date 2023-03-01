@@ -59,14 +59,6 @@ Utils.make_augroups({
 		{ "BufEnter", "*.py", "setlocal indentkeys-=<:>" },
 	},
 	_pddl = { { "BufEnter", "*.pddl", "setf pddl" } },
-	_java = {
-		{
-			"FileType",
-			"java",
-			"setlocal ts=2 sts=2 sw=2",
-		},
-	},
-	_xonsh = { { "BufEnter", "*.xsh", "setlocal syntax=xonsh" } },
 	_sql = {
 		{ "FileType", "sql", "let formatOnSave=v:false" },
 	},

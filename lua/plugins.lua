@@ -52,7 +52,6 @@ return require("packer").startup(function(use)
 	use("hrsh7th/cmp-cmdline")
 	use("hrsh7th/cmp-calc")
 	use("kdheepak/cmp-latex-symbols")
-	use("quangnguyen30192/cmp-nvim-ultisnips")
 	use("f3fora/cmp-spell")
 	use("github/copilot.vim")
 
