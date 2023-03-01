@@ -31,6 +31,7 @@ map("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
 map("i", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
 map("n", "<C-p>", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
 map("n", "<C-n>", "<cmd>lua vim.diagnostic.goto_next()<CR>")
+map("n", "<C-l>", "<cmd>lua vim.diagnostic.open_float()<CR>")
 
 map("i", "<C-n>", "<Plug>(copilot-next)", { noremap = false })
 map("i", "<C-p>", "<Plug>(copilot-previous)", { noremap = false })
