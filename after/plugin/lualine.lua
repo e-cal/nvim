@@ -104,13 +104,20 @@ local config = {
 }
 
 -- Inserts a component in lualine_c at left section
-local function ins_left(component)
+local function ins_left(component, inactive)
 	table.insert(config.sections.lualine_c, component)
+	if inactive then
+		table.insert(config.inactive_sections.lualine_c, component)
+	end
 end
 
 -- Inserts a component in lualine_x ot right section
 local function ins_right(component)
 	table.insert(config.sections.lualine_x, component)
+end
+
+local function ins_inactive(component)
+	table.insert(config.inactive_sections.lualine_c, component)
 end
 
 ins_left({
@@ -146,35 +153,53 @@ ins_left({
 	padding = { left = 0, right = 1 }, -- We don't need space before this
 })
 
+ins_inactive({
+	function()
+		return "%="
+	end,
+})
+
 ins_left({
 	function()
 		return ""
 	end,
 	color = { fg = colors.bg_bright, bg = colors.bg },
 	padding = { left = 0, right = 0 },
-})
+}, true)
 
 ins_left({
 	"filetype",
 	icon_only = true,
 	color = { fg = colors.fg, bg = colors.bg_bright },
 	padding = { left = 0, right = 1 },
-})
+}, true)
+
+local function get_filename()
+	local fg = colors.fg -- not modified
+	if vim.bo.modified then
+		fg = colors.command -- unsaved
+	elseif not vim.bo.modifiable then
+		fg = colors.replace -- readonly
+	end
+	vim.cmd("hi! lualine_filename_status gui=bold guibg=" .. colors.bg_bright .. " guifg=" .. fg)
+
+	return "%t"
+end
 
 ins_left({
-	function()
-		local fg = colors.fg -- not modified
-		if vim.bo.modified then
-			fg = colors.command -- unsaved
-		elseif not vim.bo.modifiable then
-			fg = colors.replace -- readonly
-		end
-		vim.cmd("hi! lualine_filename_status gui=bold guibg=" .. colors.bg_bright .. " guifg=" .. fg)
-
-		return "%t"
-	end,
+	get_filename,
 	cond = conditions.buffer_not_empty,
 	color = "lualine_filename_status",
+	padding = { left = 0, right = 0 },
+})
+
+ins_inactive({
+	get_filename,
+	cond = conditions.buffer_not_empty,
+	color = {
+		fg = brightness_modifier(colors.fg, -30),
+		bg = colors.bg_bright,
+	},
 	padding = { left = 0, right = 0 },
 })
 
@@ -184,7 +209,7 @@ ins_left({
 	end,
 	color = { fg = colors.bg_bright, bg = colors.bg },
 	padding = { left = 0, right = 0 },
-})
+}, true)
 
 --[[
 ins_right({

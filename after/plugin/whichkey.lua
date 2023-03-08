@@ -69,17 +69,14 @@ local nmappings = {
 	['"'] = { 'ciw"<C-r>""<esc>', '""' },
 	["'"] = { "ciw'<C-r>\"'<esc>", "''" },
 	["`"] = { 'ciw`<C-r>"`<esc>', "``" },
-	["("] = { 'ciw(<C-r>")<esc>', "()" },
-	["{"] = { 'ciw{<C-r>"}<esc>', "{}" },
-	["["] = { 'ciw[<C-r>"]<esc>', "[]" },
 	-- Harpoon
 	a = { "<cmd>lua require('harpoon.mark').add_file()<cr>", "add file" },
-	h = { "<cmd>lua require('harpoon.ui').nav_file(1)<cr>", "goto file 1" },
-	t = { "<cmd>lua require('harpoon.ui').nav_file(2)<cr>", "goto file 2" },
-	n = { "<cmd>lua require('harpoon.ui').nav_file(3)<cr>", "goto file 3" },
-	["-"] = { "<cmd>lua require('harpoon.ui').nav_file(4)<cr>", "goto file 4" },
-	l = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "quick menu" },
 	b = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "quick menu" },
+	h = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "quick menu" },
+	["+"] = { "<cmd>lua require('harpoon.ui').nav_file(1)<cr>", "goto file 1" },
+	["["] = { "<cmd>lua require('harpoon.ui').nav_file(2)<cr>", "goto file 2" },
+	["{"] = { "<cmd>lua require('harpoon.ui').nav_file(3)<cr>", "goto file 3" },
+	["("] = { "<cmd>lua require('harpoon.ui').nav_file(4)<cr>", "goto file 4" },
 	-- Menus
 	d = {
 		name = "debug",
@@ -114,7 +111,7 @@ local nmappings = {
 	f = {
 		name = "telescope",
 		["."] = {
-			'<cmd>lua require("plugins.telescope").search_dotfiles{}<cr>',
+			'<cmd>lua require("functions").search_dotfiles{}<cr>',
 			"config",
 		},
 		["?"] = { "<cmd>Telescope filetypes<cr>", "filetypes" },
@@ -157,7 +154,7 @@ local nmappings = {
 		q = { "<cmd>Git setqflist<CR>", "quickfix" },
 		g = { "<cmd>lua LazygitToggle()<CR>", "lazygit" },
 	},
-	L = {
+	l = {
 		name = "lsp",
 		a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "code action" },
 		d = { "<cmd>Telescope lsp_document_diagnostics<cr>", "doc diagnostics" },
@@ -195,6 +192,12 @@ local nmappings = {
 				"remove workspace",
 			},
 		},
+	},
+	j = {
+		name = "jupyter",
+		r = { "<plug>JupyterExecute", "execute cell" },
+		a = { "<plug>JupyterExecuteAll", "execute all cells" },
+		R = { "<plug>JupterRestart", "restart kernel" },
 	},
 	m = {
 		name = "markdown",

@@ -73,8 +73,8 @@ map("v", "<", "<gv")
 map("v", ">", ">gv")
 
 -- Move selection
-map("v", "K", ":m '<-2<CR>gv=gv")
-map("v", "J", ":m '>+1<CR>gv=gv")
+map("v", "K", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
+map("v", "J", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
 
 -- ================================ UNMAP =====================================
 map("n", "Q", "<NOP>")
