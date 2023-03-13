@@ -3,6 +3,7 @@ vim.cmd("syntax on") -- syntax highlighting
 vim.cmd("set iskeyword+=-") -- treat dash separated words as a word text object"
 vim.cmd("set shortmess+=c") -- Don't pass messages to |ins-completion-menu|.
 vim.cmd("set inccommand=split") -- Make substitution work in realtime
+vim.cmd("set shell=/usr/bin/zsh") -- Use zsh as shell
 
 vim.o.showtabline = 0 -- 2: Always show buffer tabs
 vim.o.hidden = false -- Allow multiple buffers to be open

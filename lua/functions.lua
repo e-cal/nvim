@@ -128,29 +128,17 @@ NewFile = function()
 end
 Utils.make_command("NewFile")
 
-local M = {}
-
-M.git_branches = function()
-	require("telescope.builtin").git_branches({
-		attach_mappings = function(_, map)
-			map("i", "<c-d>", actions.git_delete_branch)
-			map("n", "<c-d>", actions.git_delete_branch)
-			return true
-		end,
-	})
-end
-
-M.search_dotfiles = function()
+TelescopeSearchDotfiles = function()
 	require("telescope.builtin").find_files({ prompt_title = " Config ", cwd = "$DOTFILES/.config/nvim" })
 end
+Utils.make_command("TelescopeSearchDotfiles")
 
-M.search_dir = function()
-	local dir = vim.fn.input("Search from: ")
+TelescopeSearchDir = function()
+	local dir = vim.fn.input("Search from: ", "~/")
 	if dir ~= "" and dir ~= nil then
 		require("telescope.builtin").find_files({ prompt_title = string.format(" Searching %s ", dir), cwd = dir })
 	else
 		require("telescope.builtin").find_files()
 	end
 end
-
-return M
+Utils.make_command("TelescopeSearchDir")

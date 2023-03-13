@@ -50,6 +50,7 @@ local nmappings = {
 	["/"] = { "<cmd>CommentToggle<cr>", "toggle comment" },
 	["?"] = { "<cmd>Neotree reveal<cr>", "find current file" },
 	e = { "<cmd>Neotree toggle<cr>", "explorer" },
+	E = { "<cmd>NnnExplorer<cr>", "nnn" },
 	s = { "<cmd>w<cr>", "save" },
 	q = { "<cmd>wqa<cr>", "save & quit" },
 	Q = { "<cmd>qa!<cr>", "force quit" },
@@ -60,7 +61,7 @@ local nmappings = {
 	v = { "<cmd>vert sp<cr>", "split right" },
 	V = { "<cmd>sp<cr>", "split below" },
 	i = { "<cmd>PasteImg<cr>2b", "paste image" },
-	N = { "<cmd>NewFile<cr>", "new buffer" },
+	n = { "<cmd>NewFile<cr>", "new buffer" },
 	R = { "<cmd>e<cr>", "reload buffer" },
 	I = { "<cmd>IndentBlanklineToggle<cr>", "toggle indent lines" },
 	u = { "<cmd>UndotreeToggle<cr>", "toggle undo tree" },
@@ -110,9 +111,9 @@ local nmappings = {
 		["6"] = { "<cmd>set foldlevel=6<cr>", "level6" },
 	},
 	f = {
-		name = "telescope",
+		name = "find",
 		["."] = {
-			'<cmd>lua require("functions").search_dotfiles{}<cr>',
+			"<cmd>TelescopeSearchDotfiles<cr>",
 			"config",
 		},
 		["?"] = { "<cmd>Telescope filetypes<cr>", "filetypes" },
@@ -129,8 +130,8 @@ local nmappings = {
 			"text",
 		},
 		T = { "<cmd>Telescope live_grep<cr>", "exact text" },
-		s = {
-			'<cmd>lua require("plugins.telescope").search_dir()<cr>',
+		d = {
+			"<cmd>TelescopeSearchDir<cr>",
 			"search dir",
 		},
 		r = { "<cmd>Telescope oldfiles<cr>", "recents" },
@@ -138,6 +139,7 @@ local nmappings = {
 		e = { "<cmd>Telescope file_browser<cr>", "fuzzy explorer" },
 		c = { "<cmd>Telescope colorscheme<cr>", "colorschemes" },
 		q = { "<cmd>Telescope quickfix<cr>", "quickfix" },
+		n = { "<cmd>NnnPicker<cr>", "nnn" },
 	},
 	g = {
 		name = "git",
@@ -223,6 +225,14 @@ local nmappings = {
 		d = { "<cmd>close<cr>", "close split window" },
 		j = { "<C-w>J", "move to bottom" },
 		H = { "<C-w>J<C-w>k<C-w>H<C-w>l<C-w>j", "move under" },
+	},
+	S = {
+		name = "sessions",
+		s = { "<cmd>SessionManager! save_current_session<cr>", "save session" },
+		l = { "<cmd>SessionManager! load_last_session<cr>", "load last session" },
+		["."] = { "<cmd>SessionManager! load_current_dir_session<cr>", "load dir session" },
+		f = { "<cmd>SessionManager! load_session<cr>", "search sessions" },
+		d = { "<cmd>SessionManager! delete_session<cr>", "delete session" },
 	},
 }
 
