@@ -50,7 +50,13 @@ return require("packer").startup(function(use)
 	})
 
 	-- Navigation
-	use("kyazdani42/nvim-tree.lua")
+	-- use("kyazdani42/nvim-tree.lua")
+	use({
+		"nvim-neo-tree/neo-tree.nvim",
+		requires = {
+			"MunifTanjim/nui.nvim",
+		},
+	})
 	use("ggandor/lightspeed.nvim")
 	use("numToStr/Navigator.nvim")
 	use("theprimeagen/harpoon")
@@ -79,7 +85,7 @@ return require("packer").startup(function(use)
 
 	-- Debugging
 	use("mfussenegger/nvim-dap")
-	use("rcarriga/nvim-dap-ui") -- temporary while nvim-dap lacks a built-in ui
+	use("rcarriga/nvim-dap-ui")
 	use("mfussenegger/nvim-dap-python")
 
 	-- Theming
