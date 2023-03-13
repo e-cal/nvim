@@ -50,7 +50,6 @@ return require("packer").startup(function(use)
 	})
 
 	-- Navigation
-	-- use("kyazdani42/nvim-tree.lua")
 	use({
 		"nvim-neo-tree/neo-tree.nvim",
 		requires = {
@@ -68,6 +67,8 @@ return require("packer").startup(function(use)
 			{ "nvim-telescope/telescope-file-browser.nvim" },
 		},
 	})
+	use("luukvbaal/nnn.nvim")
+	use("shatur/neovim-session-manager")
 
 	-- Convenience
 	use("folke/which-key.nvim")
@@ -93,6 +94,7 @@ return require("packer").startup(function(use)
 	use("nvim-lualine/lualine.nvim")
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
 	use("nvim-treesitter/playground")
+	use("goolord/alpha-nvim")
 
 	-- Colorschemes
 	use("theniceboy/nvim-deus")
