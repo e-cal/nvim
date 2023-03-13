@@ -23,7 +23,9 @@ dap.defaults.fallback.external_terminal = {
 }
 
 -- UI
-require("dapui").setup({
+local dapui = require("dapui")
+
+dapui.setup({
 	icons = { expanded = "⯆", collapsed = "⯈", circular = "↺" },
 	mappings = { expand = "<CR>", open = "o", remove = "d" },
 	floating = {
@@ -52,7 +54,18 @@ require("dapui").setup({
 	},
 })
 
+dap.listeners.after.event_initialized["dapui_config"] = function()
+	dapui.open()
+end
+dap.listeners.before.event_terminated["dapui_config"] = function()
+	dapui.close()
+end
+dap.listeners.before.event_exited["dapui_config"] = function()
+	dapui.close()
+end
+
 Utils.make_command("DebugFloatElement", "require'dapui'.float_element")
+Utils.make_command("DebugToggleUI", "require'dapui'.toggle")
 Utils.make_command("DebugEvaluate", "require'dapui'.eval")
 
 -- Python

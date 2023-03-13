@@ -38,9 +38,6 @@ null_ls.setup({
 		null_ls.builtins.formatting.stylua,
 		null_ls.builtins.formatting.prettier,
 		null_ls.builtins.formatting.shfmt,
-		null_ls.builtins.formatting.sqlfluff.with({
-			extra_args = { "--dialect", "bigquery" },
-		}),
 		null_ls.builtins.formatting.rustfmt.with({
 			extra_args = function(params)
 				local Path = require("plenary.path")
