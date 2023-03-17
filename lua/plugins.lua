@@ -83,6 +83,7 @@ return require("packer").startup(function(use)
 	use("kevinhwang91/nvim-bqf")
 	use("folke/trouble.nvim")
 	use({ "iamcco/markdown-preview.nvim", run = ":call mkdp#util#install()" })
+	use("lervag/vimtex")
 
 	-- Debugging
 	use("mfussenegger/nvim-dap")
