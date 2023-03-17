@@ -112,4 +112,41 @@ for type, icon in pairs(signs) do
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
+local bg = require("lualine.utils.utils").extract_color_from_hllist("bg", { "CursorLine" }, "#ff0000")
+local function documentHighlight(client, bufnr)
+	-- Set autocommands conditional on server_capabilities
+	local enabled = vim.api.nvim_get_var("highlightSymbols")
+	if client.server_capabilities.documentHighlightProvider then
+		vim.api.nvim_exec(
+			string.format(
+				[[
+                hi LspReferenceRead cterm=bold ctermbg=red guibg=%s
+                hi LspReferenceText cterm=bold ctermbg=red guibg=%s
+                hi LspReferenceWrite cterm=bold ctermbg=red guibg=%s
+            ]],
+				bg,
+				bg,
+				bg
+			),
+			false
+		)
+	end
+	if enabled then
+		vim.api.nvim_exec(
+			[[
+            augroup lsp_document_highlight
+              autocmd! * <buffer>
+              autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+              autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+            augroup END
+        ]],
+			false
+		)
+	end
+end
+
+lsp.on_attach(function(client, bufnr)
+	documentHighlight(client, bufnr)
+end)
+
 lsp.setup()
