@@ -129,7 +129,7 @@ end
 Utils.make_command("NewFile")
 
 TelescopeSearchDotfiles = function()
-	require("telescope.builtin").find_files({ prompt_title = " Config ", cwd = "$DOTFILES/.config/nvim" })
+	require("telescope.builtin").find_files({ prompt_title = " Config ", cwd = "$DOTFILES/.config" })
 end
 Utils.make_command("TelescopeSearchDotfiles")
 
@@ -142,3 +142,13 @@ TelescopeSearchDir = function()
 	end
 end
 Utils.make_command("TelescopeSearchDir")
+
+PreviewDoc = function()
+	local filetype = vim.bo.filetype
+	if filetype == "markdown" then
+		api.nvim_command("MarkdownPreviewToggle")
+	elseif filetype == "tex" then
+		api.nvim_command("VimtexCompile")
+	end
+end
+Utils.make_command("PreviewDoc")

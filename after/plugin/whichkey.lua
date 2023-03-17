@@ -203,8 +203,8 @@ local nmappings = {
 		R = { "<plug>JupterRestart", "restart kernel" },
 	},
 	m = {
-		name = "markdown",
-		p = { "<cmd>MarkdownPreviewToggle<cr>", "toggle preview" },
+		name = "markdown/tex",
+		p = { "<cmd>PreviewDoc<cr>", "toggle preview" },
 		i = { "A  %_<esc>", "fix italics" },
 		C = {
 			"<cmd>s/\\(\\s[a-z]\\)\\|^\\([a-z]\\)/\\U\\2\\U\\1/g<CR>",
