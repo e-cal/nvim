@@ -62,7 +62,6 @@ lsp.setup_nvim_cmp({
 	},
 	formatting = {
 		fields = { "abbr", "kind" },
-
 		format = function(entry, vim_item)
 			vim_item.menu = ({
 				nvim_lsp = "  ",
@@ -112,7 +111,7 @@ for type, icon in pairs(signs) do
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
-local bg = require("lualine.utils.utils").extract_color_from_hllist("bg", { "CursorLine" }, "#ff0000")
+local bg = require("lualine.utils.utils").extract_color_from_hllist("bg", { "ColorColumn" }, "#ff0000")
 local function documentHighlight(client, bufnr)
 	-- Set autocommands conditional on server_capabilities
 	local enabled = vim.api.nvim_get_var("highlightSymbols")
@@ -120,9 +119,9 @@ local function documentHighlight(client, bufnr)
 		vim.api.nvim_exec(
 			string.format(
 				[[
-                hi LspReferenceRead cterm=bold ctermbg=red guibg=%s
-                hi LspReferenceText cterm=bold ctermbg=red guibg=%s
-                hi LspReferenceWrite cterm=bold ctermbg=red guibg=%s
+                hi LspReferenceRead cterm=bold guibg=%s
+                hi LspReferenceText cterm=bold guibg=%s
+                hi LspReferenceWrite cterm=bold guibg=%s
             ]],
 				bg,
 				bg,
