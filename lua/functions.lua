@@ -33,15 +33,9 @@ end
 Utils.make_command("Format")
 
 FormatOnSave = function()
-	-- if AlwaysTrimWhitespace then
-	-- 	TrimWhitespace()
-	-- end
 	local enabled = api.nvim_get_var("formatOnSave")
 	if enabled then
 		Format()
-		-- if not AlwaysTrimWhitespace then
-		-- 	TrimWhitespace()
-		-- end
 	end
 end
 Utils.make_command("FormatOnSave")
@@ -66,8 +60,8 @@ HighlightSymbolsToggle = function()
 			[[
             augroup lsp_document_highlight
                 autocmd! * <buffer>
-                autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
                 autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+		        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
             augroup END
         ]],
 			false

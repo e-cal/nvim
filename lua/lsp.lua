@@ -119,9 +119,9 @@ local function documentHighlight(client, bufnr)
 		vim.api.nvim_exec(
 			string.format(
 				[[
-                hi LspReferenceRead cterm=bold guibg=%s
-                hi LspReferenceText cterm=bold guibg=%s
-                hi LspReferenceWrite cterm=bold guibg=%s
+                hi LspReferenceRead gui=bold ctermbg=red guibg=%s
+                hi LspReferenceText gui=bold ctermbg=red guibg=%s
+                hi LspReferenceWrite gui=bold ctermbg=red guibg=%s
             ]],
 				bg,
 				bg,
@@ -136,6 +136,16 @@ local function documentHighlight(client, bufnr)
             augroup lsp_document_highlight
               autocmd! * <buffer>
               autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+              autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+            augroup END
+        ]],
+			false
+		)
+	else
+		vim.api.nvim_exec(
+			[[
+            augroup lsp_document_highlight
+              autocmd! * <buffer>
               autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
             augroup END
         ]],

@@ -167,7 +167,8 @@ local nmappings = {
 		},
 		f = { "<cmd>lua vim.lsp.buf.format({ timeout_ms=30000 })<cr>", "format" },
 		F = { "<cmd>FormatToggle<cr>", "toggle formatting" },
-		h = { "<cmd>HighlightSymbolsToggle<cr>", "toggle symbol highlight" },
+		-- h = { "<cmd>HighlightSymbolsToggle<cr>", "toggle symbol highlight" },
+		h = { "<cmd>lua vim.lsp.buf.document_highlight()<cr>", "highlight symbol" },
 		["?"] = { "<cmd>LspInfo<cr>", "lsp info" },
 		v = { "<cmd>LspVirtualTextToggle<cr>", "toggle virtual text" },
 		l = {
