@@ -40,36 +40,6 @@ FormatOnSave = function()
 end
 Utils.make_command("FormatOnSave")
 
--- Highlight Symbols
-HighlightSymbolsToggle = function()
-	local enabled = api.nvim_get_var("highlightSymbols")
-	if enabled then
-		api.nvim_set_var("highlightSymbols", false)
-		vim.lsp.buf.clear_references()
-		api.nvim_exec(
-			[[
-            augroup lsp_document_highlight
-                autocmd! * <buffer>
-            augroup END
-        ]],
-			false
-		)
-	else
-		api.nvim_set_var("highlightSymbols", true)
-		vim.api.nvim_exec(
-			[[
-            augroup lsp_document_highlight
-                autocmd! * <buffer>
-                autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-		        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-            augroup END
-        ]],
-			false
-		)
-	end
-end
-Utils.make_command("HighlightSymbolsToggle")
-
 -- Paste images
 local paste_cmd = Markdown.imagePasteCommand
 

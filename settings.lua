@@ -17,7 +17,6 @@ AutoScroll = 8 -- Scroll when this many lines from top/bottom (0 to disable)
 HighlightAllSearchMatches = false
 SearchIgnoreCase = true
 HighlightOnYank = false
-HighlightSymbols = false
 
 TabSize = 4
 UseSpaces = true

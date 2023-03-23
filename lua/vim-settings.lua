@@ -50,4 +50,3 @@ vim.wo.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
 vim.g.formatOnSave = FormatOnSave
-vim.g.highlightSymbols = HighlightSymbols
