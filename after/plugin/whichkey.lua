@@ -60,10 +60,9 @@ local nmappings = {
 	["."] = { "<cmd>luafile %<cr>", "source file" },
 	v = { "<cmd>vert sp<cr>", "split right" },
 	V = { "<cmd>sp<cr>", "split below" },
-	i = { "<cmd>PasteImg<cr>2b", "paste image" },
 	n = { "<cmd>NewFile<cr>", "new buffer" },
 	R = { "<cmd>e<cr>", "reload buffer" },
-	I = { "<cmd>IndentBlanklineToggle<cr>", "toggle indent lines" },
+	i = { "<cmd>IndentBlanklineToggle<cr>", "toggle indent lines" },
 	u = { "<cmd>UndotreeToggle<cr>", "toggle undo tree" },
 	r = { ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", "rename" },
 	-- Quick surround
@@ -74,10 +73,16 @@ local nmappings = {
 	a = { "<cmd>lua require('harpoon.mark').add_file()<cr>", "add file" },
 	b = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "quick menu" },
 	h = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "quick menu" },
-	["+"] = { "<cmd>lua require('harpoon.ui').nav_file(1)<cr>", "goto file 1" },
-	["["] = { "<cmd>lua require('harpoon.ui').nav_file(2)<cr>", "goto file 2" },
-	["{"] = { "<cmd>lua require('harpoon.ui').nav_file(3)<cr>", "goto file 3" },
-	["("] = { "<cmd>lua require('harpoon.ui').nav_file(4)<cr>", "goto file 4" },
+	["+"] = { "<cmd>lua require('harpoon.ui').nav_file(1)<cr>", "which_key_ignore" },
+	["["] = { "<cmd>lua require('harpoon.ui').nav_file(2)<cr>", "which_key_ignore" },
+	["{"] = { "<cmd>lua require('harpoon.ui').nav_file(3)<cr>", "which_key_ignore" },
+	["("] = { "<cmd>lua require('harpoon.ui').nav_file(4)<cr>", "which_key_ignore" },
+	["&"] = { "<cmd>lua require('harpoon.ui').nav_file(5)<cr>", "which_key_ignore" },
+	["="] = { "<cmd>lua require('harpoon.ui').nav_file(6)<cr>", "which_key_ignore" },
+	[")"] = { "<cmd>lua require('harpoon.ui').nav_file(7)<cr>", "which_key_ignore" },
+	["}"] = { "<cmd>lua require('harpoon.ui').nav_file(8)<cr>", "which_key_ignore" },
+	["]"] = { "<cmd>lua require('harpoon.ui').nav_file(9)<cr>", "which_key_ignore" },
+	["*"] = { "<cmd>lua require('harpoon.ui').nav_file(10)<cr>", "which_key_ignore" },
 	-- Menus
 	d = {
 		name = "debug",
@@ -167,6 +172,7 @@ local nmappings = {
 			w = { "<cmd>Telescope diagnostics bufnr=0 severity=warn<cr>", "warnings" },
 			i = { "<cmd>Telescope diagnostics bufnr=0 severity=info<cr>", "info" },
 			h = { "<cmd>Telescope diagnostics bufnr=0 severity=hint<cr>", "hint" },
+			l = { "<cmd>lua vim.diagnostic.open_float()<cr>", "line" },
 		},
 		D = {
 			name = "workspace diagnostics",
@@ -181,10 +187,6 @@ local nmappings = {
 		h = { "<cmd>lua vim.lsp.buf.document_highlight()<cr>", "highlight symbol" },
 		["?"] = { "<cmd>LspInfo<cr>", "lsp info" },
 		v = { "<cmd>LspVirtualTextToggle<cr>", "toggle virtual text" },
-		l = {
-			"<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>",
-			"line diagnostics",
-		},
 		r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "rename" },
 		T = { "<cmd>lua vim.lsp.buf.type_definition()<cr>", "type defintion" },
 		x = { "<cmd>cclose<cr>", "close quickfix" },
@@ -192,6 +194,7 @@ local nmappings = {
 		S = { "<cmd>Telescope lsp_workspace_symbols<cr>", "workspace symbols" },
 		R = { "<cmd>LspRestart<cr>", "restart lsp" },
 		i = { "<cmd>normal A  # type: ignore<cr>bbbbhhh", "pyright ignore" },
+		e = { "<cmd>Navbuddy<cr>", "explore symbols" },
 		w = {
 			name = "workspace",
 			a = {
@@ -217,7 +220,8 @@ local nmappings = {
 	m = {
 		name = "markdown/tex",
 		p = { "<cmd>PreviewDoc<cr>", "toggle preview" },
-		i = { "A  %_<esc>", "fix italics" },
+		i = { "<cmd>PasteImg<cr>2b", "paste image" },
+		I = { "A  %_<esc>", "fix italics" },
 		C = {
 			"<cmd>s/\\(\\s[a-z]\\)\\|^\\([a-z]\\)/\\U\\2\\U\\1/g<CR>",
 			"capitalize line",

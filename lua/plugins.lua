@@ -69,6 +69,7 @@ return require("packer").startup(function(use)
 	})
 	use("luukvbaal/nnn.nvim")
 	use("shatur/neovim-session-manager")
+	use("SmiteshP/nvim-navbuddy") -- requires nvim-navic
 
 	-- Convenience
 	use("folke/which-key.nvim")
@@ -93,6 +94,7 @@ return require("packer").startup(function(use)
 	-- Theming
 	use("kyazdani42/nvim-web-devicons")
 	use("nvim-lualine/lualine.nvim")
+	use("SmiteshP/nvim-navic")
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
 	use("nvim-treesitter/playground")
 	use("goolord/alpha-nvim")

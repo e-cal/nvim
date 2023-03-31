@@ -114,34 +114,39 @@ end
 local bg = require("lualine.utils.utils").extract_color_from_hllist("bg", { "ColorColumn" }, "#ff0000")
 local function documentHighlight(client, bufnr)
 	-- Set autocommands conditional on server_capabilities
-	if client.server_capabilities.documentHighlightProvider then
-		vim.api.nvim_exec(
-			string.format(
-				[[
+	vim.api.nvim_exec(
+		string.format(
+			[[
                 hi LspReferenceRead gui=bold ctermbg=red guibg=%s
                 hi LspReferenceText gui=bold ctermbg=red guibg=%s
                 hi LspReferenceWrite gui=bold ctermbg=red guibg=%s
             ]],
-				bg,
-				bg,
-				bg
-			),
-			false
-		)
-		vim.api.nvim_exec(
-			[[
+			bg,
+			bg,
+			bg
+		),
+		false
+	)
+	vim.api.nvim_exec(
+		[[
             augroup lsp_document_highlight
               autocmd! * <buffer>
               autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
             augroup END
         ]],
-			false
-		)
-	end
+		false
+	)
 end
 
 lsp.on_attach(function(client, bufnr)
-	documentHighlight(client, bufnr)
+	if client.server_capabilities.documentHighlightProvider then
+		documentHighlight(client, bufnr)
+	end
+
+	if client.server_capabilities.documentSymbolProvider then
+		require("nvim-navic").attach(client, bufnr)
+		require("nvim-navbuddy").attach(client, bufnr)
+	end
 end)
 
 lsp.setup()
