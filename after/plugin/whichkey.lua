@@ -194,7 +194,6 @@ local nmappings = {
 		S = { "<cmd>Telescope lsp_workspace_symbols<cr>", "workspace symbols" },
 		R = { "<cmd>LspRestart<cr>", "restart lsp" },
 		i = { "<cmd>normal A  # type: ignore<cr>bbbbhhh", "pyright ignore" },
-		e = { "<cmd>Navbuddy<cr>", "explore symbols" },
 		c = { "<cmd>TSContextToggle<cr>", "toggle context" },
 		w = {
 			name = "workspace",
