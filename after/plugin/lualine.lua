@@ -7,7 +7,8 @@ local colors = {
 	replace = utils.extract_color_from_hllist("fg", { "Number", "Type" }, "#ff0000"),
 	visual = utils.extract_color_from_hllist("fg", { "Special", "Boolean", "Constant" }, "#ff0000"),
 	command = utils.extract_color_from_hllist("fg", { "Identifier" }, "#ff0000"),
-	fg = utils.extract_color_from_hllist("fg", { "Normal", "StatusLine" }, "#ff0000"),
+	-- TODO: make a util function instead of using gross extract_color_from_hllist
+	fg = string.format("#%06x", vim.api.nvim_get_hl_by_name("Normal", true).foreground), -- utils.extract_color_from_hllist("fg", { "Normal", "StatusLine" }, "#ff0000"),
 	bg = utils.extract_color_from_hllist("bg", { "CursorLine" }, "#ff0000"),
 	grey = utils.extract_color_from_hllist("fg", { "Comment" }, "#ff0000"),
 }
