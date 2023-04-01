@@ -15,6 +15,7 @@ local _global = {
 		"setlocal formatoptions-=c formatoptions-=r formatoptions-=o formatoptions-=t",
 	},
 	{ "VimLeave", "*", "call system('xclip -o | xclip -selection c" },
+	{ "BufReadPost,BufWritePost,BufEnter,TextChanged,TextChangedI", "*", "UpdateWinbarHighlight" },
 }
 
 if HighlightOnYank then
