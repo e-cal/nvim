@@ -21,6 +21,7 @@ return require("packer").startup(function(use)
 	use("wbthomason/packer.nvim")
 	use("nvim-lua/popup.nvim")
 	use("nvim-lua/plenary.nvim")
+	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
 
 	-- LSP
 	use("jose-elias-alvarez/null-ls.nvim")
@@ -68,7 +69,7 @@ return require("packer").startup(function(use)
 		},
 	})
 	use("luukvbaal/nnn.nvim")
-	use("shatur/neovim-session-manager")
+	use("stevearc/aerial.nvim")
 
 	-- Convenience
 	use("folke/which-key.nvim")
@@ -84,6 +85,7 @@ return require("packer").startup(function(use)
 	use("folke/trouble.nvim")
 	use({ "iamcco/markdown-preview.nvim", run = ":call mkdp#util#install()" })
 	use("lervag/vimtex")
+	use("nvim-treesitter/nvim-treesitter-context")
 
 	-- Debugging
 	use("mfussenegger/nvim-dap")
@@ -93,8 +95,6 @@ return require("packer").startup(function(use)
 	-- Theming
 	use("kyazdani42/nvim-web-devicons")
 	use("nvim-lualine/lualine.nvim")
-	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
-	use("nvim-treesitter/nvim-treesitter-context")
 	use("nvim-treesitter/playground")
 	use("goolord/alpha-nvim")
 
