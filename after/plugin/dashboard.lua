@@ -43,7 +43,6 @@ dashboard.section.buttons.val = {
 	button("LDR f r", "  History  "),
 	button("LDR f t", "󰺮  Find Text  "),
 	button("LDR f m", "  Bookmarks  "),
-	button("LDR S l", "  Load Session  "),
 }
 
 dashboard.section.footer.val = "https://github.com/e-cal/evim"

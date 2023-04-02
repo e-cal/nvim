@@ -43,9 +43,18 @@ require("telescope").setup({
 			filetypes = { "png", "webp", "jpg", "jpeg", "mp4", "pdf" },
 			find_cmd = "rg",
 		},
+		aerial = {
+			-- Display symbols as <root>.<parent>.<symbol>
+			show_nesting = {
+				["_"] = false, -- This key will be the default
+				json = true, -- You can set the option for specific filetypes
+				yaml = true,
+			},
+		},
 	},
 })
 
 require("telescope").load_extension("fzy_native")
 require("telescope").load_extension("media_files")
 require("telescope").load_extension("file_browser")
+require("telescope").load_extension("aerial")

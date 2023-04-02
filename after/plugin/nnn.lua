@@ -1,7 +1,7 @@
 require("nnn").setup({
 	explorer = {
 		cmd = "nnn", -- command overrride (-F1 flag is implied, -a flag is invalid!)
-		width = 30, -- width of the vertical split
+		width = 20, -- width of the vertical split
 		side = "topleft", -- or "botright", location of the explorer window
 		session = "", -- or "global" / "local" / "shared"
 		tabs = true, -- seperate nnn instance per tab
@@ -31,7 +31,8 @@ require("nnn").setup({
 	auto_close = false, -- close tabpage/nvim when nnn is last window
 	replace_netrw = nil, -- or "explorer" / "picker"
 	mappings = {}, -- table containing mappings, see below
-	windownav = { -- window movement mappings to navigate out of nnn
+	windownav = {
+		-- window movement mappings to navigate out of nnn
 		left = "<C-w>h",
 		right = "<C-w>l",
 		next = "<C-w>w",
