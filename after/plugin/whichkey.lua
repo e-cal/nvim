@@ -209,7 +209,7 @@ local nmappings = {
 			},
 			l = {
 				"<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>",
-				"remove workspace",
+				"list workspaces",
 			},
 		},
 	},
