@@ -29,12 +29,8 @@ DATA_PATH = vim.fn.stdpath("data")
 CACHE_PATH = vim.fn.stdpath("cache")
 
 -- other general settings: lua/vim-settings.lua
--- plugin settings: lua/plugins/<plugin>.lua
+-- plugin settings: after/plugin/<plugin>.lua
 -- ↳ refer to the plugin's github (linked to in README.md) or :h plugin
-
--------------------------- LANGAGE SPECIFIC SETTINGS --------------------------
--- Most language specific behavior should be configured in lua/lsp/
--- See lua/lsp/null-ls.lua for formatting, code actions, and other language specific features
 
 Markdown = {}
 Markdown.previewLiveRefresh = false -- false = refresh on save

@@ -8,13 +8,9 @@ lsp.preset({
 	suggest_lsp_servers = false,
 })
 
-lsp.ensure_installed({
-	"lua_ls",
-	"pyright",
-	"rust_analyzer",
-})
-
-lsp.configure("lua_ls", {
+-- Enable and configure language servers
+local config = require("lspconfig")
+config.lua_ls.setup({
 	settings = {
 		Lua = {
 			diagnostics = {
@@ -23,6 +19,28 @@ lsp.configure("lua_ls", {
 		},
 	},
 })
+
+require("lspconfig").pylsp.setup({
+	settings = {
+		pylsp = {
+			plugins = {
+				pycodestyle = { enabled = false },
+				pyflakes = { enabled = false },
+				flake8 = {
+					enabled = true,
+					ignore = {
+						"E203", -- whitespace before ':'
+						"E302", -- expected 2 blank lines, found 1
+						"E501", -- line too long
+						"W504", -- line break after binary operator
+					},
+				},
+			},
+		},
+	},
+})
+
+--
 
 lsp.setup_nvim_cmp({
 	sources = {
