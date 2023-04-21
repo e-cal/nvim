@@ -1,70 +1,38 @@
-local _global = {
-	{
-		"BufWinEnter",
-		"*",
-		"setlocal formatoptions-=c formatoptions-=r formatoptions-=o formatoptions-=t",
-	},
-	{
-		"BufRead",
-		"*",
-		"setlocal formatoptions-=c formatoptions-=r formatoptions-=o formatoptions-=t",
-	},
-	{
-		"BufNewFile",
-		"*",
-		"setlocal formatoptions-=c formatoptions-=r formatoptions-=o formatoptions-=t",
-	},
-	{
-		"VimLeave",
-		"*",
-		"call system('xclip -selection clipboard -i', getreg('+'))",
-	},
-	{ "BufReadPost,BufWritePost,BufEnter,TextChanged,TextChangedI", "*", "UpdateWinbarHighlight" },
-}
+local augroup = vim.api.nvim_create_augroup
+local autocmd = vim.api.nvim_create_autocmd
 
-if HighlightOnYank then
-	local yank = {
-		"TextYankPost",
-		"*",
-		"lua require('vim.highlight').on_yank({higroup = 'Search', timeout = 200})",
-	}
-	table.insert(_global, yank)
-end
+augroup("global", { clear = true })
 
-Utils.make_augroups({
-	_global,
-	_dashboard = {
-		{
-			"FileType",
-			"dashboard",
-			"setlocal nocursorline noswapfile synmaxcol& signcolumn=no norelativenumber nocursorcolumn nospell  nolist  nonumber bufhidden=wipe colorcolumn= foldcolumn=0 matchpairs= ",
-		},
-		{
-			"FileType",
-			"dashboard",
-			"set showtabline=0 | autocmd BufLeave <buffer> set showtabline=2",
-		},
-		{ "FileType", "dashboard", "nnoremap <silent> <buffer> q :q<CR>" },
-		{
-			"FileType",
-			"dashboard",
-			'call timer_start(50, { tid -> execute("IndentBlanklineDisable")})',
-		},
-	},
-	_markdown = {
-		{
-			"FileType",
-			"markdown",
-			"setlocal spell foldexpr=MarkdownFold() foldmethod=expr nofoldenable ts=2 sts=2 sw=2",
-		},
-		{ "FileType", "markdown", 'syntax match markdownIgnore "\\v\\w_\\w"' },
-	},
-	_python = {
-		{ "FileType", "python", "setlocal indentkeys-=:" },
-		{ "BufEnter", "*.py", "setlocal indentkeys-=<:>" },
-	},
-	_pddl = { { "BufEnter", "*.pddl", "setf pddl" } },
-	_sql = {
-		{ "FileType", "sql", "let formatOnSave=v:false" },
-	},
+autocmd({ "BufWinEnter", "BufRead", "BufNewFile" }, {
+  group = "global",
+  command = "setlocal formatoptions-=c formatoptions-=r formatoptions-=o formatoptions-=t",
 })
+autocmd({ "VimLeave" }, {
+  group = "global",
+  callback = function()
+    vim.fn.jobstart("xclip -selection clipboard -i | " .. vim.api.nvim_exec("getreg('+')", true), { detach = true })
+  end,
+})
+autocmd({ "BufReadPost", "BufWritePost", "BufEnter", "TextChanged", "TextChangedI" }, {
+  group = "global",
+  command = "UpdateWinbarHighlight",
+})
+
+augroup("markdown", { clear = true })
+
+autocmd({ "FileType" }, {
+  group = "markdown",
+  pattern = "markdown",
+  callback = function()
+    vim.cmd("setlocal spell foldexpr=MarkdownFold() foldmethod=expr nofoldenable ts=2 sts=2 sw=2")
+    vim.cmd('syntax match markdownIgnore "\\v\\w_\\w"')
+  end,
+})
+
+-- augroup("python", { clear = true })
+
+-- autocmd({ "Filetype" }, {
+--   group = "python",
+--   pattern = "python",
+--   command = "setlocal indentkeys-=<:> indentkeys-=:",
+-- })

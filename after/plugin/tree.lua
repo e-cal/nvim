@@ -76,6 +76,7 @@ require("neo-tree").setup({
 			-- 	nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use
 			-- },
 			-- ["<2-LeftMouse>"] = "open",
+			["h"] = "navigate_up",
 			["<cr>"] = "open",
 			["<esc>"] = "revert_preview",
 			["P"] = { "toggle_preview", config = { use_float = true } },

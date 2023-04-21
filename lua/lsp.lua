@@ -1,48 +1,50 @@
-local lsp = require("lsp-zero")
 local cmp = require("cmp")
-
-lsp.preset({
-	name = "minimal",
-	set_lsp_keymaps = false,
-	manage_nvim_cmp = true,
-	suggest_lsp_servers = false,
-})
-
--- Enable and configure language servers
 local config = require("lspconfig")
-config.lua_ls.setup({
-	settings = {
+local masoncfg = require("mason-lspconfig")
+
+-------------------------------------------------------------------------------
+--                              Language servers
+-------------------------------------------------------------------------------
+
+local lsp_servers = {
+	"lua_ls",
+	"pyright",
+}
+
+require("mason").setup()
+masoncfg.setup({ ensure_installed = lsp_servers })
+
+local settings = {
+	lua_ls = {
 		Lua = {
 			diagnostics = {
 				globals = { "vim" },
 			},
 		},
 	},
+}
+
+local on_attach = function(client, bufnr) end
+
+masoncfg.setup_handlers({
+	function(server_name)
+		local server_config = {
+			on_attach = on_attach,
+			capabilities = require("cmp_nvim_lsp").default_capabilities(),
+		}
+
+		if settings[server_name] then
+			server_config["settings"] = settings[server_name]
+		end
+		config[server_name].setup(server_config)
+	end,
 })
 
-require("lspconfig").pylsp.setup({
-	settings = {
-		pylsp = {
-			plugins = {
-				pycodestyle = { enabled = false },
-				pyflakes = { enabled = false },
-				flake8 = {
-					enabled = true,
-					ignore = {
-						"E203", -- whitespace before ':'
-						"E302", -- expected 2 blank lines, found 1
-						"E501", -- line too long
-						"W504", -- line break after binary operator
-					},
-				},
-			},
-		},
-	},
-})
+-------------------------------------------------------------------------------
+--                              cmp Setup
+-------------------------------------------------------------------------------
 
---
-
-lsp.setup_nvim_cmp({
+cmp.setup({
 	sources = {
 		{ name = "path" },
 		{ name = "nvim_lsp" },
@@ -129,37 +131,70 @@ for type, icon in pairs(signs) do
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
-local bg = require("lualine.utils.utils").extract_color_from_hllist("bg", { "ColorColumn" }, "#ff0000")
-local function documentHighlight(client, bufnr)
-	-- Set autocommands conditional on server_capabilities
-	vim.api.nvim_exec(
-		string.format(
-			[[
-                hi LspReferenceRead gui=bold ctermbg=red guibg=%s
-                hi LspReferenceText gui=bold ctermbg=red guibg=%s
-                hi LspReferenceWrite gui=bold ctermbg=red guibg=%s
-            ]],
-			bg,
-			bg,
-			bg
-		),
-		false
-	)
-	vim.api.nvim_exec(
-		[[
-            augroup lsp_document_highlight
-              autocmd! * <buffer>
-              autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-            augroup END
-        ]],
-		false
-	)
-end
+-------------------------------------------------------------------------------
+--                              Null-ls Setup (formatters)
+-------------------------------------------------------------------------------
 
-lsp.on_attach(function(client, bufnr)
-	if client.server_capabilities.documentHighlightProvider then
-		documentHighlight(client, bufnr)
-	end
-end)
+local null_ls = require("null-ls")
+local u = require("null-ls.utils")
 
-lsp.setup()
+null_ls.setup({
+	cmd = { "nvim" },
+	debounce = 250,
+	debug = false,
+	default_timeout = 5000,
+	diagnostics_format = "[#{c}] #{m} (#{s})",
+	fallback_severity = vim.diagnostic.severity.ERROR,
+	log = { enable = true, level = "warn", use_console = "async" },
+	on_attach = function(client, bufnr)
+		if client.server_capabilities.documentFormattingProvider then
+			-- tmp fix gq not working
+			vim.api.nvim_buf_set_option(bufnr, "formatexpr", "")
+			-- keep
+			vim.cmd([[
+	            augroup LspFormatting
+	                autocmd! * <buffer>
+	                autocmd BufWritePre <buffer> FormatOnSave
+	            augroup END
+	            ]])
+		end
+	end,
+	on_init = nil,
+	on_exit = nil,
+	root_dir = u.root_pattern(".null-ls-root", "Makefile", ".git"),
+	update_in_insert = false,
+	-------------------------------------------------------------------------------
+	-- Sources
+	-- List of builtins: https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
+	-------------------------------------------------------------------------------
+	sources = {
+		-- Code Actions
+		null_ls.builtins.code_actions.refactoring,
+
+		-- Formatting
+		null_ls.builtins.formatting.black,
+		null_ls.builtins.formatting.isort,
+		null_ls.builtins.formatting.stylua,
+
+		null_ls.builtins.formatting.rustfmt.with({
+			extra_args = function(params)
+				local Path = require("plenary.path")
+				local cargo_toml = Path:new(params.root .. "/" .. "Cargo.toml")
+
+				if cargo_toml:exists() and cargo_toml:is_file() then
+					for _, line in ipairs(cargo_toml:readlines()) do
+						local edition = line:match([[^edition%s*=%s*%"(%d+)%"]])
+						if edition then
+							return { "--edition=" .. edition }
+						end
+					end
+				end
+				-- default edition when we don't find `Cargo.toml` or the `edition` in it.
+				return { "--edition=2021" }
+			end,
+		}),
+
+		null_ls.builtins.formatting.prettier,
+		null_ls.builtins.formatting.shfmt,
+	},
+})

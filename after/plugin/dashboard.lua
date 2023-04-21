@@ -38,11 +38,12 @@ end
 
 dashboard.section.buttons.val = {
 	button("LDR h", "󱡀  Harpoon  "),
+	button("LDR o", "󰙰  Open Last File  "),
 	button("LDR p", "  Find File  "),
-	button("LDR n", "  New File  "),
 	button("LDR f r", "  History  "),
 	button("LDR f t", "󰺮  Find Text  "),
 	button("LDR f m", "  Bookmarks  "),
+	button("LDR n", "  New File  "),
 }
 
 dashboard.section.footer.val = "https://github.com/e-cal/evim"
@@ -52,3 +53,5 @@ dashboard.config.layout[3].val = 5
 dashboard.config.opts.noautocmd = true
 
 require("alpha").setup(dashboard.config)
+
+vim.api.nvim_buf_set_keymap(0, "n", "q", ":q<CR>", { noremap = true, silent = true })

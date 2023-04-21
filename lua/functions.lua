@@ -159,3 +159,22 @@ UpdateWinbarHighlight = function()
 	end
 end
 Utils.make_command("UpdateWinbarHighlight")
+
+History = function(num)
+	-- print the num most recent oldfiles
+	local oldfiles = vim.v.oldfiles
+	local start = #oldfiles - num + 1
+	if start < 1 then
+		start = 1
+	end
+	for i = start, #oldfiles do
+		local file = oldfiles[i]
+		print(file)
+	end
+end
+Utils.make_command("History")
+
+OpenLast = function()
+	vim.cmd("e " .. vim.v.oldfiles[1])
+end
+Utils.make_command("OpenLast")

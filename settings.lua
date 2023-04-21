@@ -22,7 +22,6 @@ TabSize = 4
 UseSpaces = true
 
 FormatOnSave = true
-AsyncFormatting = false -- WARNING: async formatting is less reliable - see https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Async-formatting
 AlwaysTrimWhitespace = true -- trim whitespace even when formatting is disabled
 
 DATA_PATH = vim.fn.stdpath("data")

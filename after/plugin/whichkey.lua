@@ -47,6 +47,7 @@ vim.g.mapleader = LeaderKey
 local nmappings = {
 	[" "] = "which_key_ignore",
 	p = { "<cmd>Telescope find_files<cr>", "find files" },
+	o = { "<cmd>OpenLast<cr>", "open last file" },
 	["/"] = { "<cmd>CommentToggle<cr>", "toggle comment" },
 	["?"] = { "<cmd>Neotree reveal<cr>", "find current file" },
 	e = { "<cmd>Neotree toggle<cr>", "explorer" },
@@ -167,22 +168,26 @@ local nmappings = {
 	l = {
 		name = "lsp",
 		a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "code action" },
-		d = {
-			name = "doc diagnostics",
+		l = { "<cmd>lua require('lint').try_lint()<cr>", "lint" },
+		c = { "<cmd>lua vim.diagnostic.reset()<cr>", "clear diagnostics" },
+		i = { "mz<cmd>normal A  # noqa<cr>`z", "pylsp ignore" },
+		I = { "mz<cmd>normal A  # fmt: skip<cr>`z", "skip formatting" },
+		d = { "<cmd>lua vim.diagnostic.open_float()<cr>", "line" },
+		D = {
+			name = "diagnostics",
 			a = { "<cmd>Telescope diagnostics bufnr=0<cr>", "all" },
 			e = { "<cmd>Telescope diagnostics bufnr=0 severity=error<cr>", "errors" },
 			w = { "<cmd>Telescope diagnostics bufnr=0 severity=warn<cr>", "warnings" },
 			i = { "<cmd>Telescope diagnostics bufnr=0 severity=info<cr>", "info" },
 			h = { "<cmd>Telescope diagnostics bufnr=0 severity=hint<cr>", "hint" },
-			l = { "<cmd>lua vim.diagnostic.open_float()<cr>", "line" },
-		},
-		D = {
-			name = "workspace diagnostics",
-			a = { "<cmd>Telescope diagnostics<cr>", "all" },
-			e = { "<cmd>Telescope diagnostics severity=error<cr>", "errors" },
-			w = { "<cmd>Telescope diagnostics severity=warn<cr>", "warnings" },
-			i = { "<cmd>Telescope diagnostics severity=info<cr>", "info" },
-			h = { "<cmd>Telescope diagnostics severity=hint<cr>", "hint" },
+			W = {
+				name = "workspace diagnostics",
+				a = { "<cmd>Telescope diagnostics<cr>", "all" },
+				e = { "<cmd>Telescope diagnostics severity=error<cr>", "errors" },
+				w = { "<cmd>Telescope diagnostics severity=warn<cr>", "warnings" },
+				i = { "<cmd>Telescope diagnostics severity=info<cr>", "info" },
+				h = { "<cmd>Telescope diagnostics severity=hint<cr>", "hint" },
+			},
 		},
 		f = { "<cmd>lua vim.lsp.buf.format({ timeout_ms=30000 })<cr>", "format" },
 		F = { "<cmd>FormatToggle<cr>", "toggle formatting" },
@@ -195,8 +200,7 @@ local nmappings = {
 		s = { "<cmd>Telescope lsp_document_symbols<cr>", "document symbols" },
 		S = { "<cmd>Telescope lsp_workspace_symbols<cr>", "workspace symbols" },
 		R = { "<cmd>LspRestart<cr>", "restart lsp" },
-		i = { "mz<cmd>normal A  # noqa<cr>`z", "flake8 ignore" },
-		c = { "<cmd>TSContextToggle<cr>", "toggle context" },
+		C = { "<cmd>TSContextToggle<cr>", "toggle context" },
 		w = {
 			name = "workspace",
 			a = {
