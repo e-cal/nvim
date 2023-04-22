@@ -141,5 +141,5 @@ If you add and tweak a colorscheme, put in a PR!
 - [packer](https://www.github.com/wbthomason/packer.nvim)
 
 > This list changes often, so best to just look in `lua/plugins.lua`.
-> Find the documentation for each at https://www.github.com/<author>/<plugin>
+> Find the documentation for each at [https://www.github.com/\<author\>/\<plugin\>]() <br>
 > i.e. copy the string in `use` to fill the github link
