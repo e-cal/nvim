@@ -7,8 +7,14 @@ vim.cmd("set shell=/usr/bin/zsh") -- Use zsh as shell
 
 vim.o.winbar = "[%{fnamemodify(expand('%'), ':~:.').']'}"
 
-vim.o.showtabline = 0 -- 2: Always show buffer tabs
-vim.o.hidden = false -- Allow multiple buffers to be open
+if SingleBuffer then
+	vim.o.hidden = false
+	vim.o.showtabline = 0
+else
+	vim.o.hidden = true
+	vim.o.showtabline = 2
+end
+
 vim.wo.wrap = WrapLine -- Don't wrap line
 vim.wo.number = LineNumbers
 vim.wo.relativenumber = RelativeLineNumbers

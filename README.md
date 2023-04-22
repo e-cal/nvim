@@ -83,6 +83,10 @@ along with native LSP for a blazingly fast editing experience.
   ↳ install after adding with `:PS` or `:PackerSync`\
   ↳ configure plugins in `after/plugin/<plugin-name>.lua`\
 
+> NOTE: I have disabled having multiple buffers open (in a single window) in favor of harpoon ala @ThePrimeagen <br>
+> if you want to edit multiple buffers at a time and see the open tabs, change `SingleBuffer` to `false` in `settings.lua` <br>
+> you may also want to install [bufferline](https://github.com/akinsho/bufferline.nvim) or something similar to style it
+
 ## Default Keymap <a name="keys"></a>
 
 ```
@@ -141,5 +145,5 @@ If you add and tweak a colorscheme, put in a PR!
 - [packer](https://www.github.com/wbthomason/packer.nvim)
 
 > This list changes often, so best to just look in `lua/plugins.lua`.
-> Find the documentation for each at [https://www.github.com/\<author\>/\<plugin\>]() <br>
+> Find the documentation for each at [https://www.github.com/\<author\>/\<plugin\>](#) <br>
 > i.e. copy the string in `use` to fill the github link

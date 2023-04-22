@@ -1,35 +1,35 @@
+--[[
+other general settings: lua/vim-settings.lua
+plugin settings: after/plugin/<plugin>.lua
+    ↳ refer to the plugin's github or :h plugin
+]]
 ------------------------------ GENERAL SETTINGS -------------------------------
 LeaderKey = " "
 
 -- Colorschemes: deus, nord, two-firewatch, kanagawa, palenightfall, catppuccin
 Colorscheme = "catppuccin"
 
-WrapLine = false
+SingleBuffer = true
 
+WrapLine = false
 LineNumbers = true
 RelativeLineNumbers = true
 
+FormatOnSave = true
+
 HighlightCursorLine = true
 ColorColumn = 80
-IndentGuide = false -- enabled by default? (still toggleable with <leader>-I)
+IndentGuide = false -- sets if on by default (always toggleable with <leader>-i)
 AutoScroll = 8 -- Scroll when this many lines from top/bottom (0 to disable)
 
 HighlightAllSearchMatches = false
 SearchIgnoreCase = true
-HighlightOnYank = false
 
 TabSize = 4
 UseSpaces = true
 
-FormatOnSave = true
-AlwaysTrimWhitespace = true -- trim whitespace even when formatting is disabled
-
 DATA_PATH = vim.fn.stdpath("data")
 CACHE_PATH = vim.fn.stdpath("cache")
-
--- other general settings: lua/vim-settings.lua
--- plugin settings: after/plugin/<plugin>.lua
--- ↳ refer to the plugin's github (linked to in README.md) or :h plugin
 
 Markdown = {}
 Markdown.previewLiveRefresh = false -- false = refresh on save
