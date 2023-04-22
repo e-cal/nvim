@@ -75,17 +75,18 @@ along with native LSP for a blazingly fast editing experience.
 
 - General settings in `settings.lua`
 - Regular keymappings are defined in `lua/keymap.lua`
-- Leader-key keymappings in `after/plugin/whichkey.lua`
+- Leader-key keymappings in `plugins/whichkey.lua`
 - Configure language servers with [Mason](https://github.com/williamboman/mason.nvim)
   - all LSP configuration in `lua/lsp.lua`
     ↳ i.e. language servers, cmp, formatters & other sources
 - Add and remove plugins in `lua/plugins.lua`\
   ↳ install after adding with `:PS` or `:PackerSync`\
-  ↳ configure plugins in `after/plugin/<plugin-name>.lua`\
+  ↳ configure plugins in `plugins/<plugin-name>.lua`\
+  ↳ note that `plugins/` is actually a symlink to `after/plugin/`
 
 > NOTE: I have disabled having multiple buffers open (in a single window) in favor of harpoon ala @ThePrimeagen <br>
 > if you want to edit multiple buffers at a time and see the open tabs, change `SingleBuffer` to `false` in `settings.lua` <br>
-> you may also want to install [bufferline](https://github.com/akinsho/bufferline.nvim) or something similar to style it
+> you may also want to install [bufferline](https://github.com/akinsho/bufferline.nvim) / [barbar](https://github.com/romgrk/barbar.nvim) / something similar to style it
 
 ## Default Keymap <a name="keys"></a>
 
@@ -133,8 +134,7 @@ You can try out the installed colorschemes with the keymap `<space>-f-c`. To
 make the change permanent, change it in `settings.lua`.
 
 Some themes may require some extra tweaking to get things looking the way you
-want. The relevant files are `lua/colors.lua`, `lua/plugins/galaxyline.lua`
-and `lua/plugins/barbar.lua`.
+want. The relevant files are `lua/colors.lua` and `plugins/barbar.lua`.
 
 If you add and tweak a colorscheme, put in a PR!
 
