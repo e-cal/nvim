@@ -193,7 +193,6 @@ local nmappings = {
 		F = { "<cmd>FormatToggle<cr>", "toggle formatting" },
 		h = { "<cmd>lua vim.lsp.buf.document_highlight()<cr>", "highlight symbol" },
 		["?"] = { "<cmd>LspInfo<cr>", "lsp info" },
-		v = { "<cmd>LspVirtualTextToggle<cr>", "toggle virtual text" },
 		r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "rename" },
 		T = { "<cmd>lua vim.lsp.buf.type_definition()<cr>", "type defintion" },
 		x = { "<cmd>cclose<cr>", "close quickfix" },

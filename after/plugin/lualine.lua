@@ -7,14 +7,16 @@ local colors = {
 	visual = Utils.get_hl("Special", "fg"),
 	command = Utils.get_hl("Identifier", "fg"),
 	fg = Utils.get_hl("Normal", "foreground"),
-	bg = Utils.get_hl("CursorLine", "bg"),
+	bg = Utils.get_hl("ColorColumn", "bg"),
 	grey = Utils.get_hl("Comment", "fg"),
 }
 
 -- =============================================================================
 -- Adding modified colors (brightness)
 
-colors.bg_bright = Utils.brightness_modifier(colors.bg, 40)
+colors.bg_bright = Utils.brightness_modifier(colors.bg, 30)
+colors.bg_dark = Utils.brightness_modifier(colors.bg, -10)
+colors.fg_dark = Utils.brightness_modifier(colors.fg, -30)
 -- =============================================================================
 
 local conditions = {
@@ -37,11 +39,8 @@ local config = {
 		component_separators = "",
 		section_separators = "",
 		theme = {
-			-- We are going to use lualine_c an lualine_x as left and
-			-- right section. Both are highlighted by c theme .  So we
-			-- are just setting default looks o statusline
 			normal = { c = { fg = colors.fg, bg = colors.bg } },
-			inactive = { c = { fg = colors.fg, bg = colors.bg } },
+			inactive = { c = { fg = colors.fg, bg = colors.bg_dark } },
 		},
 	},
 	sections = {
@@ -159,7 +158,7 @@ ins_inactive({
 	get_filename,
 	cond = conditions.buffer_not_empty,
 	color = {
-		fg = Utils.brightness_modifier(colors.fg, -30),
+		fg = colors.fg_dark,
 		bg = colors.bg_bright,
 	},
 	padding = { left = 0, right = 0 },

@@ -12,6 +12,8 @@ along with native LSP for a blazingly fast editing experience.
 <details>
 <summary>Screenshots</summary>
 
+> Outdated
+
 ![dashboard](https://user-images.githubusercontent.com/47398876/116168679-ff34f080-a6d0-11eb-918f-3d6db514d63b.png)
 
 ![VSCode Colors](https://user-images.githubusercontent.com/47398876/116168709-11169380-a6d1-11eb-94ed-824fcb3202a9.png)
@@ -60,11 +62,10 @@ along with native LSP for a blazingly fast editing experience.
   - Easily add LSP for a language with `:LspInstall`
   - Enable/disable auto-formatting with `<leader>-l-F` or `:FormatToggle` (change the default in `settings.lua`)
 - Whichkey so you don't need to memorize all the keymappings
-- Telescope and nvim-tree for seamless navigation
+- Telescope, neo-tree, harpoon, and aerial for seamless navigation
 - Git integration
-- Markdown previewing for docs and note-taking (powerful along with telescope
-  to search for text in notes)
-  - Paste images from your clipboard with `<leader>-i` or `:PasteImg`
+- Markdown previewing for docs and note-taking (powerful along with telescope to search for text in notes)
+  - Paste images from your clipboard with `<leader>-m-i` or `:PasteImg`
 - Built in debugger
 - Improvement of life features: autopairs, strip end-of-line whitespace, better
   quickfix, sane keymappings, tmux integration, and much more...
@@ -74,24 +75,21 @@ along with native LSP for a blazingly fast editing experience.
 
 - General settings in `settings.lua`
 - Regular keymappings are defined in `lua/keymap.lua`
-- Leader-key keymappings in `lua/plugins/whichkey.lua`
-- Configure language servers installed through `:LspInstall` in `lua/lsp/lsp-installer`\
-  ↳ see [here](https://github.com/williamboman/nvim-lsp-installer) for more info
-  - Alternatively, you can manually install a language server and add a corresponding file
-    `lua/lsp/<language>.lua` (don't forget to `require` it in `init.lua`)\
-    ↳ see the [nvim lspconfig docs](https://github.com/neovim/nvim-lspconfig) for more detailed instructions
-- Add & configure formatters in `lua/lsp/null-ls`
-- Add plugins in `lua/plugins/init.lua`\
-  ↳ install after adding with `:PackerSync`\
-  ↳ add new plugin config in `lua/plugins/<plugin-name>.lua`\
-  ↳ `require` new configs in `init.lua`
+- Leader-key keymappings in `after/plugin/whichkey.lua`
+- Configure language servers with [Mason](https://github.com/williamboman/mason.nvim)
+  - all LSP configuration in `lua/lsp.lua`
+    ↳ i.e. language servers, cmp, formatters & other sources
+- Add and remove plugins in `lua/plugins.lua`\
+  ↳ install after adding with `:PS` or `:PackerSync`\
+  ↳ configure plugins in `after/plugin/<plugin-name>.lua`\
 
 ## Default Keymap <a name="keys"></a>
 
 ```
 <space> - leader
 
-<C-/> - comment lines (in a direction, <leader>-/ to comment current line)
+<leader>-/ - comment current line
+<C-/> - comment multiple lines (takes a motion in normal mode, comments selected in visual)
 
 <M-h> - focus left
 <M-j> - focus down
@@ -121,13 +119,13 @@ gi - go to implementation
 `<C-key>` = Control + key <br>
 `<M-key>` = Alt + key
 
-Press the leader key (space by default) to bring up whichkey help menu. <br>
-If you can't find what you're looking for here, its probably in there
-(or not implemented, in which case open an issue or PR).
+> Press the leader key (space by default) to bring up whichkey help menu. <br>
+> If you can't find what you're looking for here, its probably in there
+> (or you can add it there yourself!).
 
 ## Colorschemes <a name="colors"></a>
 
-You can try out the installed colorschemes with the keymap `<space>-t-c`. To
+You can try out the installed colorschemes with the keymap `<space>-f-c`. To
 make the change permanent, change it in `settings.lua`.
 
 Some themes may require some extra tweaking to get things looking the way you
@@ -142,57 +140,6 @@ If you add and tweak a colorscheme, put in a PR!
 
 - [packer](https://www.github.com/wbthomason/packer.nvim)
 
-**LSP**
-
-- [nvim-lspconfig](https://www.github.com/neovim/nvim-lspconfig)
-- [nvim-lsp-installer](https://github.com/williamboman/nvim-lsp-installer)
-- [ultisnips](https://www.github.com/SirVer/ultisnips)
-- [format.nvim](https://github.com/lukas-reineke/format.nvim)
-- [lsp_signature.nvim](https://github.com/ray-x/lsp_signature.nvim)
-- [null-ls.nvim](https://github.com/jose-elias-alvarez/null-ls.nvim)
-
-**Completion**
-
-- [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)\
-  ↳ + a bunch of extra sources
-
-**Navigation**
-
-- [nvim-tree.lua](https://www.github.com/kyazdani42/nvim-tree.lua)
-- [telescope](https://www.github.com/nvim-telescope/telescope.nvim)
-- [lightspeed.nvim](https://github.com/ggandor/lightspeed.nvim)
-- [Navigator.nvim](https://github.com/numToStr/Navigator.nvim)
-
-**Convenience**
-
-- [which-key](https://www.github.com/folke/which-key.nvim)
-- [nvim-autopairs](https://www.github.com/windwp/nvim-autopairs)
-- [nvim-comment](https://www.github.com/terrortylor/nvim-comment)
-- [nvim-bqf](https://www.github.com/kevinhwang91/nvim-bqf)
-- [markdown-preview](https://www.github.com/iamcco/markdown-preview.nvim)
-- [nvim-colorizer](https://www.github.com/norcalli/nvim-colorizer.lua)
-- [gitsigns](https://www.github.com/lewis6991/gitsigns.nvim)
-- [vim-surround](https://www.github.com/tpope/vim-surround)
-- [vim-repeat](https://www.github.com/tpope/vim-repeat)
-- [nvim-ts-autotag](https://www.github.com/windwp/nvim-ts-autotag)
-- [indent-blankline.nvim](https://www.github.com/lukas-reineke/indent-blankline.nvim)
-
-**Debuging**
-
-- [nvim-dap](https://www.github.com/mfussenegger/nvim-dap)
-- [nvim-dap-ui](https://www.github.com/rcarriga/nvim-dap-ui)
-- [nvim-dap-python](https://www.github.com/mfussenegger/nvim-dap-python)
-
-**Theming**
-
-- [nvim-web-devicons](https://www.github.com/kyazdani42/nvim-web-devicons)
-- [galaxyline](https://www.github.com/glepnir/galaxyline.nvim)
-- [barbar](https://www.github.com/romgrk/barbar.nvim)
-- [nvim-treesitter](https://www.github.com/nvim-treesitter/nvim-treesitter)
-- [dashboard-nvim](https://www.github.com/glepnir/dashboard-nvim)
-- [nvim-deus](https://www.github.com/theniceboy/nvim-deus)
-- [nord-vim](https://www.github.com/arcticicestudio/nord-vim)
-- [vim-two-firewatch](https://www.github.com/rakr/vim-two-firewatch)
-- [edge](https://www.github.com/sainnhe/edge)
-- [sonokai](https://www.github.com/sainnhe/sonokai)
-- [kanagawa](https://github.com/rebelot/kanagawa.nvim)
+> This list changes often, so best to just look in `lua/plugins.lua`.
+> Find the documentation for each at https://www.github.com/<author>/<plugin>
+> i.e. copy the string in `use` to fill the github link
