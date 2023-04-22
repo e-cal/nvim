@@ -77,7 +77,7 @@ along with native LSP for a blazingly fast editing experience.
 - Regular keymappings are defined in `lua/keymap.lua`
 - Leader-key keymappings in `plugins/whichkey.lua`
 - Configure language servers with [Mason](https://github.com/williamboman/mason.nvim)
-  - all LSP configuration in `lua/lsp.lua`
+  - all LSP configuration in `lua/lsp.lua`\
     ↳ i.e. language servers, cmp, formatters & other sources
 - Add and remove plugins in `lua/plugins.lua`\
   ↳ install after adding with `:PS` or `:PackerSync`\
