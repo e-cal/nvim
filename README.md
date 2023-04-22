@@ -4,8 +4,7 @@ A modern code-ready editing experience in neovim. Sane default setup so you can
 jump in and get productive right away. Simple config structure so you can get it
 working the way _you_ want with minimal hassle.
 
-Primarily uses lua-based plugins and configuration, with few exceptions,
-along with native LSP for a blazingly fast editing experience.
+Lua-based plugins and configuration, and native LSP for a _blazingly fast_ editing experience.
 
 <details>
 <summary>Screenshots</summary>
