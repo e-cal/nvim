@@ -85,8 +85,8 @@ along with native LSP for a blazingly fast editing experience.
   ↳ note that `plugins/` is actually a symlink to `after/plugin/`
 
 > NOTE: I have disabled having multiple buffers open (in a single window) in favor of harpoon ala @ThePrimeagen <br>
-> if you want to edit multiple buffers at a time and see the open tabs, change `SingleBuffer` to `false` in `settings.lua` <br>
-> you may also want to install [bufferline](https://github.com/akinsho/bufferline.nvim) / [barbar](https://github.com/romgrk/barbar.nvim) / something similar to style it
+> If you want to edit multiple buffers at a time and see the open tabs, change `SingleBuffer` to `false` in `settings.lua`. <br>
+> You may also want to install [bufferline](https://github.com/akinsho/bufferline.nvim) / [barbar](https://github.com/romgrk/barbar.nvim) / something similar to style it
 
 ## Default Keymap <a name="keys"></a>
 
