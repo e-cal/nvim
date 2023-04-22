@@ -1,18 +1,16 @@
 <h1>EVim</h1>
 
-A VSCode-like editing experience in neovim. Sane default setup for a pleasant
-drop-in editing experience, and logical configuration to support easy
-customization.
+A modern code-ready editing experience in neovim. Sane default setup so you can
+jump in and get productive right away. Simple config structure so you can get it
+working the way _you_ want with minimal hassle.
 
 Primarily uses lua-based plugins and configuration, with few exceptions,
 along with native LSP for a blazingly fast editing experience.
 
-**Requires neovim 0.5.0 or greater.**
-
 <details>
 <summary>Screenshots</summary>
 
-> Outdated
+> Bit outdated but close enough
 
 ![dashboard](https://user-images.githubusercontent.com/47398876/116168679-ff34f080-a6d0-11eb-918f-3d6db514d63b.png)
 
@@ -30,7 +28,7 @@ along with native LSP for a blazingly fast editing experience.
 
 ---
 
-<!-- [[toc]] -->
+**Table of contents**
 
 - [Installation](#install)
 - [Features](#features)
@@ -135,8 +133,6 @@ make the change permanent, change it in `settings.lua`.
 
 Some themes may require some extra tweaking to get things looking the way you
 want. The relevant files are `lua/colors.lua` and `plugins/barbar.lua`.
-
-If you add and tweak a colorscheme, put in a PR!
 
 ## Plugins <a name="plugins"></a>
 
