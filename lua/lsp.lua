@@ -9,6 +9,7 @@ local masoncfg = require("mason-lspconfig")
 local lsp_servers = {
 	"lua_ls",
 	"pyright",
+	"rust_analyzer",
 }
 
 require("mason").setup()
@@ -50,7 +51,7 @@ cmp.setup({
 		{ name = "nvim_lsp" },
 		{ name = "nvim_lua" },
 		{ name = "buffer", keyword_length = 3 },
-		{ name = "luasnip", keyword_length = 2 },
+		{ name = "luasnip" },
 		{ name = "latex_symbols" },
 	},
 	preselect = "none",
@@ -79,6 +80,11 @@ cmp.setup({
 			behavior = cmp.ConfirmBehavior.Insert,
 			select = false,
 		}),
+	},
+	snippet = {
+		expand = function(args)
+			require("luasnip").lsp_expand(args.body)
+		end,
 	},
 	formatting = {
 		fields = { "abbr", "kind" },

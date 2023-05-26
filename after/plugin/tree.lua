@@ -163,7 +163,7 @@ require("neo-tree").setup({
 		window = {
 			mappings = {
 				["<bs>"] = "navigate_up",
-				["."] = "set_root",
+				["l"] = "set_root",
 				["H"] = "toggle_hidden",
 				["/"] = "fuzzy_finder",
 				["D"] = "fuzzy_finder_directory",
@@ -193,7 +193,7 @@ require("neo-tree").setup({
 			mappings = {
 				["bd"] = "buffer_delete",
 				["<bs>"] = "navigate_up",
-				["."] = "set_root",
+				["l"] = "set_root",
 			},
 		},
 	},
