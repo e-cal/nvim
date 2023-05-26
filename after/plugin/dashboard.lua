@@ -53,5 +53,3 @@ dashboard.config.layout[3].val = 5
 dashboard.config.opts.noautocmd = true
 
 require("alpha").setup(dashboard.config)
-
-vim.api.nvim_buf_set_keymap(0, "n", "q", ":q<CR>", { noremap = true, silent = true })
