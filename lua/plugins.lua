@@ -17,6 +17,9 @@ end
 vim.cmd("autocmd BufWritePost init.lua PackerCompile")
 
 return require("packer").startup(function(use)
+	use("e-cal/askgpt")
+	-- use("/home/ecal/projects/askgpt")
+
 	-- Utils
 	use("wbthomason/packer.nvim")
 	use("nvim-lua/popup.nvim")
