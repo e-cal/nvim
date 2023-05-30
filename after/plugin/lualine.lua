@@ -31,6 +31,14 @@ local conditions = {
 		local gitdir = vim.fn.finddir(".git", filepath .. ";")
 		return gitdir and #gitdir > 0 and #gitdir < #filepath
 	end,
+	py_file = function()
+		return vim.bo.filetype == "python"
+	end,
+	_and = function(a, b)
+		return function()
+			return a() and b()
+		end
+	end,
 }
 
 local config = {
@@ -173,19 +181,13 @@ ins_left({
 }, true)
 
 --[[
-ins_right({
-	"branch",
-	icon = "",
-	color = { fg = colors.violet, gui = "bold" },
-})
-]]
 ins_left({
 	"branch",
 	icon = { "", color = { fg = colors.replace } },
 	color = { fg = colors.fg },
 	cond = conditions.hide_in_width,
 })
-
+]]
 --[[
 ins_right({
 	"diff",
@@ -222,6 +224,19 @@ ins_right({
 	-- 	color_info = { fg = colors.cyan },
 	-- },
 	cond = conditions.hide_in_width,
+})
+
+ins_right({
+	function()
+		local env = vim.env.VIRTUAL_ENV
+		if env ~= nil then
+			return "" .. env:match(".*/(.*)") .. ""
+		end
+		return ""
+	end,
+	color = { fg = colors.grey },
+	icon = { "", color = { fg = colors.grey } },
+	cond = conditions._and(conditions.hide_in_width, conditions.py_file),
 })
 
 ins_right({

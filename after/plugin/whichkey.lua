@@ -279,6 +279,7 @@ local vmappings = {
 		name = "format line",
 		q = "format line length",
 	},
+	["."] = { "<cmd>luafile %<cr>", "source file" },
 }
 
 wk.register(vmappings, {
