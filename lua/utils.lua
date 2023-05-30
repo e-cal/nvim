@@ -1,5 +1,10 @@
 local api = vim.api
 
+P = function(v)
+	print(vim.inspect(v))
+	return v
+end
+
 Utils = {}
 
 Utils.make_command = function(name, args)

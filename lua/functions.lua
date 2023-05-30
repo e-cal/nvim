@@ -178,3 +178,13 @@ OpenLast = function()
 	vim.cmd("e " .. vim.v.oldfiles[1])
 end
 Utils.make_command("OpenLast")
+
+AltTab = function()
+	-- if there is another tab, change tab
+	if vim.fn.tabpagenr("$") > 1 then
+		vim.cmd("tabnext")
+	else -- else go to alternate file
+		vim.cmd("e #")
+	end
+end
+Utils.make_command("AltTab")

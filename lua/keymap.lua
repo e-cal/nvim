@@ -9,7 +9,9 @@ map("n", "<M-k>", "<cmd>lua require('Navigator').up()<cr>")
 map("n", "<M-j>", "<cmd>lua require('Navigator').down()<cr>")
 
 -- Buffer navigation
-map("n", "<M-TAB>", "<C-^>")
+-- map("n", "<M-TAB>", "<C-^>")
+map("n", "<TAB>", "<C-w>Tgt")
+map("n", "<M-TAB>", "<cmd>AltTab<cr>")
 
 -- Scroll
 map("n", "<C-y>", "3<C-y>")
@@ -23,6 +25,8 @@ map("n", "<C-Left>", ":vert resize -2<CR>")
 
 -- LSP
 map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
+map("n", "?", "<cmd>Ask<CR>")
+map("v", "?", "o<cmd>Ask<CR>")
 map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
 map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
 map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>")
