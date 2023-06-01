@@ -48,4 +48,5 @@ endsnippet
 ]]
 return {
     s("cell", t("# %%")),
+    s("ifmain", t('if __name__ == "__main__":')),
 }

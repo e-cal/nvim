@@ -22,7 +22,11 @@ require("treesitter-context").setup({
 	mode = "cursor", -- Line used to calculate context. Choices: 'cursor', 'topline'
 	-- Separator between context and content. Should be a single character string, like '-'.
 	-- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
-	-- separator = "―",
-	separator = "⎯",
+	separator = "‾",
 	zindex = 20, -- The Z-index of the context window
 })
+
+local ctx_bg = Utils.get_hl("Normal", "bg")
+vim.cmd(string.format("hi TreesitterContext guibg=%s", ctx_bg))
+local ctx_ln = Utils.get_hl("Cursor", "bg")
+vim.cmd(string.format("hi TreesitterContextLineNumber guifg=%s", ctx_ln))
