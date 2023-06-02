@@ -218,9 +218,13 @@ local nmappings = {
 	},
 	j = {
 		name = "jupyter",
-		r = { "<plug>JupyterExecute", "execute cell" },
-		a = { "<plug>JupyterExecuteAll", "execute all cells" },
-		R = { "<plug>JupterRestart", "restart kernel" },
+		r = { "<plug>JupyterExecute", "run cell" },
+		a = { "<plug>JupyterExecuteAll", "run all cells" },
+		k = { "<plug>JupyterRestart", "restart kernel" },
+		R = {
+			"<cmd>call jupyter_ascending#restart()<cr><cmd>sleep 5<cr><cmd>call jupyter_ascending#execute_all()<cr>",
+			"restart & run all",
+		},
 	},
 	m = {
 		name = "markdown/tex",
