@@ -180,6 +180,7 @@ end
 Utils.make_command("OpenLast")
 
 AltTab = function()
+	vim.cmd("w")
 	-- if there is another tab, change tab
 	if vim.fn.tabpagenr("$") > 1 then
 		vim.cmd("tabnext")
