@@ -6,10 +6,12 @@ local masoncfg = require("mason-lspconfig")
 --                              Language servers
 -------------------------------------------------------------------------------
 
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 local lsp_servers = {
 	"lua_ls",
 	"pyright",
 	"rust_analyzer",
+	"gopls",
 }
 
 require("mason").setup()
@@ -19,7 +21,7 @@ local settings = {
 	lua_ls = {
 		Lua = {
 			diagnostics = {
-				globals = { "vim" },
+				globals = { "vim", "Util", "s", "t", "i" },
 			},
 		},
 	},
@@ -181,6 +183,7 @@ null_ls.setup({
 		null_ls.builtins.formatting.black,
 		null_ls.builtins.formatting.isort,
 		null_ls.builtins.formatting.stylua,
+		null_ls.builtins.formatting.gofmt,
 
 		null_ls.builtins.formatting.rustfmt.with({
 			extra_args = function(params)
