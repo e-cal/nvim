@@ -32,7 +32,11 @@ require("telescope").setup({
 	pickers = {
 		file_browser = { path_display = {} },
 		grep_string = { path_display = { "tail" } },
-		find_files = { hidden = true, no_ignore = true },
+		find_files = {
+			hidden = true,
+			no_ignore = true,
+			find_command = { "rg", "--files", "-L", "--iglob", "!.git", "--hidden", "--max-depth=4" },
+		},
 	},
 	extensions = {
 		fzy_native = {

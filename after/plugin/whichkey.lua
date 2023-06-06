@@ -54,7 +54,7 @@ local nmappings = {
 	b = { "m`<cmd>AerialToggle<cr>", "nav buffer" },
 	B = { "m`<cmd>AerialNavToggle<cr>", "nav buffer (popup)" },
 	N = { "<cmd>NnnExplorer<cr>", "nnn" },
-	s = { "<cmd>w<cr>", "save" },
+	s = { "<cmd>w!<cr>", "save" },
 	q = { "<cmd>wqa<cr>", "save & quit" },
 	Q = { "<cmd>qa!<cr>", "force quit" },
 	w = { "<cmd>close<cr>", "close window" },
@@ -64,10 +64,10 @@ local nmappings = {
 	v = { "<cmd>vert sp<cr>", "split right" },
 	V = { "<cmd>sp<cr>", "split below" },
 	n = { "<cmd>NewFile<cr>", "new buffer" },
-	R = { "<cmd>e<cr>", "reload buffer" },
+	r = { "<cmd>e<cr>", "reload buffer" },
+	R = { ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", "rename" },
 	i = { "<cmd>IndentBlanklineToggle<cr>", "toggle indent lines" },
 	u = { "<cmd>UndotreeToggle<cr>", "toggle undo tree" },
-	r = { ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", "rename" },
 	-- Quick surround
 	['"'] = { 'ciw"<C-r>""<esc>', '""' },
 	["'"] = { "ciw'<C-r>\"'<esc>", "''" },
@@ -126,7 +126,6 @@ local nmappings = {
 		["?"] = { "<cmd>Telescope filetypes<cr>", "filetypes" },
 		g = { "<cmd>Telescope git_branches<cr>", "git branches" },
 		b = { "<cmd>Telescope buffers<cr>", "buffers" },
-		f = { "<cmd>Telescope find_files<cr>", "files" },
 		h = { "<cmd>Telescope command_history<cr>", "cmd history" },
 		i = { "<cmd>Telescope media_files<cr>", "media" },
 		m = { "<cmd>Telescope marks<cr>", "marks" },
@@ -137,7 +136,7 @@ local nmappings = {
 			"text",
 		},
 		T = { "<cmd>Telescope live_grep<cr>", "exact text" },
-		d = {
+		f = {
 			"<cmd>TelescopeSearchDir<cr>",
 			"search dir",
 		},
@@ -284,6 +283,9 @@ local vmappings = {
 		q = "format line length",
 	},
 	["."] = { "<cmd>luafile %<cr>", "source file" },
+	["'"] = { 'c"""<cr><C-r>""""<esc>', '"""' },
+	['"'] = { 'c"""<cr><C-r>""""<esc>', '"""' },
+	["`"] = { 'c```<cr><C-r>"```<esc>', "```" },
 }
 
 wk.register(vmappings, {
