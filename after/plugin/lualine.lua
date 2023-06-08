@@ -1,18 +1,17 @@
 local lualine = require("lualine")
 
+-- =============================================================================
 local colors = {
 	normal = Utils.get_hl("Label", "fg"),
 	insert = Utils.get_hl("String", "fg"),
 	replace = Utils.get_hl("Number", "fg"),
 	visual = Utils.get_hl("Special", "fg"),
 	command = Utils.get_hl("Identifier", "fg"),
+	red = Utils.get_hl("Error", "fg"),
+	yellow = Utils.get_hl("WarningMsg", "fg"),
 	fg = Utils.get_hl("Normal", "foreground"),
 	bg = Utils.get_hl("ColorColumn", "bg"),
-	grey = Utils.get_hl("Comment", "fg"),
 }
-
--- =============================================================================
--- Adding modified colors (brightness)
 
 colors.bg_bright = Utils.brightness_modifier(colors.bg, 30)
 colors.bg_dark = Utils.brightness_modifier(colors.bg, -10)
@@ -48,7 +47,7 @@ local config = {
 		section_separators = "",
 		theme = {
 			normal = { c = { fg = colors.fg, bg = colors.bg } },
-			inactive = { c = { fg = colors.fg, bg = colors.bg_dark } },
+			inactive = { c = { fg = colors.fg, bg = colors.bg } },
 		},
 	},
 	sections = {
@@ -130,7 +129,7 @@ ins_inactive({
 
 ins_left({
 	function()
-		return ""
+		return "█"
 	end,
 	color = { fg = colors.bg_bright, bg = colors.bg },
 	padding = { left = 0, right = 0 },
@@ -162,6 +161,7 @@ ins_left({
 	padding = { left = 0, right = 0 },
 })
 
+-- TODO: could be baked into above i think
 ins_inactive({
 	get_filename,
 	cond = conditions.buffer_not_empty,
@@ -174,20 +174,21 @@ ins_inactive({
 
 ins_left({
 	function()
-		return ""
+		return "█"
 	end,
 	color = { fg = colors.bg_bright, bg = colors.bg },
 	padding = { left = 0, right = 0 },
 }, true)
 
---[[
 ins_left({
 	"branch",
-	icon = { "", color = { fg = colors.replace } },
-	color = { fg = colors.fg },
+	icon = {
+		"",
+		-- color = { fg = colors.replace },
+	},
+	color = { fg = colors.fg_dark },
 	cond = conditions.hide_in_width,
 })
-]]
 --[[
 ins_right({
 	"diff",
@@ -234,8 +235,8 @@ ins_right({
 		end
 		return ""
 	end,
-	color = { fg = colors.grey },
-	icon = { "", color = { fg = colors.grey } },
+	color = { fg = colors.fg_dark },
+	icon = "",
 	cond = conditions._and(conditions.hide_in_width, conditions.py_file),
 })
 
@@ -250,23 +251,61 @@ ins_right({
 		end
 		local msg = ""
 		for _, client in ipairs(clients) do
-			-- local filetypes = client.config.filetypes
-			-- if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-			-- return client.name
-			-- end
+			if client.name == "null-ls" then
+				goto continue
+			end
 			if msg == "" then
 				msg = client.name
 			else
-				msg = msg .. "/" .. client.name
+				msg = msg .. " + " .. client.name
 			end
+			::continue::
 		end
 		return msg
 	end,
 	icon = " ",
-	color = { fg = colors.grey },
+	color = { fg = colors.fg_dark },
 	cond = conditions.hide_in_width,
 })
 
+ins_right({
+	function()
+		return ""
+	end,
+	color = { fg = colors.insert },
+	padding = { left = 0, right = 0 },
+	cond = conditions.hide_in_width,
+})
+
+-- dumb folder icon needs a lot of symbols to look good
+ins_right({
+	function()
+		return " "
+	end,
+	color = { fg = colors.bg_bright, bg = colors.insert },
+	padding = { left = 0, right = 0 },
+	cond = conditions.hide_in_width,
+})
+
+ins_right({
+	function()
+		return "▌"
+	end,
+	color = { bg = colors.bg_bright, fg = colors.insert },
+	padding = { left = 0, right = 0 },
+	cond = conditions.hide_in_width,
+})
+
+ins_right({
+	function()
+		return vim.fn.getcwd():match("^.*/(.*)")
+	end,
+	-- icon = { " ", color = { fg = colors.bg_bright, bg = colors.insert } },
+	color = { fg = colors.insert, bg = colors.bg_bright },
+	cond = conditions.hide_in_width,
+})
+
+--[[
 ins_right({
 	function()
 		local line = vim.fn.line(".")
@@ -275,20 +314,30 @@ ins_right({
 	end,
 	color = { fg = colors.fg },
 })
-
+]]
+ins_right({
+	function()
+		return ""
+	end,
+	color = { fg = colors.normal, bg = colors.bg_bright },
+	padding = { left = 0, right = 0 },
+})
 ins_right({
 	function()
 		local cur = vim.fn.line(".")
 		local total = vim.fn.line("$")
-		if cur == 1 then
-			return "  ﬢ "
-		elseif cur == total then
-			return "   ﬠ "
-		else
-			return "(" .. math.floor(cur / total * 100) .. "%%)"
-		end
+		-- if cur == 1 then
+		-- 	return "   ﬢ "
+		-- elseif cur == total then
+		-- 	return "   ﬠ "
+		-- else
+		-- 	return string.format("%2d%%%%", math.floor(cur / total * 100))
+		-- end
+		return string.format("%2d%%%%", math.floor(cur / total * 100))
 	end,
-	color = { fg = colors.grey },
+	icon = { " ", color = { fg = colors.bg_bright, bg = colors.normal } },
+	color = { fg = colors.normal, bg = colors.bg_bright },
+	padding = { left = 0, right = 1 },
 })
 
 lualine.setup(config)
