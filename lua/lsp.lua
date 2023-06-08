@@ -21,7 +21,7 @@ local settings = {
 	lua_ls = {
 		Lua = {
 			diagnostics = {
-				globals = { "vim", "Util", "s", "t", "i" },
+				globals = { "vim", "Utils", "s", "t", "i" },
 			},
 		},
 	},

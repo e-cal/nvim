@@ -9,9 +9,8 @@ map("n", "<M-k>", "<cmd>lua require('Navigator').up()<cr>")
 map("n", "<M-j>", "<cmd>lua require('Navigator').down()<cr>")
 
 -- Buffer navigation
--- map("n", "<M-TAB>", "<C-^>")
-map("n", "<TAB>", "<C-w>Tgt")
 map("n", "<M-TAB>", "<cmd>AltTab<cr>")
+map("n", "<C-t>", "<C-w>Tgt") -- new tab
 
 -- Scroll
 map("n", "<C-y>", "3<C-y>")
