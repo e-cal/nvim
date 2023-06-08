@@ -9,13 +9,13 @@ local colors = {
 	command = Utils.get_hl("Identifier", "fg"),
 	red = Utils.get_hl("Error", "fg"),
 	yellow = Utils.get_hl("WarningMsg", "fg"),
-	fg = Utils.get_hl("Normal", "foreground"),
-	bg = Utils.get_hl("ColorColumn", "bg"),
+	fg = Utils.get_hl("Normal", "fg"),
+	bg = Utils.brightness_modifier(Utils.get_hl("Normal", "bg"), 20),
 }
 
 colors.bg_bright = Utils.brightness_modifier(colors.bg, 30)
 colors.bg_dark = Utils.brightness_modifier(colors.bg, -10)
-colors.fg_dark = Utils.brightness_modifier(colors.fg, -30)
+colors.fg_dark = Utils.brightness_modifier(colors.fg, -50)
 -- =============================================================================
 
 local conditions = {
