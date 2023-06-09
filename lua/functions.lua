@@ -185,7 +185,7 @@ AltTab = function()
 	if vim.fn.tabpagenr("$") > 1 then
 		vim.cmd("tabnext")
 	else -- else go to alternate file
-		vim.cmd("e #")
+		vim.cmd("silent! e #")
 	end
 end
 Utils.make_command("AltTab")
