@@ -9,8 +9,6 @@ if Colorscheme == "catppuccin" then
 end
 vim.cmd("colorscheme " .. Colorscheme)
 
--- vim.cmd("hi Visual guibg=#E5C07B guifg=black gui=none")
-
 if Colorscheme == "deus" then
 	vim.cmd("let g:deus_termcolors=256")
 	vim.cmd("hi MatchParen cterm=bold guifg=#F4852B guibg=#5C5C5C")
