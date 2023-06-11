@@ -85,6 +85,12 @@ return require("packer").startup(function(use)
 	use({ "iamcco/markdown-preview.nvim", run = ":call mkdp#util#install()" })
 	use("lervag/vimtex")
 	use("nvim-treesitter/nvim-treesitter-context")
+	use({
+		"norcalli/nvim-colorizer.lua",
+		config = function()
+			require("colorizer").setup()
+		end,
+	})
 
 	-- Debugging
 	use("mfussenegger/nvim-dap")

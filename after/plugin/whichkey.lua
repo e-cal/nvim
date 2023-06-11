@@ -64,8 +64,8 @@ local nmappings = {
 	v = { "<cmd>vert sp<cr>", "split right" },
 	V = { "<cmd>sp<cr>", "split below" },
 	n = { "<cmd>NewFile<cr>", "new buffer" },
-	r = { "<cmd>e<cr>", "reload buffer" },
-	R = { ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", "rename" },
+	R = { "<cmd>e<cr>", "reload buffer" },
+	rr = { ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", "rename" },
 	i = { "<cmd>IndentBlanklineToggle<cr>", "toggle indent lines" },
 	u = { "<cmd>UndotreeToggle<cr>", "toggle undo tree" },
 	-- Quick surround
