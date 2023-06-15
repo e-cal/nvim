@@ -180,7 +180,7 @@ end
 Utils.make_command("OpenLast")
 
 AltTab = function()
-	vim.cmd("w")
+	vim.cmd("silent! w")
 	-- if there is another tab, change tab
 	if vim.fn.tabpagenr("$") > 1 then
 		vim.cmd("tabnext")
@@ -189,3 +189,37 @@ AltTab = function()
 	end
 end
 Utils.make_command("AltTab")
+
+Header = function()
+	local commentstring = string.sub(vim.bo.commentstring, 1, -4)
+	local width = vim.bo.textwidth
+	local comment_line = commentstring .. " " .. string.rep("-", width - #commentstring - 1)
+	local line = vim.fn.getline(".")
+	if line == "" then
+		comment_line = commentstring .. " " .. string.rep("=", width - #commentstring - 1)
+		vim.fn.append(vim.fn.line(".") - 1, comment_line)
+	elseif
+		string.find(line, commentstring)
+		and string.find(vim.fn.getline(vim.fn.line(".") + 1), commentstring)
+		and string.find(vim.fn.getline(vim.fn.line(".") - 1), commentstring)
+	then
+		vim.fn.deletebufline(vim.fn.bufname(), vim.fn.line(".") - 1)
+		vim.fn.deletebufline(vim.fn.bufname(), vim.fn.line(".") + 1)
+		-- delete commentstring from start of this line
+		local rest = string.sub(line, #commentstring + 1)
+		vim.fn.setline(".", rest)
+		vim.cmd("left")
+	else
+		vim.fn.append(vim.fn.line(".") - 1, comment_line)
+		vim.fn.append(vim.fn.line("."), comment_line)
+		vim.cmd("center")
+
+		-- comment header
+
+		line = vim.fn.getline(".")
+		local rest = string.sub(line, 3)
+		local new_line = string.format("%s%s", commentstring, rest)
+		vim.fn.setline(".", new_line)
+	end
+end
+Utils.make_command("Header")
