@@ -68,6 +68,8 @@ local nmappings = {
 	rr = { ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", "rename" },
 	i = { "<cmd>IndentBlanklineToggle<cr>", "toggle indent lines" },
 	u = { "<cmd>UndotreeToggle<cr>", "toggle undo tree" },
+	H = { "<cmd>Header<cr>", "Header" },
+	y = { '"+y', "copy to clipboard" },
 	-- Quick surround
 	['"'] = { 'ciw"<C-r>""<esc>', '""' },
 	["'"] = { "ciw'<C-r>\"'<esc>", "''" },
@@ -263,6 +265,7 @@ wk.register(nmappings, {
 
 -- Visual mode
 local vmappings = {
+	y = { '"+y', "copy to clipboard" },
 	s = { "<cmd>Telescope grep_string<cr>", "search selection" },
 	r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "rename" },
 	p = { '"_dP', "paste no copy" },
