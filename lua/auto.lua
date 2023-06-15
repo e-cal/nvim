@@ -33,3 +33,10 @@ autocmd({ "Filetype" }, {
 	pattern = "python",
 	command = "setlocal indentkeys-=<:> indentkeys-=:",
 })
+
+augroup("conf", { clear = true })
+autocmd({ "BufEnter" }, {
+	group = "conf",
+	pattern = "*.conf",
+	command = "setlocal ft=conf",
+})
