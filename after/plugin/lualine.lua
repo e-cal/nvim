@@ -228,19 +228,6 @@ ins_right({
 })
 
 ins_right({
-	function()
-		local env = vim.env.VIRTUAL_ENV
-		if env ~= nil then
-			return "" .. env:match(".*/(.*)") .. ""
-		end
-		return ""
-	end,
-	color = { fg = colors.fg_dark },
-	icon = "",
-	cond = conditions._and(conditions.hide_in_width, conditions.py_file),
-})
-
-ins_right({
 	-- Lsp server name .
 	function()
 		local msg = "No LSP"
@@ -263,9 +250,22 @@ ins_right({
 		end
 		return msg
 	end,
-	icon = " ",
+	icon = "󱁤",
 	color = { fg = colors.fg_dark },
 	cond = conditions.hide_in_width,
+})
+
+ins_right({
+	function()
+		local env = vim.env.VIRTUAL_ENV
+		if env ~= nil then
+			return "" .. env:match(".*/(.*)") .. ")"
+		end
+		return ""
+	end,
+	color = { fg = colors.fg_dark },
+	icon = "(󰆧",
+	cond = conditions._and(conditions.hide_in_width, conditions.py_file),
 })
 
 ins_right({
@@ -278,31 +278,23 @@ ins_right({
 })
 
 -- dumb folder icon needs a lot of symbols to look good
-ins_right({
-	function()
-		return " "
-	end,
-	color = { fg = colors.bg_bright, bg = colors.insert },
-	padding = { left = 0, right = 0 },
-	cond = conditions.hide_in_width,
-})
-
-ins_right({
-	function()
-		return "▌"
-	end,
-	color = { bg = colors.bg_bright, fg = colors.insert },
-	padding = { left = 0, right = 0 },
-	cond = conditions.hide_in_width,
-})
+-- ins_right({
+-- 	function()
+-- 		return " "
+-- 	end,
+-- 	color = { fg = colors.bg_bright, bg = colors.insert },
+-- 	padding = { left = 0, right = 0 },
+-- 	cond = conditions.hide_in_width,
+-- })
 
 ins_right({
 	function()
 		return vim.fn.getcwd():match("^.*/(.*)")
 	end,
-	-- icon = { " ", color = { fg = colors.bg_bright, bg = colors.insert } },
+	icon = { " ", color = { fg = colors.bg_bright, bg = colors.insert } },
 	color = { fg = colors.insert, bg = colors.bg_bright },
 	cond = conditions.hide_in_width,
+	padding = { left = 0, right = 1 },
 })
 
 --[[
