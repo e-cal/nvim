@@ -6,6 +6,14 @@ autocmd({ "BufWinEnter", "BufRead", "BufNewFile" }, {
 	group = "global",
 	command = "setlocal formatoptions-=c formatoptions-=r formatoptions-=o formatoptions-=t",
 })
+
+autocmd({ "CursorMoved" }, {
+	group = "global",
+	callback = function()
+		vim.lsp.buf.clear_references()
+	end,
+})
+
 autocmd({ "VimLeave" }, {
 	group = "global",
 	callback = function()
