@@ -21,7 +21,7 @@ wk.setup({
 	icons = {
 		breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
 		separator = "->", -- symbol used between a key and it's label
-		group = "", -- symbol prepended to a group
+		group = "", -- symbol prepended to a group
 	},
 	window = {
 		border = "shadow", -- none, single, double, shadow
@@ -59,7 +59,8 @@ local nmappings = {
 	Q = { "<cmd>qa!<cr>", "force quit" },
 	w = { "<cmd>close<cr>", "close window" },
 	x = { "<cmd>bd<cr>", "close buffer" },
-	X = { "<cmd>bd!<cr>", "close buffer" },
+	-- X = { "<cmd>bd!<cr>", "close buffer" },
+	X = { "<cmd>!chmod +x %<cr>", "make executable" },
 	["."] = { "<cmd>luafile %<cr>", "source file" },
 	v = { "<cmd>vert sp<cr>", "split right" },
 	V = { "<cmd>sp<cr>", "split below" },
