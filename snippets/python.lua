@@ -13,4 +13,16 @@ return {
             "    exit(1)",
         })
     ),
+    s(
+        "argparse",
+        t({
+            "import argparse",
+            "",
+            "parser = argparse.ArgumentParser()",
+            'parser.add_argument("-a", "--arg", type=str, required=True)',
+            'parser.add_argument("-b", "--bool", action="store_true")',
+            'parser.add_argument("-c", "--count", type=int, default=1)',
+            "args = parser.parse_args()",
+        })
+    ),
 }

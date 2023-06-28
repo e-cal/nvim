@@ -1,30 +1,38 @@
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 
+--------------------------------------------------------------------------------
+--                                   Global                                   --
+--------------------------------------------------------------------------------
 augroup("global", { clear = true })
+-- format options
 autocmd({ "BufWinEnter", "BufRead", "BufNewFile" }, {
 	group = "global",
 	command = "setlocal formatoptions-=c formatoptions-=r formatoptions-=o formatoptions-=t",
 })
-
+-- yellow title on edit
+autocmd({ "BufReadPost", "BufWritePost", "BufEnter", "TextChanged", "TextChangedI" }, {
+	group = "global",
+	command = "UpdateWinbarHighlight",
+})
+-- clear references on cursor move
 autocmd({ "CursorMoved" }, {
 	group = "global",
 	callback = function()
 		vim.lsp.buf.clear_references()
 	end,
 })
+-- sync clipboard
+-- autocmd({ "VimLeave" }, {
+-- 	group = "global",
+-- 	callback = function()
+-- 		vim.fn.jobstart("xclip -selection clipboard -i | " .. vim.api.nvim_exec("getreg('+')", true), { detach = true })
+-- 	end,
+-- })
 
-autocmd({ "VimLeave" }, {
-	group = "global",
-	callback = function()
-		vim.fn.jobstart("xclip -selection clipboard -i | " .. vim.api.nvim_exec("getreg('+')", true), { detach = true })
-	end,
-})
-autocmd({ "BufReadPost", "BufWritePost", "BufEnter", "TextChanged", "TextChangedI" }, {
-	group = "global",
-	command = "UpdateWinbarHighlight",
-})
-
+--------------------------------------------------------------------------------
+--                                 Filetypes                                  --
+--------------------------------------------------------------------------------
 augroup("markdown", { clear = true })
 autocmd({ "FileType" }, {
 	group = "markdown",
@@ -47,4 +55,9 @@ autocmd({ "BufEnter" }, {
 	group = "conf",
 	pattern = "*.conf",
 	command = "setlocal ft=conf",
+})
+autocmd({ "BufEnter" }, {
+	group = "conf",
+	pattern = "*.yuck",
+	command = "setlocal ts=2 sw=2 sts=2",
 })
