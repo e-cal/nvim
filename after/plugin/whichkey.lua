@@ -60,7 +60,10 @@ local nmappings = {
 	w = { "<cmd>close<cr>", "close window" },
 	x = { "<cmd>bd<cr>", "close buffer" },
 	-- X = { "<cmd>bd!<cr>", "close buffer" },
-	X = { "<cmd>!chmod +x %<cr>", "make executable" },
+	X = {
+		':norm ggO#!/usr/bin/env <C-r>=&ft<cr><cr><cmd>w<cr><cmd>!chmod +x %; file=%; newfile="${file\\%.*}"; mv "$file" "$newfile"<cr><cmd>e %:r<cr>',
+		"make executable",
+	},
 	["."] = { "<cmd>luafile %<cr>", "source file" },
 	v = { "<cmd>vert sp<cr>", "split right" },
 	V = { "<cmd>sp<cr>", "split below" },
