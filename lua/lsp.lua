@@ -12,11 +12,13 @@ local lsp_servers = {
 	"pyright",
 	"rust_analyzer",
 	"gopls",
+	"clangd",
 }
 
 require("mason").setup()
 masoncfg.setup({ ensure_installed = lsp_servers })
 
+-- set server settings
 local settings = {
 	lua_ls = {
 		Lua = {
@@ -24,6 +26,14 @@ local settings = {
 				globals = { "vim", "Utils", "s", "t", "i" },
 			},
 		},
+	},
+}
+
+-- override server cmd
+local cmd = {
+	clangd = {
+		"clangd",
+		"--offset-encoding=utf-16",
 	},
 }
 
@@ -39,6 +49,9 @@ masoncfg.setup_handlers({
 		if settings[server_name] then
 			server_config["settings"] = settings[server_name]
 		end
+        if cmd[server_name] then
+            server_config["cmd"] = cmd[server_name]
+        end
 		config[server_name].setup(server_config)
 	end,
 })

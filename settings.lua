@@ -15,7 +15,7 @@ WrapLine = false
 LineNumbers = true
 RelativeLineNumbers = true
 
-FormatOnSave = true
+FormatOnSave = false
 
 HighlightCursorLine = true
 ColorColumn = 80

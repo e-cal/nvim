@@ -61,3 +61,10 @@ autocmd({ "BufEnter" }, {
 	pattern = "*.yuck",
 	command = "setlocal ts=2 sw=2 sts=2",
 })
+
+augroup("c", { clear = true })
+autocmd({ "BufEnter" }, {
+    group = "c",
+    pattern = "Makefile",
+    command = "setlocal noexpandtab",
+})
