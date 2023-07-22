@@ -9,6 +9,7 @@ map("n", "<M-k>", "<cmd>lua require('Navigator').up()<cr>")
 map("n", "<M-j>", "<cmd>lua require('Navigator').down()<cr>")
 
 -- Buffer navigation
+map("n", "<TAB>", "<cmd>AltTab<cr>")
 map("n", "<M-TAB>", "<cmd>AltTab<cr>")
 map("n", "<C-t>", "<C-w>Tgt") -- new tab
 
@@ -68,7 +69,7 @@ map("i", "!", "!<C-g>u")
 map("i", "?", "?<C-g>u")
 
 -- Fix tab
-map("i", "^[[Z", "<S-Tab>", { noremap = true, silent = true, nowait = true })
+-- map("i", "^[[Z", "<S-Tab>", { noremap = true, silent = true, nowait = true })
 
 -- ================================ VISUAL ====================================
 -- Indenting
