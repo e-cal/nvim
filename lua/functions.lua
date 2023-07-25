@@ -181,12 +181,13 @@ Utils.make_command("OpenLast")
 
 AltTab = function()
 	vim.cmd("silent! w")
-	-- if there is another tab, change tab
-	if vim.fn.tabpagenr("$") > 1 then
-		vim.cmd("tabnext")
-	else -- else go to alternate file
-		vim.cmd("silent! e #")
-	end
+    vim.cmd("silent! e #")
+	-- -- if there is another tab, change tab
+	-- if vim.fn.tabpagenr("$") > 1 then
+	-- 	vim.cmd("tabnext")
+	-- else -- else go to alternate file
+	-- 	vim.cmd("silent! e #")
+	-- end
 end
 Utils.make_command("AltTab")
 
@@ -223,3 +224,11 @@ Header = function()
 	end
 end
 Utils.make_command("Header")
+
+
+JupyniumStartSyncCurrentFile = function()
+    local fname = vim.fn.expand("%:r")
+    fname = string.gsub(fname, "^.*/", "")
+    vim.cmd("JupyniumStartSync " .. fname)
+end
+Utils.make_command("JupyniumStartSyncCurrentFile")

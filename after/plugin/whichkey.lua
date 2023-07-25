@@ -223,13 +223,14 @@ local nmappings = {
 	},
 	j = {
 		name = "jupyter",
-		r = { "<plug>JupyterExecute", "run cell" },
-		a = { "<plug>JupyterExecuteAll", "run all cells" },
-		k = { "<plug>JupyterRestart", "restart kernel" },
-		R = {
-			"<cmd>call jupyter_ascending#restart()<cr><cmd>sleep 5<cr><cmd>call jupyter_ascending#execute_all()<cr>",
-			"restart & run all",
-		},
+		l = { "<cmd>JupyniumStartAndAttachToServerInTerminal<cr><C-w>j<C-w>T<cmd>tabnext<cr>", "start server" },
+		s = { "<cmd>JupyniumStartSyncCurrentFile<cr>", "start sync" },
+		S = { "<cmd>JupyniumDownloadIpynb<cr>", "save notebook" },
+		r = { "<cmd>JupyniumExecuteSelectedCells<cr>", "run cell" },
+		c = { "<cmd>JupyniumClearSelectedCellsOutputs<CR>", "clear cell" },
+		k = { "<cmd>JupyniumKernelHover<CR>", "inspect cell" },
+		n = { "<cmd>lua require'jupynium.textobj'.goto_next_cell_separator()<cr>", "next cell" },
+		p = { "<cmd>lua require'jupynium.textobj'.goto_previous_cell_separator()<cr>", "prev cell" },
 	},
 	m = {
 		name = "markdown/tex",

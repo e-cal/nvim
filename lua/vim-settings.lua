@@ -58,3 +58,5 @@ vim.wo.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
 vim.g.formatOnSave = FormatOnSave
+
+vim.g.python3_host_prog = vim.fn.exepath("python")

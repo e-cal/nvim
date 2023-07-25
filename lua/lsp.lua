@@ -62,6 +62,7 @@ masoncfg.setup_handlers({
 
 cmp.setup({
 	sources = {
+        { name = "jupynium" },
 		{ name = "path" },
 		{ name = "nvim_lsp" },
 		{ name = "nvim_lua" },
