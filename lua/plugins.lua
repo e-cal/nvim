@@ -67,7 +67,6 @@ return require("packer").startup(function(use)
 			{ "nvim-telescope/telescope-file-browser.nvim" },
 		},
 	})
-	use("luukvbaal/nnn.nvim")
 	use("stevearc/aerial.nvim")
 
 	-- Convenience
