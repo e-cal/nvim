@@ -49,9 +49,9 @@ masoncfg.setup_handlers({
 		if settings[server_name] then
 			server_config["settings"] = settings[server_name]
 		end
-        if cmd[server_name] then
-            server_config["cmd"] = cmd[server_name]
-        end
+		if cmd[server_name] then
+			server_config["cmd"] = cmd[server_name]
+		end
 		config[server_name].setup(server_config)
 	end,
 })
@@ -62,7 +62,7 @@ masoncfg.setup_handlers({
 
 cmp.setup({
 	sources = {
-        { name = "jupynium" },
+		{ name = "jupynium" },
 		{ name = "path" },
 		{ name = "nvim_lsp" },
 		{ name = "nvim_lua" },
@@ -194,10 +194,12 @@ null_ls.setup({
 		null_ls.builtins.code_actions.refactoring,
 
 		-- Formatting
-		null_ls.builtins.formatting.black,
-		null_ls.builtins.formatting.isort,
-		null_ls.builtins.formatting.stylua,
-		null_ls.builtins.formatting.gofmt,
+        null_ls.builtins.formatting.stylua,
+        null_ls.builtins.formatting.gofmt,
+
+		null_ls.builtins.formatting.yapf.with({
+			extra_args = { "--style", "{based_on_style: facebook, join_multiple_lines: true, column_limit: 85}" },
+		}),
 
 		null_ls.builtins.formatting.rustfmt.with({
 			extra_args = function(params)
