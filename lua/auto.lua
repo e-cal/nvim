@@ -46,7 +46,7 @@ autocmd({ "FileType" }, {
 augroup("python", { clear = true })
 autocmd({ "Filetype" }, {
 	group = "python",
-	pattern = "python",
+	pattern = "*.python",
 	command = "setlocal indentkeys-=<:> indentkeys-=:",
 })
 
@@ -64,7 +64,14 @@ autocmd({ "BufEnter" }, {
 
 augroup("c", { clear = true })
 autocmd({ "BufEnter" }, {
-    group = "c",
-    pattern = "Makefile",
-    command = "setlocal noexpandtab",
+	group = "c",
+	pattern = "Makefile",
+	command = "setlocal noexpandtab",
+})
+
+augroup("web", { clear = true })
+autocmd({ "BufEnter" }, {
+	group = "web",
+	pattern = "*.html,*.astro" ,
+	command = "setlocal ts=2 sw=2 sts=2",
 })

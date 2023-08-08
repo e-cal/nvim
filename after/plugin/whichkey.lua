@@ -46,7 +46,9 @@ vim.g.mapleader = LeaderKey
 -- Normal mode
 local nmappings = {
 	[" "] = "which_key_ignore",
-	p = { "<cmd>Telescope find_files<cr>", "find files" },
+	["s"] = { "<nop>", "nop" },
+	["q"] = { "<nop>", "nop" },
+	f = { "<cmd>Telescope find_files<cr>", "find files" },
 	o = { "<cmd>OpenLast<cr>", "open last file" },
 	["/"] = { "<cmd>CommentToggle<cr>", "toggle comment" },
 	["?"] = { "<cmd>Neotree reveal<cr>", "find current file" },
@@ -54,25 +56,16 @@ local nmappings = {
 	b = { "m`<cmd>AerialToggle<cr>", "nav buffer" },
 	B = { "m`<cmd>AerialNavToggle<cr>", "nav buffer (popup)" },
 	N = { "<cmd>NnnExplorer<cr>", "nnn" },
-	s = { "<cmd>w!<cr>", "save" },
-	q = { "<cmd>wqa<cr>", "save & quit" },
-	Q = { "<cmd>qa!<cr>", "force quit" },
-	w = { "<cmd>close<cr>", "close window" },
-	x = { "<cmd>bd<cr>", "close buffer" },
-	-- X = { "<cmd>bd!<cr>", "close buffer" },
 	X = {
 		':norm ggO#!/usr/bin/env <C-r>=&ft<cr><cr><cmd>w<cr><cmd>!chmod +x %; file=%; newfile="${file\\%.*}"; mv "$file" "$newfile"<cr><cmd>e %:r<cr>',
 		"make executable",
 	},
 	["."] = { "<cmd>luafile %<cr>", "source file" },
-	v = { "<cmd>vert sp<cr>", "split right" },
-	V = { "<cmd>sp<cr>", "split below" },
 	n = { "<cmd>NewFile<cr>", "new buffer" },
 	R = { "<cmd>e<cr>", "reload buffer" },
 	rr = { ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", "rename" },
 	i = { "<cmd>IndentBlanklineToggle<cr>", "toggle indent lines" },
 	u = { "<cmd>UndotreeToggle<cr>", "toggle undo tree" },
-	H = { "<cmd>Header<cr>", "Header" },
 	y = { '"+y', "copy to clipboard" },
 	-- Quick surround
 	['"'] = { 'ciw"<C-r>""<esc>', '""' },
@@ -81,6 +74,10 @@ local nmappings = {
 	-- Harpoon
 	a = { "<cmd>lua require('harpoon.mark').add_file()<cr>", "add file" },
 	h = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "quick menu" },
+	j = { "<cmd>lua require('harpoon.ui').nav_file(1)<cr>", "which_key_ignore" },
+	k = { "<cmd>lua require('harpoon.ui').nav_file(2)<cr>", "which_key_ignore" },
+	l = { "<cmd>lua require('harpoon.ui').nav_file(3)<cr>", "which_key_ignore" },
+	[";"] = { "<cmd>lua require('harpoon.ui').nav_file(4)<cr>", "which_key_ignore" },
 	["+"] = { "<cmd>lua require('harpoon.ui').nav_file(1)<cr>", "which_key_ignore" },
 	["["] = { "<cmd>lua require('harpoon.ui').nav_file(2)<cr>", "which_key_ignore" },
 	["{"] = { "<cmd>lua require('harpoon.ui').nav_file(3)<cr>", "which_key_ignore" },
@@ -103,27 +100,14 @@ local nmappings = {
 		t = { "<cmd>DebugToggleUI<cr>", "toggle ui" },
 		e = { "<cmd>DebugEvaluate<cr>", "evaluate" },
 		l = { "<cmd>DebugListBreakpoints<cr>", "list breakpoints" },
-		f = { "<cmd>DebugFloatElement<cr>", "float ui element" },
-		p = {
-			name = "python",
-			m = { "<cmd>PythonTestMethod<cr>", "test method" },
-			c = { "<cmd>PythonTestClass<cr>", "test class" },
-		},
+		F = { "<cmd>DebugFloatElement<cr>", "float ui element" },
+        r = { "<cmd>DebugRestart<cr>", "restart" },
+        q = { "<cmd>DebugTerminate<cr><cmd>lua require'dapui'.close()<cr>", "quit" },
+        g = { "<cmd>DebugGoto<cr>", "goto" },
+        f = { "<cmd>DebugFocusFrame<cr>", "focus frame" },
+
 	},
 	F = {
-		name = "fold",
-		O = { "<cmd>set foldlevel=20<cr>", "open all" },
-		C = { "<cmd>set foldlevel=0<cr>", "close all" },
-		c = { "<cmd>foldclose<cr>", "close" },
-		o = { "<cmd>foldopen<cr>", "open" },
-		["1"] = { "<cmd>set foldlevel=1<cr>", "level1" },
-		["2"] = { "<cmd>set foldlevel=2<cr>", "level2" },
-		["3"] = { "<cmd>set foldlevel=3<cr>", "level3" },
-		["4"] = { "<cmd>set foldlevel=4<cr>", "level4" },
-		["5"] = { "<cmd>set foldlevel=5<cr>", "level5" },
-		["6"] = { "<cmd>set foldlevel=6<cr>", "level6" },
-	},
-	f = {
 		name = "find",
 		["."] = {
 			"<cmd>TelescopeSearchDotfiles<cr>",
@@ -137,11 +121,11 @@ local nmappings = {
 		m = { "<cmd>Telescope marks<cr>", "marks" },
 		M = { "<cmd>Telescope man_pages<cr>", "manuals" },
 		o = { "<cmd>Telescope vim_options<cr>", "options" },
-		t = {
+		T = {
 			'<cmd>Telescope grep_string search="" only_sort_text=true<cr>',
-			"text",
+			"text fuzzy",
 		},
-		T = { "<cmd>Telescope live_grep<cr>", "exact text" },
+		t = { "<cmd>Telescope live_grep<cr>", "text" },
 		f = {
 			"<cmd>TelescopeSearchDir<cr>",
 			"search dir",
@@ -152,7 +136,6 @@ local nmappings = {
 		c = { "<cmd>Telescope colorscheme<cr>", "colorschemes" },
 		q = { "<cmd>Telescope quickfix<cr>", "quickfix" },
 		s = { "<cmd>Telescope aerial<cr>", "symbols" },
-		n = { "<cmd>NnnPicker<cr>", "nnn" },
 	},
 	g = {
 		name = "git",
@@ -170,7 +153,7 @@ local nmappings = {
 		q = { "<cmd>Git setqflist<CR>", "quickfix" },
 		g = { "<cmd>lua LazygitToggle()<CR>", "lazygit" },
 	},
-	l = {
+	L = {
 		name = "lsp",
 		a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "code action" },
 		l = { "<cmd>lua require('lint').try_lint()<cr>", "lint" },
@@ -220,17 +203,6 @@ local nmappings = {
 				"list workspaces",
 			},
 		},
-	},
-	j = {
-		name = "jupyter",
-		l = { "<cmd>JupyniumStartAndAttachToServerInTerminal<cr><C-w>j<C-w>T<cmd>tabnext<cr>", "start server" },
-		s = { "<cmd>JupyniumStartSyncCurrentFile<cr>", "start sync" },
-		S = { "<cmd>JupyniumDownloadIpynb<cr>", "save notebook" },
-		r = { "<cmd>JupyniumExecuteSelectedCells<cr>", "run cell" },
-		c = { "<cmd>JupyniumClearSelectedCellsOutputs<CR>", "clear cell" },
-		k = { "<cmd>JupyniumKernelHover<CR>", "inspect cell" },
-		n = { "<cmd>lua require'jupynium.textobj'.goto_next_cell_separator()<cr>", "next cell" },
-		p = { "<cmd>lua require'jupynium.textobj'.goto_previous_cell_separator()<cr>", "prev cell" },
 	},
 	m = {
 		name = "markdown/tex",

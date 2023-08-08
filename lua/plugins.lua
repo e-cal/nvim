@@ -25,20 +25,28 @@ return require("packer").startup(function(use)
 	use("nvim-lua/popup.nvim")
 	use("nvim-lua/plenary.nvim")
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
-    use({
-      "nvim-treesitter/nvim-treesitter-textobjects",
-      after = "nvim-treesitter",
-      requires = "nvim-treesitter/nvim-treesitter",
-    })
+	use({
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		after = "nvim-treesitter",
+		requires = "nvim-treesitter/nvim-treesitter",
+	})
 
 	-- LSP
 	use("neovim/nvim-lspconfig")
 	use("jose-elias-alvarez/null-ls.nvim")
-	use("github/copilot.vim")
 	use({
 		"williamboman/mason.nvim",
 		run = ":MasonUpdate",
 		requires = { "williamboman/mason-lspconfig.nvim" },
+	})
+	-- use("github/copilot.vim")
+	use("zbirenbaum/copilot.lua")
+	use({
+		"zbirenbaum/copilot-cmp",
+		after = { "copilot.lua" },
+		config = function()
+			require("copilot_cmp").setup()
+		end,
 	})
 
 	-- Autocompletion
@@ -82,8 +90,6 @@ return require("packer").startup(function(use)
 	use("tpope/vim-surround")
 	use("tpope/vim-repeat")
 	use("lukas-reineke/indent-blankline.nvim")
-	use("kiyoon/jupynium.nvim")
-    -- use("/home/ecal/projects/jupynium.nvim")
 	use("mbbill/undotree")
 	use("kevinhwang91/nvim-bqf")
 	use("folke/trouble.nvim")
@@ -100,7 +106,6 @@ return require("packer").startup(function(use)
 	-- Debugging
 	use("mfussenegger/nvim-dap")
 	use("rcarriga/nvim-dap-ui")
-	use("mfussenegger/nvim-dap-python")
 
 	-- Theming
 	use("kyazdani42/nvim-web-devicons")

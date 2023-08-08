@@ -13,6 +13,7 @@ local lsp_servers = {
 	"rust_analyzer",
 	"gopls",
 	"clangd",
+	"astro",
 }
 
 require("mason").setup()
@@ -59,16 +60,15 @@ masoncfg.setup_handlers({
 -------------------------------------------------------------------------------
 --                              cmp Setup
 -------------------------------------------------------------------------------
-
 cmp.setup({
 	sources = {
-		{ name = "jupynium" },
-		{ name = "path" },
-		{ name = "nvim_lsp" },
-		{ name = "nvim_lua" },
-		{ name = "buffer", keyword_length = 3 },
-		{ name = "luasnip" },
-		{ name = "latex_symbols" },
+		{ name = "path", priority = 100 },
+		{ name = "latex_symbols", priority = 100 },
+		{ name = "copilot", priority = 90 },
+		{ name = "luasnip", priority = 90 },
+		{ name = "nvim_lsp", priority = 80 },
+		{ name = "nvim_lua", priority = 80 },
+		{ name = "buffer", priority = 50, keyword_length = 3 },
 	},
 	preselect = "none",
 	completion = {
@@ -114,6 +114,7 @@ cmp.setup({
 			})[entry.source.name]
 
 			vim_item.kind = ({
+				Copilot = "󰚩 Copilot",
 				Text = "󰉿 Text",
 				Method = "󰆧 Method",
 				Function = "󰊕 Function",
@@ -152,6 +153,9 @@ for type, icon in pairs(signs) do
 	local hl = "DiagnosticSign" .. type
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
+
+-- Copilot color
+vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = Utils.get_hl("Conditional", "fg") })
 
 -------------------------------------------------------------------------------
 --                              Null-ls Setup (formatters)
@@ -194,11 +198,21 @@ null_ls.setup({
 		null_ls.builtins.code_actions.refactoring,
 
 		-- Formatting
-        null_ls.builtins.formatting.stylua,
-        null_ls.builtins.formatting.gofmt,
+		null_ls.builtins.formatting.stylua,
+		null_ls.builtins.formatting.gofmt,
 
 		null_ls.builtins.formatting.yapf.with({
-			extra_args = { "--style", "{based_on_style: facebook, join_multiple_lines: true, column_limit: 85}" },
+			extra_args = {
+				-- https://github.com/google/yapf#knobs
+				"--style",
+				"{ \
+                    based_on_style: facebook, \
+                    column_limit: 85, \
+                    join_multiple_lines: true, \
+                    allow_split_before_default_or_named_assigns: false \
+                    allow_split_before_dict_value: false \
+                }",
+			},
 		}),
 
 		null_ls.builtins.formatting.rustfmt.with({

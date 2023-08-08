@@ -7,11 +7,21 @@ end
 
 Utils = {}
 
-Utils.make_command = function(name, args)
-	-- TODO: make this accept args so I can do `History n` and get the n recent files
-	local str = string.format("command! %s lua %s()", name, name)
+
+Utils.make_command = function(name, nargs)
+	local str
+	if nargs ~= nil then
+		str = string.format("command! -nargs=%s %s lua %s()", nargs, name, name)
+    else
+        str = string.format("command! %s lua %s()", name, name)
+	end
 	api.nvim_command(str)
 end
+
+-- Utils.make_command = function(name, args)
+-- 	local str = string.format("command! %s lua %s()", name, name)
+-- 	api.nvim_command(str)
+-- end
 
 Utils.make_augroups = function(definitions)
 	for group_name, definition in pairs(definitions) do
