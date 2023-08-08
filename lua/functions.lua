@@ -190,3 +190,14 @@ Print = function(t)
     print(vim.inspect(t))
 end
 Utils.make_command("Print")
+
+QuickfixToggle = function ()
+    for _, info in ipairs(vim.fn.getwininfo()) do
+        if info.quickfix == 1 then
+            vim.cmd("cclose")
+        else
+            vim.cmd("copen")
+        end
+    end
+end
+Utils.make_command("QuickfixToggle")

@@ -25,17 +25,26 @@ map("n", "<C-Left>", ":vert resize -2<CR>")
 
 -- LSP
 map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
-map("n", "?", "<cmd>Ask<CR>")
-map("v", "?", "<cmd>Ask<CR>")
 map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
 map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
 map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>")
 map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>")
-map("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
-map("i", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
+map("n", "<C-h>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
+map("i", "<C-h>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
 map("n", "<C-p>", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
 map("n", "<C-n>", "<cmd>lua vim.diagnostic.goto_next()<CR>")
 map("n", "<C-l>", "<cmd>lua vim.diagnostic.open_float()<CR>")
+
+map("n", "?", function()
+	vim.lsp.buf.workspace_symbol(vim.fn.expand("<cword>"))
+end)
+-- function()
+-- 	vim.lsp.buf.workspace_symbol()
+-- end,
+-- "document symbols",
+
+-- map("n", "?", "<cmd>Ask<CR>")
+map("v", "?", "<cmd>Ask<CR>")
 
 map("i", "<C-n>", "<Plug>(copilot-next)", { noremap = false })
 map("i", "<C-p>", "<Plug>(copilot-previous)", { noremap = false })
@@ -60,6 +69,10 @@ map("v", "H", "^")
 map("n", "L", "$")
 map("v", "L", "$")
 
+-- Quickfix
+map("n", "<C-k>", "<cmd>cprev<cr>")
+map("n", "<C-j>", "<cmd>cnext<cr>")
+
 -- ================================ INSERT ====================================
 
 -- Undo checkpoints
@@ -82,5 +95,3 @@ map("v", "J", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
 
 -- ================================ UNMAP =====================================
 map("n", "Q", "<NOP>")
-map("i", "<c-n>", "<NOP>")
-map("i", "<c-p>", "<NOP>")

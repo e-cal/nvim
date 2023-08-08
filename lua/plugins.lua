@@ -84,7 +84,7 @@ return require("packer").startup(function(use)
 
 	-- Convenience
 	use("folke/which-key.nvim")
-	use("windwp/nvim-autopairs")
+	-- use("windwp/nvim-autopairs")
 	use("terrortylor/nvim-comment")
 	use("lewis6991/gitsigns.nvim")
 	use("tpope/vim-surround")
