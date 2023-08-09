@@ -7,11 +7,16 @@ map("n", "<M-h>", "<cmd>lua require('Navigator').left()<cr>")
 map("n", "<M-l>", "<cmd>lua require('Navigator').right()<cr>")
 map("n", "<M-k>", "<cmd>lua require('Navigator').up()<cr>")
 map("n", "<M-j>", "<cmd>lua require('Navigator').down()<cr>")
+map("n", "<C-t>", "<cmd>silent! !toggleterm<cr>")
 
 -- Buffer navigation
-map("n", "<TAB>", "<cmd>AltTab<cr>")
-map("n", "<M-TAB>", "<cmd>AltTab<cr>")
-map("n", "<C-t>", "<C-w>Tgt") -- new tab
+local swap = function()
+    vim.cmd("silent! w")
+    vim.cmd("silent! e #")
+end
+map("n", "<TAB>", swap)
+map("n", "<M-TAB>", swap)
+
 
 -- Scroll
 map("n", "<C-y>", "3<C-y>")
@@ -38,21 +43,8 @@ map("n", "<C-l>", "<cmd>lua vim.diagnostic.open_float()<CR>")
 map("n", "?", function()
 	vim.lsp.buf.workspace_symbol(vim.fn.expand("<cword>"))
 end)
--- function()
--- 	vim.lsp.buf.workspace_symbol()
--- end,
--- "document symbols",
 
--- map("n", "?", "<cmd>Ask<CR>")
 map("v", "?", "<cmd>Ask<CR>")
-
-map("i", "<C-n>", "<Plug>(copilot-next)", { noremap = false })
-map("i", "<C-p>", "<Plug>(copilot-previous)", { noremap = false })
-map("i", "<C-x>", "<Plug>(copilot-dismiss)", { noremap = false })
-map("i", "<C-f>", "<Plug>(copilot-suggest)", { noremap = false })
-
-vim.g.copilot_no_tab_map = true
-map("i", "<C-j>", 'copilot#Accept("<CR>")', { silent = true, expr = true, noremap = true, replace_keycodes = false })
 
 -- Stay centered when jumping around
 map("n", "n", "nzzzv")
@@ -62,12 +54,6 @@ map("n", "<C-d>", "<C-d>zz")
 map("n", "<C-u>", "<C-u>zz")
 map("n", "<C-o>", "<C-o>zz")
 map("n", "<C-i>", "<C-i>zz")
-
--- H/L for beginning/end of line
-map("n", "H", "^")
-map("v", "H", "^")
-map("n", "L", "$")
-map("v", "L", "$")
 
 -- Quickfix
 map("n", "<C-k>", "<cmd>cprev<cr>")
