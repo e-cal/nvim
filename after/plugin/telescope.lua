@@ -33,9 +33,10 @@ require("telescope").setup({
 		file_browser = { path_display = {} },
 		grep_string = { path_display = { "tail" } },
 		find_files = {
-			hidden = true,
-			no_ignore = true,
-			find_command = { "rg", "--files", "-L", "--iglob", "!.git", "--hidden", "--max-depth=4" },
+			hidden = false,
+			no_ignore = false,
+			follow = true,
+			find_command = { "rg", "--files", "--max-depth=6" },
 		},
 	},
 	extensions = {
