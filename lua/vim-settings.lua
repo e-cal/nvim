@@ -5,15 +5,8 @@ vim.cmd("set shortmess+=c") -- Don't pass messages to |ins-completion-menu|.
 vim.cmd("set inccommand=split") -- Make substitution work in realtime
 vim.cmd("set shell=/usr/bin/zsh") -- Use zsh as shell
 
-vim.o.winbar = "[%{fnamemodify(expand('%'), ':~:.').']'}"
-
-if SingleBuffer then
-	vim.o.hidden = false
-	vim.o.showtabline = 0
-else
-	vim.o.hidden = true
-	vim.o.showtabline = 2
-end
+vim.o.hidden = true -- allow keeping unsaved buffers open
+vim.o.showtabline = SingleBuffer and 1 or 2
 
 vim.wo.wrap = WrapLine -- Don't wrap line
 vim.wo.number = LineNumbers
