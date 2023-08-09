@@ -53,12 +53,12 @@ require("neo-tree").setup({
 				added = "", -- or "✚", but this is redundant info if you use git_status_colors on the name
 				modified = "", -- or "", but this is redundant info if you use git_status_colors on the name
 				deleted = "",
-				renamed = "",
+				renamed = "󰁔",
 				-- Status type
 				untracked = "",
 				ignored = "◌",
 				unstaged = "",
-				staged = "",
+				staged = "󰈖",
 				conflict = "",
 			},
 		},
