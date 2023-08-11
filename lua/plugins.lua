@@ -13,10 +13,12 @@ if fn.empty(fn.glob(install_path)) > 0 then
 	execute("packadd packer.nvim")
 end
 
--- Autocompile
-vim.cmd("autocmd BufWritePost init.lua PackerCompile")
+local packer = require("packer")
+packer.init({
+	compile_path = vim.fn.stdpath("config") .. "/lua/plugins/packer_compiled.lua",
+})
 
-return require("packer").startup(function(use)
+return packer.startup(function(use)
 	use("e-cal/askgpt")
 	-- use("/home/ecal/projects/askgpt")
 
