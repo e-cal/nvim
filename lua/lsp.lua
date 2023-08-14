@@ -14,6 +14,7 @@ local lsp_servers = {
 	"gopls",
 	"clangd",
 	"astro",
+	"tsserver",
 }
 
 require("mason").setup()
@@ -200,6 +201,7 @@ null_ls.setup({
 		-- Formatting
 		null_ls.builtins.formatting.stylua,
 		null_ls.builtins.formatting.gofmt,
+		null_ls.builtins.formatting.shfmt,
 
 		null_ls.builtins.formatting.yapf.with({
 			extra_args = {
@@ -233,7 +235,8 @@ null_ls.setup({
 			end,
 		}),
 
-		null_ls.builtins.formatting.prettier,
-		null_ls.builtins.formatting.shfmt,
+		null_ls.builtins.formatting.prettier.with({
+			extra_args = { "--tab-width", "4" },
+		}),
 	},
 })
