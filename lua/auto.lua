@@ -72,11 +72,6 @@ autocmd({ "BufEnter" }, {
 augroup("web", { clear = true })
 autocmd({ "BufEnter" }, {
 	group = "web",
-	pattern = "*.html,*.astro" ,
-	command = "setlocal ts=2 sw=2 sts=2",
-})
-autocmd({ "BufEnter" }, {
-	group = "web",
 	pattern = "*.astro" ,
 	command = "setlocal commentstring=<!--%s-->",
 })
