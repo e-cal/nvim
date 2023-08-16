@@ -161,32 +161,34 @@ UpdateWinbarHighlight = function()
 end
 Utils.make_command("UpdateWinbarHighlight")
 
-History = function(num)
-	-- print the num most recent oldfiles
-	local oldfiles = vim.v.oldfiles
-	local start = #oldfiles - num + 1
-	if start < 1 then
-		start = 1
-	end
-	for i = start, #oldfiles do
-		local file = oldfiles[i]
-		print(file)
-	end
-end
-Utils.make_command("History")
-
 OpenLast = function()
 	vim.cmd("e " .. vim.v.oldfiles[1])
 end
 Utils.make_command("OpenLast")
 
-QuickfixToggle = function ()
-    for _, info in ipairs(vim.fn.getwininfo()) do
-        if info.quickfix == 1 then
-            vim.cmd("cclose")
-        else
-            vim.cmd("copen")
-        end
+StoreSession = function()
+    local dir = string.gsub(vim.fn.getcwd(), "/", "_")
+    vim.cmd("mksession! /home/ecal/.local/share/nvim/sessions/" .. dir)
+end
+Utils.make_command("StoreSession")
+
+RestoreSession = function()
+	local dir = string.gsub(vim.fn.getcwd(), "/", "_")
+    local fp = "/home/ecal/.local/share/nvim/sessions/" .. dir
+    local f = io.open(fp, "r")
+    if f ~= nil then
+        vim.cmd("source " .. fp )
     end
+end
+Utils.make_command("RestoreSession")
+
+QuickfixToggle = function()
+	for _, info in ipairs(vim.fn.getwininfo()) do
+		if info.quickfix == 1 then
+			vim.cmd("cclose")
+		else
+			vim.cmd("copen")
+		end
+	end
 end
 Utils.make_command("QuickfixToggle")

@@ -6,7 +6,7 @@ plugin settings: after/plugin/<plugin>.lua
 ------------------------------ GENERAL SETTINGS -------------------------------
 LeaderKey = " "
 
--- Colorschemes: deus, nord, two-firewatch, kanagawa, palenightfall, catppuccin
+-- Colorschemes: catppuccin, palenightfall, nord, two-firewatch
 Colorscheme = "catppuccin"
 
 SingleBuffer = true

@@ -116,10 +116,8 @@ return packer.startup(function(use)
 	use("goolord/alpha-nvim")
 
 	-- Colorschemes
-	use("theniceboy/nvim-deus")
 	use("arcticicestudio/nord-vim")
 	use("rakr/vim-two-firewatch")
-	use("rebelot/kanagawa.nvim")
 	use("JoosepAlviste/palenightfall.nvim")
 	use("catppuccin/nvim")
 end)

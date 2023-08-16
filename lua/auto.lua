@@ -22,13 +22,11 @@ autocmd({ "CursorMoved" }, {
 		vim.lsp.buf.clear_references()
 	end,
 })
--- sync clipboard
--- autocmd({ "VimLeave" }, {
--- 	group = "global",
--- 	callback = function()
--- 		vim.fn.jobstart("xclip -selection clipboard -i | " .. vim.api.nvim_exec("getreg('+')", true), { detach = true })
--- 	end,
--- })
+-- save session
+autocmd({ "VimLeave" }, {
+	group = "global",
+	command = "StoreSession",
+})
 
 --------------------------------------------------------------------------------
 --                                 Filetypes                                  --
@@ -72,7 +70,6 @@ autocmd({ "BufEnter" }, {
 augroup("web", { clear = true })
 autocmd({ "BufEnter" }, {
 	group = "web",
-	pattern = "*.astro" ,
+	pattern = "*.astro",
 	command = "setlocal commentstring=<!--%s-->",
 })
-
