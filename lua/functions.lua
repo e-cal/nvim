@@ -174,7 +174,11 @@ Utils.make_command("StoreSession")
 
 RestoreSession = function()
 	local dir = string.gsub(vim.fn.getcwd(), "/", "_")
-    local fp = "/home/ecal/.local/share/nvim/sessions/" .. dir
+    local session = "/home/ecal/.local/share/nvim/sessions/"
+    if vim.fn.isdirectory(session) == 0 then
+        vim.fn.mkdir(session, "p")
+    end
+    local fp = session .. dir
     local f = io.open(fp, "r")
     if f ~= nil then
         vim.cmd("source " .. fp )
