@@ -45,7 +45,7 @@ dap.configurations.c = {
 			local file = vim.fn.expand("%")
 			-- file without extension
 			local out = file:gsub("%..*", "")
-			local cmd = "gcc -g -o " .. out .. " " .. file
+			local cmd = "g++ -g -o " .. out .. " " .. file
 			vim.cmd("!" .. cmd)
 			return out
 		end,
@@ -65,6 +65,8 @@ dap.configurations.c = {
 		end,
 	},
 }
+
+dap.configurations.cpp = dap.configurations.c
 
 -- UI
 local dapui = require("dapui")
