@@ -62,6 +62,7 @@ local nmappings = {
 	["/"] = { "<cmd>CommentToggle<cr>", "toggle comment" },
 	["?"] = { "<cmd>Neotree reveal<cr>", "find current file" },
 	["."] = { "<cmd>luafile %<cr>", "source file" },
+	x = { "<cmd>!runc %<cr>", "runc" },
 	X = {
 		':norm ggO#!/usr/bin/env <C-r>=&ft<cr><cr><cmd>w<cr><cmd>!chmod +x %; file=%; newfile="${file\\%.*}"; mv "$file" "$newfile"<cr><cmd>e %:r<cr>',
 		"make executable",
