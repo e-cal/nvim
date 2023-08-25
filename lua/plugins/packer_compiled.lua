@@ -162,11 +162,6 @@ _G.packer_plugins = {
     path = "/home/ecal/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
     url = "https://github.com/lukas-reineke/indent-blankline.nvim"
   },
-  ["kanagawa.nvim"] = {
-    loaded = true,
-    path = "/home/ecal/.local/share/nvim/site/pack/packer/start/kanagawa.nvim",
-    url = "https://github.com/rebelot/kanagawa.nvim"
-  },
   ["lightspeed.nvim"] = {
     loaded = true,
     path = "/home/ecal/.local/share/nvim/site/pack/packer/start/lightspeed.nvim",
@@ -247,11 +242,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/ecal/.local/share/nvim/site/pack/packer/start/nvim-dap-ui",
     url = "https://github.com/rcarriga/nvim-dap-ui"
-  },
-  ["nvim-deus"] = {
-    loaded = true,
-    path = "/home/ecal/.local/share/nvim/site/pack/packer/start/nvim-deus",
-    url = "https://github.com/theniceboy/nvim-deus"
   },
   ["nvim-lspconfig"] = {
     loaded = true,

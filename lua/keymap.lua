@@ -11,12 +11,11 @@ map("n", "<C-t>", "<cmd>silent! !toggleterm<cr>")
 
 -- Buffer navigation
 local swap = function()
-    vim.cmd("silent! w")
-    vim.cmd("silent! e #")
+	vim.cmd("silent! w")
+	vim.cmd("silent! e #")
 end
 map("n", "<TAB>", swap)
 map("n", "<M-TAB>", swap)
-
 
 -- Scroll
 map("n", "<C-y>", "3<C-y>")

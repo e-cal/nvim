@@ -49,7 +49,7 @@ local nmappings = {
 	["s"] = { "<nop>", "nop" },
 	["q"] = { "<nop>", "nop" },
 	f = { "<cmd>Format<cr>", "format" },
-    p = { "<cmd>Telescope find_files<cr>", "find files" },
+	p = { "<cmd>Telescope find_files<cr>", "find files" },
 	e = { "<cmd>Neotree toggle<cr>", "explorer" },
 	S = { "m`<cmd>AerialNavToggle<cr>", "nav buffer (popup)" },
 	n = { "<cmd>NewFile<cr>", "new buffer" },
@@ -57,12 +57,13 @@ local nmappings = {
 	i = { "<cmd>IndentBlanklineToggle<cr>", "toggle indent lines" },
 	u = { "<cmd>UndotreeToggle<cr>", "toggle undo tree" },
 	y = { '"+y', "copy to clipboard" },
-	rr = { ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", "rename" },
+	r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "rename" },
+	rr = { ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", "regex rename" },
 	c = { "<cmd>QuickfixToggle<cr>", "toggle quickfix" },
 	["/"] = { "<cmd>CommentToggle<cr>", "toggle comment" },
 	["?"] = { "<cmd>Neotree reveal<cr>", "find current file" },
 	["."] = { "<cmd>luafile %<cr>", "source file" },
-	x = { "<cmd>!runc %<cr>", "runc" },
+    x = { "<cmd>!runc %<cr>", "runc" },
 	X = {
 		':norm ggO#!/usr/bin/env <C-r>=&ft<cr><cr><cmd>w<cr><cmd>!chmod +x %; file=%; newfile="${file\\%.*}"; mv "$file" "$newfile"<cr><cmd>e %:r<cr>',
 		"make executable",
@@ -74,10 +75,12 @@ local nmappings = {
 	-- Harpoon
 	a = { "<cmd>lua require('harpoon.mark').add_file()<cr>", "add file" },
 	h = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "quick menu" },
+	--
 	j = { "<cmd>lua require('harpoon.ui').nav_file(1)<cr>", "which_key_ignore" },
 	k = { "<cmd>lua require('harpoon.ui').nav_file(2)<cr>", "which_key_ignore" },
 	l = { "<cmd>lua require('harpoon.ui').nav_file(3)<cr>", "which_key_ignore" },
 	[";"] = { "<cmd>lua require('harpoon.ui').nav_file(4)<cr>", "which_key_ignore" },
+	--
 	["+"] = { "<cmd>lua require('harpoon.ui').nav_file(1)<cr>", "which_key_ignore" },
 	["["] = { "<cmd>lua require('harpoon.ui').nav_file(2)<cr>", "which_key_ignore" },
 	["{"] = { "<cmd>lua require('harpoon.ui').nav_file(3)<cr>", "which_key_ignore" },
