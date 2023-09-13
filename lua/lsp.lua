@@ -211,6 +211,7 @@ null_ls.setup({
                     based_on_style: facebook, \
                     column_limit: 85, \
                     join_multiple_lines: true, \
+                    indent_dictionary_value: false \
                     allow_split_before_default_or_named_assigns: false \
                     allow_split_before_dict_value: false \
                 }",
