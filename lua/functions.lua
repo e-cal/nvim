@@ -151,7 +151,7 @@ Utils.make_command("PreviewDoc")
 UpdateWinbarHighlight = function()
 	local bufnr = vim.api.nvim_get_current_buf()
 	local is_modified = vim.api.nvim_buf_get_option(bufnr, "modified")
-
+    
 	if is_modified then
 		vim.cmd("highlight WinBar guifg=#f4dbd6")
 	else

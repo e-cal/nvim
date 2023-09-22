@@ -19,7 +19,7 @@ packer.init({
 })
 
 return packer.startup(function(use)
-	use("e-cal/askgpt")
+	-- use("e-cal/askgpt")
 	-- use("/home/ecal/projects/askgpt")
 
 	-- Utils
