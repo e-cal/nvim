@@ -222,12 +222,13 @@ local nmappings = {
 		p = { "<cmd>PreviewDoc<cr>", "toggle preview" },
 		i = { "<cmd>PasteImg<cr>2b", "paste image" },
 		I = { "A  %_<esc>", "fix italics" },
-		C = {
+		Z = {
 			"<cmd>s/\\(\\s[a-z]\\)\\|^\\([a-z]\\)/\\U\\2\\U\\1/g<CR>",
 			"capitalize line",
 		},
 		s = { "1z=", "fix spelling" },
-		c = { "mz<cmd>CleanText<cr>'z", "clean text" },
+		z = { "mz<cmd>CleanText<cr>'z", "clean text" },
+        c = { "<cmd>silent !md2pdf %<cr>", "compile" },
 	},
 	W = {
 		name = "window",
