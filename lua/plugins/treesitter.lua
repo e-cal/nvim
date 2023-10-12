@@ -2,7 +2,7 @@ require("nvim-treesitter.configs").setup({
 	ensure_installed = "all",
 	ignore_install = { "haskell", "swift", "phpdoc" },
 	highlight = {
-		enable = true,
+		enable = false,
 		disable = { "markdown" },
 	},
 	indent = {
