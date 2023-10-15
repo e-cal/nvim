@@ -55,6 +55,7 @@ local nmappings = {
 	n = { "<cmd>NewFile<cr>", "new buffer" },
 	R = { "<cmd>e<cr>", "reload buffer" },
 	i = { "<cmd>IBLToggle<cr>", "toggle indent lines" },
+	H = { "<cmd>TSBufToggle highlight<cr>", "toggle ts highlight" },
 	u = { "<cmd>UndotreeToggle<cr>", "toggle undo tree" },
 	y = { '"+y', "copy to clipboard" },
 	r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "rename" },
