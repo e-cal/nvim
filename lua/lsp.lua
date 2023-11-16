@@ -214,6 +214,7 @@ null_ls.setup({
                     indent_dictionary_value: false \
                     allow_split_before_default_or_named_assigns: false \
                     allow_split_before_dict_value: false \
+                    coalesce_brackets: true \
                 }",
 			},
 		}),
