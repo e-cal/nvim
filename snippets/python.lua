@@ -19,8 +19,8 @@ return {
 			"import argparse",
 			"",
 			"parser = argparse.ArgumentParser()",
-			'parser.add_argument("-a", "--arg", type=str, required=True)',
-			'parser.add_argument("-b", "--bool", action="store_true")',
+			'parser.add_argument("-a", "--arg", type=str, required=True, help="")',
+			'parser.add_argument("-b", "--bool", action="store_true", help="")',
 			'parser.add_argument("-c", "--count", type=int, default=1)',
 			"args = parser.parse_args()",
 		})
