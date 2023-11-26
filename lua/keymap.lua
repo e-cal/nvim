@@ -15,7 +15,7 @@ local swap = function()
 	vim.cmd("silent! e #")
 end
 map("n", "<TAB>", swap)
-map("n", "<M-TAB>", swap)
+map("n", "<M-TAB>", "<cmd>lua require('harpoon.ui').nav_next()<cr>")
 
 -- Scroll
 map("n", "<C-y>", "3<C-y>")
