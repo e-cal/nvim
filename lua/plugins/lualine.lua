@@ -277,36 +277,30 @@ ins_right({
 	cond = conditions.hide_in_width,
 })
 
--- dumb folder icon needs a lot of symbols to look good
--- ins_right({
--- 	function()
--- 		return " "
--- 	end,
--- 	color = { fg = colors.bg_bright, bg = colors.insert },
--- 	padding = { left = 0, right = 0 },
--- 	cond = conditions.hide_in_width,
--- })
-
 ins_right({
 	function()
-		return vim.fn.getcwd():match("^.*/(.*)")
+		local cwd = vim.fn.getcwd()
+		local home = os.getenv("HOME")
+		local git_root = vim.fn.systemlist("git -C " .. cwd .. " rev-parse --show-toplevel")[1]
+
+		if vim.v.shell_error ~= 0 or git_root == "" then
+			return cwd:gsub(home, "~")
+		else
+			-- return cwd:gsub(git_root, git_root:match(".*/(.*)"))
+			local relative_path = cwd:sub(#git_root + 2)
+            local out_path = git_root:match(".*/(.*)")
+            if relative_path ~= "" then
+                out_path = out_path .. "/" .. relative_path
+            end
+            return out_path
+		end
 	end,
-	icon = { " ", color = { fg = colors.bg_bright, bg = colors.insert } },
+	icon = { "󰝰 ", color = { fg = colors.bg_bright, bg = colors.insert } },
 	color = { fg = colors.insert, bg = colors.bg_bright },
 	cond = conditions.hide_in_width,
 	padding = { left = 0, right = 1 },
 })
 
---[[
-ins_right({
-	function()
-		local line = vim.fn.line(".")
-		local col = vim.fn.virtcol(".")
-		return string.format(" %d:%-2d", line, col)
-	end,
-	color = { fg = colors.fg },
-})
-]]
 ins_right({
 	function()
 		return ""
@@ -314,20 +308,31 @@ ins_right({
 	color = { fg = colors.normal, bg = colors.bg_bright },
 	padding = { left = 0, right = 0 },
 })
+-- ins_right({
+-- 	function()
+-- 		local cur = vim.fn.line(".")
+-- 		local total = vim.fn.line("$")
+-- 		-- if cur == 1 then
+-- 		-- 	return "   ﬢ "
+-- 		-- elseif cur == total then
+-- 		-- 	return "   ﬠ "
+-- 		-- else
+-- 		-- 	return string.format("%2d%%%%", math.floor(cur / total * 100))
+-- 		-- end
+-- 		return string.format("%2d%%%%", math.floor(cur / total * 100))
+-- 	end,
+-- 	icon = { " ", color = { fg = colors.bg_bright, bg = colors.normal } },
+-- 	color = { fg = colors.normal, bg = colors.bg_bright },
+-- 	padding = { left = 0, right = 1 },
+-- })
+
 ins_right({
 	function()
-		local cur = vim.fn.line(".")
-		local total = vim.fn.line("$")
-		-- if cur == 1 then
-		-- 	return "   ﬢ "
-		-- elseif cur == total then
-		-- 	return "   ﬠ "
-		-- else
-		-- 	return string.format("%2d%%%%", math.floor(cur / total * 100))
-		-- end
-		return string.format("%2d%%%%", math.floor(cur / total * 100))
+		local line = vim.fn.line(".")
+		local col = vim.fn.virtcol(".")
+		return string.format("%d:%-2d", line, col)
 	end,
-	icon = { " ", color = { fg = colors.bg_bright, bg = colors.normal } },
+	icon = { "󰉶 ", color = { fg = colors.bg_bright, bg = colors.normal } },
 	color = { fg = colors.normal, bg = colors.bg_bright },
 	padding = { left = 0, right = 1 },
 })
