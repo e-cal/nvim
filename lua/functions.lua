@@ -42,7 +42,7 @@ end
 Utils.make_command("FormatOnSave")
 
 -- Paste images
-local paste_cmd = Markdown.imagePasteCommand
+local paste_cmd = "wl-paste -t image/png > %s"
 
 local create_dir = function(dir)
 	if vim.fn.isdirectory(dir) == 0 then
@@ -69,27 +69,17 @@ local get_name = function(start)
 end
 
 PasteImg = function()
-	create_dir(Markdown.imageDir)
+	create_dir("img")
 	local name = get_name(1)
-	local path = string.format(Markdown.imageDir .. "/%s.png", name)
+	local path = string.format("img/%s.png", name)
 	os.execute(string.format(paste_cmd, path))
 
 	local template
-	local size = Markdown.imageDefaultWidth
-	if Markdown.imagePasteSyntax == "html" then
-		if size ~= nil then
-			template = '<img src="%s" width=' .. size .. "px />"
-		else
-			template = '<img src="%s" />'
-		end
-	elseif Markdown.imagePasteSyntax == "obsidian" then
-		if size ~= nil then
-			template = "![[%s|" .. size .. "]]"
-		else
-			template = "![[%s]]"
-		end
+	local size = 600
+	if size ~= nil then
+		template = '<img src="%s" width=' .. size .. "px />"
 	else
-		template = Markdown.imagePasteSyntax
+		template = '<img src="%s" />'
 	end
 	local pasted_txt = string.format(template, path)
 	vim.cmd("normal a" .. pasted_txt)
@@ -98,7 +88,7 @@ Utils.make_command("PasteImg")
 
 DelLastImg = function()
 	local name = get_name(0)
-	local path = string.format(Markdown.imageDir .. "/%s.png", name)
+	local path = string.format("img/%s.png", name)
 	os.execute(string.format("rm %s", path))
 end
 Utils.make_command("DelLastImg")
@@ -151,7 +141,7 @@ Utils.make_command("PreviewDoc")
 UpdateWinbarHighlight = function()
 	local bufnr = vim.api.nvim_get_current_buf()
 	local is_modified = vim.api.nvim_buf_get_option(bufnr, "modified")
-    
+
 	if is_modified then
 		vim.cmd("highlight WinBar guifg=#f4dbd6")
 	else
@@ -167,22 +157,22 @@ end
 Utils.make_command("OpenLast")
 
 StoreSession = function()
-    local dir = string.gsub(vim.fn.getcwd(), "/", "_")
-    vim.cmd("mksession! /home/ecal/.local/share/nvim/sessions/" .. dir)
+	local dir = string.gsub(vim.fn.getcwd(), "/", "_")
+	vim.cmd("mksession! /home/ecal/.local/share/nvim/sessions/" .. dir)
 end
 Utils.make_command("StoreSession")
 
 RestoreSession = function()
 	local dir = string.gsub(vim.fn.getcwd(), "/", "_")
-    local session = "/home/ecal/.local/share/nvim/sessions/"
-    if vim.fn.isdirectory(session) == 0 then
-        vim.fn.mkdir(session, "p")
-    end
-    local fp = session .. dir
-    local f = io.open(fp, "r")
-    if f ~= nil then
-        vim.cmd("source " .. fp )
-    end
+	local session = "/home/ecal/.local/share/nvim/sessions/"
+	if vim.fn.isdirectory(session) == 0 then
+		vim.fn.mkdir(session, "p")
+	end
+	local fp = session .. dir
+	local f = io.open(fp, "r")
+	if f ~= nil then
+		vim.cmd("source " .. fp)
+	end
 end
 Utils.make_command("RestoreSession")
 

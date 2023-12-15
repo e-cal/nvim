@@ -22,11 +22,6 @@ vim.fn.sign_define("DapBreakpoint", {
 	numhl = "",
 })
 
-dap.defaults.fallback.external_terminal = {
-	command = Debugger.externalTerminal,
-	args = { "-e" },
-}
-
 dap.adapters.cppdbg = {
 	id = "cppdbg",
 	type = "executable",

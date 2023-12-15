@@ -41,7 +41,7 @@ wk.setup({
 	},
 })
 
-vim.g.mapleader = LeaderKey
+vim.g.mapleader = " "
 
 -- Normal mode
 local nmappings = {
@@ -51,7 +51,7 @@ local nmappings = {
 	v = { "<C-w>v", "vsplit" },
 	w = { "<C-w>q", "close split" },
 	f = { "<cmd>Format<cr>", "format" },
-	p = { "<cmd>Telescope find_files<cr>", "find files" },
+	F = { "<cmd>Telescope find_files<cr>", "find files" },
 	e = { "<cmd>Neotree toggle<cr>", "explorer" },
 	S = { "m`<cmd>AerialNavToggle<cr>", "nav buffer (popup)" },
 	n = { "<cmd>NewFile<cr>", "new buffer" },
@@ -60,7 +60,7 @@ local nmappings = {
 	H = { "<cmd>TSBufToggle highlight<cr>", "toggle ts highlight" },
 	u = { "<cmd>UndotreeToggle<cr>", "toggle undo tree" },
 	y = { '"+y', "copy to clipboard" },
-	rr = { ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", "regex rename" },
+	r = { ":e scp://ecal@graham.alliancecan.ca//home/ecal/projects/def-zhu2048/ecal/", "remote edit" },
 	c = { "<cmd>QuickfixToggle<cr>", "toggle quickfix" },
 	["/"] = { "<cmd>CommentToggle<cr>", "toggle comment" },
 	["?"] = { "<cmd>Neotree reveal<cr>", "find current file" },
