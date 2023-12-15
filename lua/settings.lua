@@ -6,21 +6,21 @@ vim.cmd("set inccommand=split") -- Make substitution work in realtime
 vim.cmd("set shell=/usr/bin/zsh") -- Use zsh as shell
 
 vim.o.hidden = true -- allow keeping unsaved buffers open
-vim.o.showtabline = SingleBuffer and 1 or 2
+vim.o.showtabline = 1
 
-vim.wo.wrap = WrapLine -- Don't wrap line
-vim.wo.number = LineNumbers
-vim.wo.relativenumber = RelativeLineNumbers
-vim.o.cursorline = HighlightCursorLine -- Highlight current line
-vim.o.splitbelow = true -- Hsplit below
-vim.o.splitright = true -- Vsplit to the right
-vim.cmd("set colorcolumn=" .. ColorColumn)
-vim.cmd("set textwidth=" .. ColorColumn)
-vim.o.hlsearch = HighlightAllSearchMatches -- Don't highlight search matches
-vim.o.ignorecase = SearchIgnoreCase -- Default case insensitive search
-vim.o.smartcase = true -- Case sensitive if search has a capital letter
-vim.o.mouse = "a" -- Enable mouse
-vim.o.scrolloff = AutoScroll -- Start scrolling before reaching the bottom
+vim.wo.wrap = false
+vim.wo.number = true
+vim.wo.relativenumber = true
+vim.o.cursorline = true
+vim.o.splitbelow = true
+vim.o.splitright = true
+vim.o.colorcolumn = 80
+vim.o.textwidth = 80
+vim.o.hlsearch = false
+vim.o.ignorecase = true
+vim.o.smartcase = true
+vim.o.mouse = "a"
+vim.o.scrolloff = 8 -- Start scrolling before reaching the bottom
 
 -- Use undofile instead of swap files for history
 vim.o.swapfile = false
@@ -28,13 +28,13 @@ vim.o.backup = false
 vim.o.undodir = os.getenv("HOME") .. "/.cache/nvim/undodir/"
 vim.o.undofile = true
 
-vim.cmd("set ts=" .. TabSize)
-vim.cmd("set sts=" .. TabSize)
-vim.cmd("set sw=" .. TabSize)
-vim.o.expandtab = UseSpaces -- Convert tabs to spaces
-vim.o.smartindent = true -- Makes indenting smart
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
+vim.o.softtabstop = 4
+vim.o.expandtab = true -- Convert tabs to spaces
+vim.o.smartindent = true
 vim.o.smarttab = true
-vim.o.autoindent = true -- Auto indent
+vim.o.autoindent = true
 vim.cmd("filetype plugin indent on")
 
 vim.o.fileencoding = "utf-8" -- File encoding

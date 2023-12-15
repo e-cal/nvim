@@ -1,5 +1,4 @@
-dofile(os.getenv("HOME") .. "/.config/nvim/settings.lua")
-require("vim-settings")
+require("settings")
 
 if vim.g.vscode then
     -- VSCode specific
