@@ -36,10 +36,11 @@ autocmd({ "FileType" }, {
 	group = "markdown",
 	pattern = "markdown",
 	callback = function()
-		vim.cmd("setlocal spell foldexpr=MarkdownFold() foldmethod=expr nofoldenable ts=2 sts=2 sw=2")
+		vim.cmd("setlocal spell")
 		vim.cmd('syntax match markdownIgnore "\\v\\w_\\w"')
 	end,
 })
+
 
 augroup("python", { clear = true })
 autocmd({ "Filetype" }, {

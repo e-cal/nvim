@@ -1,13 +1,22 @@
 require("nvim-treesitter.configs").setup({
-	ensure_installed = "all",
+	ensure_installed = { "c", "cpp", "python", "lua", "bash", "css", "markdown", "markdown_inline", "yuck" },
 	ignore_install = { "haskell", "swift", "phpdoc" },
 	highlight = {
 		enable = true,
-		disable = { "markdown" },
+		additional_vim_regex_highlighting = false, -- disable = { "markdown" },
+	},
+	incremental_selection = {
+		enable = true,
+		keymaps = {
+			init_selection = "gnn",
+			node_incremental = "grn",
+			scope_incremental = "grc",
+			node_decremental = "grm",
+		},
 	},
 	indent = {
 		enable = true,
-		disable = { "python" },
+		-- disable = { "python" },
 	},
 	autotag = { enable = true },
 	-- https://github.com/nvim-treesitter/nvim-treesitter-textobjects

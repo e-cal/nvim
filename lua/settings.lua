@@ -1,12 +1,14 @@
 -- Variable settings defined in ../settings.lua
-vim.cmd("syntax on") -- syntax highlighting
-vim.cmd("set iskeyword+=-") -- treat dash separated words as a word text object"
-vim.cmd("set shortmess+=c") -- Don't pass messages to |ins-completion-menu|.
-vim.cmd("set inccommand=split") -- Make substitution work in realtime
+vim.cmd("syntax on")              -- syntax highlighting
+vim.cmd("set iskeyword+=-")       -- treat dash separated words as a word text object"
+vim.cmd("set shortmess+=c")       -- Don't pass messages to |ins-completion-menu|.
+vim.cmd("set inccommand=split")   -- Make substitution work in realtime
 vim.cmd("set shell=/usr/bin/zsh") -- Use zsh as shell
 
-vim.o.hidden = true -- allow keeping unsaved buffers open
+vim.o.hidden = true               -- allow keeping unsaved buffers open
 vim.o.showtabline = 1
+
+vim.g.formatOnSave = false
 
 vim.wo.wrap = false
 vim.wo.number = true
@@ -36,20 +38,22 @@ vim.o.smartindent = true
 vim.o.smarttab = true
 vim.o.autoindent = true
 vim.cmd("filetype plugin indent on")
+vim.o.foldmethod = "expr"
+vim.o.foldexpr = "nvim_treesitter#foldexpr()"
+vim.o.nofoldenable = true
+vim.o.foldlevel = 99
 
-vim.o.fileencoding = "utf-8" -- File encoding
-vim.o.pumheight = 10 -- Popup menu height
-vim.o.cmdheight = 1 -- Space for cmd messages
-vim.o.laststatus = 2 -- Always display the status line
-vim.o.conceallevel = 0 -- Show `` in markdown files
-vim.o.showmode = false -- Hide the editing mode
-vim.o.writebackup = false -- This is recommended by coc
-vim.o.updatetime = 300 -- Faster completion
-vim.o.timeoutlen = 500 -- By default timeoutlen is 1000 ms
+vim.o.fileencoding = "utf-8"    -- File encoding
+vim.o.pumheight = 10            -- Popup menu height
+vim.o.cmdheight = 1             -- Space for cmd messages
+vim.o.laststatus = 2            -- Always display the status line
+vim.o.conceallevel = 0          -- Show `` in markdown files
+vim.o.showmode = false          -- Hide the editing mode
+vim.o.writebackup = false       -- This is recommended by coc
+vim.o.updatetime = 300          -- Faster completion
+vim.o.timeoutlen = 500          -- By default timeoutlen is 1000 ms
 vim.o.clipboard = "unnamedplus" -- Copy paste between vim and everything else
 vim.wo.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
-
-vim.g.formatOnSave = FormatOnSave
 
 vim.g.python3_host_prog = vim.fn.exepath("python")

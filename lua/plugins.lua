@@ -41,7 +41,6 @@ return packer.startup(function(use)
 		run = ":MasonUpdate",
 		requires = { "williamboman/mason-lspconfig.nvim" },
 	})
-	-- use("github/copilot.vim")
 	use("zbirenbaum/copilot.lua")
 	use({
 		"zbirenbaum/copilot-cmp",
@@ -83,10 +82,16 @@ return packer.startup(function(use)
 		},
 	})
 	use("stevearc/aerial.nvim")
+	use({
+		"luukvbaal/nnn.nvim",
+		config = function()
+			require("nnn").setup()
+		end,
+	})
 
 	-- Convenience
 	use("folke/which-key.nvim")
-	-- use("windwp/nvim-autopairs")
+	use("windwp/nvim-autopairs")
 	use("terrortylor/nvim-comment")
 	use("lewis6991/gitsigns.nvim")
 	use("tpope/vim-surround")
@@ -96,7 +101,6 @@ return packer.startup(function(use)
 	use("kevinhwang91/nvim-bqf")
 	use("folke/trouble.nvim")
 	use({ "iamcco/markdown-preview.nvim", run = ":call mkdp#util#install()" })
-	use("lervag/vimtex")
 	use("nvim-treesitter/nvim-treesitter-context")
 	use({
 		"norcalli/nvim-colorizer.lua",
@@ -105,19 +109,9 @@ return packer.startup(function(use)
 		end,
 	})
 
-	-- Debugging
-	use("mfussenegger/nvim-dap")
-	use("rcarriga/nvim-dap-ui")
-
 	-- Theming
 	use("kyazdani42/nvim-web-devicons")
 	use("nvim-lualine/lualine.nvim")
-	use("nvim-treesitter/playground")
 	use("goolord/alpha-nvim")
-
-	-- Colorschemes
-	use("arcticicestudio/nord-vim")
-	use("rakr/vim-two-firewatch")
-	use("JoosepAlviste/palenightfall.nvim")
 	use("catppuccin/nvim")
 end)
