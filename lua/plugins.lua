@@ -19,11 +19,19 @@ packer.init({
 })
 
 return packer.startup(function(use)
-	-- use("e-cal/askgpt")
-	-- use("/home/ecal/projects/askgpt")
+	use("wbthomason/packer.nvim")
+
+	use({
+		-- "/home/ecal/projects/askgpt.nvim",
+        "e-cal/askgpt.nvim",
+		config = function()
+			require("askgpt").setup()
+            vim.api.nvim_set_keymap("n", "<C-g>", "<cmd>Ask<cr>", { noremap = true, silent = true })
+            vim.api.nvim_set_keymap("v", "<C-g>", "<cmd>Ask<cr>", { noremap = true, silent = true })
+		end,
+	})
 
 	-- Utils
-	use("wbthomason/packer.nvim")
 	use("nvim-lua/popup.nvim")
 	use("nvim-lua/plenary.nvim")
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
