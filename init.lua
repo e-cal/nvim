@@ -7,4 +7,5 @@ if not vim.g.vscode then
 	require("functions")
 	require("auto")
 	require("lsp")
+	require("format")
 end

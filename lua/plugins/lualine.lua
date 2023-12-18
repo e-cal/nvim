@@ -288,11 +288,11 @@ ins_right({
 		else
 			-- return cwd:gsub(git_root, git_root:match(".*/(.*)"))
 			local relative_path = cwd:sub(#git_root + 2)
-            local out_path = git_root:match(".*/(.*)")
-            if relative_path ~= "" then
-                out_path = out_path .. "/" .. relative_path
-            end
-            return out_path
+			local out_path = git_root:match(".*/(.*)")
+			if relative_path ~= "" then
+				out_path = out_path .. "/" .. relative_path
+			end
+			return out_path
 		end
 	end,
 	icon = { "󰝰 ", color = { fg = colors.bg_bright, bg = colors.insert } },

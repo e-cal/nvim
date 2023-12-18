@@ -53,7 +53,12 @@ local plugins = {
 	},
 
 	-- Autocompletion
-	"hrsh7th/nvim-cmp",
+	{
+		"hrsh7th/nvim-cmp",
+		config = function()
+			require("plugins.cmp")
+		end,
+	},
 	"hrsh7th/cmp-nvim-lsp",
 	"hrsh7th/cmp-nvim-lua",
 	"hrsh7th/cmp-buffer",
