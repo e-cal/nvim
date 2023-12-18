@@ -7,7 +7,7 @@ vim.cmd(
 )
 
 require("ibl").setup({
-	enabled = IndentGuide,
+	enabled = false,
 	debounce = 200,
 	viewport_buffer = { min = 30, max = 500 },
 	indent = { char = "▎", highlight = "IBLChar", smart_indent_cap = true },

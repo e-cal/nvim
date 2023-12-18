@@ -38,12 +38,29 @@ end
 
 dashboard.section.buttons.val = {
 	button("LDR h", "󱡀  Harpoon  "),
-	button("LDR o", "󰙰  Open Last File  "),
-	button("LDR p", "  Find File  "),
-	button("LDR f r", "  History  "),
-	button("LDR f t", "󰺮  Find Text  "),
-	button("LDR f m", "  Bookmarks  "),
+	button("LDR o", "  Find File  "),
+	button("LDR t r", "  History  "),
+	button("LDR t t", "󰺮  Find Text  "),
+	button("LDR t m", "  Bookmarks  "),
 	button("LDR n", "  New File  "),
+	{
+		type = "button",
+		val = "󰅚  Quit",
+		on_press = function()
+			vim.cmd("qa")
+		end,
+		opts = {
+			position = "center",
+			text = "󰅚  Quit",
+			shortcut = "q",
+			keymap = { "n", "q", "<cmd>qa<cr>", { silent = true } },
+			cursor = 5,
+			width = 36,
+			align_shortcut = "right",
+			hl = "DashboardCenter",
+			hl_shortcut = "DashboardShortcut",
+		},
+	},
 }
 
 dashboard.section.footer.val = "https://github.com/e-cal/evim"
@@ -51,5 +68,6 @@ dashboard.section.footer.val = "https://github.com/e-cal/evim"
 dashboard.config.layout[1].val = vim.fn.max({ 2, vim.fn.floor(vim.fn.winheight(0) * 0.2) })
 dashboard.config.layout[3].val = 5
 dashboard.config.opts.noautocmd = true
+dashboard.config.keymap = {}
 
 require("alpha").setup(dashboard.config)
