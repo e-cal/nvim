@@ -1,45 +1,4 @@
 local wk = require("which-key")
-wk.setup({
-	plugins = {
-		marks = true, -- shows a list of your marks on ' and `
-		registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
-		-- the presets plugin, adds help for a bunch of default keybindings in Neovim
-		-- No actual key bindings are created
-		presets = {
-			operators = false, -- adds help for operators like d, y, ... and registers them for motion / text object completion
-			motions = false, -- adds help for motions
-			text_objects = true, -- help for text objects triggered after entering an operator
-			windows = true, -- default bindings on <c-w>
-			nav = true, -- misc bindings to work with windows
-			z = true, -- bindings for folds, spelling and others prefixed with z
-			g = true, -- bindings for prefixed with g
-		},
-	},
-	-- add operators that will trigger motion and text object completion
-	-- to enable all native operators, set the preset / operators plugin above
-	operators = { ["<C-_>"] = "Comments" },
-	icons = {
-		breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
-		separator = "->", -- symbol used between a key and it's label
-		group = "", -- symbol prepended to a group
-	},
-	window = {
-		border = "shadow", -- none, single, double, shadow
-		position = "bottom", -- bottom, top
-		margin = { 0, 0, 0, 0 }, -- extra window margin [top, left, bottom, right]
-		padding = { 1, 1, 1, 1 }, -- extra window padding [top, left, bottom, right]
-	},
-	layout = {
-		height = { min = 4, max = 10 }, -- min and max height of the columns
-		width = { min = 20, max = 300 }, -- min and max width of the columns
-		spacing = 5, -- spacing between columns
-	},
-	hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
-	show_help = true, -- show help message on the command line when the popup is visible
-	triggers_blacklist = {
-		i = { "^" },
-	},
-})
 
 vim.g.mapleader = " "
 
@@ -63,7 +22,7 @@ local nmappings = {
 	y = { '"+y', "copy to clipboard" },
 	r = { ":e scp://ecal@graham.alliancecan.ca//home/ecal/projects/def-zhu2048/ecal/", "remote edit" },
 	c = { "<cmd>QuickfixToggle<cr>", "toggle quickfix" },
-	["/"] = { "<cmd>CommentToggle<cr>", "toggle comment" },
+	["/"] = { "gcc", "comment line" },
 	["?"] = { "<cmd>Neotree reveal<cr>", "find current file" },
 	["."] = { "<cmd>luafile %<cr>", "source file" },
 	x = { "<cmd>!runc %<cr>", "runc" },
@@ -159,7 +118,7 @@ local nmappings = {
 		m = { "<cmd>Telescope marks<cr>", "marks" },
 		M = { "<cmd>Telescope man_pages<cr>", "manuals" },
 		o = { "<cmd>Telescope vim_options<cr>", "options" },
-		T = {
+		t = {
 			-- '<cmd>Telescope grep_string search="" only_sort_text=true<cr>',
 			function()
 				require("telescope.builtin").grep_string({
@@ -168,7 +127,7 @@ local nmappings = {
 			end,
 			"text fuzzy",
 		},
-		t = { "<cmd>Telescope live_grep<cr>", "text" },
+		T = { "<cmd>Telescope live_grep<cr>", "text" },
 		f = {
 			"<cmd>TelescopeSearchDir<cr>",
 			"search from",
@@ -247,7 +206,7 @@ wk.register(nmappings, {
 	prefix = "<leader>",
 	buffer = nil,
 	silent = true,
-	noremap = true,
+	noremap = false,
 	nowait = false,
 })
 
@@ -276,6 +235,7 @@ local vmappings = {
 	["'"] = { 'c"""<cr><C-r>""""<esc>', '"""' },
 	['"'] = { 'c"""<cr><C-r>""""<esc>', '"""' },
 	["`"] = { 'c```<cr><C-r>"```<esc>', "```" },
+	["/"] = { "gc", "line comment" },
 }
 
 wk.register(vmappings, {
@@ -283,6 +243,24 @@ wk.register(vmappings, {
 	prefix = "<leader>",
 	buffer = nil,
 	silent = true,
-	noremap = true,
+	noremap = false,
 	nowait = false,
+})
+
+wk.setup({
+	icons = {
+		breadcrumb = "»",
+		separator = "->",
+		group = "",
+	},
+	window = {
+		border = "shadow", -- none, single, double, shadow
+		position = "bottom", -- bottom, top
+		margin = { 0, 0, 0, 0 }, -- extra window margin [top, left, bottom, right]
+		padding = { 1, 1, 1, 1 }, -- extra window padding [top, left, bottom, right]
+	},
+	layout = {
+		height = { min = 4, max = 10 }, -- min and max height of the columns
+		width = { min = 20, max = 300 }, -- min and max width of the columns
+	},
 })

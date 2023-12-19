@@ -1,11 +1,11 @@
 -- Variable settings defined in ../settings.lua
-vim.cmd("syntax on")              -- syntax highlighting
-vim.cmd("set iskeyword+=-")       -- treat dash separated words as a word text object"
-vim.cmd("set shortmess+=c")       -- Don't pass messages to |ins-completion-menu|.
-vim.cmd("set inccommand=split")   -- Make substitution work in realtime
+vim.cmd("syntax on") -- syntax highlighting
+vim.cmd("set iskeyword+=-") -- treat dash separated words as a word text object"
+vim.cmd("set shortmess+=c") -- Don't pass messages to |ins-completion-menu|.
+vim.cmd("set inccommand=split") -- Make substitution work in realtime
 vim.cmd("set shell=/usr/bin/zsh") -- Use zsh as shell
 
-vim.o.hidden = true               -- allow keeping unsaved buffers open
+vim.o.hidden = true -- allow keeping unsaved buffers open
 vim.o.showtabline = 1
 
 vim.g.formatOnSave = false
@@ -16,8 +16,8 @@ vim.wo.relativenumber = true
 vim.o.cursorline = true
 vim.o.splitbelow = true
 vim.o.splitright = true
-vim.o.colorcolumn = 80
 vim.o.textwidth = 80
+vim.cmd("set colorcolumn=80")
 vim.o.hlsearch = false
 vim.o.ignorecase = true
 vim.o.smartcase = true
@@ -43,15 +43,15 @@ vim.o.foldexpr = "nvim_treesitter#foldexpr()"
 vim.o.nofoldenable = true
 vim.o.foldlevel = 99
 
-vim.o.fileencoding = "utf-8"    -- File encoding
-vim.o.pumheight = 10            -- Popup menu height
-vim.o.cmdheight = 1             -- Space for cmd messages
-vim.o.laststatus = 2            -- Always display the status line
-vim.o.conceallevel = 0          -- Show `` in markdown files
-vim.o.showmode = false          -- Hide the editing mode
-vim.o.writebackup = false       -- This is recommended by coc
-vim.o.updatetime = 300          -- Faster completion
-vim.o.timeoutlen = 500          -- By default timeoutlen is 1000 ms
+vim.o.fileencoding = "utf-8" -- File encoding
+vim.o.pumheight = 10 -- Popup menu height
+vim.o.cmdheight = 1 -- Space for cmd messages
+vim.o.laststatus = 2 -- Always display the status line
+vim.o.conceallevel = 0 -- Show `` in markdown files
+vim.o.showmode = false -- Hide the editing mode
+vim.o.writebackup = false -- This is recommended by coc
+vim.o.updatetime = 300 -- Faster completion
+vim.o.timeoutlen = 500 -- By default timeoutlen is 1000 ms
 vim.o.clipboard = "unnamedplus" -- Copy paste between vim and everything else
 vim.wo.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
@@ -63,4 +63,3 @@ vim.go.t_Co = "256"
 vim.go.background = "dark"
 vim.cmd('let &t_8f = "\\<Esc>[38;2;%lu;%lu;%lum"')
 vim.cmd('let &t_8b = "\\<Esc>[48;2;%lu;%lu;%lum"')
-

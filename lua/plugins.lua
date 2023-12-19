@@ -35,7 +35,7 @@ local plugins = {
 
 	-- LSP
 	"neovim/nvim-lspconfig",
-	"jose-elias-alvarez/null-ls.nvim",
+	"stevearc/conform.nvim",
 	{ "williamboman/mason.nvim", build = ":MasonUpdate" },
 	{ "williamboman/mason-lspconfig.nvim", dependencies = { "williamboman/mason.nvim" } },
 	{
@@ -181,6 +181,7 @@ local plugins = {
 		"numToStr/Comment.nvim",
 		config = function()
 			require("Comment").setup()
+			vim.api.nvim_set_keymap("v", "<C-_>", "gb", {})
 		end,
 	},
 	{
