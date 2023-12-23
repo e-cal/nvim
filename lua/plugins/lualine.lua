@@ -237,17 +237,16 @@ ins_right({
 			return msg
 		end
 		local msg = ""
+		local rename = { jedi_language_server = "jedi", ruff_lsp = "ruff" }
 		for _, client in ipairs(clients) do
-			if client.name == "null-ls" then
-				goto continue
-			end
 			if msg == "" then
-				msg = client.name
+				msg = rename[client.name] or client.name
 			else
-				msg = msg .. " + " .. client.name
+				msg = msg .. " + " .. (rename[client.name] or client.name)
 			end
 			::continue::
 		end
+		-- truncate msg to
 		return msg
 	end,
 	icon = "󱁤",

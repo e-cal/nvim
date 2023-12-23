@@ -10,6 +10,11 @@ autocmd({ "BufWinEnter", "BufRead", "BufNewFile" }, {
 	group = "global",
 	command = "setlocal formatoptions-=c formatoptions-=r formatoptions-=o formatoptions-=t",
 })
+-- lsp
+autocmd({ "BufEnter" }, {
+	group = "global",
+	command = "LspStart",
+})
 -- yellow title on edit
 autocmd({ "BufReadPost", "BufWritePost", "BufEnter", "TextChanged", "TextChangedI" }, {
 	group = "global",
@@ -41,12 +46,13 @@ autocmd({ "FileType" }, {
 	end,
 })
 
-
 augroup("python", { clear = true })
-autocmd({ "Filetype" }, {
+autocmd({ "BufEnter" }, {
 	group = "python",
-	pattern = "*.python",
-	command = "setlocal indentkeys-=<:> indentkeys-=:",
+	pattern = "*.py",
+	callback = function()
+		vim.cmd("setlocal indentkeys-=<:> indentkeys-=:")
+	end,
 })
 
 augroup("conf", { clear = true })
@@ -71,6 +77,6 @@ autocmd({ "BufEnter" }, {
 augroup("web", { clear = true })
 autocmd({ "BufEnter" }, {
 	group = "web",
-	pattern = "*.astro",
-	command = "setlocal commentstring=<!--%s-->",
+	pattern = { "*.js", "*.ts", "*.jsx", "*.tsx", "*.html", "*.css", "*.scss" },
+	command = "setlocal ts=2 sw=2 sts=2",
 })

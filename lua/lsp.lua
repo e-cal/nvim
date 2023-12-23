@@ -1,40 +1,69 @@
 local config = require("lspconfig")
 local masoncfg = require("mason-lspconfig")
 
--- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-local lsp_servers = {
-	"lua_ls",
-	"pyright",
-	"rust_analyzer",
-	"gopls",
-	"clangd",
-	"astro",
-	"tsserver",
-}
-
 require("mason").setup()
-masoncfg.setup({ ensure_installed = lsp_servers })
 
--- set server settings
-local settings = {
+masoncfg.setup({
+	-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+	ensure_installed = {
+		"lua_ls",
+		"pyright",
+		"ruff_lsp",
+		"clangd",
+		"tsserver",
+	},
+})
+
+local on_attach = function(client, bufnr) end
+
+local custom_config = {
 	lua_ls = {
-		Lua = {
-			diagnostics = {
-				globals = { "vim", "Utils", "s", "t", "i" },
+		settings = {
+			Lua = {
+				diagnostics = {
+					globals = { "vim", "Utils", "s", "t", "i" },
+				},
+			},
+		},
+	},
+	clangd = {
+		cmd = {
+			"clangd",
+			"--offset-encoding=utf-16",
+		},
+	},
+	ruff_lsp = {
+		settings = {
+			args = {
+				"--select=F,W6,E71,E72,E112,E113,E203,E272,E702,E703,E731,W191,W291,W293,UP039,E999",
+				-- "--select=ALL",
+				-- "--ignore=F401,E701,E401,E731",
+			},
+		},
+		on_attach = function(client, bufnr)
+			client.server_capabilities.hoverProvider = false
+		end,
+	},
+	pyright = {
+		capabilities = (function()
+			local capabilities = vim.lsp.protocol.make_client_capabilities()
+			capabilities.textDocument.publishDiagnostics.tagSupport.valueSet = { 2 }
+			return capabilities
+		end)(),
+		settings = {
+			python = {
+				analysis = {
+					useLibraryCodeForTypes = true,
+					diagnosticSeverityOverrides = {
+						reportUnusedVariable = "warning",
+                        reportGeneralTypeIssues = "warning",
+					},
+					typeCheckingMode = "basic",
+				},
 			},
 		},
 	},
 }
-
--- override server cmd
-local cmd = {
-	clangd = {
-		"clangd",
-		"--offset-encoding=utf-16",
-	},
-}
-
-local on_attach = function(client, bufnr) end
 
 masoncfg.setup_handlers({
 	function(server_name)
@@ -42,14 +71,55 @@ masoncfg.setup_handlers({
 			on_attach = on_attach,
 			capabilities = require("cmp_nvim_lsp").default_capabilities(),
 		}
-
-		if settings[server_name] then
-			server_config["settings"] = settings[server_name]
-		end
-		if cmd[server_name] then
-			server_config["cmd"] = cmd[server_name]
+		if custom_config[server_name] then
+			server_config = vim.tbl_extend("force", server_config, custom_config[server_name])
 		end
 		config[server_name].setup(server_config)
 	end,
 })
 
+--------------------------------------------------------------------------------
+--                                 Formatting                                 --
+--------------------------------------------------------------------------------
+local conform = require("conform")
+
+conform.setup({
+	formatters_by_ft = {
+		lua = { "stylua" },
+		sh = { "shfmt" },
+		python = { "yapf" },
+		javascript = { "prettier" },
+		typescript = { "prettier" },
+		html = { "prettier" },
+		css = { "prettier" },
+	},
+})
+
+conform.formatters.yapf = {
+	prepend_args = {
+		"--style",
+		"{ \
+            based_on_style: facebook, \
+            column_limit: 130, \
+            join_multiple_lines: true, \
+            indent_dictionary_value: false, \
+            allow_split_before_default_or_named_assigns: false, \
+            allow_split_before_dict_value: false, \
+            coalesce_brackets: true, \
+        }",
+	},
+}
+
+vim.api.nvim_create_user_command("Format", function(args)
+	local range = nil
+	if args.count ~= -1 then
+		local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
+		range = {
+			start = { args.line1, 0 },
+			["end"] = { args.line2, end_line:len() },
+		}
+	end
+	require("conform").format({ async = true, lsp_fallback = true, range = range }, function()
+		vim.cmd("write")
+	end)
+end, { range = true })

@@ -12,14 +12,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
-	{
-		"e-cal/askgpt.nvim",
-		config = function()
-			require("askgpt").setup()
-			vim.api.nvim_set_keymap("n", "<C-g>", "<cmd>Ask<cr>", { noremap = true, silent = true })
-			vim.api.nvim_set_keymap("v", "<C-g>", "<cmd>Ask<cr>", { noremap = true, silent = true })
-		end,
-	},
 	-- Utils
 	"nvim-lua/popup.nvim",
 	"nvim-lua/plenary.nvim",
@@ -35,9 +27,10 @@ local plugins = {
 
 	-- LSP
 	"neovim/nvim-lspconfig",
-	"stevearc/conform.nvim",
+    "stevearc/conform.nvim",
 	{ "williamboman/mason.nvim", build = ":MasonUpdate" },
 	{ "williamboman/mason-lspconfig.nvim", dependencies = { "williamboman/mason.nvim" } },
+
 	{
 		"zbirenbaum/copilot.lua",
 		config = function()
@@ -49,6 +42,24 @@ local plugins = {
 		dependencies = { "zbirenbaum/copilot.lua" },
 		config = function()
 			require("copilot_cmp").setup()
+		end,
+	},
+	--[[ 
+    {
+		"e-cal/askgpt.nvim",
+		config = function()
+			require("askgpt").setup()
+			vim.api.nvim_set_keymap("n", "<C-g>", "<cmd>Ask<cr>", { noremap = true, silent = true })
+			vim.api.nvim_set_keymap("v", "<C-g>", "<cmd>Ask<cr>", { noremap = true, silent = true })
+		end,
+		dir = "~/projects/askgpt.nvim",
+		dev = true,
+	}, 
+    ]]
+	{
+		"robitx/gp.nvim",
+		config = function()
+			require("plugins.gp")
 		end,
 	},
 
