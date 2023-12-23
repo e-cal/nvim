@@ -8,7 +8,7 @@ return {
 			"try:",
 			'    with open(os.path.expanduser("~/.cache/oai"), "r") as f:',
 			"        openai.api_key = f.read().strip()",
-			"except:",
+			"except FileNotFoundError:",
 			'    print("Error reading openai api key from ~/.cache/oai")',
 			"    exit(1)",
 		})
