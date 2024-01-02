@@ -33,11 +33,13 @@ local custom_config = {
 		},
 	},
 	ruff_lsp = {
-		settings = {
-			args = {
-				"--select=F,W6,E71,E72,E112,E113,E203,E272,E702,E703,E731,W191,W291,W293,UP039,E999",
-				-- "--select=ALL",
-				-- "--ignore=F401,E701,E401,E731",
+		init_options = {
+			settings = {
+				args = {
+					"--select=F,W6,E71,E72,E112,E113,E203,E272,E702,E703,E731,W191,W291,W293,UP039,E999",
+					-- "--select=ALL",
+					-- "--ignore=F401,E701,E401,E731",
+				},
 			},
 		},
 		on_attach = function(client, bufnr)
@@ -56,7 +58,7 @@ local custom_config = {
 					useLibraryCodeForTypes = true,
 					diagnosticSeverityOverrides = {
 						reportUnusedVariable = "warning",
-                        reportGeneralTypeIssues = "warning",
+						reportGeneralTypeIssues = "warning",
 					},
 					typeCheckingMode = "basic",
 				},
@@ -92,6 +94,7 @@ conform.setup({
 		typescript = { "prettier" },
 		html = { "prettier" },
 		css = { "prettier" },
+        markdown = { "prettier" },
 	},
 })
 
