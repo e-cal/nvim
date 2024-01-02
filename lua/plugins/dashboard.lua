@@ -45,13 +45,13 @@ dashboard.section.buttons.val = {
 	button("LDR n", "  New File  "),
 	{
 		type = "button",
-		val = "󰅚  Quit",
+		val = "󰩈  Quit",
 		on_press = function()
 			vim.cmd("qa")
 		end,
 		opts = {
 			position = "center",
-			text = "󰅚  Quit",
+			text = "󰩈  Quit",
 			shortcut = "q",
 			keymap = { "n", "q", "<cmd>qa<cr>", { silent = true } },
 			cursor = 5,

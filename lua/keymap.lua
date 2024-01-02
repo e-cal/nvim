@@ -45,6 +45,32 @@ map("n", ";", "<NOP>")
 -- Plugins --
 -------------
 if not vim.g.vscode then
+	-- Jump navigation
+	map("n", "s", function()
+		require("flash").jump()
+	end)
+	map("x", "s", function()
+		require("flash").jump()
+	end)
+	map("o", "s", function()
+		require("flash").jump()
+	end)
+	map("n", "S", function()
+		require("flash").treesitter()
+	end)
+	map("o", "r", function()
+		require("flash").remote()
+	end)
+	map("o", "R", function()
+		require("flash").treesitter_search()
+	end)
+	map("x", "R", function()
+		require("flash").treesitter_search()
+	end)
+	map("c", "<c-s>", function()
+		require("flash").toggle()
+	end)
+
 	-- Split navigation
 	map("n", "<M-h>", "<cmd>lua require('Navigator').left()<cr>")
 	map("n", "<M-l>", "<cmd>lua require('Navigator').right()<cr>")
@@ -74,5 +100,4 @@ if not vim.g.vscode then
 	map("n", "?", function()
 		vim.lsp.buf.workspace_symbol(vim.fn.expand("<cword>"))
 	end)
-
 end

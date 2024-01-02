@@ -11,6 +11,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+local opts = {}
 local plugins = {
 	-- Utils
 	"nvim-lua/popup.nvim",
@@ -27,7 +28,7 @@ local plugins = {
 
 	-- LSP
 	"neovim/nvim-lspconfig",
-    "stevearc/conform.nvim",
+	"stevearc/conform.nvim",
 	{ "williamboman/mason.nvim", build = ":MasonUpdate" },
 	{ "williamboman/mason-lspconfig.nvim", dependencies = { "williamboman/mason.nvim" } },
 
@@ -44,18 +45,6 @@ local plugins = {
 			require("copilot_cmp").setup()
 		end,
 	},
-	--[[ 
-    {
-		"e-cal/askgpt.nvim",
-		config = function()
-			require("askgpt").setup()
-			vim.api.nvim_set_keymap("n", "<C-g>", "<cmd>Ask<cr>", { noremap = true, silent = true })
-			vim.api.nvim_set_keymap("v", "<C-g>", "<cmd>Ask<cr>", { noremap = true, silent = true })
-		end,
-		dir = "~/projects/askgpt.nvim",
-		dev = true,
-	}, 
-    ]]
 	{
 		"robitx/gp.nvim",
 		config = function()
@@ -88,6 +77,7 @@ local plugins = {
 	"saadparwaiz1/cmp_luasnip",
 
 	-- Navigation
+    { "folke/flash.nvim", event = "VeryLazy" },
 	{
 		"nvim-neo-tree/neo-tree.nvim",
 		dependencies = {
@@ -96,53 +86,6 @@ local plugins = {
 		config = function()
 			require("plugins.neotree")
 		end,
-	},
-	{
-		"folke/flash.nvim",
-		event = "VeryLazy",
-		opts = {},
-		keys = {
-			{
-				"s",
-				mode = { "n", "x", "o" },
-				function()
-					require("flash").jump()
-				end,
-				desc = "Flash",
-			},
-			{
-				"S",
-				mode = { "n" },
-				function()
-					require("flash").treesitter()
-				end,
-				desc = "Flash Treesitter",
-			},
-			{
-				"r",
-				mode = "o",
-				function()
-					require("flash").remote()
-				end,
-				desc = "Remote Flash",
-			},
-			{
-				"R",
-				mode = { "o", "x" },
-				function()
-					require("flash").treesitter_search()
-				end,
-				desc = "Treesitter Search",
-			},
-			{
-				"<c-s>",
-				mode = { "c" },
-				function()
-					require("flash").toggle()
-				end,
-				desc = "Toggle Flash Search",
-			},
-		},
 	},
 	{
 		"numToStr/Navigator.nvim",
@@ -267,4 +210,4 @@ local plugins = {
 	},
 }
 
-require("lazy").setup(plugins, {})
+require("lazy").setup(plugins, opts)
