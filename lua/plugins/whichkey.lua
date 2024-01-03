@@ -1,7 +1,7 @@
 return {
 	{
 		"folke/which-key.nvim",
-        event = "VeryLazy",
+		event = "VeryLazy",
 		opts = {
 			icons = {
 				breadcrumb = "»",
@@ -42,8 +42,8 @@ return {
 				u = { "<cmd>UndotreeToggle<cr>", "toggle undo tree" },
 				y = { '"+y', "copy to clipboard" },
 				r = { ":e scp://ecal@graham.alliancecan.ca//home/ecal/projects/def-zhu2048/ecal/", "remote edit" },
-				c = { "<cmd>Ask<cr>", "chat" },
-				C = { "<cmd>QuickfixToggle<cr>", "toggle quickfix" },
+				C = { "<cmd>GpChatToggle popup<cr>", "chat" },
+				c = { "<cmd>QuickfixToggle<cr>", "toggle quickfix" },
 				["/"] = { "gcc", "comment line" },
 				["?"] = { "<cmd>Neotree reveal<cr>", "find current file" },
 				["."] = { "<cmd>luafile %<cr>", "source file" },
@@ -70,6 +70,43 @@ return {
 				["]"] = { "<cmd>lua require('harpoon.ui').nav_file(9)<cr>", "which_key_ignore" },
 				["*"] = { "<cmd>lua require('harpoon.ui').nav_file(10)<cr>", "which_key_ignore" },
 				-- Menus
+				t = {
+					name = "telescope",
+					["."] = {
+						"<cmd>TelescopeSearchDotfiles<cr>",
+						"config",
+					},
+					F = { "<cmd>Telescope filetypes<cr>", "filetypes" },
+					g = { "<cmd>Telescope git_branches<cr>", "git branches" },
+					b = { "<cmd>Telescope buffers<cr>", "buffers" },
+					H = { "<cmd>Telescope command_history<cr>", "cmd history" },
+					h = { "<cmd>Telescope help_tags<cr>", "help" },
+					i = { "<cmd>Telescope media_files<cr>", "media" },
+					m = { "<cmd>Telescope marks<cr>", "marks" },
+					M = { "<cmd>Telescope man_pages<cr>", "manuals" },
+					o = { "<cmd>Telescope vim_options<cr>", "options" },
+					t = {
+						-- '<cmd>Telescope grep_string search="" only_sort_text=true<cr>',
+						function()
+							require("telescope.builtin").grep_string({
+								search = vim.fn.input("Grep > "),
+							})
+						end,
+						"text fuzzy",
+					},
+					T = { "<cmd>Telescope live_grep<cr>", "text" },
+					f = {
+						"<cmd>TelescopeSearchDir<cr>",
+						"search from",
+					},
+					r = { "<cmd>Telescope oldfiles<cr>", "recents" },
+					p = { "<cmd>Telescope registers<cr>", "registers" },
+					e = { "<cmd>Telescope file_browser<cr>", "fuzzy explorer" },
+					c = { "<cmd>Telescope colorscheme<cr>", "colorschemes" },
+					q = { "<cmd>Telescope quickfix<cr>", "quickfix" },
+					s = { "<cmd>Telescope treesitter<cr>", "symbols" },
+					S = { "<cmd>Telescope aerial<cr>", "symbols (aerial)" },
+				},
 				l = {
 					name = "lsp",
 					a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "code action" },
@@ -125,65 +162,37 @@ return {
 						},
 					},
 				},
-				t = {
-					name = "telescope",
-					["."] = {
-						"<cmd>TelescopeSearchDotfiles<cr>",
-						"config",
-					},
-					F = { "<cmd>Telescope filetypes<cr>", "filetypes" },
-					g = { "<cmd>Telescope git_branches<cr>", "git branches" },
-					b = { "<cmd>Telescope buffers<cr>", "buffers" },
-					H = { "<cmd>Telescope command_history<cr>", "cmd history" },
-					h = { "<cmd>Telescope help_tags<cr>", "help" },
-					i = { "<cmd>Telescope media_files<cr>", "media" },
-					m = { "<cmd>Telescope marks<cr>", "marks" },
-					M = { "<cmd>Telescope man_pages<cr>", "manuals" },
-					o = { "<cmd>Telescope vim_options<cr>", "options" },
-					t = {
-						-- '<cmd>Telescope grep_string search="" only_sort_text=true<cr>',
-						function()
-							require("telescope.builtin").grep_string({
-								search = vim.fn.input("Grep > "),
-							})
-						end,
-						"text fuzzy",
-					},
-					T = { "<cmd>Telescope live_grep<cr>", "text" },
-					f = {
-						"<cmd>TelescopeSearchDir<cr>",
-						"search from",
-					},
-					r = { "<cmd>Telescope oldfiles<cr>", "recents" },
-					p = { "<cmd>Telescope registers<cr>", "registers" },
-					e = { "<cmd>Telescope file_browser<cr>", "fuzzy explorer" },
-					c = { "<cmd>Telescope colorscheme<cr>", "colorschemes" },
-					q = { "<cmd>Telescope quickfix<cr>", "quickfix" },
-					s = { "<cmd>Telescope treesitter<cr>", "symbols" },
-					S = { "<cmd>Telescope aerial<cr>", "symbols (aerial)" },
-				},
 				g = {
-					name = "gpt",
-					n = { "<cmd>GpChatNew<cr>", "new chat" },
-					-- t = { "<cmd>GpChatToggle<cr>", "toggle split" },
-					-- tv = { "<cmd>GpChatToggle vsplit<cr>", "toggle vertical" },
-					f = { "<cmd>GpChatFinder<cr>", "find chat" },
-					s = { "<cmd>GpChatToggle split<cr>", "toggle split" },
-					v = { "<cmd>GpChatToggle vsplit<cr>", "toggle vsplit" },
-					r = { "<cmd>GpRewrite<cr>", "inline rewrite" },
-					a = { "<cmd>GpAppend<cr>", "append" },
-					b = { "<cmd>GpPrepend<cr>", "prepend" },
-					p = { "<cmd>GpPopup<cr>", "popup" },
+					name = "git/gpt",
+
+					-- git
+					d = { "<cmd>Git preview_hunk<cr>", "preview hunk diff" },
+					dd = { "<cmd>Git diffthis<CR>", "file diff" },
+					D = { "<cmd>Git toggle_word_diff<CR>", "word diff" },
+					r = { "<cmd>Git reset_hunk<CR>", "reset hunk" },
+					ra = { "<cmd>Git reset_buffer<CR>", "reset buffer" },
+					n = { "<cmd>Git next_hunk<CR>", "next hunk" },
+					p = { "<cmd>Git prev_hunk<CR>", "prev hunk" },
+					b = { "<cmd>Git blame_line<CR>", "blame" },
+
+					-- gpt
+					N = { "<cmd>GpChatNew<cr>", "new chat" },
+					q = { "<cmd>GpStop<cr>", "stop" },
+					-- f = { "<cmd>GpChatFinder<cr>", "find chat" },
+					o = { "<cmd>TelescopeSearchChats<cr>", "find chat" },
+					-- s = { "<cmd>GpChatToggle split<cr>", "toggle split" },
+					R = { "<cmd>GpRewrite<cr>", "inline rewrite" },
 					g = {
-						name = "generate into",
+						name = "generate",
 						p = { "<cmd>GpPopup<cr>", "popup" },
 						n = { "<cmd>GpNew<cr>", "buffer" },
 						s = { "<cmd>GpEnew<cr>", "split" },
 						v = { "<cmd>GpVnew<cr>", "vsplit" },
+						a = { "<cmd>GpAppend<cr>", "append" },
+						b = { "<cmd>GpPrepend<cr>", "prepend" },
 					},
 					x = { "<cmd>GpContext<cr>", "toggle context" },
-					q = { "<cmd>GpStop<cr>", "stop" },
-					N = { "<cmd>GpNextAgent<cr>", "Next Agent" },
+					[">"] = { "<cmd>GpNextAgent<cr>", "Next Agent" },
 					w = {
 						name = "whisper",
 						w = { "<cmd>GpWhisper<cr>", "whisper" },
@@ -195,22 +204,50 @@ return {
 						n = { "<cmd>GpWhisperNew<cr>", "new buffer" },
 						v = { "<cmd>GpWhisperVnew<cr>", "vsplit" },
 					},
-				},
-				G = {
-					name = "git",
-					b = { "<cmd>Git blame_line<CR>", "blame" },
-					d = { "<cmd>Git preview_hunk<cr>", "preview hunk diff" },
-					w = { "<cmd>Git toggle_word_diff<CR>", "word diff" },
-					D = { "<cmd>Git diffthis<CR>", "file diff" },
-					n = { "<cmd>Git next_hunk<CR>", "next hunk" },
-					p = { "<cmd>Git prev_hunk<CR>", "prev hunk" },
-					r = { "<cmd>Git reset_hunk<CR>", "reset hunk" },
-					R = { "<cmd>Git reset_buffer<CR>", "reset buffer" },
-					a = { "<cmd>Git stage_hunk<CR>", "stage hunk" },
-					A = { "<cmd>Git stage_buffer<cr>", "stage buffer" },
-					u = { "<cmd>Git undo_stage_hunk<CR>", "undo stage hunk" },
-					q = { "<cmd>Git setqflist<CR>", "quickfix" },
-					g = { "<cmd>lua LazygitToggle()<CR>", "lazygit" },
+					s = {
+						function()
+							local chat_bufnr = -1
+							for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+								local name = vim.api.nvim_buf_get_name(bufnr)
+								if string.match(name, "gp/chats/") then
+									chat_bufnr = bufnr
+									break
+								end
+							end
+							local chat_win_id = vim.fn.bufwinid(chat_bufnr)
+							vim.cmd("GpChatToggle split")
+
+							-- If we just opened the GpChat split, resize it
+							if chat_win_id == -1 and vim.fn.bufwinid(chat_bufnr) ~= -1 then
+								local new_chat_win_id = vim.fn.bufwinid(chat_bufnr)
+								vim.api.nvim_set_current_win(new_chat_win_id)
+								vim.cmd("resize 20%")
+							end
+						end,
+						"toggle split",
+					},
+					v = {
+						function()
+							local chat_bufnr = -1
+							for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+								local name = vim.api.nvim_buf_get_name(bufnr)
+								if string.match(name, "gp/chats/") then
+									chat_bufnr = bufnr
+									break
+								end
+							end
+							local chat_win_id = vim.fn.bufwinid(chat_bufnr)
+							vim.cmd("GpChatToggle vsplit")
+
+							-- If we just opened the GpChat split, resize it
+							if chat_win_id == -1 and vim.fn.bufwinid(chat_bufnr) ~= -1 then
+								local new_chat_win_id = vim.fn.bufwinid(chat_bufnr)
+								vim.api.nvim_set_current_win(new_chat_win_id)
+								vim.cmd("vertical resize 30%")
+							end
+						end,
+						"toggle vsplit",
+					},
 				},
 				d = {
 					name = "debug",
@@ -300,6 +337,7 @@ return {
 					r = { ":<C-u>'<,'>GpRewrite<cr>", "inline rewrite" },
 					a = { ":<C-u>'<,'>GpAppend<cr>", "append" },
 					b = { ":<C-u>'<,'>GpPrepend<cr>", "prepend" },
+					p = { ":<C-u>'<,'>GpPopup<cr>", "popup" },
 					g = {
 						name = "generate into",
 						p = { ":<C-u>'<,'>GpPopup<cr>", "popup" },
@@ -309,7 +347,6 @@ return {
 					},
 					x = { ":<C-u>'<,'>GpContext<cr>", "toggle context" },
 					q = { ":<C-u>'<,'>GpStop<cr>", "stop" },
-					N = { ":<C-u>'<,'>GpNextAgent<cr>", "Next Agent" },
 					w = {
 						name = "whisper",
 						w = { ":<C-u>'<,'>GpWhisper<cr>", "whisper" },

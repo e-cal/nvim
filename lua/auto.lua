@@ -5,22 +5,17 @@ local autocmd = vim.api.nvim_create_autocmd
 --                                   Global                                   --
 --------------------------------------------------------------------------------
 augroup("global", { clear = true })
--- format options
-autocmd({ "BufWinEnter", "BufRead", "BufNewFile" }, {
-	group = "global",
-	command = "setlocal formatoptions-=c formatoptions-=r formatoptions-=o formatoptions-=t",
-})
--- clear references on cursor move
+autocmd({ "VimLeave" }, { group = "global", command = "StoreSession" })
+autocmd({ "BufEnter" }, { group = "global", command = "LspStart" })
+autocmd(
+	{ "BufWinEnter", "BufRead", "BufNewFile" },
+	{ group = "global", command = "setlocal formatoptions-=c formatoptions-=r formatoptions-=o formatoptions-=t" }
+)
 autocmd({ "CursorMoved" }, {
 	group = "global",
 	callback = function()
 		vim.lsp.buf.clear_references()
 	end,
-})
--- save session
-autocmd({ "VimLeave" }, {
-	group = "global",
-	command = "StoreSession",
 })
 
 --------------------------------------------------------------------------------

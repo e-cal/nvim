@@ -98,7 +98,7 @@ if not vim.g.vscode then
 	map("n", "<C-n>", "<cmd>lua vim.diagnostic.goto_next()<CR>")
 	map("n", "<C-l>", "<cmd>lua vim.diagnostic.open_float()<CR>")
 
-	map("n", "?", function()
+	map("n", "<C-_>", function()
 		vim.lsp.buf.workspace_symbol(vim.fn.expand("<cword>"))
 	end)
 end
