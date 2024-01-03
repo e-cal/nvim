@@ -113,19 +113,6 @@ PreviewDoc = function()
 end
 Utils.make_command("PreviewDoc")
 
-UpdateWinbarHighlight = function()
-    local bufnr = vim.api.nvim_get_current_buf()
-    local is_modified = vim.api.nvim_buf_get_option(bufnr, "modified")
-
-    if is_modified then
-        vim.cmd("highlight WinBar guifg=#f4dbd6")
-    else
-        local normal_fg = vim.api.nvim_get_hl_by_name("Normal", true).foreground
-        vim.cmd("highlight WinBar guifg=" .. normal_fg)
-    end
-end
-Utils.make_command("UpdateWinbarHighlight")
-
 OpenLast = function()
     vim.cmd("e " .. vim.v.oldfiles[1])
 end

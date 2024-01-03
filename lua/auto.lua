@@ -10,16 +10,6 @@ autocmd({ "BufWinEnter", "BufRead", "BufNewFile" }, {
 	group = "global",
 	command = "setlocal formatoptions-=c formatoptions-=r formatoptions-=o formatoptions-=t",
 })
--- lsp
-autocmd({ "BufEnter" }, {
-	group = "global",
-	command = "LspStart",
-})
--- yellow title on edit
-autocmd({ "BufReadPost", "BufWritePost", "BufEnter", "TextChanged", "TextChangedI" }, {
-	group = "global",
-	command = "UpdateWinbarHighlight",
-})
 -- clear references on cursor move
 autocmd({ "CursorMoved" }, {
 	group = "global",
