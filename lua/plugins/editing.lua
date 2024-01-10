@@ -3,6 +3,15 @@ return {
 	{ "tpope/vim-surround", event = "VeryLazy" },
 	{ "tpope/vim-repeat", event = "VeryLazy" },
 	{
+		"iamcco/markdown-preview.nvim",
+		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+		build = "cd app && npm install",
+		init = function()
+			vim.g.mkdp_filetypes = { "markdown" }
+		end,
+		ft = { "markdown" },
+	},
+	{
 		"numToStr/Comment.nvim",
 		event = "VeryLazy",
 		config = function()
@@ -32,21 +41,9 @@ return {
 			require("ibl").setup(opts)
 		end,
 	},
-	{
-		"iamcco/markdown-preview.nvim",
-		build = ":call mkdp#util#install()",
-        event = "VeryLazy",
-		config = function()
-			local g = vim.g
-
-			g.mkdp_auto_close = 0
-			g.mkdp_refresh_slow = 1
-			g.mkdp_page_title = "${name}"
-		end,
-	},
-	{
+	{ -- last
 		"windwp/nvim-autopairs",
-        event = "VeryLazy",
+		event = "VeryLazy",
 		config = function()
 			local npairs = require("nvim-autopairs")
 			local Rule = require("nvim-autopairs.rule")

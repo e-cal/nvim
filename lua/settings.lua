@@ -39,7 +39,6 @@ vim.o.formatoptions = "jql"
 vim.cmd("filetype plugin indent on")
 vim.o.foldmethod = "expr"
 vim.o.foldexpr = "nvim_treesitter#foldexpr()"
-vim.o.nofoldenable = true
 vim.o.foldlevel = 99
 
 vim.o.fileencoding = "utf-8"
@@ -58,7 +57,6 @@ vim.opt.isfname:append("@-@")
 vim.g.python3_host_prog = vim.fn.exepath("python")
 
 vim.go.termguicolors = true
-vim.go.t_Co = "256"
 vim.go.background = "dark"
 vim.cmd('let &t_8f = "\\<Esc>[38;2;%lu;%lu;%lum"')
 vim.cmd('let &t_8b = "\\<Esc>[48;2;%lu;%lu;%lum"')
