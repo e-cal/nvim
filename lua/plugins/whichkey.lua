@@ -318,7 +318,7 @@ return {
 				i = { 'c_<C-r>"_<esc>', "italic" },
 				B = { 'c**_<C-r>"_**<esc>', "bold & italic" },
 				m = { 'c$<C-r>"$<esc>', "inline math" },
-				c = { 'c<span style="color: "><C-r>"</span><esc>T:a', "color" },
+				C = { 'c<span style="color: "><C-r>"</span><esc>T:a', "color" },
 				l = { 'c[[./<C-r>"#<C-r>"|<C-r>"]]<esc>', "inlink" },
 				a = {
 					':s/=/\\&=/g<cr>gvc\\begin{align}<cr><C-r>"<backspace><space>\\\\<cr>\\end{align}<esc>O&= ',
@@ -328,6 +328,7 @@ return {
 				['"'] = { 'c"""<cr><C-r>""""<esc>', '"""' },
 				["`"] = { 'c```<cr><C-r>"```<esc>', "```" },
 				["/"] = { "gc", "line comment" },
+				c = { ":<C-u>'<,'>GpChatToggle popup<cr>", "chat" },
 				g = {
 					name = "gpt",
 					n = { ":<C-u>'<,'>GpChatNew<cr>", "new chat" },
