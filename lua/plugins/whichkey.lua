@@ -41,7 +41,6 @@ return {
 				H = { "<cmd>TSBufToggle highlight<cr>", "toggle ts highlight" },
 				u = { "<cmd>UndotreeToggle<cr>", "toggle undo tree" },
 				y = { '"+y', "copy to clipboard" },
-				r = { ":e scp://ecal@graham.alliancecan.ca//home/ecal/projects/def-zhu2048/ecal/", "remote edit" },
 				C = { "<cmd>GpChatToggle popup<cr>", "chat" },
 				c = { "<cmd>QuickfixToggle<cr>", "toggle quickfix" },
 				["/"] = { "gcc", "comment line" },
