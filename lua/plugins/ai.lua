@@ -28,7 +28,7 @@ return {
 	},
 	{
 		"robitx/gp.nvim",
-        dir="~/projects/gpt.nvim",
+        -- dir="~/projects/gpt.nvim",
         event = "VeryLazy",
 		opts = {
 			chat_user_prefix = "󰭹 :",
