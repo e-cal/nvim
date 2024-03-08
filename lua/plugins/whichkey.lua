@@ -304,6 +304,7 @@ return {
 
 			-- Visual mode
 			local vmappings = {
+				f = { "<cmd>Format<cr>", "format" },
 				y = { '"+y', "copy to clipboard" },
 				s = { "<cmd>Telescope grep_string<cr>", "search selection" },
 				r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "rename" },

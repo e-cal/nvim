@@ -65,3 +65,10 @@ autocmd({ "BufEnter" }, {
 	pattern = { "*.js", "*.ts", "*.jsx", "*.tsx", "*.html", "*.css", "*.scss" },
 	command = "setlocal ts=2 sw=2 sts=2",
 })
+
+augroup("nix", { clear = true })
+autocmd({ "BufEnter" }, {
+	group = "nix",
+	pattern = { "*.nix" },
+	command = "setlocal ts=2 sw=2 sts=2",
+})

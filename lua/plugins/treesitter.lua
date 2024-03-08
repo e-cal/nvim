@@ -14,6 +14,7 @@ return {
 			highlight = {
 				enable = true,
 				disable = function(lang, buf)
+                    -- might also want to disable comment highlight altogether?
 					local max_filesize = 100 * 1024 -- 100 KB
 					local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
 					if ok and stats and stats.size > max_filesize then
@@ -25,10 +26,10 @@ return {
 			incremental_selection = {
 				enable = true,
 				keymaps = {
-					init_selection = "gnn",
-					node_incremental = "grn",
-					scope_incremental = "grc",
-					node_decremental = "grm",
+					init_selection = "gi",
+					node_incremental = "gn",
+					scope_incremental = "gs",
+					node_decremental = "gp",
 				},
 			},
 			indent = { enable = true },
