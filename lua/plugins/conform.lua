@@ -13,7 +13,7 @@ return {
             css = { "prettier" },
             markdown = { "prettier" },
             json = { "prettier" },
-            nix = { "alejandra" },
+            nix = { "nixfmt" },
         },
 
         formatters = {
