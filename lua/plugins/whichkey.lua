@@ -41,7 +41,7 @@ return {
 				H = { "<cmd>TSBufToggle highlight<cr>", "toggle ts highlight" },
 				u = { "<cmd>UndotreeToggle<cr>", "toggle undo tree" },
 				y = { '"+y', "copy to clipboard" },
-                -- C = { "<cmd>ChatToggle<cr>", "toggle chat" },
+				-- C = { "<cmd>ChatToggle<cr>", "toggle chat" },
 				-- C = { "<cmd>QuickfixToggle<cr>", "toggle quickfix" },
 				["/"] = { "gcc", "comment line" },
 				["?"] = { "<cmd>Neotree reveal<cr>", "find current file" },
@@ -70,12 +70,12 @@ return {
 				["*"] = { "<cmd>lua require('harpoon.ui').nav_file(10)<cr>", "which_key_ignore" },
 				-- Menus
 				c = { "<cmd>ChatFocus<cr>", "chat" },
-                C = { "<cmd>ChatToggle<cr>", "toggle chat" },
-                Cn = { "<cmd>ChatNew<cr>", "new chat" },
-                Co = { "<cmd>ChatOpen<cr>", "open chat" },
-                Ch = { "<cmd>ChatResize 50<cr>", "half screen" },
-                Cr = { "<cmd>ChatResize 30<cr>", "restore size" },
-                Cd = { "<cmd>ChatDelete<cr>", "delete chat" },
+				C = { "<cmd>ChatToggle<cr>", "toggle chat" },
+				Cn = { "<cmd>ChatNew<cr>", "new chat" },
+				Co = { "<cmd>ChatOpen<cr>", "open chat" },
+				Ch = { "<cmd>ChatResize 50<cr>", "half screen" },
+				Cr = { "<cmd>ChatResize 30<cr>", "restore size" },
+				Cd = { "<cmd>ChatDelete<cr>", "delete chat" },
 				t = {
 					name = "telescope",
 					["."] = {
