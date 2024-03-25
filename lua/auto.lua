@@ -28,6 +28,7 @@ autocmd({ "FileType" }, {
 	callback = function()
 		vim.cmd("setlocal spell")
 		vim.cmd('syntax match markdownIgnore "\\v\\w_\\w"')
+		vim.cmd('set sw=2 sts=2 ts=2')
 	end,
 })
 

@@ -4,7 +4,7 @@ return {
     cmd = { "ConformInfo" },
     opts = {
         formatters_by_ft = {
-            -- lua uses lua_ls by default
+            lua = { "stylua" },
             sh = { "shfmt" },
             python = { "yapf" },
             javascript = { "prettier" },
