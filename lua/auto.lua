@@ -28,7 +28,7 @@ autocmd({ "FileType" }, {
 	callback = function()
 		vim.cmd("setlocal spell")
 		vim.cmd('syntax match markdownIgnore "\\v\\w_\\w"')
-		vim.cmd('set sw=2 sts=2 ts=2')
+		vim.cmd("set sw=2 sts=2 ts=2")
 	end,
 })
 
@@ -72,4 +72,31 @@ autocmd({ "BufEnter" }, {
 	group = "nix",
 	pattern = { "*.nix" },
 	command = "setlocal ts=2 sw=2 sts=2",
+})
+
+augroup("remote_sync", { clear = true })
+autocmd({ "BufWritePost" }, {
+	group = "remote_sync",
+	pattern = {
+		"**/*/projects/high-stakes-conf/**/*",
+	},
+	callback = function()
+		local remote_host = "xz2"
+
+		local full_path = vim.fn.expand("%:p")
+		local relative_to_home = string.gsub(full_path, vim.env.HOME, "")
+		local remote_path = string.gsub(relative_to_home, "/projects", "")
+		local remote = remote_host .. ":~" .. remote_path
+		local cmd = "scp " .. full_path .. " " .. remote
+
+		vim.fn.jobstart(cmd, {
+			on_exit = function(_, code)
+				if code == 0 then
+					vim.notify("File copied to " .. remote, vim.log.levels.INFO)
+				else
+					vim.notify("Failed to copy file to " .. remote, vim.log.levels.ERROR)
+				end
+			end,
+		})
+	end,
 })

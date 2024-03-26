@@ -2,7 +2,6 @@ vim.cmd("syntax on")
 vim.cmd("set iskeyword+=-")
 vim.cmd("set shortmess+=c")
 vim.cmd("set inccommand=split")
-vim.cmd("set shell=/usr/bin/zsh")
 
 vim.o.hidden = true
 vim.o.showtabline = 1
@@ -85,6 +84,7 @@ vim.g.loaded_matchparen = 1
 vim.g.loaded_logiPat = 1
 vim.g.loaded_rrhelper = 1
 
+-- comment out to re-enable netrw + edit over ssh
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_netrwSettings = 1
