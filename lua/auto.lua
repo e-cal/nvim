@@ -82,6 +82,7 @@ autocmd({ "BufWritePost" }, {
 	},
 	callback = function()
 		local remote_host = "xz2"
+		vim.notify("Copying to " .. remote_host .. "...")
 
 		local full_path = vim.fn.expand("%:p")
 		local relative_to_home = string.gsub(full_path, vim.env.HOME, "")
@@ -90,6 +91,7 @@ autocmd({ "BufWritePost" }, {
 		local cmd = "scp " .. full_path .. " " .. remote
 
 		vim.fn.jobstart(cmd, {
+			detach = true,
 			on_exit = function(_, code)
 				if code == 0 then
 					vim.notify("File copied to " .. remote, vim.log.levels.INFO)
