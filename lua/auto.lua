@@ -78,7 +78,7 @@ augroup("remote_sync", { clear = true })
 autocmd({ "BufWritePost" }, {
 	group = "remote_sync",
 	pattern = {
-		"**/*/projects/high-stakes-conf/**/*",
+		"*/projects/high-stakes-conf/*",
 	},
 	callback = function()
 		local remote_host = "xz2"
