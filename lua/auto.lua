@@ -63,7 +63,7 @@ autocmd({ "BufEnter" }, {
 augroup("web", { clear = true })
 autocmd({ "BufEnter" }, {
 	group = "web",
-	pattern = { "*.js", "*.ts", "*.jsx", "*.tsx", "*.html", "*.css", "*.scss" },
+	pattern = { "*.js", "*.ts", "*.jsx", "*.tsx", "*.html", "*.css", "*.scss", "*.json" },
 	command = "setlocal ts=2 sw=2 sts=2",
 })
 
@@ -82,7 +82,9 @@ autocmd({ "BufWritePost" }, {
 	},
 	callback = function()
 		local remote_host = "xz2"
-		vim.notify("Copying to " .. remote_host .. "...")
+
+        vim.cmd.redraw() -- prevent asking for user input on print
+		vim.notify("Copying to " .. remote_host .. "...", vim.log.levels.INFO)
 
 		local full_path = vim.fn.expand("%:p")
 		local relative_to_home = string.gsub(full_path, vim.env.HOME, "")
