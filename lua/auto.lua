@@ -75,32 +75,32 @@ autocmd({ "BufEnter" }, {
 })
 
 augroup("remote_sync", { clear = true })
-autocmd({ "BufWritePost" }, {
-	group = "remote_sync",
-	pattern = {
-		"*/projects/high-stakes-conf/*",
-	},
-	callback = function()
-		local remote_host = "xz2"
-
-        vim.cmd.redraw() -- prevent asking for user input on print
-		vim.notify("Copying to " .. remote_host .. "...", vim.log.levels.INFO)
-
-		local full_path = vim.fn.expand("%:p")
-		local relative_to_home = string.gsub(full_path, vim.env.HOME, "")
-		local remote_path = string.gsub(relative_to_home, "/projects", "")
-		local remote = remote_host .. ":~" .. remote_path
-		local cmd = "scp " .. full_path .. " " .. remote
-
-		vim.fn.jobstart(cmd, {
-			detach = true,
-			on_exit = function(_, code)
-				if code == 0 then
-					vim.notify("File copied to " .. remote, vim.log.levels.INFO)
-				else
-					vim.notify("Failed to copy file to " .. remote, vim.log.levels.ERROR)
-				end
-			end,
-		})
-	end,
-})
+-- autocmd({ "BufWritePost" }, {
+-- 	group = "remote_sync",
+-- 	pattern = {
+-- 		"*/projects/high-stakes-conf/*",
+-- 	},
+-- 	callback = function()
+-- 		local remote_host = "xz2"
+--
+--         vim.cmd.redraw() -- prevent asking for user input on print
+-- 		vim.notify("Copying to " .. remote_host .. "...", vim.log.levels.INFO)
+--
+-- 		local full_path = vim.fn.expand("%:p")
+-- 		local relative_to_home = string.gsub(full_path, vim.env.HOME, "")
+-- 		local remote_path = string.gsub(relative_to_home, "/projects", "")
+-- 		local remote = remote_host .. ":~" .. remote_path
+-- 		local cmd = "scp " .. full_path .. " " .. remote
+--
+-- 		vim.fn.jobstart(cmd, {
+-- 			detach = true,
+-- 			on_exit = function(_, code)
+-- 				if code == 0 then
+-- 					vim.notify("File copied to " .. remote, vim.log.levels.INFO)
+-- 				else
+-- 					vim.notify("Failed to copy file to " .. remote, vim.log.levels.ERROR)
+-- 				end
+-- 			end,
+-- 		})
+-- 	end,
+-- })
