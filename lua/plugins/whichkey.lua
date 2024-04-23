@@ -69,13 +69,16 @@ return {
 				["]"] = { "<cmd>lua require('harpoon.ui').nav_file(9)<cr>", "which_key_ignore" },
 				["*"] = { "<cmd>lua require('harpoon.ui').nav_file(10)<cr>", "which_key_ignore" },
 				-- Menus
-				c = { "<cmd>ChatFocus<cr>", "chat" },
-				C = { "<cmd>ChatToggle<cr>", "toggle chat" },
-				Cn = { "<cmd>ChatNew<cr>", "new chat" },
-				Co = { "<cmd>ChatOpen<cr>", "open chat" },
-				Ch = { "<cmd>ChatResize 50<cr>", "half screen" },
-				Cr = { "<cmd>ChatResize 30<cr>", "restore size" },
-				Cd = { "<cmd>ChatDelete<cr>", "delete chat" },
+                c = {
+                    name = "chat",
+                    c = { "<cmd>ChatFocus<cr>", "focus chat" },
+                    n = { "<cmd>ChatNew<cr>", "new chat" },
+                    o = { "<cmd>ChatOpen<cr>", "open chat" },
+                    t = { "<cmd>ChatToggle<cr>", "toggle chat" },
+                    h = { "<cmd>ChatResize 50<cr>", "half screen" },
+                    r = { "<cmd>ChatResize 30<cr>", "restore size" },
+                    d = { "<cmd>ChatDelete<cr>", "delete chat" },
+                },
 				t = {
 					name = "telescope",
 					["."] = {
