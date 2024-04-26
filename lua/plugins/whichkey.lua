@@ -58,16 +58,29 @@ return {
 				-- Harpoon
 				a = { "<cmd>lua require('harpoon.mark').add_file()<cr>", "add file" },
 				h = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "quick menu" },
-				["+"] = { "<cmd>lua require('harpoon.ui').nav_file(1)<cr>", "which_key_ignore" },
-				["["] = { "<cmd>lua require('harpoon.ui').nav_file(2)<cr>", "which_key_ignore" },
-				["{"] = { "<cmd>lua require('harpoon.ui').nav_file(3)<cr>", "which_key_ignore" },
-				["("] = { "<cmd>lua require('harpoon.ui').nav_file(4)<cr>", "which_key_ignore" },
-				["&"] = { "<cmd>lua require('harpoon.ui').nav_file(5)<cr>", "which_key_ignore" },
-				["="] = { "<cmd>lua require('harpoon.ui').nav_file(6)<cr>", "which_key_ignore" },
-				[")"] = { "<cmd>lua require('harpoon.ui').nav_file(7)<cr>", "which_key_ignore" },
-				["}"] = { "<cmd>lua require('harpoon.ui').nav_file(8)<cr>", "which_key_ignore" },
-				["]"] = { "<cmd>lua require('harpoon.ui').nav_file(9)<cr>", "which_key_ignore" },
-				["*"] = { "<cmd>lua require('harpoon.ui').nav_file(10)<cr>", "which_key_ignore" },
+				j = { "<cmd>lua require('harpoon.ui').nav_file(1)<cr>", "which_key_ignore" },
+				k = { "<cmd>lua require('harpoon.ui').nav_file(2)<cr>", "which_key_ignore" },
+				[";"] = { "<cmd>lua require('harpoon.ui').nav_file(3)<cr>", "which_key_ignore" },
+				["1"] = { "<cmd>lua require('harpoon.ui').nav_file(1)<cr>", "which_key_ignore" },
+				["2"] = { "<cmd>lua require('harpoon.ui').nav_file(2)<cr>", "which_key_ignore" },
+				["3"] = { "<cmd>lua require('harpoon.ui').nav_file(3)<cr>", "which_key_ignore" },
+				["4"] = { "<cmd>lua require('harpoon.ui').nav_file(4)<cr>", "which_key_ignore" },
+				["5"] = { "<cmd>lua require('harpoon.ui').nav_file(5)<cr>", "which_key_ignore" },
+				["6"] = { "<cmd>lua require('harpoon.ui').nav_file(6)<cr>", "which_key_ignore" },
+				["7"] = { "<cmd>lua require('harpoon.ui').nav_file(7)<cr>", "which_key_ignore" },
+				["8"] = { "<cmd>lua require('harpoon.ui').nav_file(8)<cr>", "which_key_ignore" },
+				["9"] = { "<cmd>lua require('harpoon.ui').nav_file(9)<cr>", "which_key_ignore" },
+				["10"] = { "<cmd>lua require('harpoon.ui').nav_file(10)<cr>", "which_key_ignore" },
+				-- ["+"] = { "<cmd>lua require('harpoon.ui').nav_file(1)<cr>", "which_key_ignore" },
+				-- ["["] = { "<cmd>lua require('harpoon.ui').nav_file(2)<cr>", "which_key_ignore" },
+				-- ["{"] = { "<cmd>lua require('harpoon.ui').nav_file(3)<cr>", "which_key_ignore" },
+				-- ["("] = { "<cmd>lua require('harpoon.ui').nav_file(4)<cr>", "which_key_ignore" },
+				-- ["&"] = { "<cmd>lua require('harpoon.ui').nav_file(5)<cr>", "which_key_ignore" },
+				-- ["="] = { "<cmd>lua require('harpoon.ui').nav_file(6)<cr>", "which_key_ignore" },
+				-- [")"] = { "<cmd>lua require('harpoon.ui').nav_file(7)<cr>", "which_key_ignore" },
+				-- ["}"] = { "<cmd>lua require('harpoon.ui').nav_file(8)<cr>", "which_key_ignore" },
+				-- ["]"] = { "<cmd>lua require('harpoon.ui').nav_file(9)<cr>", "which_key_ignore" },
+				-- ["*"] = { "<cmd>lua require('harpoon.ui').nav_file(10)<cr>", "which_key_ignore" },
 				-- Menus
                 c = {
                     name = "chat",
@@ -172,91 +185,14 @@ return {
 					},
 				},
 				g = {
-					name = "git/gpt",
-
-					-- git
+					name = "git",
 					d = { "<cmd>Git preview_hunk<cr>", "preview hunk diff" },
-					dd = { "<cmd>Git diffthis<CR>", "file diff" },
-					D = { "<cmd>Git toggle_word_diff<CR>", "word diff" },
+					D = { "<cmd>Git diffthis<CR>", "file diff" },
 					r = { "<cmd>Git reset_hunk<CR>", "reset hunk" },
-					ra = { "<cmd>Git reset_buffer<CR>", "reset buffer" },
+					R = { "<cmd>Git reset_buffer<CR>", "reset buffer" },
 					n = { "<cmd>Git next_hunk<CR>", "next hunk" },
 					p = { "<cmd>Git prev_hunk<CR>", "prev hunk" },
 					b = { "<cmd>Git blame_line<CR>", "blame" },
-
-					-- gpt
-					N = { "<cmd>GpChatNew<cr>", "new chat" },
-					q = { "<cmd>GpStop<cr>", "stop" },
-					-- f = { "<cmd>GpChatFinder<cr>", "find chat" },
-					o = { "<cmd>TelescopeSearchChats<cr>", "find chat" },
-					-- s = { "<cmd>GpChatToggle split<cr>", "toggle split" },
-					R = { "<cmd>GpRewrite<cr>", "inline rewrite" },
-					g = {
-						name = "generate",
-						p = { "<cmd>GpPopup<cr>", "popup" },
-						n = { "<cmd>GpNew<cr>", "buffer" },
-						s = { "<cmd>GpEnew<cr>", "split" },
-						v = { "<cmd>GpVnew<cr>", "vsplit" },
-						a = { "<cmd>GpAppend<cr>", "append" },
-						b = { "<cmd>GpPrepend<cr>", "prepend" },
-					},
-					x = { "<cmd>GpContext<cr>", "toggle context" },
-					[">"] = { "<cmd>GpNextAgent<cr>", "Next Agent" },
-					w = {
-						name = "whisper",
-						w = { "<cmd>GpWhisper<cr>", "whisper" },
-						r = { "<cmd>GpWhisperRewrite<cr>", "inline rewrite" },
-						a = { "<cmd>GpWhisperAppend<cr>", "append" },
-						b = { "<cmd>GpWhisperPrepend<cr>", "prepend" },
-						p = { "<cmd>GpWhisperPopup<cr>", "popup" },
-						e = { "<cmd>GpWhisperEnew<cr>", "split" },
-						n = { "<cmd>GpWhisperNew<cr>", "new buffer" },
-						v = { "<cmd>GpWhisperVnew<cr>", "vsplit" },
-					},
-					s = {
-						function()
-							local chat_bufnr = -1
-							for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
-								local name = vim.api.nvim_buf_get_name(bufnr)
-								if string.match(name, "gp/chats/") then
-									chat_bufnr = bufnr
-									break
-								end
-							end
-							local chat_win_id = vim.fn.bufwinid(chat_bufnr)
-							vim.cmd("GpChatToggle split")
-
-							-- If we just opened the GpChat split, resize it
-							if chat_win_id == -1 and vim.fn.bufwinid(chat_bufnr) ~= -1 then
-								local new_chat_win_id = vim.fn.bufwinid(chat_bufnr)
-								vim.api.nvim_set_current_win(new_chat_win_id)
-								vim.cmd("resize 20%")
-							end
-						end,
-						"toggle split",
-					},
-					v = {
-						function()
-							local chat_bufnr = -1
-							for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
-								local name = vim.api.nvim_buf_get_name(bufnr)
-								if string.match(name, "gp/chats/") then
-									chat_bufnr = bufnr
-									break
-								end
-							end
-							local chat_win_id = vim.fn.bufwinid(chat_bufnr)
-							vim.cmd("GpChatToggle vsplit")
-
-							-- If we just opened the GpChat split, resize it
-							if chat_win_id == -1 and vim.fn.bufwinid(chat_bufnr) ~= -1 then
-								local new_chat_win_id = vim.fn.bufwinid(chat_bufnr)
-								vim.api.nvim_set_current_win(new_chat_win_id)
-								vim.cmd("vertical resize 30%")
-							end
-						end,
-						"toggle vsplit",
-					},
 				},
 				d = {
 					name = "debug",

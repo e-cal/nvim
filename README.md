@@ -1,4 +1,4 @@
-<h1>EVim</h1>
+# evim
 
 A modern code-ready editing experience in neovim. Sane default setup so you can
 jump in and get productive right away. Simple config structure so you can get it

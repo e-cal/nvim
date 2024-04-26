@@ -26,10 +26,10 @@ return {
 			incremental_selection = {
 				enable = true,
 				keymaps = {
-					init_selection = "gi",
-					node_incremental = "gn",
+					init_selection = "vs",
+					node_incremental = "n",
 					scope_incremental = "gs",
-					node_decremental = "gp",
+					node_decremental = "P",
 				},
 			},
 			indent = { enable = true },
