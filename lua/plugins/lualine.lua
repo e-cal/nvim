@@ -148,7 +148,7 @@ return {
 			end
 			vim.cmd("hi! lualine_filename_status gui=bold guibg=" .. colors.bg_bright .. " guifg=" .. fg)
 
-			return "%t"
+			return "%f"
 		end
 		ins_left({
 			get_filename,
@@ -300,15 +300,12 @@ return {
 				local current_line = vim.fn.line(".")
 				local total_lines = vim.fn.line("$")
 				local percent = math.floor((current_line / total_lines) * 100)
-
-				local icons = { "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" }
+				local icons = { "█", "▇", "▆", "▅", "▄", "▃", "▂", "▁" }
 				local index = math.max(math.ceil(percent / 13), 1)
-				local icon = icons[index]
-
-				return icon
+				return icons[index]
 			end,
-			color = { fg = colors.normal, bg = colors.bg_bright },
-			padding = { left = 0, right = 1 },
+			color = { fg = colors.bg_bright, bg = colors.normal },
+			padding = { left = 0, right = 0 },
 		})
 
 		lualine.setup(config)
