@@ -300,7 +300,7 @@ return {
 				local current_line = vim.fn.line(".")
 				local total_lines = vim.fn.line("$")
 				local percent = math.floor((current_line / total_lines) * 100)
-				local icons = { "█", "▇", "▆", "▅", "▄", "▃", "▂", "▁" }
+				local icons = { "▇", "▆", "▅", "▄", "▃", "▂", "▁", " " } -- █
 				local index = math.max(math.ceil(percent / 13), 1)
 				return icons[index]
 			end,

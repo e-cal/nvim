@@ -87,6 +87,7 @@ return {
                     c = { "<cmd>ChatFocus<cr>", "focus chat" },
                     n = { "<cmd>ChatNew<cr>", "new chat" },
                     o = { "<cmd>ChatOpen<cr>", "open chat" },
+                    O = { "<cmd>ChatOpen popup<cr>", "open chat" },
                     t = { "<cmd>ChatToggle<cr>", "toggle chat" },
                     h = { "<cmd>ChatResize 50<cr>", "half screen" },
                     r = { "<cmd>ChatResize 30<cr>", "restore size" },
