@@ -7,14 +7,20 @@ local autocmd = vim.api.nvim_create_autocmd
 augroup("global", { clear = true })
 autocmd({ "VimLeave" }, { group = "global", command = "StoreSession" })
 autocmd({ "BufEnter" }, { group = "global", command = "LspStart" })
-autocmd(
-	{ "BufWinEnter", "BufRead", "BufNewFile" },
-	{ group = "global", command = "setlocal formatoptions-=c formatoptions-=r formatoptions-=o formatoptions-=t" }
-)
 autocmd({ "CursorMoved" }, {
 	group = "global",
 	callback = function()
 		vim.lsp.buf.clear_references()
+	end,
+})
+
+autocmd({ "BufWinEnter", "BufRead", "BufNewFile" }, {
+	group = "global",
+	callback = function()
+		local excluded_filetypes = { markdown = true, json = true }
+		if not excluded_filetypes[vim.bo.filetype] then
+			vim.bo.formatoptions = "jql"
+		end
 	end,
 })
 
