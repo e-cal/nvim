@@ -25,7 +25,17 @@ return {
 			"args = parser.parse_args()",
 		})
 	),
-	-- comment below as snippet
+	s(
+		"loadenv",
+		t({
+			"import os",
+			'with open(".env", "r") as f:',
+			"    lines = f.readlines()",
+			"    for line in lines:",
+			'        key, value = line.strip().split("=")',
+			"        os.environ[key] = value",
+		})
+	),
 	s(
 		"leetcode",
 		t({
