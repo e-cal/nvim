@@ -140,15 +140,18 @@ return {
 		}, true)
 
 		local function get_filename()
+			local bufnr = vim.fn.bufnr("%")
 			local fg = colors.fg -- not modified
-			if vim.bo.modified then
+			if vim.fn.getbufvar(bufnr, "&modified") == 1 then
 				fg = colors.command -- unsaved
 			elseif not vim.bo.modifiable then
 				fg = colors.replace -- readonly
 			end
 			vim.cmd("hi! lualine_filename_status gui=bold guibg=" .. colors.bg_bright .. " guifg=" .. fg)
-
-			return "%f"
+			local full_path = vim.fn.expand("%:p")
+			local cwd = vim.fn.getcwd()
+			local relative_path = full_path:gsub(cwd .. "/", "")
+			return relative_path
 		end
 		ins_left({
 			get_filename,
