@@ -150,7 +150,7 @@ return {
 			vim.cmd("hi! lualine_filename_status gui=bold guibg=" .. colors.bg_bright .. " guifg=" .. fg)
 			local full_path = vim.fn.expand("%:p")
 			local cwd = vim.fn.getcwd()
-			local relative_path = full_path:gsub(cwd .. "/", "")
+			local relative_path = full_path:gsub("^" .. vim.pesc(cwd) .. "/", "")
 			return relative_path
 		end
 		ins_left({
