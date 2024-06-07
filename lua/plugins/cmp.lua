@@ -19,7 +19,6 @@ return {
     event = "VeryLazy",
     config = function()
         local cmp = require("cmp")
-
         cmp.setup({
             sources = {
                 { name = "path",          priority = 100 },
