@@ -31,8 +31,6 @@ return {
 				w = { "<C-w>q", "close split" },
 				f = { "<cmd>Format<cr>", "format" },
 				o = { "<cmd>Telescope find_files<cr>", "find files" },
-				O = { "<cmd>NnnPicker<cr>", "explore files" },
-				E = { "<cmd>NnnPicker<cr>", "explore files" },
 				e = { "<cmd>Neotree toggle<cr>", "explorer" },
 				S = { "m`<cmd>AerialNavToggle<cr>", "nav buffer (popup)" },
 				n = { "<cmd>NewFile<cr>", "new buffer" },
