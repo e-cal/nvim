@@ -1,6 +1,6 @@
 return {
 	"e-cal/chat.nvim",
-	-- dir = "~/projects/chat.nvim",
+	dir = "~/projects/chat.nvim",
 	dependencies = {
 		"MunifTanjim/nui.nvim",
 	},

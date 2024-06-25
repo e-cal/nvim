@@ -1,17 +1,7 @@
 return {
 	{
-		"utilyre/sentiment.nvim",
-		event = "VeryLazy", -- keep for lazy loading
-		opts = {
-			-- config
-		},
-		init = function()
-			-- `matchparen.vim` needs to be disabled manually in case of lazy loading
-			vim.g.loaded_matchparen = 1
-		end,
-	},
-	{
 		"windwp/nvim-autopairs",
+        cond = false, -- disable
 		event = "VeryLazy",
 		config = function()
 			local npairs = require("nvim-autopairs")

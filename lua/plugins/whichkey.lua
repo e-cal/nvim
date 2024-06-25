@@ -56,9 +56,6 @@ return {
 				-- Harpoon
 				a = { "<cmd>lua require('harpoon.mark').add_file()<cr>", "add file" },
 				h = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "quick menu" },
-				j = { "<cmd>lua require('harpoon.ui').nav_file(1)<cr>", "which_key_ignore" },
-				k = { "<cmd>lua require('harpoon.ui').nav_file(2)<cr>", "which_key_ignore" },
-				[";"] = { "<cmd>lua require('harpoon.ui').nav_file(3)<cr>", "which_key_ignore" },
 				["1"] = { "<cmd>lua require('harpoon.ui').nav_file(1)<cr>", "which_key_ignore" },
 				["2"] = { "<cmd>lua require('harpoon.ui').nav_file(2)<cr>", "which_key_ignore" },
 				["3"] = { "<cmd>lua require('harpoon.ui').nav_file(3)<cr>", "which_key_ignore" },
@@ -80,17 +77,17 @@ return {
 				-- ["]"] = { "<cmd>lua require('harpoon.ui').nav_file(9)<cr>", "which_key_ignore" },
 				-- ["*"] = { "<cmd>lua require('harpoon.ui').nav_file(10)<cr>", "which_key_ignore" },
 				-- Menus
-                c = {
-                    name = "chat",
-                    c = { "<cmd>ChatFocus<cr>", "focus chat" },
-                    n = { "<cmd>ChatNew<cr>", "new chat" },
-                    o = { "<cmd>ChatOpen<cr>", "open chat" },
-                    O = { "<cmd>ChatOpen popup<cr>", "open chat" },
-                    t = { "<cmd>ChatToggle<cr>", "toggle chat" },
-                    h = { "<cmd>ChatResize 50<cr>", "half screen" },
-                    r = { "<cmd>ChatResize 30<cr>", "restore size" },
-                    d = { "<cmd>ChatDelete<cr>", "delete chat" },
-                },
+				c = {
+					name = "chat",
+					c = { "<cmd>ChatFocus<cr>", "focus chat" },
+					n = { "<cmd>ChatNew<cr>", "new chat" },
+					o = { "<cmd>ChatOpen<cr>", "open chat" },
+					O = { "<cmd>ChatOpen popup<cr>", "open chat" },
+					t = { "<cmd>ChatToggle<cr>", "toggle chat" },
+					h = { "<cmd>ChatResize 50<cr>", "half screen" },
+					r = { "<cmd>ChatResize 30<cr>", "restore size" },
+					d = { "<cmd>ChatDelete<cr>", "delete chat" },
+				},
 				t = {
 					name = "telescope",
 					["."] = {
@@ -268,6 +265,10 @@ return {
 				a = {
 					':s/=/\\&=/g<cr>gvc\\begin{align}<cr><C-r>"<backspace><space>\\\\<cr>\\end{align}<esc>O&= ',
 					"align",
+				},
+				J = {
+					name = "jupynium",
+					x = { "<cmd>JupyniumExecuteSelectedCells<cr>", "execute" },
 				},
 				["'"] = { 'c"""<cr><C-r>""""<esc>', '"""' },
 				['"'] = { 'c"""<cr><C-r>""""<esc>', '"""' },
