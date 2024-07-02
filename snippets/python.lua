@@ -26,14 +26,13 @@ return {
 		})
 	),
 	s(
-		"loadenv",
+		"dotenv",
 		t({
-			"import os",
 			'with open(".env", "r") as f:',
 			"    lines = f.readlines()",
 			"    for line in lines:",
-			'        key, value = line.strip().split("=")',
-			"        os.environ[key] = value",
+			'        var = line.strip().split("=", 1)',
+			"        if len(var) == 2: os.environ[var[0]] = var[1]",
 		})
 	),
 	s(
