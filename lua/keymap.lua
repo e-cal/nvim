@@ -39,6 +39,8 @@ map("v", ">", ">gv")
 map("v", "K", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
 map("v", "J", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
 
+map("t", "<esc>", "<C-\\><C-n>")
+
 map("n", "Q", "<NOP>")
 map("n", ";", "<NOP>")
 
