@@ -34,7 +34,6 @@ return {
 				e = { "<cmd>Neotree toggle<cr>", "explorer" },
 				S = { "m`<cmd>AerialNavToggle<cr>", "nav buffer (popup)" },
 				n = { "<cmd>NewFile<cr>", "new buffer" },
-				R = { "<cmd>e<cr>", "reload buffer" },
 				i = { "<cmd>IBLToggle<cr>", "toggle indent lines" },
 				H = { "<cmd>TSBufToggle highlight<cr>", "toggle ts highlight" },
 				u = { "<cmd>UndotreeToggle<cr>", "toggle undo tree" },
@@ -76,6 +75,8 @@ return {
 				-- ["}"] = { "<cmd>lua require('harpoon.ui').nav_file(8)<cr>", "which_key_ignore" },
 				-- ["]"] = { "<cmd>lua require('harpoon.ui').nav_file(9)<cr>", "which_key_ignore" },
 				-- ["*"] = { "<cmd>lua require('harpoon.ui').nav_file(10)<cr>", "which_key_ignore" },
+                I = { "<cmd>ChatInline<cr>", "chat inline" },
+                R = { "<cmd>ChatInline replace<cr>", "chat inline (replace)" },
 				-- Menus
 				c = {
 					name = "chat",
@@ -274,7 +275,9 @@ return {
 				['"'] = { 'c"""<cr><C-r>""""<esc>', '"""' },
 				["`"] = { 'c```<cr><C-r>"```<esc>', "```" },
 				["/"] = { "gc", "line comment" },
-				c = { "<cmd>ChatFocus<cr>", "chat" },
+				cc = { "<cmd>ChatFocus<cr>", "chat" },
+                I = { "<cmd>ChatInline<cr>", "chat inline" },
+                R = { "<cmd>ChatInline replace<cr>", "chat inline (replace)" },
 			}
 
 			wk.register(vmappings, {
