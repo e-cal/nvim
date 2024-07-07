@@ -18,6 +18,12 @@ return {
                 f:close()
                 return anthropics_api_key
             end,
+            deepseek = function()
+                local f = assert(io.open(os.getenv("HOME") .. "/.cache/deepseek", "r"))
+                local deepseek_api_key = string.gsub(f:read("*all"), "\n", "")
+                f:close()
+                return deepseek_api_key
+            end,
             groq = function()
                 local f = assert(io.open(os.getenv("HOME") .. "/.cache/groq", "r"))
                 local groq_api_key = string.gsub(f:read("*all"), "\n", "")
