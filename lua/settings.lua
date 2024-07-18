@@ -53,7 +53,7 @@ vim.o.clipboard = "unnamedplus"
 vim.wo.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
-vim.g.python3_host_prog = vim.fn.exepath("python")
+vim.g.python3_host_prog=vim.fn.expand("~/.local/share/virtualenvs/neovim/bin/python3")
 
 vim.go.termguicolors = true
 vim.go.background = "dark"
@@ -84,7 +84,7 @@ vim.g.loaded_matchparen = 1
 vim.g.loaded_logiPat = 1
 vim.g.loaded_rrhelper = 1
 
--- comment out to re-enable netrw + edit over ssh
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_netrwSettings = 1
+

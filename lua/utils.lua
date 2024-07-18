@@ -150,7 +150,15 @@ Utils.custom_hover = function(_, result, ctx, config)
 	-- I personally don't care about this.
 	-- return require("vim.lsp.util").open_floating_preview(contents, "markdown", config)
 	local float_buf, win = require("vim.lsp.util").open_floating_preview(contents, "markdown", config)
-	vim.api.nvim_win_set_option(win, 'conceallevel', 0)
+	vim.api.nvim_win_set_option(win, "conceallevel", 0)
 	vim.api.nvim_win_set_option(win, "linebreak", true)
 	return float_buf, win
 end
+
+Utils.keys = function(str)
+	return function()
+		vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(str, true, false, true), "m", true)
+	end
+end
+
+return Utils
