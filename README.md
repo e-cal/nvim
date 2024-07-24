@@ -8,7 +8,6 @@
   - rendering images inline in markdown
   - repls and jupyter notebooks 
     - you can just `nvim notebook.ipynb`, then hit `<space>m` ([molten](https://github.com/benlubas/molten-nvim)/markdown) for relevant keybinds
-  - [centering](https://github.com/shortcuts/no-neck-pain.nvim)
 
 
 <details>
