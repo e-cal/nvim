@@ -9,6 +9,9 @@
   - repls and jupyter notebooks (you can just `nvim notebook.ipynb`, then hit `<space>m` ([molten](https://github.com/benlubas/molten-nvim)/markdown))
   - [centering](https://github.com/shortcuts/no-neck-pain.nvim)
 
+ ![image](https://github.com/user-attachments/assets/8d25776f-fc6b-4ee4-b5be-137efd0448e8)
+
+
 ## Make it yours
 
 - add/remove plugins with files in `plugins/`
