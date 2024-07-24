@@ -53,8 +53,6 @@ vim.o.clipboard = "unnamedplus"
 vim.wo.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
-vim.g.python3_host_prog=vim.fn.expand("~/.local/share/virtualenvs/neovim/bin/python3")
-
 vim.go.termguicolors = true
 vim.go.background = "dark"
 vim.cmd('let &t_8f = "\\<Esc>[38;2;%lu;%lu;%lum"')

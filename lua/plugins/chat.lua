@@ -31,6 +31,12 @@ return {
 				f:close()
 				return groq_api_key
 			end,
+			fireworks = function()
+				local f = assert(io.open(os.getenv("HOME") .. "/.cache/fireworks", "r"))
+				local groq_api_key = string.gsub(f:read("*all"), "\n", "")
+				f:close()
+				return groq_api_key
+			end,
 		},
 	},
 	keys = {
