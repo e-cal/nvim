@@ -1,4 +1,4 @@
-# e-cal/nvim - the best nvim config
+# e-cal/nvim
 
 - [lazy.nvim](https://github.com/folke/lazy.nvim)
 - all the things you expect and most likely want

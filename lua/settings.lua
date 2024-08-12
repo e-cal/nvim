@@ -52,6 +52,7 @@ vim.o.timeoutlen = 500
 vim.o.clipboard = "unnamedplus"
 vim.wo.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
+vim.o.path = vim.o.path .. "**"
 
 vim.go.termguicolors = true
 vim.go.background = "dark"

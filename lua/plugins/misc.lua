@@ -38,6 +38,8 @@ return {
 				heads = {
 					{ "l", "zl" },
 					{ "h", "zh" },
+					{ "L", "10zl" },
+					{ "H", "10zh" },
 				},
 				config = { invoke_on_body = true },
 			})
@@ -48,6 +50,8 @@ return {
 				heads = {
 					{ "l", "zl" },
 					{ "h", "zh" },
+					{ "L", "10zl" },
+					{ "H", "10zh" },
 				},
 				config = { invoke_on_body = true },
 			})
