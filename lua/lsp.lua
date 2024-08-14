@@ -11,6 +11,7 @@ masoncfg.setup({
 		"ruff_lsp",
 		"clangd",
 		"tsserver",
+		"gopls",
 	},
 })
 

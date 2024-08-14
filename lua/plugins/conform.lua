@@ -14,6 +14,7 @@ return {
 			markdown = { "prettier" },
 			json = { "prettier" },
 			nix = { "nixfmt" },
+			go = { "gofmt" },
 		},
 
 		formatters = {
