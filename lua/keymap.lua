@@ -60,8 +60,9 @@ map("v", "<leader>'", 'c"""<cr><C-r>""""<esc>', { desc = '"""' })
 map("v", '<leader>"', 'c"""<cr><C-r>""""<esc>', { desc = '"""' })
 map("v", "<leader>`", 'c```<cr><C-r>"```<esc>', { desc = "```" })
 
--- lemme just use esc in terminal
-map("t", "<esc>", "<C-\\><C-n>")
+-- esc in terminal
+map("t", "<esc><esc>", "<C-\\><C-n>", { nowait = true })
+map("t", "<esc>", "<esc>")
 
 -- nop(e)
 map("n", "Q", "<NOP>")

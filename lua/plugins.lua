@@ -12,3 +12,4 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins/", { change_detection = { enabled = false } })
+vim.cmd("hi TreesitterContextBottom gui=NONE")

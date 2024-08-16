@@ -6,6 +6,7 @@ return {
 	},
     lazy = false,
 	opts = {
+        auto_scroll = false,
 		api_keys = {
 			openai = function()
 				local f = assert(io.open(os.getenv("HOME") .. "/.cache/oai", "r"))
@@ -62,6 +63,7 @@ return {
 		{ "<leader>ch", "<cmd>ChatResize 50<cr>", desc = "half screen" },
 		{ "<leader>cR", "<cmd>ChatResize 30<cr>", desc = "restore size" },
 		{ "<leader>cd", "<cmd>ChatDelete<cr>", desc = "delete chat" },
+		{ "<leader>cf", "<cmd>ChatToggleFormatting<cr>", desc = "toggle formatting"},
         { "<C-c>", "<cmd>ChatStop<cr>", desc = "stop generation" },
         -- visual
 		{ "<leader>cc", "<cmd>ChatFocus<cr>", desc = "focus", mode = "v" },
