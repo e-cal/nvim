@@ -45,7 +45,7 @@ map("n", "<M-C-H>", "<cmd>vert resize -2<CR>")
 
 vim.g.mapleader = " "
 
-map("n", "<leader>f", "<cmd>Format<cr>", { desc = "format" })
+-- map("n", "<leader>f", "<cmd>Format<cr>", { desc = "format" })
 map("n", "<leader>n", "<cmd>NewFile<cr>", { desc = "new buffer" })
 map("n", "<leader>ww", "<C-w>q", { desc = "close split" })
 map("n", "<leader>wh", "<cmd>split<cr>", { desc = "split horizontal" })

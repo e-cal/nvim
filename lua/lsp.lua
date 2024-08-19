@@ -1,6 +1,8 @@
 local config = require("lspconfig")
 local masoncfg = require("mason-lspconfig")
 
+config.clangd.setup({ cmd = { "clangd", "--offset-encoding=utf-16" } })
+
 require("mason").setup()
 
 masoncfg.setup({
@@ -9,7 +11,6 @@ masoncfg.setup({
 		"lua_ls",
 		"pyright",
 		"ruff_lsp",
-		"clangd",
 		"tsserver",
 		"gopls",
 	},
@@ -17,7 +18,7 @@ masoncfg.setup({
 
 local on_attach = function(client, bufnr) end
 
-local custom_config = {
+local mason_lsp_configs = {
 	lua_ls = { settings = { Lua = { diagnostics = { globals = { "vim", "Utils", "s", "t", "i" } } } } },
 	clangd = { cmd = { "clangd", "--offset-encoding=utf-16" } },
 	ruff_lsp = {
@@ -26,6 +27,7 @@ local custom_config = {
 				args = {
 					"--preview",
 					"--select=F,W6,E71,E72,E112,E113,E203,E272,E702,E703,E731,W191,W291,W293,UP039,E999",
+					"--ignore=F403,F405",
 				},
 			},
 		},
@@ -56,6 +58,7 @@ local custom_config = {
 						-- reportUnusedVariable = "none",
 						-- reportUndefinedVariable = "none",
 						reportUnusedExpression = "none",
+						reportWildcardImportFromLibrary = "none",
 					},
 					typeCheckingMode = "basic",
 				},
@@ -70,8 +73,8 @@ masoncfg.setup_handlers({
 			on_attach = on_attach,
 			capabilities = require("cmp_nvim_lsp").default_capabilities(),
 		}
-		if custom_config[server_name] then
-			server_config = vim.tbl_extend("force", server_config, custom_config[server_name])
+		if mason_lsp_configs[server_name] then
+			server_config = vim.tbl_extend("force", server_config, mason_lsp_configs[server_name])
 		end
 		config[server_name].setup(server_config)
 	end,

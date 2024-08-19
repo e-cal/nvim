@@ -14,13 +14,7 @@ return {
 						-- format = require("iron.fts.common").bracketed_paste_python,
 					},
 				},
-				-- repl_open_cmd = require("iron.view").offset({
-				-- 	width = "40%",
-				-- 	height = math.ceil(vim.api.nvim_win_get_height(0) * 0.99),
-				-- 	w_offset = 100,
-				-- 	h_offset = 0,
-				-- }),
-                repl_open_cmd = "20 split",
+				repl_open_cmd = "20 split",
 			},
 			keymaps = {
 				send_line = "<leader>rl",
@@ -38,10 +32,8 @@ return {
 				visual_send = "<leader>r",
 				mark_visual = "<leader>m",
 			},
-			highlight = {
-				italic = false,
-			},
-			ignore_blank_lines = true, -- ignore blank lines when sending visual select lines
+			highlight = { italic = false },
+			ignore_blank_lines = true,
 		})
 	end,
 	keys = {
