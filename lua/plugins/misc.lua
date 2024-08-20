@@ -32,27 +32,31 @@ return {
 		config = function()
 			local hydra = require("hydra")
 			hydra({
+                body = "zl",
 				name = "scroll",
 				mode = "n",
-				body = "zl",
-				heads = {
-					{ "l", "zl" },
-					{ "h", "zh" },
-					{ "L", "10zl" },
-					{ "H", "10zh" },
-				},
+				heads = { { "l", "zl" }, { "h", "zh" }, { "L", "10zl" }, { "H", "10zh" } },
 				config = { invoke_on_body = true },
 			})
 			hydra({
+                body = "zh",
 				name = "scroll",
 				mode = "n",
-				body = "zh",
-				heads = {
-					{ "l", "zl" },
-					{ "h", "zh" },
-					{ "L", "10zl" },
-					{ "H", "10zh" },
-				},
+				heads = { { "l", "zl" }, { "h", "zh" }, { "L", "10zl" }, { "H", "10zh" } },
+				config = { invoke_on_body = true },
+			})
+			hydra({
+                body = "zL",
+				name = "scroll",
+				mode = "n",
+				heads = { { "l", "zl" }, { "h", "zh" }, { "L", "10zl" }, { "H", "10zh" } },
+				config = { invoke_on_body = true },
+			})
+			hydra({
+                body = "zH",
+				name = "scroll",
+				mode = "n",
+				heads = { { "l", "zl" }, { "h", "zh" }, { "L", "10zl" }, { "H", "10zh" } },
 				config = { invoke_on_body = true },
 			})
 		end,
