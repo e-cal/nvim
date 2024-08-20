@@ -7,6 +7,9 @@ return {
     lazy = false,
 	opts = {
         auto_scroll = false,
+        default = {
+            model = "meta-llama/llama-3.1-405b-instruct",
+        },
 		api_keys = {
 			openai = function()
 				local f = assert(io.open(os.getenv("HOME") .. "/.cache/oai", "r"))
@@ -51,6 +54,7 @@ return {
 				return api_key
 			end,
 		},
+
 	},
 	keys = {
 		{ "<leader>cc", "<cmd>ChatFocus<cr>", desc = "focus" },
