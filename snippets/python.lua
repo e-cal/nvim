@@ -3,15 +3,20 @@ return {
 	s("md", { t({ "# %% [markdown]", '"""', "" }), i(1), t({ "", '"""' }) }),
 	s("ifmain", t('if __name__ == "__main__":')),
 	s(
-		"oaikey",
-		t({
-			"try:",
-			'    with open(os.path.expanduser("~/.cache/oai"), "r") as f:',
-			"        openai.api_key = f.read().strip()",
-			"except FileNotFoundError:",
-			'    print("Error reading openai api key from ~/.cache/oai")',
-			"    exit(1)",
-		})
+		"apikey",
+		fmt(
+			[[
+		try:
+		    fp = "~/.cache/[1]"
+		    with open(os.path.expanduser(fp), "r") as f:
+		        api_key = f.read().strip()
+		except FileNotFoundError:
+		    print(f"Error reading api key from {fp}")
+		    exit(1)
+        ]],
+			{ i(1, "key") },
+            { delimiters = "[]"}
+		)
 	),
 	s(
 		"argparse",

@@ -11,7 +11,7 @@ masoncfg.setup({
 		"lua_ls",
 		"pyright",
 		"ruff_lsp",
-		"tsserver",
+		"ts_ls",
 		"gopls",
 	},
 })
@@ -19,7 +19,7 @@ masoncfg.setup({
 local on_attach = function(client, bufnr) end
 
 local mason_lsp_configs = {
-	lua_ls = { settings = { Lua = { diagnostics = { globals = { "vim", "Utils", "s", "t", "i" } } } } },
+	lua_ls = { settings = { Lua = { diagnostics = { globals = { "vim", "Utils", "P", "s", "t", "i", "fmt", "rep" } } } } },
 	clangd = { cmd = { "clangd", "--offset-encoding=utf-16" } },
 	ruff_lsp = {
 		init_options = {

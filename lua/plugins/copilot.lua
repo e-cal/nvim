@@ -1,16 +1,25 @@
 return {
-    {
-        "zbirenbaum/copilot-cmp",
-        event = "VeryLazy",
-        dependencies = {
-            {
-                "zbirenbaum/copilot.lua",
-                opts = {
-                    suggestion = { enabled = false },
-                    panel = { enabled = false },
-                },
-            },
+	-- {
+	--     "zbirenbaum/copilot-cmp",
+	--     event = "VeryLazy",
+	--     dependencies = {
+	--         {
+	--             "zbirenbaum/copilot.lua",
+	--             opts = {
+	--                 suggestion = { enabled = false },
+	--                 panel = { enabled = false },
+	--             },
+	--         },
+	--     },
+	--     opts = {},
+	-- },
+	{
+		"supermaven-inc/supermaven-nvim",
+        opts = {
+            disable_inline_completion = true,
         },
-        opts = {},
-    },
+		config = function(_, opts)
+			require("supermaven-nvim").setup(opts)
+		end,
+	},
 }

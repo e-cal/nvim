@@ -7,7 +7,17 @@ return {
 		"nvim-treesitter/playground",
 	},
 	opts = {
-		ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "python", "markdown", "markdown_inline" },
+		ensure_installed = {
+			"c",
+			"lua",
+			"vim",
+			"vimdoc",
+			"query",
+			"python",
+			"markdown",
+			"markdown_inline",
+			"latex",
+		},
 		sync_install = false,
 		auto_install = true,
 		ignore_install = {},

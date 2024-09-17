@@ -35,7 +35,8 @@ autocmd({ "FileType" }, {
 		vim.cmd("setlocal spell")
 		vim.cmd('syntax match markdownIgnore "\\v\\w_\\w"')
 		vim.cmd("set sw=2 sts=2 ts=2")
-	end,
+        -- vim.cmd [[syntax match @conceal /```/ conceal cchar=`]]
+    end,
 })
 
 augroup("python", { clear = true })

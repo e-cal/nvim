@@ -8,7 +8,7 @@ return {
 	opts = {
         auto_scroll = false,
         default = {
-            model = "meta-llama/llama-3.1-405b-instruct",
+            model = "llama-3.1-405b",
         },
 		api_keys = {
 			openai = function()
@@ -59,7 +59,8 @@ return {
 	keys = {
 		{ "<leader>cc", "<cmd>ChatFocus<cr>", desc = "focus" },
 		{ "<leader>ci", "<cmd>ChatInline<cr>", desc = "inline" },
-		{ "<leader>cr", "<cmd>ChatInline replace<cr>", desc = "replace inline" },
+		{ "<leader>cb", "<cmd>ChatInline base<cr>", desc = "inline (base)" },
+		{ "<leader>c1", "<cmd>ChatInline o1<cr>", desc = "inline o1" },
 		{ "<leader>cn", "<cmd>ChatNew<cr>", desc = "new chat" },
 		{ "<leader>co", "<cmd>ChatOpen<cr>", desc = "open chat" },
 		{ "<leader>cO", "<cmd>ChatOpen popup<cr>", desc = "open popup" },
@@ -72,6 +73,7 @@ return {
         -- visual
 		{ "<leader>cc", "<cmd>ChatFocus<cr>", desc = "focus", mode = "v" },
 		{ "<leader>ci", "<cmd>ChatInline<cr>", desc = "inline", mode = "v" },
-		{ "<leader>cr", "<cmd>ChatInline replace<cr>", desc = "replace inline", mode = "v" },
+		{ "<leader>cb", "<cmd>ChatInline base<cr>", desc = "inline (base)", mode = "v" },
+		{ "<leader>cr", "<cmd>ChatReplace<cr>", desc = "replace inline", mode = "v" },
 	},
 }
