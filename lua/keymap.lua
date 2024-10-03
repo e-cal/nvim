@@ -37,6 +37,8 @@ map("v", ">", ">gv")
 map("v", "K", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
 map("v", "J", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
 
+map("n", "gV", "`[v`]")
+
 -- Resizing
 map("n", "<M-C-k>", "<cmd>resize +2<CR>")
 map("n", "<M-C-J>", "<cmd>resize -2<CR>")
