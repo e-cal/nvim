@@ -32,6 +32,7 @@ return {
                         each_dict_entry_on_separate_line: false, \
                         split_before_logical_operator: true, \
                         blank_lines_around_top_level_definition: 1\
+                        indent_width: 4\
                     }",
 				},
 			},
