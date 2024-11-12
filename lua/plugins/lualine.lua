@@ -208,12 +208,11 @@ return {
 		ins_right({
 			function()
 				local msg = "No LSP"
-				local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
 				local clients = vim.lsp.get_active_clients()
 				if next(clients) == nil then
 					return msg
 				end
-				local msg = ""
+				msg = ""
 				local rename = { jedi_language_server = "jedi", ruff_lsp = "ruff" }
 				for _, client in ipairs(clients) do
 					if msg == "" then
@@ -221,9 +220,7 @@ return {
 					else
 						msg = msg .. " + " .. (rename[client.name] or client.name)
 					end
-					::continue::
 				end
-				-- truncate msg to
 				return msg
 			end,
 			icon = "󱁤",
@@ -245,38 +242,6 @@ return {
 			cond = conditions._and(conditions.hide_in_width, conditions.py_file),
 		})
 
-		-- working dir
-		ins_right({
-			function()
-				return ""
-			end,
-			color = { fg = colors.insert },
-			padding = { left = 0, right = 0 },
-			cond = conditions.hide_in_width,
-		})
-		ins_right({
-			function()
-				local cwd = vim.fn.getcwd()
-				local home = os.getenv("HOME")
-				local git_root = vim.fn.systemlist("git -C " .. cwd .. " rev-parse --show-toplevel")[1]
-
-				if vim.v.shell_error ~= 0 or git_root == "" then
-					return cwd:gsub(home, "~")
-				else
-					-- return cwd:gsub(git_root, git_root:match(".*/(.*)"))
-					local relative_path = cwd:sub(#git_root + 2)
-					local out_path = git_root:match(".*/(.*)")
-					if relative_path ~= "" then
-						out_path = out_path .. "/" .. relative_path
-					end
-					return out_path
-				end
-			end,
-			icon = { "󰝰 ", color = { fg = colors.bg_bright, bg = colors.insert } },
-			color = { fg = colors.insert, bg = colors.bg_bright },
-			cond = conditions.hide_in_width,
-			padding = { left = 0, right = 1 },
-		})
 		ins_right({
 			function()
 				return ""
