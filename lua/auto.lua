@@ -46,13 +46,6 @@ autocmd({ "BufEnter" }, {
 	pattern = "*.py",
 	callback = function()
 		vim.cmd("setlocal indentkeys-=<:> indentkeys-=:")
-        local cwd = vim.fn.getcwd()
-        if cwd:match("^" .. vim.fn.expand("~/projects/entropix")) then
-            vim.bo.shiftwidth = 2
-            vim.bo.tabstop = 2
-            vim.bo.softtabstop = 2
-        end
-
 	end,
 })
 
