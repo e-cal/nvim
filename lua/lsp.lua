@@ -6,11 +6,11 @@ config.clangd.setup({ cmd = { "clangd", "--offset-encoding=utf-16" } })
 require("mason").setup()
 
 masoncfg.setup({
-	-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+	-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
 	ensure_installed = {
 		"lua_ls",
 		"pyright",
-		"ruff_lsp",
+		"ruff",
 		"ts_ls",
 		"gopls",
 	},
@@ -19,15 +19,39 @@ masoncfg.setup({
 local on_attach = function(client, bufnr) end
 
 local mason_lsp_configs = {
-	lua_ls = { settings = { Lua = { diagnostics = { globals = { "vim", "Utils", "P", "s", "t", "i", "fmt", "rep" } } } } },
+	lua_ls = {
+		settings = { Lua = { diagnostics = { globals = { "vim", "Utils", "P", "s", "t", "i", "fmt", "rep" } } } },
+	},
 	clangd = { cmd = { "clangd", "--offset-encoding=utf-16" } },
-	ruff_lsp = {
+	ruff = {
 		init_options = {
 			settings = {
-				args = {
-					"--preview",
-					"--select=F,W6,E71,E72,E112,E113,E203,E272,E702,E703,E731,W191,W291,W293,UP039,E999",
-					"--ignore=F403,F405",
+				lint = {
+					preview = true,
+					select = {
+						"F", -- pyflakes
+						"W6", -- warnings
+						"E1", -- indentation
+						-- "E2", -- whitespace
+						"E71", -- value comparison
+						"E72", -- type comparison & exceptions
+						"E702", -- semicolons
+						"E703", -- semicolons
+						"E731", -- lambdas
+						"W191", -- indentation
+						-- "W291", -- trailing whitespace
+						-- "W293", -- blank line whitespace
+						"I002", -- missing import
+						"UP039", -- unnecessary parens
+						"PD", -- pandas
+						"NPY", -- numpy
+						"RUF", -- ruff specific
+					},
+					ignore = {
+						"F403", -- allow import *
+						"F405", -- allow import from __future__
+                        "PD901", -- allow df as name
+					},
 				},
 			},
 		},
@@ -56,7 +80,7 @@ local mason_lsp_configs = {
 					diagnosticSeverityOverrides = {
 						reportGeneralTypeIssues = "warning",
 						-- reportUnusedVariable = "none",
-						-- reportUndefinedVariable = "none",
+						reportUndefinedVariable = "none",
 						reportUnusedExpression = "none",
 						reportWildcardImportFromLibrary = "none",
 					},
