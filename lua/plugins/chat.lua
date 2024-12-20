@@ -8,7 +8,7 @@ return {
 	opts = {
         auto_scroll = false,
         default = {
-            model = "llama-3.1-405b",
+            model = "sonnet-latest",
         },
 		api_keys = {
 			openai = function()
