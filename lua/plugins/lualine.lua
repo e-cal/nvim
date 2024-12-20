@@ -140,14 +140,6 @@ return {
 		}, true)
 
 		local function get_filename()
-			local bufnr = vim.fn.bufnr("%")
-			local fg = colors.fg -- not modified
-			if vim.fn.getbufvar(bufnr, "&modified") == 1 then
-				fg = colors.command -- unsaved
-			elseif not vim.bo.modifiable then
-				fg = colors.replace -- readonly
-			end
-			vim.cmd("hi! lualine_filename_status gui=bold guibg=" .. colors.bg_bright .. " guifg=" .. fg)
 			local full_path = vim.fn.expand("%:p")
 			local cwd = vim.fn.getcwd()
 			local relative_path = full_path:gsub("^" .. vim.pesc(cwd) .. "/", "")
@@ -156,16 +148,31 @@ return {
 		ins_left({
 			get_filename,
 			cond = conditions.buffer_not_empty,
-			color = "lualine_filename_status",
+			color = function()
+                local bufnr = vim.fn.bufnr("%")
+                local fg = colors.fg -- not modified
+                if vim.fn.getbufvar(bufnr, "&modified") == 1 then
+                    fg = colors.command -- unsaved
+                elseif not vim.bo.modifiable then
+                    fg = colors.replace -- readonly
+                end
+                return {fg = fg, bg = colors.bg_bright}
+            end,
 			padding = { left = 0, right = 0 },
 		})
 		ins_inactive({
 			get_filename,
 			cond = conditions.buffer_not_empty,
-			color = {
-				fg = colors.fg_dark,
-				bg = colors.bg_bright,
-			},
+			color = function()
+                local bufnr = vim.fn.bufnr("%")
+                local fg = colors.fg_dark -- not modified
+                if vim.fn.getbufvar(bufnr, "&modified") == 1 then
+                    fg = colors.command -- unsaved
+                elseif not vim.bo.modifiable then
+                    fg = colors.replace -- readonly
+                end
+                return {fg = fg, bg = colors.bg_bright}
+            end,
 			padding = { left = 0, right = 0 },
 		})
 		ins_left({
