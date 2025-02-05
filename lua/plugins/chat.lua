@@ -10,51 +10,6 @@ return {
         default = {
             model = "sonnet-latest",
         },
-		api_keys = {
-			openai = function()
-				local f = assert(io.open(os.getenv("HOME") .. "/.cache/oai", "r"))
-				local api_key = string.gsub(f:read("*all"), "\n", "")
-				f:close()
-				return api_key
-			end,
-			anthropic = function()
-				local f = assert(io.open(os.getenv("HOME") .. "/.cache/anthropic", "r"))
-				local api_key = string.gsub(f:read("*all"), "\n", "")
-				f:close()
-				return api_key
-			end,
-			deepseek = function()
-				local f = assert(io.open(os.getenv("HOME") .. "/.cache/deepseek", "r"))
-				local api_key = string.gsub(f:read("*all"), "\n", "")
-				f:close()
-				return api_key
-			end,
-			groq = function()
-				local f = assert(io.open(os.getenv("HOME") .. "/.cache/groq", "r"))
-				local api_key = string.gsub(f:read("*all"), "\n", "")
-				f:close()
-				return api_key
-			end,
-			fireworks = function()
-				local f = assert(io.open(os.getenv("HOME") .. "/.cache/fireworks", "r"))
-				local api_key = string.gsub(f:read("*all"), "\n", "")
-				f:close()
-				return api_key
-			end,
-			topology = function()
-				local f = assert(io.open(os.getenv("HOME") .. "/.cache/clm-default", "r"))
-				local api_key = string.gsub(f:read("*all"), "\n", "")
-				f:close()
-				return api_key
-			end,
-			openrouter = function()
-				local f = assert(io.open(os.getenv("HOME") .. "/.cache/openrouter", "r"))
-				local api_key = string.gsub(f:read("*all"), "\n", "")
-				f:close()
-				return api_key
-			end,
-		},
-
 	},
 	keys = {
 		{ "<leader>cc", "<cmd>ChatFocus<cr>", desc = "focus" },
