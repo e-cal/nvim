@@ -17,37 +17,12 @@ return {
 				follow = true,
 				hidden = true,
 				git_ignore = false,
-				file_ignore_patterns = { "^.git/" },
+				file_ignore_patterns = { "^.git/", "^.venv/" },
 			},
 		},
 	},
 	config = function(_, opts)
 		local actions = require("telescope.actions")
-
-		-- Custom function to load project ignores
-		local load_project_ignores = function()
-			local project_ignore = {}
-			local root = vim.fs.dirname(vim.fs.find(".git", { upward = true })[1] or "")
-			if root then
-				local ignore_file = root .. "/.telescopeignore"
-				if vim.fn.filereadable(ignore_file) == 1 then
-					for line in io.lines(ignore_file) do
-						if not line:match("^%s*#") and line ~= "" then
-							-- Convert glob patterns to Lua patterns
-							local pattern = line:gsub("[%%%[%]%^%$%(%)%.]", "%%%0"):gsub("%*", ".*"):gsub("%?", ".")
-							table.insert(project_ignore, pattern)
-						end
-					end
-				end
-			end
-			return project_ignore
-		end
-		-- Merge project ignores with defaults
-		local original_find_files = opts.pickers.find_files or {}
-		opts.pickers.find_files = vim.tbl_deep_extend("force", original_find_files, {
-			file_ignore_patterns = load_project_ignores(),
-		})
-
 		local extra_opts = {
 			defaults = {
 				mappings = {
@@ -59,6 +34,31 @@ return {
 			},
 		}
 		opts = vim.tbl_deep_extend("force", opts, extra_opts)
+
+		-- Read .telescopeignore from project root
+		local function get_git_root()
+			local dot_git = vim.fn.finddir(".git", ".;")
+			return dot_git ~= "" and vim.fn.fnamemodify(dot_git, ":h") or nil
+		end
+		local root = get_git_root() or vim.fn.getcwd()
+		local ignore_file = root .. "/.telescopeignore"
+
+		local file = io.open(ignore_file, "r")
+		if file then
+			local patterns = {}
+			for line in file:lines() do
+				line = line:gsub("^%s*(.-)%s*$", "%1") -- Trim whitespace
+				if line ~= "" and not line:match("^#") then
+					table.insert(patterns, line)
+				end
+			end
+			file:close()
+			if opts.pickers and opts.pickers.find_files then
+				opts.pickers.find_files.file_ignore_patterns = opts.pickers.find_files.file_ignore_patterns or {}
+				vim.list_extend(opts.pickers.find_files.file_ignore_patterns, patterns)
+			end
+		end
+
 		require("telescope").setup(opts)
 		require("telescope").load_extension("fzf")
 	end,
