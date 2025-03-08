@@ -14,17 +14,6 @@ return {
 		},
 	},
 	{
-		"epwalsh/obsidian.nvim",
-		version = "*",
-		lazy = true,
-		ft = "markdown",
-		opts = {
-			workspaces = { { name = "notes", path = "~/notes" } },
-			completion = { nvim_cmp = true, min_chars = 0 },
-			ui = { enable = false },
-		},
-	},
-	{
 		"MeanderingProgrammer/render-markdown.nvim",
 		opts = {
 			file_types = { "markdown", "Avante" },
