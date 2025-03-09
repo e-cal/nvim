@@ -61,6 +61,16 @@ local function sync_file(filepath)
 	if abs_filepath:match("data/") or abs_filepath:match(".venv/") or abs_filepath:match(".git/") then
 		return
 	end
+	local in_remote_dir = false
+	for local_dir, _ in pairs(remote_dirs) do
+		if abs_filepath:find(local_dir, 1, true) == 1 then
+			in_remote_dir = true
+			break
+		end
+	end
+	if not in_remote_dir then
+		return
+	end
 	for local_dir, remote_dest in pairs(remote_dirs) do
 		if abs_filepath:find(local_dir, 1, true) == 1 then
 			local rel_path = abs_filepath:sub(#local_dir + 2)
@@ -115,8 +125,8 @@ local function sync_file(filepath)
 			return
 		end
 	end
-	vim.notify("No remote destination found for " .. abs_filepath, vim.log.levels.WARN)
 end
+
 -- Expose functions to the global namespace
 _G.remote_sync = {
 	add = add_remote_dir,
@@ -183,16 +193,13 @@ vim.api.nvim_create_user_command("RemoteSync", function()
 	sync_file(vim.fn.expand("%:p"))
 end, {})
 
--- New command for full directory sync
-vim.api.nvim_create_user_command("RemoteFullSync", function(opts)
-	local local_dir = opts.args ~= "" and vim.fn.expand(opts.args) or vim.fn.getcwd()
+vim.api.nvim_create_user_command("RemoteFullSync", function()
+	local local_dir = vim.fn.getcwd()
 	if not remote_dirs[local_dir] then
 		vim.notify("No remote destination found for " .. local_dir, vim.log.levels.ERROR)
 		return
 	end
 	local remote_dest = remote_dirs[local_dir]
-
-	-- Define rsync arguments for full directory sync
 	local rsync_args = {
 		"rsync",
 		"-av",
@@ -201,10 +208,8 @@ vim.api.nvim_create_user_command("RemoteFullSync", function(opts)
 	for _, exclude in ipairs(rsync_excludes) do
 		table.insert(rsync_args, exclude)
 	end
-	table.insert(rsync_args, local_dir .. "/") -- Trailing slash ensures directory contents are synced
+	table.insert(rsync_args, local_dir .. "/")
 	table.insert(rsync_args, remote_dest)
-
-	-- Run rsync
 	vim.fn.jobstart(rsync_args, {
 		on_stdout = function(_, data)
 			if data then
@@ -228,4 +233,4 @@ vim.api.nvim_create_user_command("RemoteFullSync", function(opts)
 			end
 		end,
 	})
-end, { nargs = "?" })
+end, {})
