@@ -20,9 +20,9 @@ return {
 				["v"] = "open_vsplit",
 				["Y"] = { "copy", config = { show_path = "absolute" } },
 				["m"] = { "move", config = { show_path = "relative" } },
-				["n"] = "next_source",
 				["<tab>"] = "next_source",
 				["o"] = "system_open",
+                ["/"] = {}, -- / does regular search, f does filtering
 			},
 		},
 		filesystem = { -- file tree specific
