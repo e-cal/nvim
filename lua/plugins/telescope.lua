@@ -17,6 +17,7 @@ return {
 				follow = true,
 				hidden = true,
 				git_ignore = false,
+                no_ignore = true,
 				file_ignore_patterns = { "^.git/", "^.venv/" },
 			},
 		},
