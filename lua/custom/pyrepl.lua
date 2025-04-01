@@ -56,14 +56,23 @@ vim.keymap.set(
 	"v",
 	"<leader>pr",
 	M.run_selected_lines,
-	{ noremap = true, silent = true, desc = "Run in python REPL" }
+	{ noremap = true, silent = true, desc = "Run in python REPL ipython" }
 )
 
 vim.keymap.set(
     "n",
     "<leader>pr",
     M.run_current_line,
-    { noremap = true, silent = true, desc = "Run current line in python REPL" }
+    { noremap = true, silent = true, desc = "Run line in ipython" }
+)
+vim.keymap.set(
+    "n",
+    "<leader>pc",
+    function()
+        vim.api.nvim_command("SelectPythonCell content")
+        M.run_selected_lines()
+    end,
+    { noremap = true, silent = true, desc = "Run cell in ipython" }
 )
 
 return M

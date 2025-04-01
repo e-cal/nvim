@@ -149,12 +149,12 @@ return {
 		end, { nargs = "?" })
 
 		vim.api.nvim_set_keymap("n", "<leader>pC", "<cmd>SelectPythonCell<CR>", { noremap = true, silent = true })
-		vim.api.nvim_set_keymap(
-			"n",
-			"<leader>pc",
-			"<cmd>SelectPythonCell content<CR>",
-			{ noremap = true, silent = true }
-		)
+		-- vim.api.nvim_set_keymap(
+		-- 	"n",
+		-- 	"<leader>pc",
+		-- 	"<cmd>SelectPythonCell content<CR>",
+		-- 	{ noremap = true, silent = true }
+		-- )
 
 		function make_cell_textobject(include_delimiter)
 			return function()
