@@ -10,14 +10,42 @@ function M.setup(opts)
 end
 
 function M.send_to_repl(code)
-	local response = curl.post(M.config.url, {
-		body = vim.fn.json_encode({ code = code }),
-		headers = {
-			content_type = "application/json",
-		},
-	})
+    if type(code) == "table" and #code > 0 then
+        -- Get current buffer's file path relative to cwd
+        local filepath = vim.fn.fnamemodify(vim.fn.expand("%"), ":.")
+        local start_line, end_line
 
-	local result = vim.fn.json_decode(response.body)
+        -- Get the visual selection line range
+        if vim.fn.mode() == "v" or vim.fn.mode() == "V" then
+            local _, srow = unpack(vim.fn.getpos('v'))
+            local _, erow = unpack(vim.fn.getpos('.'))
+            start_line = math.min(srow, erow)
+            end_line = math.max(srow, erow)
+        else
+            -- For current line or other operations
+            start_line = vim.fn.line('.')
+            end_line = start_line
+        end
+
+        local info_string = filepath .. " [" .. start_line .. "-" .. end_line .. "]"
+
+        -- Check if the first line starts with # %%
+        if code[1]:match("^# %%") then
+            -- Append file path and line range to the existing comment
+            code[1] = code[1] .. " " .. info_string
+        else
+            -- Prepend a new comment line with the file path and line range
+            table.insert(code, 1, "# %% " .. info_string)
+        end
+    end
+
+    local response = curl.post(M.config.url, {
+        body = vim.fn.json_encode({ code = code }),
+        headers = {
+            content_type = "application/json",
+        },
+    })
+    local result = vim.fn.json_decode(response.body)
 end
 
 function M.get_visual_selection()
@@ -69,7 +97,7 @@ vim.keymap.set(
     "n",
     "<leader>pc",
     function()
-        vim.api.nvim_command("SelectPythonCell content")
+        vim.api.nvim_command("SelectPythonCell")
         M.run_selected_lines()
     end,
     { noremap = true, silent = true, desc = "Run cell in ipython" }
