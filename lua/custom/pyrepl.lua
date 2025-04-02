@@ -82,9 +82,9 @@ end
 
 vim.keymap.set(
 	"v",
-	"<leader>pr",
+	"<leader>r",
 	M.run_selected_lines,
-	{ noremap = true, silent = true, desc = "Run in python REPL ipython" }
+	{ noremap = true, silent = true, desc = "Run in ipython" }
 )
 
 vim.keymap.set(
