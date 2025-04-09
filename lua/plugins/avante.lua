@@ -4,7 +4,6 @@ return {
 	build = "make",
 	opts = {
 		provider = "claude",
-		claude = { api_key_name = "cmd:echo -n $(cat ~/.cache/anthropic)" },
 		hints = { enabled = false },
 		mappings = {
 			ask = "<leader>ca",
