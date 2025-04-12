@@ -89,13 +89,13 @@ vim.keymap.set(
 
 vim.keymap.set(
     "n",
-    "<leader>pr",
+    "<leader>rr",
     M.run_current_line,
     { noremap = true, silent = true, desc = "Run line in ipython" }
 )
 vim.keymap.set(
     "n",
-    "<leader>pc",
+    "<leader>rc",
     function()
         vim.api.nvim_command("SelectPythonCell")
         M.run_selected_lines()
