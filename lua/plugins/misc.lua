@@ -6,18 +6,38 @@ return {
 	{ "tpope/vim-repeat", event = "VeryLazy" },
 	{ "tpope/vim-surround", event = "VeryLazy" },
 	{
+		"rcarriga/nvim-notify",
+		lazy = true,
+		opts = {
+			render = "minimal",
+			stages = "fade",
+			top_down = false,
+		},
+	},
+	{
 		"mbbill/undotree",
 		event = "VeryLazy",
 		keys = { { "<leader>u", "<cmd>UndotreeToggle<cr>", desc = "undo tree" } },
+	},
+	{
+		"numToStr/Comment.nvim",
+		event = "VeryLazy",
+		config = function()
+			require("Comment").setup()
+			-- idk why keys doesn't work for these but it don't
+			vim.api.nvim_set_keymap("n", "<leader>/", "gcc", { desc = "comment" })
+			vim.api.nvim_set_keymap("v", "<C-_>", "gc", { desc = "comment" })
+			vim.api.nvim_set_keymap("v", "<leader>/", "gc", { desc = "comment" })
+		end,
 	},
 	{
 		"utilyre/sentiment.nvim", -- bracket pair matching
 		event = "VeryLazy",
 		enabled = function()
 			local max_filesize = 100 * 1024 -- 100 KB
-            local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(0))
+			local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(0))
 			if ok and stats and stats.size > max_filesize then
-			    print("disabled sentiment (bracket matching) for large file")
+				print("disabled sentiment (bracket matching) for large file")
 				return false
 			end
 			return true
@@ -41,28 +61,28 @@ return {
 		config = function()
 			local hydra = require("hydra")
 			hydra({
-                body = "zl",
+				body = "zl",
 				name = "scroll",
 				mode = "n",
 				heads = { { "l", "zl" }, { "h", "zh" }, { "L", "10zl" }, { "H", "10zh" } },
 				config = { invoke_on_body = true },
 			})
 			hydra({
-                body = "zh",
+				body = "zh",
 				name = "scroll",
 				mode = "n",
 				heads = { { "l", "zl" }, { "h", "zh" }, { "L", "10zl" }, { "H", "10zh" } },
 				config = { invoke_on_body = true },
 			})
 			hydra({
-                body = "zL",
+				body = "zL",
 				name = "scroll",
 				mode = "n",
 				heads = { { "l", "zl" }, { "h", "zh" }, { "L", "10zl" }, { "H", "10zh" } },
 				config = { invoke_on_body = true },
 			})
 			hydra({
-                body = "zH",
+				body = "zH",
 				name = "scroll",
 				mode = "n",
 				heads = { { "l", "zl" }, { "h", "zh" }, { "L", "10zl" }, { "H", "10zh" } },

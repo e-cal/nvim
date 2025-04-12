@@ -34,7 +34,8 @@ return {
 		local cmp = require("cmp")
 		cmp.setup({
 			sources = {
-				{ name = "path", priority = 100 },
+			    { name = "parrot", priority = 100 },
+                { name = "path", priority = 100 },
 				{ name = "latex_symbols", priority = 100 },
 				{ name = "luasnip", priority = 95 },
 				{ name = "copilot", priority = 90 },
@@ -55,7 +56,7 @@ return {
 						fallback()
 					end
 				end, { "i", "s" }),
-				["<S-tab>"] = cmp.mapping(function(fallback)
+				["<S-Tab>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.select_prev_item()
 					else

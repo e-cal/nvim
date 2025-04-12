@@ -19,5 +19,5 @@ return {
 		)
 		require("ibl").setup(opts)
 	end,
-	keys = { { "<leader>i", "<cmd>IBLToggle<cr>", desc = "toggle indent lines" } },
+	keys = { { "<leader>li", "<cmd>IBLToggle<cr>", desc = "toggle indent lines" } },
 }

@@ -149,30 +149,30 @@ return {
 			get_filename,
 			cond = conditions.buffer_not_empty,
 			color = function()
-                local bufnr = vim.fn.bufnr("%")
-                local fg = colors.fg -- not modified
-                if vim.fn.getbufvar(bufnr, "&modified") == 1 then
-                    fg = colors.command -- unsaved
-                elseif not vim.bo.modifiable then
-                    fg = colors.replace -- readonly
-                end
-                return {fg = fg, bg = colors.bg_bright}
-            end,
+				local bufnr = vim.fn.bufnr("%")
+				local fg = colors.fg -- not modified
+				if vim.fn.getbufvar(bufnr, "&modified") == 1 then
+					fg = colors.command -- unsaved
+				elseif not vim.bo.modifiable then
+					fg = colors.replace -- readonly
+				end
+				return { fg = fg, bg = colors.bg_bright }
+			end,
 			padding = { left = 0, right = 0 },
 		})
 		ins_inactive({
 			get_filename,
 			cond = conditions.buffer_not_empty,
 			color = function()
-                local bufnr = vim.fn.bufnr("%")
-                local fg = colors.fg_dark -- not modified
-                if vim.fn.getbufvar(bufnr, "&modified") == 1 then
-                    fg = colors.command -- unsaved
-                elseif not vim.bo.modifiable then
-                    fg = colors.replace -- readonly
-                end
-                return {fg = fg, bg = colors.bg_bright}
-            end,
+				local bufnr = vim.fn.bufnr("%")
+				local fg = colors.fg_dark -- not modified
+				if vim.fn.getbufvar(bufnr, "&modified") == 1 then
+					fg = colors.command -- unsaved
+				elseif not vim.bo.modifiable then
+					fg = colors.replace -- readonly
+				end
+				return { fg = fg, bg = colors.bg_bright }
+			end,
 			padding = { left = 0, right = 0 },
 		})
 		ins_left({
@@ -214,12 +214,18 @@ return {
 		-- lsp servers
 		ins_right({
 			function()
-				local msg = "No LSP"
+				local prt_status_info = require("parrot.config").get_status_info()
+				local model = prt_status_info.model:gsub(".*/", "")
+				while model:match("%-[0-9]+$") do
+				  model = model:gsub("%-[0-9]+$", "")
+				end
+
 				local clients = vim.lsp.get_active_clients()
 				if next(clients) == nil then
-					return msg
+					return model
 				end
-				msg = ""
+
+				local msg = ""
 				local rename = { jedi_language_server = "jedi", ruff_lsp = "ruff" }
 				for _, client in ipairs(clients) do
 					if msg == "" then
@@ -228,7 +234,8 @@ return {
 						msg = msg .. " + " .. (rename[client.name] or client.name)
 					end
 				end
-				return msg
+
+				return msg .. " 󰚩 " .. model
 			end,
 			icon = "󱁤",
 			color = { fg = colors.fg_dark },

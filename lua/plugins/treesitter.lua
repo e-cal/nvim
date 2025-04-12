@@ -148,7 +148,7 @@ return {
 			end
 		end, { nargs = "?" })
 
-		vim.api.nvim_set_keymap("n", "<leader>pC", "<cmd>SelectPythonCell<CR>", { noremap = true, silent = true })
+		vim.api.nvim_set_keymap("n", "gC", "<cmd>SelectPythonCell<CR>", { noremap = true, silent = true })
 		-- vim.api.nvim_set_keymap(
 		-- 	"n",
 		-- 	"<leader>pc",
