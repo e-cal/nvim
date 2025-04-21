@@ -39,7 +39,7 @@ return {
 				{ name = "latex_symbols", priority = 100 },
 				{ name = "luasnip", priority = 95 },
 				{ name = "copilot", priority = 90 },
-				{ name = "supermaven", priority = 90 },
+				-- { name = "supermaven", priority = 90 },
 				{ name = "nvim_lsp", priority = 80 },
 				{ name = "nvim_lua", priority = 80 },
 				{ name = "buffer", priority = 50, keyword_length = 3 },
