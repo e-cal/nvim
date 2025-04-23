@@ -1,33 +1,129 @@
 return {
 	{
-		"frankroeder/parrot.nvim", -- https://github.com/frankroeder/dotfiles/blob/master/nvim/lua/plugins/parrot.lua
+		"frankroeder/parrot.nvim",
 		config = function(_, opts)
 			require("parrot").setup(opts)
 		end,
 		opts = {
-			user_input_ui = "buffer", -- "native" | "buffer"
+            cmd_prefix = "P",
+			user_input_ui = "buffer",
+			command_prompt_prefix_template = "Instruction ",
 			chat_user_prefix = "### User",
-			llm_prefix = "### Assistant: ",
-			state_dir = vim.fn.stdpath("data"):gsub("/$", "") .. "/parrot/persisted",
-			chat_dir = vim.fn.stdpath("data"):gsub("/$", "") .. "/parrot/chats",
+			llm_prefix = "### Assistant",
 			chat_free_cursor = true,
-			chat_shortcut_respond = { modes = { "n" }, shortcut = "<cr>" },
-			-- chat_shortcut_delete = { modes = { "n", "i", "v", "x" }, shortcut = "<C-g>d" },
-			chat_shortcut_stop = { modes = { "n", "i", "v", "x" }, shortcut = "<C-c>" },
-			-- chat_shortcut_new = { modes = { "n", "i", "v", "x" }, shortcut = "<C-g>c" },
+			system_prompt = {
+				command = [[
+                    <context>
+                    You are an expert programming AI assistant who prioritizes minimalist, efficient code. 
+                    You write idiomatic solutions, seek clarification when needed (via code comments), and accept user preferences even if suboptimal.
+                    Your responses stricly pertain to the code provided, focused on the snippet in question.
+                    </context>
+
+                    <format_rules>
+                    - Match the style of user written code
+                    - Comment sparingly, only to explain large & complex code blocks
+                    - Always use type annotations on functions when writing python (use 3.12 style builtin types rather than importing from typing)
+                    </format_rules>
+
+                    Respond following these rules. Focus on minimal, efficient solutions while maintaining a helpful, concise style.
+                ]],
+			},
 			hooks = {
-				Ask = function(parrot, params)
+				--[[
+                              Placeholders
+                {{selection}} 	        Current visual selection
+                {{filetype}} 	        Filetype of the current buffer
+                {{filename}} 	        Filename of the current buffer
+                {{filepath}} 	        Full path of the current file
+                {{filecontent}} 	    Full content of the current buffer
+                {{multifilecontent}} 	Full content of all open buffers
+                {{command}} 	        User command (prompt)
+                --]]
+				RewriteWithContext = function(prt, params)
 					local template = [[
-			                   In light of your existing knowledge base, please generate a response that
-			                   is succinct and directly addresses the question posed. Prioritize accuracy
-			                   and relevance in your answer, drawing upon the most recent information
-			                   available to you. Aim to deliver your response in a concise manner,
-			                   focusing on the essence of the inquiry.
-			                   Question: {{command}}
-			                 ]]
-					local model_obj = parrot.get_model("command")
-					parrot.logger.info("Asking model: " .. model_obj.name)
-					parrot.Prompt(params, parrot.ui.Target.popup, model_obj, "🤖 Ask ~ ", template)
+                        I have the following code from {{filename}}:
+
+                        ```{{filetype}}
+                        {{filecontent}}
+                        ```
+
+                        Please look at the following section specifically:
+                        ```{{filetype}}
+                        {{selection}}
+                        ```
+
+                        {{command}}
+                        Respond exclusively with the snippet that should replace the selection above.
+                        DO NOT RESPOND WITH ANY TYPE OF COMMENTS, JUST THE CODE!!!
+                    ]]
+					local model_obj = prt.get_model("command")
+					prt.Prompt(params, prt.ui.Target.rewrite, model_obj, "Instruction ", template)
+				end,
+				CompleteSelection = function(prt, params)
+					local template = [[
+                        I have the following code from {{filename}}:
+
+                        ```{{filetype}}
+                        {{selection}}
+                        ```
+
+                        Please finish the code above carefully and logically. Follow any instructions in the comments.
+                        Respond just with the snippet of code that should be inserted.
+                    ]]
+					local model_obj = prt.get_model("command")
+					prt.Prompt(params, prt.ui.Target.append, model_obj, nil, template)
+				end,
+				Complete = function(prt, params)
+					local template = [[
+                        I have the following code from {{filename}}:
+
+                        ```{{filetype}}
+                        {{filecontent}}
+                        ```
+
+                        Please look at the following section specifically and follow any instructions in the comments:
+                        ```{{filetype}}
+                        {{selection}}
+                        ```
+
+                        Please finish the code above carefully and logically.
+                        Respond just with the snippet of code that should be inserted.
+                    ]]
+					local model_obj = prt.get_model("command")
+					prt.Prompt(params, prt.ui.Target.append, model_obj, nil, template)
+				end,
+				CompleteFullContext = function(prt, params)
+					local template = [[
+                        I have the following code from {{filename}} and other realted files:
+
+                        ```{{filetype}}
+                        {{multifilecontent}}
+                        ```
+
+                        Please look at the following section specifically:
+                        ```{{filetype}}
+                        {{selection}}
+                        ```
+
+                        Please finish the code above carefully and logically.
+                        Respond just with the snippet of code that should be inserted.
+                    ]]
+					local model_obj = prt.get_model("command")
+					prt.Prompt(params, prt.ui.Target.append, model_obj, nil, template)
+				end,
+				ErrorHandling = function(prt, params)
+					local template = [[
+                        You are a {{filetype}} expert.
+                        Review the following code, carefully examine it, and update it to have robust error handling.
+                        Prefer to pass errors on to the caller and use minimal try/catch blocks.
+
+                        ```{{filetype}}
+                        {{filecontent}}
+                        ```
+                    ]]
+					local model_obj = prt.get_model("command")
+					prt.logger.info("Adding error handling with: " .. model_obj.name)
+					prt.Prompt(params, prt.ui.Target.enew, model_obj, nil, template)
 				end,
 			},
 			providers = {
@@ -45,11 +141,6 @@ return {
 				},
 				gemini = { api_key = os.getenv("GEMINI_API_KEY") },
 				groq = { api_key = os.getenv("GROQ_API_KEY") },
-				-- mistral = { api_key = os.getenv("MISTRAL_API_KEY") },
-				-- pplx = { api_key = os.getenv("PERPLEXITY_API_KEY") },
-				-- github = { api_key = os.getenv("GITHUB_TOKEN") },
-				-- nvidia = { api_key = os.getenv("NVIDIA_API_KEY") },
-				-- xai = { api_key = os.getenv("XAI_API_KEY") },
 				custom = {
 					style = "openai",
 					api_key = os.getenv("RB_OPENROUTER_API_KEY"),
@@ -92,32 +183,38 @@ return {
 					},
 				},
 			},
+			chat_shortcut_respond = { modes = { "n" }, shortcut = "<cr>" },
+			chat_shortcut_stop = { modes = { "n", "i", "v", "x" }, shortcut = "<C-c>" },
 		},
 		keys = {
-			{ "<leader>ar", ":PrtRewrite<cr>", desc = "rewrite", mode = "v" },
-			{ "<leader>ae", ":PrtEdit<cr>", desc = "edit and rewrite", mode = "v" },
-			{ "<leader>aj", ":PrtAppend<cr>", desc = "append code", mode = "v" },
-			{ "<leader>ak", ":PrtPrepend<cr>", desc = "prepend code", mode = "v" },
-			{ "<leader>ac", ":PrtChatToggle<cr>", desc = "toggle chat", mode = { "n", "v" } },
-			{ "<leader>an", ":PrtChatNew<cr>", desc = "new chat", mode = { "n", "v" } },
-			{ "<leader>ap", ":PrtChatPaste<cr>", desc = "paste to chat", mode = { "n", "v" } },
-			{ "<leader>ai", "<cmd>PrtInfo<cr>", desc = "print plugin info" },
-			{ "<leader>ax", "<cmd>PrtContext<cr>", desc = "edit context file" },
-			{ "<leader>af", "<cmd>PrtChatFinder<cr>", desc = "find chat" },
-			{ "<leader>ad", "<cmd>PrtChatDelete<cr>", desc = "delete chat" },
-			{ "<leader>a<cr>", "<cmd>PrtChatRespond<cr>", desc = "trigger response" },
-			{ "<leader>aq", "<cmd>PrtStop<cr>", desc = "stop response" },
-			{ "<leader>am", "<cmd>PrtModel<cr>", desc = "switch model" },
-			{ "<leader>aM", "<cmd>PrtProvider<cr>", desc = "switch provider" },
-			{ "<leader>aS", "<cmd>PrtStatus<cr>", desc = "show status" },
-			{ "<leader>at", "<cmd>PrtThinking<cr>", desc = "toggle thinking mode" },
-			{ "<leader>aN", "<cmd>PrtNew<cr>", desc = "respond in new window" },
-			{ "<leader>aB", "<cmd>PrtEnew<cr>", desc = "respond in new buffer" },
-			{ "<leader>av", "<cmd>PrtVnew<cr>", desc = "respond in vsplit" },
-			{ "<leader>aT", "<cmd>PrtTabnew<cr>", desc = "respond in new tab" },
-			{ "<leader>aR", "<cmd>PrtRetry<cr>", desc = "retry last action" },
-			{ "<leader>ai", "<cmd>PrtImplement<cr>", desc = "implement" },
-			{ "<leader>a?", "<cmd>PrtAsk<cr>", desc = "ask a question" },
+			{ "<leader>ar", ":PRewriteWithContext<cr>", desc = "rewrite", mode = "v" },
+			{ "<leader>aR", ":PRewrite<cr>", desc = "rewrite", mode = "v" },
+			{ "<leader>ae", ":PEdit<cr>", desc = "edit and rewrite", mode = "v" },
+			{ "<leader>aj", ":PAppend<cr>", desc = "append code", mode = "v" },
+			{ "<leader>ak", ":PPrepend<cr>", desc = "prepend code", mode = "v" },
+			{ "<leader>ac", ":PComplete<cr>", desc = "complete", mode = { "n", "v" } },
+			{ "<leader>as", ":PCompleteSelection<cr>", desc = "complete (selection only)", mode = "v" },
+			{ "<leader>aC", ":PCompleteFullContext<cr>", desc = "complete (all buffers)", mode = { "n", "v" } },
+
+			{ "<leader>at", ":PChatToggle<cr>", desc = "toggle chat", mode = { "n", "v" } },
+			{ "<leader>an", ":PChatNew<cr>", desc = "new chat", mode = { "n", "v" } },
+			{ "<leader>ap", ":PChatPaste<cr>", desc = "paste to chat", mode = "v" },
+
+			{ "<leader>ah", "<cmd>PErrorHandling<cr>", desc = "add error handling" },
+			{ "<leader>ai", "<cmd>PInfo<cr>", desc = "print plugin info" },
+			{ "<leader>ax", "<cmd>PContext<cr>", desc = "edit context file" },
+			{ "<leader>af", "<cmd>PChatFinder<cr>", desc = "find chat" },
+			{ "<leader>ad", "<cmd>PChatDelete<cr>", desc = "delete chat" },
+			{ "<leader>a<cr>", "<cmd>PChatRespond<cr>", desc = "trigger response" },
+			{ "<leader>aq", "<cmd>PStop<cr>", desc = "stop response" },
+			{ "<leader>am", "<cmd>PModel<cr>", desc = "switch model" },
+			{ "<leader>aM", "<cmd>PProvider<cr>", desc = "switch provider" },
+			{ "<leader>aS", "<cmd>PStatus<cr>", desc = "show status" },
+			{ "<leader>at", "<cmd>PThinking<cr>", desc = "toggle thinking mode" },
+			{ "<leader>aN", "<cmd>PNew<cr>", desc = "respond in new window" },
+			{ "<leader>aR", "<cmd>PRetry<cr>", desc = "retry last action" },
+			{ "<leader>ai", "<cmd>PImplement<cr>", desc = "implement" },
+			{ "<leader>a?", "<cmd>PAsk<cr>", desc = "ask a question" },
 		},
 	},
 	{
