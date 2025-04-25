@@ -26,13 +26,15 @@ local mason_lsp_configs = {
 	ruff = {
 		init_options = {
 			settings = {
+				lineLength = 160,
 				lint = {
 					preview = true,
 					select = {
 						"F", -- pyflakes
 						"W6", -- warnings
 						"E1", -- indentation
-						-- "E2", -- whitespace
+						"E2", -- whitespace
+                        "E501", -- line length
 						"E71", -- value comparison
 						"E72", -- type comparison & exceptions
 						"E702", -- semicolons
@@ -50,7 +52,7 @@ local mason_lsp_configs = {
 					ignore = {
 						"F403", -- allow import *
 						"F405", -- allow import from __future__
-                        "PD901", -- allow df as name
+						"PD901", -- allow df as name
 					},
 				},
 			},
