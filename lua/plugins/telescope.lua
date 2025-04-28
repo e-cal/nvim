@@ -65,6 +65,7 @@ return {
 	end,
 	keys = {
 		{ "<leader>o", "<cmd>Telescope find_files<cr>", desc = "open" },
+		{ "<leader>b", "<cmd>Telescope buffers<cr>", desc = "buffers" },
 		{ "<leader>t.", "<cmd>TelescopeSearchDotfiles<cr>", desc = "config" },
 		{ "<leader>tF", "<cmd>Telescope filetypes<cr>", desc = "filetypes" },
 		{ "<leader>tg", "<cmd>Telescope git_branches<cr>", desc = "git branches" },

@@ -50,6 +50,7 @@ local mason_lsp_configs = {
 						"RUF", -- ruff specific
 					},
 					ignore = {
+                        "E261", -- ignore whitespace before comments
 						"F403", -- allow import *
 						"F405", -- allow import from __future__
 						"PD901", -- allow df as name

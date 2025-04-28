@@ -171,6 +171,7 @@ return {
 						"openai/gpt-4.5-preview",
 						"google/gemini-2.0-pro-exp-02-05:free",
 						"google/gemini-2.0-flash-thinking-exp:free",
+		                "google/gemini-2.5-flash-preview",
 						"google/gemma-3-27b-it",
 					},
 					topic = {
