@@ -5,7 +5,7 @@ return {
 			require("parrot").setup(opts)
 		end,
 		opts = {
-            cmd_prefix = "P",
+			cmd_prefix = "P",
 			user_input_ui = "buffer",
 			command_prompt_prefix_template = "Instruction ",
 			chat_user_prefix = "### User",
@@ -171,7 +171,7 @@ return {
 						"openai/gpt-4.5-preview",
 						"google/gemini-2.0-pro-exp-02-05:free",
 						"google/gemini-2.0-flash-thinking-exp:free",
-		                "google/gemini-2.5-flash-preview",
+						"google/gemini-2.5-flash-preview",
 						"google/gemma-3-27b-it",
 					},
 					topic = {
@@ -375,6 +375,20 @@ return {
 				openrouter = function()
 					return os.getenv("RB_OPENROUTER_API_KEY")
 				end,
+			},
+			model_maps = {
+				openrouter = {
+					["gpt-4o"] = "openai/gpt-4o",
+					["gpt-4.1"] = "openai/gpt-4.1",
+					["gpt-4.5"] = "openai/gpt-4.5-preview",
+					["o1"] = "openai/o1",
+					["o1-pro"] = "openai/o1-pro",
+					["o1-mini"] = "openai/o1-mini",
+					["o3-mini"] = "openai/o3-mini",
+					["o3-mini-high"] = "openai/o3-mini-high",
+					["o3"] = "openai/o3",
+					["o4-mini"] = "openai/o4-mini",
+				},
 			},
 		},
 		keys = {
