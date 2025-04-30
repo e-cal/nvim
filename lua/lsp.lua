@@ -126,7 +126,7 @@ map("n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", { desc = "code 
 map("n", "<leader>ll", "<cmd>lua require('lint').try_lint()<cr>", { desc = "lint" })
 map("n", "<leader>lc", "<cmd>lua vim.diagnostic.reset()<cr>", { desc = "clear diagnostics" })
 map("n", "<leader>lI", "mz<cmd>normal A  # type: ignore<cr>`z", { desc = "type: ignore" })
-map("n", "<leader>ld", "<cmd>TroubleToggle<cr>", { desc = "diagnostics" })
+map("n", "<leader>ld", "<cmd>Trouble diagnostics<cr>", { desc = "diagnostics" })
 map("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format({ timeout_ms=30000 })<cr>", { desc = "format" })
 map("n", "<leader>lF", "<cmd>FormatToggle<cr>", { desc = "toggle formatting" })
 map("n", "<leader>lh", "<cmd>lua vim.lsp.buf.document_highlight()<cr>", { desc = "highlight symbol" })
