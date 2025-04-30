@@ -64,8 +64,8 @@ return {
 					["as"] = { query = "@scope", query_group = "locals", desc = "Select language scope" },
 					["af"] = "@function.outer",
 					["if"] = "@function.inner",
-					["ib"] = "@block.inner",
-					["ab"] = "@block.outer",
+					["i`"] = "@block.inner",
+					["a`"] = "@block.outer",
 				},
 				selection_modes = {
 					["@parameter.outer"] = "v", -- charwise

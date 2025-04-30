@@ -1,5 +1,8 @@
 local api = vim.api
 
+
+vim.cmd('cabbrev f Format')
+
 -- Trim whitespace
 TrimWhitespace = function()
 	local patterns = {
