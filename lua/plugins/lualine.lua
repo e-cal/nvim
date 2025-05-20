@@ -220,7 +220,7 @@ return {
 				  model = model:gsub("%-[0-9]+$", "")
 				end
 
-				local clients = vim.lsp.get_active_clients()
+				local clients = vim.lsp.get_clients()
 				if next(clients) == nil then
 					return model
 				end

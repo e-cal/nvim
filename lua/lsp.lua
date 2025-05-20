@@ -1,110 +1,5 @@
-local config = require("lspconfig")
-local masoncfg = require("mason-lspconfig")
-
-config.clangd.setup({ cmd = { "clangd", "--offset-encoding=utf-16" } })
-
-require("mason").setup()
-
-masoncfg.setup({
-	-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
-	ensure_installed = {
-		"lua_ls",
-		"pyright",
-		"ruff",
-		"ts_ls",
-		"gopls",
-	},
-})
-
-local on_attach = function(client, bufnr) end
-
-local mason_lsp_configs = {
-	lua_ls = {
-		settings = { Lua = { diagnostics = { globals = { "vim", "Utils", "P", "s", "t", "i", "fmt", "rep" } } } },
-	},
-	clangd = { cmd = { "clangd", "--offset-encoding=utf-16" } },
-	ruff = {
-		init_options = {
-			settings = {
-				lineLength = 160,
-				lint = {
-					preview = true,
-					select = {
-						"F", -- pyflakes
-						"W6", -- warnings
-						"E1", -- indentation
-						"E2", -- whitespace
-                        "E501", -- line length
-						"E71", -- value comparison
-						"E72", -- type comparison & exceptions
-						"E702", -- semicolons
-						"E703", -- semicolons
-						"E731", -- lambdas
-						"W191", -- indentation
-						-- "W291", -- trailing whitespace
-						-- "W293", -- blank line whitespace
-						"I002", -- missing import
-						"UP039", -- unnecessary parens
-						"PD", -- pandas
-						"NPY", -- numpy
-						"RUF", -- ruff specific
-					},
-					ignore = {
-                        "E261", -- ignore whitespace before comments
-						"F403", -- allow import *
-						"F405", -- allow import from __future__
-						"PD901", -- allow df as name
-					},
-				},
-			},
-		},
-		on_attach = function(client, bufnr)
-			client.server_capabilities.hoverProvider = false
-		end,
-	},
-	pyright = {
-		capabilities = (function()
-			local capabilities = vim.lsp.protocol.make_client_capabilities()
-			capabilities.textDocument.publishDiagnostics.tagSupport.valueSet = { 2 }
-			return capabilities
-		end)(),
-		handlers = {
-			-- ["textDocument/publishDiagnostics"] = function() end,
-			["textDocument/hover"] = vim.lsp.with(Utils.custom_hover, {
-				border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-				max_width = 120,
-				zindex = 500,
-			}),
-		},
-		settings = {
-			python = {
-				analysis = {
-					useLibraryCodeForTypes = true,
-					diagnosticSeverityOverrides = {
-						reportGeneralTypeIssues = "warning",
-						-- reportUnusedVariable = "none",
-						reportUndefinedVariable = "none",
-						reportUnusedExpression = "none",
-						reportWildcardImportFromLibrary = "none",
-					},
-					typeCheckingMode = "basic",
-				},
-			},
-		},
-	},
-}
-
-masoncfg.setup_handlers({
-	function(server_name)
-		local server_config = {
-			on_attach = on_attach,
-			capabilities = require("cmp_nvim_lsp").default_capabilities(),
-		}
-		if mason_lsp_configs[server_name] then
-			server_config = vim.tbl_extend("force", server_config, mason_lsp_configs[server_name])
-		end
-		config[server_name].setup(server_config)
-	end,
+vim.lsp.config("*", {
+  capabilities = vim.lsp.protocol.make_client_capabilities()
 })
 
 local map = vim.keymap.set
@@ -128,7 +23,14 @@ map("n", "<leader>lc", "<cmd>lua vim.diagnostic.reset()<cr>", { desc = "clear di
 map("n", "<leader>lI", "mz<cmd>normal A  # type: ignore<cr>`z", { desc = "type: ignore" })
 map("n", "<leader>ld", "<cmd>Trouble diagnostics<cr>", { desc = "diagnostics" })
 map("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format({ timeout_ms=30000 })<cr>", { desc = "format" })
-map("n", "<leader>lF", "<cmd>FormatToggle<cr>", { desc = "toggle formatting" })
+vim.keymap.set("n", "<leader>lF", function()
+	vim.lsp.buf.code_action({
+		filter = function(thing)
+			return thing.title == "Ruff: Fix all auto-fixable problems"
+		end,
+		apply = true,
+	})
+end, { desc = "Fix auto-fixable problems" })
 map("n", "<leader>lh", "<cmd>lua vim.lsp.buf.document_highlight()<cr>", { desc = "highlight symbol" })
 map("n", "<leader>l?", "<cmd>LspInfo<cr>", { desc = "lsp info" })
 map("n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", { desc = "rename" })
