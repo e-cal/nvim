@@ -7,7 +7,7 @@ return {
 			"pyright",
 			"ruff",
 			"ts_ls",
-			"gopls",
+            "bashls",
 		},
 	},
 	dependencies = {
