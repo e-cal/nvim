@@ -16,20 +16,16 @@ return {
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
 		opts = {
-			file_types = { "markdown", "Avante" },
+			file_types = { "markdown" },
 			log_level = "debug",
-
 			preset = "obsidian",
 			code = {
 				sign = false,
 			},
-			latex = {
-				enabled = false,
-				converter = "latex2text",
-				highlight = "RenderMarkdownMath",
-				top_pad = 0,
-				bottom_pad = 0,
-			},
+            heading = {
+                icons = { " ", " ", " " },
+                sign = false,
+            },
 			bullet = { icons = { "•", "↳", "⟶ ", "⪧" } },
 			callout = {
 				note = { raw = "[!note]", rendered = "󰋽 Note", highlight = "RenderMarkdownInfo" },
@@ -60,6 +56,13 @@ return {
 				example = { raw = "[!example]", rendered = "󰉹 Example", highlight = "RenderMarkdownHint" },
 				quote = { raw = "[!quote]", rendered = "󱆨 Quote", highlight = "RenderMarkdownQuote" },
 				cite = { raw = "[!cite]", rendered = "󱆨 Cite", highlight = "RenderMarkdownQuote" },
+			},
+			latex = {
+				enabled = false,
+				converter = "latex2text",
+				highlight = "RenderMarkdownMath",
+				top_pad = 0,
+				bottom_pad = 0,
 			},
 		},
 		ft = { "markdown", "Avante" },
