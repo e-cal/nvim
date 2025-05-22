@@ -54,10 +54,28 @@ return {
 
                         {{command}}
                         Respond exclusively with the snippet that should replace the selection above.
-                        DO NOT RESPOND WITH ANY TYPE OF COMMENTS, JUST THE CODE!!!
                     ]]
 					local model_obj = prt.get_model("command")
 					prt.Prompt(params, prt.ui.Target.rewrite, model_obj, "Instruction ", template)
+				end,
+				ImplementWithContext = function(prt, params)
+					local template = [[
+                        I have the following code from {{filename}}:
+
+                        ```{{filetype}}
+                        {{filecontent}}
+                        ```
+
+                        Please look at the following section specifically:
+                        ```{{filetype}}
+                        {{selection}}
+                        ```
+
+                        Please rewrite this according to the contained instructions.
+                        Respond exclusively with the snippet that should replace the selection above.
+                    ]]
+					local model_obj = prt.get_model("command")
+					prt.Prompt(params, prt.ui.Target.rewrite, model_obj, nil, template)
 				end,
 				CompleteSelection = function(prt, params)
 					local template = [[
@@ -188,21 +206,27 @@ return {
 			chat_shortcut_stop = { modes = { "n", "i", "v", "x" }, shortcut = "<C-c>" },
 		},
 		keys = {
+			{ "<leader>aj", ":PAppend<cr>", desc = "append code", mode = { "n", "v" } },
+			{ "<leader>ak", ":PPrepend<cr>", desc = "prepend code", mode = { "n", "v" } },
 			{ "<leader>ar", ":PRewriteWithContext<cr>", desc = "rewrite", mode = "v" },
-			{ "<leader>aR", ":PRewrite<cr>", desc = "rewrite", mode = "v" },
-			{ "<leader>ae", ":PEdit<cr>", desc = "edit and rewrite", mode = "v" },
-			{ "<leader>aj", ":PAppend<cr>", desc = "append code", mode = "v" },
-			{ "<leader>ak", ":PPrepend<cr>", desc = "prepend code", mode = "v" },
-			{ "<leader>ac", ":PComplete<cr>", desc = "complete", mode = { "n", "v" } },
+			{ "<leader>aR", ":PRewrite<cr>", desc = "rewrite (no context)", mode = "v" },
+			{ "<leader>aI", ":PImplementWithContext<cr>", desc = "implement", mode = "v" },
+			{ "<leader>aI", "V:PImplementWithContext<cr>", desc = "implement", mode = "n" },
+			{ "<leader>aI", ":PImplement<cr>", desc = "implement (no context)", mode = "v" },
+			{ "<leader>aI", "V:PImplement<cr>", desc = "implement (no context)", mode = "n" },
+			{ "<leader>ae", ":PEdit<cr>", desc = "edit", mode = "v" },
+			{ "<leader>ac", ":PComplete<cr>", desc = "complete", mode = "v" },
+			{ "<leader>ac", "V:PComplete<cr>", desc = "complete", mode = "n" },
 			{ "<leader>as", ":PCompleteSelection<cr>", desc = "complete (selection only)", mode = "v" },
-			{ "<leader>aC", ":PCompleteFullContext<cr>", desc = "complete (all buffers)", mode = { "n", "v" } },
+			{ "<leader>aC", ":PCompleteFullContext<cr>", desc = "complete (all buffers)", mode = "v" },
+			{ "<leader>aC", "V:PCompleteFullContext<cr>", desc = "complete (all buffers)", mode = "n" },
 
 			{ "<leader>at", ":PChatToggle<cr>", desc = "toggle chat", mode = { "n", "v" } },
 			{ "<leader>an", ":PChatNew<cr>", desc = "new chat", mode = { "n", "v" } },
 			{ "<leader>ap", ":PChatPaste<cr>", desc = "paste to chat", mode = "v" },
 
 			{ "<leader>ah", "<cmd>PErrorHandling<cr>", desc = "add error handling" },
-			{ "<leader>ai", "<cmd>PInfo<cr>", desc = "print plugin info" },
+			{ "<leader>aI", "<cmd>PInfo<cr>", desc = "print plugin info" },
 			{ "<leader>ax", "<cmd>PContext<cr>", desc = "edit context file" },
 			{ "<leader>af", "<cmd>PChatFinder<cr>", desc = "find chat" },
 			{ "<leader>ad", "<cmd>PChatDelete<cr>", desc = "delete chat" },
@@ -214,49 +238,9 @@ return {
 			{ "<leader>at", "<cmd>PThinking<cr>", desc = "toggle thinking mode" },
 			{ "<leader>aN", "<cmd>PNew<cr>", desc = "respond in new window" },
 			{ "<leader>aR", "<cmd>PRetry<cr>", desc = "retry last action" },
-			{ "<leader>ai", "<cmd>PImplement<cr>", desc = "implement" },
 			{ "<leader>a?", "<cmd>PAsk<cr>", desc = "ask a question" },
 		},
 	},
-	{
-		"yetone/avante.nvim",
-		enabled = false,
-		event = "VeryLazy",
-		build = "make",
-		opts = {
-			provider = "claude",
-			hints = { enabled = false },
-			behavior = {
-				enable_claude_text_editor_tool_mode = false,
-			},
-			mappings = {
-				ask = "<leader>ca",
-				refresh = "<leader>cr",
-				edit = "<leader>ce", -- edit selection
-				diff = {
-					ours = "co",
-					theirs = "ct",
-					none = "cq",
-					both = "cb",
-					next = "]x",
-					prev = "[x",
-				},
-				jump = {
-					next = "]]",
-					prev = "[[",
-				},
-				submit = {
-					normal = "<CR>",
-					insert = "<C-CR>",
-				},
-				toggle = {
-					debug = "<leader>ad",
-					hint = "<leader>ah",
-				},
-			},
-		},
-	},
-
 	{
 		"supermaven-inc/supermaven-nvim",
 		opts = {
