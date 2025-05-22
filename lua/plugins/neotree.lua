@@ -23,6 +23,9 @@ return {
 				["<tab>"] = "next_source",
 				["o"] = "system_open",
                 ["/"] = {}, -- / does regular search, f does filtering
+                ["C"] = "close_all_nodes",
+                ["z"] = {"expand_all_subnodes", nowait = true},
+                ["Z"] = "expand_all_nodes",
 			},
 		},
 		filesystem = { -- file tree specific
