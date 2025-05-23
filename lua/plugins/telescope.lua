@@ -1,6 +1,6 @@
 return {
 	"nvim-telescope/telescope.nvim",
-    lazy = false,
+	lazy = false,
 	dependencies = {
 		{
 			"nvim-telescope/telescope-fzf-native.nvim",
@@ -17,8 +17,14 @@ return {
 				follow = true,
 				hidden = true,
 				git_ignore = false,
-                no_ignore = true,
+				no_ignore = true,
 				file_ignore_patterns = { "^.git/", "^.venv/" },
+			},
+			buffers = {
+				mappings = {
+					i = { ["<c-d>"] = "delete_buffer" },
+					n = { ["<c-d>"] = "delete_buffer" },
+				},
 			},
 		},
 	},
