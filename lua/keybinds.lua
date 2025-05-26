@@ -39,12 +39,6 @@ map("v", "J", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
 
 map("n", "gV", "`[v`]")
 
--- Resizing
-map("n", "<M-C-k>", "<cmd>resize +2<CR>")
-map("n", "<M-C-J>", "<cmd>resize -2<CR>")
-map("n", "<M-C-L>", "<cmd>vert resize +2<CR>")
-map("n", "<M-C-H>", "<cmd>vert resize -2<CR>")
-
 vim.g.mapleader = " "
 
 -- map("n", "<leader>f", "<cmd>Format<cr>", { desc = "format" })

@@ -1,16 +1,5 @@
 return {
 	{
-		"numToStr/Navigator.nvim",
-		event = "VeryLazy",
-		config = true,
-		keys = {
-			{ "<M-h>", "<cmd>lua require('Navigator').left()<cr>" },
-			{ "<M-l>", "<cmd>lua require('Navigator').right()<cr>" },
-			{ "<M-k>", "<cmd>lua require('Navigator').up()<cr>" },
-			{ "<M-j>", "<cmd>lua require('Navigator').down()<cr>" },
-		},
-	},
-	{
 		"folke/flash.nvim",
 		event = "VeryLazy",
 		keys = {
