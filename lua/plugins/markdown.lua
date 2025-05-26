@@ -28,6 +28,7 @@ return {
             },
 			bullet = { icons = { "•", "↳", "⟶ ", "⪧" } },
 			callout = {
+				question = { raw = "[?]", rendered = "󰘥  ", highlight = "RenderMarkdownInfo" },
 				note = { raw = "[!note]", rendered = "󰋽 Note", highlight = "RenderMarkdownInfo" },
 				tip = { raw = "[!tip]", rendered = "󰌶 Tip", highlight = "RenderMarkdownSuccess" },
 				important = { raw = "[!important]", rendered = "󰅾 Important", highlight = "RenderMarkdownHint" },
@@ -43,7 +44,6 @@ return {
 				success = { raw = "[!success]", rendered = "󰄬 Success", highlight = "RenderMarkdownSuccess" },
 				check = { raw = "[!check]", rendered = "󰄬 Check", highlight = "RenderMarkdownSuccess" },
 				done = { raw = "[!done]", rendered = "󰄬 Done", highlight = "RenderMarkdownSuccess" },
-				question = { raw = "[!question]", rendered = "󰘥 Question", highlight = "RenderMarkdownWarn" },
 				help = { raw = "[!help]", rendered = "󰘥 Help", highlight = "RenderMarkdownWarn" },
 				faq = { raw = "[!faq]", rendered = "󰘥 Faq", highlight = "RenderMarkdownWarn" },
 				attention = { raw = "[!attention]", rendered = "󰀪 Attention", highlight = "RenderMarkdownWarn" },
