@@ -1,5 +1,5 @@
 require("settings")
-require("keymap")
+require("keybinds")
 
 if not vim.g.vscode then
 	require("utils")
