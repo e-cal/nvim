@@ -161,7 +161,7 @@ return {
 				groq = { api_key = os.getenv("GROQ_API_KEY") },
 				custom = {
 					style = "openai",
-					api_key = os.getenv("RB_OPENROUTER_API_KEY"),
+					api_key = os.getenv("OPENROUTER_API_KEY"),
 					endpoint = "https://openrouter.ai/api/v1/chat/completions",
 					models = {
 						"openrouter/auto",
@@ -357,7 +357,7 @@ return {
 			},
 			api_keys = {
 				openrouter = function()
-					return os.getenv("RB_OPENROUTER_API_KEY")
+					return os.getenv("OPENROUTER_API_KEY")
 				end,
 			},
 			model_maps = {
