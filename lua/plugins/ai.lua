@@ -362,6 +362,7 @@ return {
 			},
 			model_maps = {
 				openrouter = {
+                    -- openai
 					["gpt-4o"] = "openai/gpt-4o",
 					["gpt-4.1"] = "openai/gpt-4.1",
 					["gpt-4.5"] = "openai/gpt-4.5-preview",
@@ -372,6 +373,10 @@ return {
 					["o3-mini-high"] = "openai/o3-mini-high",
 					["o3"] = "openai/o3",
 					["o4-mini"] = "openai/o4-mini",
+                    -- claude
+                    ["opus"]  = "anthropic/claude-opus-4",
+                    ["sonnet-4"]  = "anthropic/claude-sonnet-4",
+                    ["sonnet-3.7"]  = "anthropic/claude-3.7-sonnet",
 				},
 			},
 		},
