@@ -151,52 +151,65 @@ return {
 				-- 	endpoint = "https://api.openai.com/v1/chat/completions",
 				-- 	api_key = os.getenv("OPENAI_API_KEY"),
 				-- },
-				-- anthropic = {
-				-- 	name = "anthropic",
-				-- 	endpoint = "https://api.anthropic.com/v1/messages",
-				-- 	model_endpoint = "https://api.anthropic.com/v1/models",
-				-- 	api_key = os.getenv("ANTHROPIC_API_KEY"),
-				-- 	params = {
-				-- 		command = { max_tokens = 4096 },
-				-- 		chat = {
-				-- 			max_tokens = 4096,
-				-- 			thinking = { budget_tokens = 1024, type = "enabled" },
-				-- 		},
-				-- 	},
-				-- },
-				-- gemini = {
-				-- 	name = "gemini",
-				-- 	endpoint = function(self)
-				-- 		return "https://generativelanguage.googleapis.com/v1beta/models/"
-				-- 			.. self._model
-				-- 			.. ":streamGenerateContent?alt=sse"
-				-- 	end,
-				-- 	model_endpoint = function(self)
-				-- 		return { "https://generativelanguage.googleapis.com/v1beta/models?key=" .. self.api_key }
-				-- 	end,
-				-- 	api_key = os.getenv("GEMINI_API_KEY"),
-				-- },
-				custom = {
-                    name = "openrouter",
-					style = "openai",
+				anthropic = {
+					name = "anthropic",
+					endpoint = "https://api.anthropic.com/v1/messages",
+					model_endpoint = "https://api.anthropic.com/v1/models",
+					api_key = os.getenv("ANTHROPIC_API_KEY"),
+					params = {
+						chat = { max_tokens = 4096 },
+						command = { max_tokens = 4096 },
+					},
+					topic = {
+						model = "claude-3-5-haiku-latest",
+						params = { max_tokens = 32 },
+					},
+					headers = function(self)
+						return {
+							["Content-Type"] = "application/json",
+							["x-api-key"] = self.api_key,
+							["anthropic-version"] = "2023-06-01",
+						}
+					end,
+					models = {
+						"claude-sonnet-4-20250514",
+						"claude-3-7-sonnet-20250219",
+						"claude-3-5-sonnet-20241022",
+						"claude-3-5-haiku-20241022",
+					},
+					preprocess_payload = function(payload)
+						for _, message in ipairs(payload.messages) do
+							message.content = message.content:gsub("^%s*(.-)%s*$", "%1")
+						end
+						if payload.messages[1] and payload.messages[1].role == "system" then
+							-- remove the first message that serves as the system prompt as anthropic
+							-- expects the system prompt to be part of the API call body and not the messages
+							payload.system = payload.messages[1].content
+							table.remove(payload.messages, 1)
+						end
+						return payload
+					end,
+				},
+				openrouter = {
+					name = "openrouter",
+					-- style = "openai",
 					api_key = os.getenv("OPENROUTER_API_KEY"),
 					endpoint = "https://openrouter.ai/api/v1/chat/completions",
+					-- model_endpoint = "https://openrouter.ai/api/v1/models",
 					models = {
 						"openrouter/auto",
 						"cohere/command-a",
 						"deepseek/deepseek-r1",
 						"deepseek/deepseek-chat-v3-0324",
 						"deepseek/deepseek-v3-base:free",
-                        "deepseek/deepseek-r1-0528",
-                        "deepseek/deepseek-prover-v2",
+						"deepseek/deepseek-r1-0528",
+						"deepseek/deepseek-prover-v2",
 						"x-ai/grok-3-beta",
 						"x-ai/grok-3-mini-beta",
-						"google/gemini-2.5-pro-exp-03-25:free",
-						"google/gemini-2.5-pro-preview-03-25",
+						"google/gemini-2.5-flash-preview-05-20:thinking",
+						"google/gemini-2.5-flash-preview-05-20",
+						"google/gemini-2.5-pro-preview",
 						"google/gemini-2.0-flash-001",
-						"google/gemini-2.0-pro-exp-02-05:free",
-						"google/gemini-2.0-flash-thinking-exp:free",
-						"google/gemini-2.5-flash-preview",
 						"google/gemma-3-27b-it",
 						"openai/o1-pro",
 						"openai/o1-preview",
@@ -204,15 +217,15 @@ return {
 						"openai/o3-mini",
 						"openai/o3-mini-high",
 						"openai/gpt-4.5-preview",
-                        "anthropic/claude-sonnet-4",
-                        "anthropic/claude-opus-4",
-                        "anthropic/claude-3.7-sonnet",
-                        "anthropic/claude-3.7-sonnet:thinking",
-                        "anthropic/claude-3.5-sonnet",
-                        "anthropic/claude-3.5-haiku",
+						"anthropic/claude-sonnet-4",
+						"anthropic/claude-opus-4",
+						"anthropic/claude-3.7-sonnet",
+						"anthropic/claude-3.7-sonnet:thinking",
+						"anthropic/claude-3.5-sonnet",
+						"anthropic/claude-3.5-haiku",
 					},
 					topic = {
-						model = "google/gemini-2.0-flash-001",
+						model = "google/gemini-2.5-flash-preview-05-20",
 						params = { max_completion_tokens = 64 },
 					},
 					params = {
