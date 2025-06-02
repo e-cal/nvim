@@ -146,51 +146,70 @@ return {
 			},
 			providers = {
 				-- ollama = {},
-				openai = { api_key = os.getenv("OPENAI_API_KEY") },
-				anthropic = {
-					api_key = os.getenv("ANTHROPIC_API_KEY"),
-					params = {
-						command = { max_tokens = 4096 },
-						chat = {
-							max_tokens = 4096,
-							thinking = { budget_tokens = 1024, type = "enabled" },
-						},
-					},
-				},
-				gemini = { api_key = os.getenv("GEMINI_API_KEY") },
-				groq = { api_key = os.getenv("GROQ_API_KEY") },
+				-- openai = {
+				-- 	name = "openai",
+				-- 	endpoint = "https://api.openai.com/v1/chat/completions",
+				-- 	api_key = os.getenv("OPENAI_API_KEY"),
+				-- },
+				-- anthropic = {
+				-- 	name = "anthropic",
+				-- 	endpoint = "https://api.anthropic.com/v1/messages",
+				-- 	model_endpoint = "https://api.anthropic.com/v1/models",
+				-- 	api_key = os.getenv("ANTHROPIC_API_KEY"),
+				-- 	params = {
+				-- 		command = { max_tokens = 4096 },
+				-- 		chat = {
+				-- 			max_tokens = 4096,
+				-- 			thinking = { budget_tokens = 1024, type = "enabled" },
+				-- 		},
+				-- 	},
+				-- },
+				-- gemini = {
+				-- 	name = "gemini",
+				-- 	endpoint = function(self)
+				-- 		return "https://generativelanguage.googleapis.com/v1beta/models/"
+				-- 			.. self._model
+				-- 			.. ":streamGenerateContent?alt=sse"
+				-- 	end,
+				-- 	model_endpoint = function(self)
+				-- 		return { "https://generativelanguage.googleapis.com/v1beta/models?key=" .. self.api_key }
+				-- 	end,
+				-- 	api_key = os.getenv("GEMINI_API_KEY"),
+				-- },
 				custom = {
+                    name = "openrouter",
 					style = "openai",
 					api_key = os.getenv("OPENROUTER_API_KEY"),
 					endpoint = "https://openrouter.ai/api/v1/chat/completions",
 					models = {
 						"openrouter/auto",
-						"openrouter/optimus-alpha",
-						"openrouter/quasar-alpha",
 						"cohere/command-a",
 						"deepseek/deepseek-r1",
 						"deepseek/deepseek-chat-v3-0324",
 						"deepseek/deepseek-v3-base:free",
-						"all-hands/openhands-lm-32b-v0.1",
+                        "deepseek/deepseek-r1-0528",
+                        "deepseek/deepseek-prover-v2",
+						"x-ai/grok-3-beta",
+						"x-ai/grok-3-mini-beta",
 						"google/gemini-2.5-pro-exp-03-25:free",
 						"google/gemini-2.5-pro-preview-03-25",
 						"google/gemini-2.0-flash-001",
-						"x-ai/grok-3-beta",
-						"x-ai/grok-3-mini-beta",
-						"meta-llama/llama-4-maverick",
-						"meta-llama/llama-4-maverick:free",
-						"meta-llama/llama-3.1-405b-instruct",
-						"nousresearch/hermes-3-llama-3.1-405b",
+						"google/gemini-2.0-pro-exp-02-05:free",
+						"google/gemini-2.0-flash-thinking-exp:free",
+						"google/gemini-2.5-flash-preview",
+						"google/gemma-3-27b-it",
 						"openai/o1-pro",
 						"openai/o1-preview",
 						"openai/o1-mini",
 						"openai/o3-mini",
 						"openai/o3-mini-high",
 						"openai/gpt-4.5-preview",
-						"google/gemini-2.0-pro-exp-02-05:free",
-						"google/gemini-2.0-flash-thinking-exp:free",
-						"google/gemini-2.5-flash-preview",
-						"google/gemma-3-27b-it",
+                        "anthropic/claude-sonnet-4",
+                        "anthropic/claude-opus-4",
+                        "anthropic/claude-3.7-sonnet",
+                        "anthropic/claude-3.7-sonnet:thinking",
+                        "anthropic/claude-3.5-sonnet",
+                        "anthropic/claude-3.5-haiku",
 					},
 					topic = {
 						model = "google/gemini-2.0-flash-001",
@@ -362,7 +381,7 @@ return {
 			},
 			model_maps = {
 				openrouter = {
-                    -- openai
+					-- openai
 					["gpt-4o"] = "openai/gpt-4o",
 					["gpt-4.1"] = "openai/gpt-4.1",
 					["gpt-4.5"] = "openai/gpt-4.5-preview",
@@ -373,10 +392,10 @@ return {
 					["o3-mini-high"] = "openai/o3-mini-high",
 					["o3"] = "openai/o3",
 					["o4-mini"] = "openai/o4-mini",
-                    -- claude
-                    ["opus"]  = "anthropic/claude-opus-4",
-                    ["sonnet-4"]  = "anthropic/claude-sonnet-4",
-                    ["sonnet-3.7"]  = "anthropic/claude-3.7-sonnet",
+					-- claude
+					["opus"] = "anthropic/claude-opus-4",
+					["sonnet-4"] = "anthropic/claude-sonnet-4",
+					["sonnet-3.7"] = "anthropic/claude-3.7-sonnet",
 				},
 			},
 		},
