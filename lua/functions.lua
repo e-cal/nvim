@@ -164,3 +164,9 @@ QuickfixToggle = function()
 	end
 end
 Utils.make_command("QuickfixToggle")
+
+BufDeleteAll = function()
+    vim.cmd[[w | let pos = getpos('.') | silent %bd | e# | bd# | call setpos('.', pos)]]
+end
+Utils.make_command("BufDeleteAll")
+vim.cmd('cabbrev bda BufDeleteAll')
