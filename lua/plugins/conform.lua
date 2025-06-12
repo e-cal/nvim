@@ -6,7 +6,7 @@ return {
 		formatters_by_ft = {
 			lua = { "stylua" },
 			sh = { "shfmt" },
-			python = { "ruff_format" },
+			python = { "yapf" },
 			-- python = { "ruff_format" },
 			javascript = { "prettier" },
 			typescript = { "prettier" },
@@ -19,7 +19,6 @@ return {
 		},
 
 		formatters = {
-			--[[
 			yapf = {
 				prepend_args = {
 					"--style",
@@ -33,12 +32,11 @@ return {
                         allow_split_before_dict_value: false, \
                         each_dict_entry_on_separate_line: false, \
                         split_before_logical_operator: true, \
-                        blank_lines_around_top_level_definition: 1\
+                        blank_lines_around_top_level_definition: 2\
                         indent_width: 4\
                     }",
 				},
 			},
-            --]]
 			ruff_format = {
                 append_args = { "--line-length", "140" },
 			},

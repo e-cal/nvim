@@ -27,7 +27,7 @@ return {
 				ignore = {
 					"E261", -- ignore whitespace before comments
 					"E226", -- ignore whitespace before comments
-					"F403", -- allow import *
+					-- "F403", -- allow import *
 					"F405", -- allow import from __future__
 					"PD901", -- allow df as name
 				},

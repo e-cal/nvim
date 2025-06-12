@@ -5,7 +5,7 @@ return {
 		enabled = false,
 		debounce = 200,
 		viewport_buffer = { min = 30, max = 500 },
-		indent = { char = "▎", highlight = "IBLChar", smart_indent_cap = true },
+		indent = { char = "╎", highlight = "IBLChar", smart_indent_cap = true },
 		whitespace = { remove_blankline_trail = true },
 		scope = { enabled = true, highlight = "IBLScope", injected_languages = true },
 	},
@@ -19,5 +19,5 @@ return {
 		)
 		require("ibl").setup(opts)
 	end,
-	keys = { { "<leader>li", "<cmd>IBLToggle<cr>", desc = "toggle indent lines" } },
+	keys = { { "<leader>i", "<cmd>IBLToggle<cr>", desc = "toggle indent lines" } },
 }

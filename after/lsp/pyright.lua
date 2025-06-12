@@ -18,7 +18,7 @@ return {
 				useLibraryCodeForTypes = true,
 				diagnosticSeverityOverrides = {
 					reportGeneralTypeIssues = "warning",
-					-- reportUnusedVariable = "none",
+					reportUnusedVariable = "none",
 					reportUndefinedVariable = "none",
 					reportUnusedExpression = "none",
 					reportWildcardImportFromLibrary = "none",
