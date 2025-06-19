@@ -12,6 +12,7 @@ return {
 			llm_prefix = "### Assistant",
 			chat_free_cursor = true,
             command_auto_select_response = true,
+            highlight_response = false,
 			system_prompt = {
 				command = [[
                     <context>
