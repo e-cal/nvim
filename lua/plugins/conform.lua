@@ -32,8 +32,10 @@ return {
                         allow_split_before_dict_value: false, \
                         each_dict_entry_on_separate_line: false, \
                         split_before_logical_operator: true, \
-                        blank_lines_around_top_level_definition: 2\
-                        indent_width: 4\
+                        blank_lines_around_top_level_definition: 2, \
+                        indent_width: 4, \
+                        split_before_dot: true, \
+                        split_penalty_for_added_line_split: 0 \
                     }",
 				},
 			},
