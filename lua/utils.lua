@@ -82,11 +82,11 @@ local function clamp(val, left, right)
 end
 
 -- Changes brightness of rgb_color by percentage
-Utils.brightness_modifier = function(rgb_color, parcentage)
+Utils.brightness_modifier = function(rgb_color, pct)
 	local color = rgb_str2num(rgb_color)
-	color.red = clamp(color.red + (color.red * parcentage / 100), 0, 255)
-	color.green = clamp(color.green + (color.green * parcentage / 100), 0, 255)
-	color.blue = clamp(color.blue + (color.blue * parcentage / 100), 0, 255)
+	color.red = clamp(color.red + (color.red * pct / 100), 0, 255)
+	color.green = clamp(color.green + (color.green * pct / 100), 0, 255)
+	color.blue = clamp(color.blue + (color.blue * pct / 100), 0, 255)
 	return rgb_num2str(color)
 end
 
