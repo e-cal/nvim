@@ -19,6 +19,7 @@ return {
 			{ "<leader>w", group = "window" },
 			{ "<leader>r", group = "repl" },
 			{ "<leader>l", group = "lsp" },
+			{ "<leader>lt", group = "latex" },
 			{ "<leader>g", group = "git" },
 		})
 	end,

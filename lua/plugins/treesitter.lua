@@ -24,11 +24,10 @@ return {
 			"python",
 			"markdown",
 			"markdown_inline",
-			"latex",
 		},
 		sync_install = false,
 		auto_install = true,
-		ignore_install = {},
+		ignore_install = { "latex" },
 		highlight = {
 			enable = true,
 			disable = function(lang, buf)

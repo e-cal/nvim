@@ -91,6 +91,7 @@ return {
 		{ "<leader>tq", "<cmd>Telescope quickfix<cr>", desc = "quickfix" },
 		{ "<leader>ts", "<cmd>Telescope treesitter<cr>", desc = "symbols" },
 		{ "<leader>tS", "<cmd>Telescope aerial<cr>", desc = "aerial" },
+		{ "<leader>t/", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "fuzzy search" },
 		{
 			"<leader>tt",
 			function()
