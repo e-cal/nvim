@@ -81,3 +81,44 @@ autocmd({ "BufEnter" }, {
 	pattern = { "*.nix" },
 	command = "setlocal ts=2 sw=2 sts=2",
 })
+
+
+augroup("latex", { clear = true })
+autocmd({ "BufEnter" }, {
+	group = "latex",
+	pattern = "*.tex",
+	callback = function()
+		vim.opt.spell = true
+		vim.opt.wrap = true
+		vim.opt.linebreak = true
+		vim.opt.breakindent = true
+		-- Map movement keys to their screen-line equivalents
+		vim.keymap.set("n", "j", "gj", { buffer = true })
+		vim.keymap.set("n", "k", "gk", { buffer = true })
+		vim.keymap.set("n", "0", "g0", { buffer = true })
+		vim.keymap.set("n", "^", "g^", { buffer = true })
+		vim.keymap.set("n", "$", "g$", { buffer = true })
+		-- Same for visual mode
+		vim.keymap.set("v", "j", "gj", { buffer = true })
+		vim.keymap.set("v", "k", "gk", { buffer = true })
+		vim.keymap.set("v", "0", "g0", { buffer = true })
+		vim.keymap.set("v", "^", "g^", { buffer = true })
+		vim.keymap.set("v", "$", "g$", { buffer = true })
+	end,
+})
+autocmd({ "BufLeave" }, {
+	group = "latex",
+	pattern = "*.tex",
+	callback = function()
+		vim.opt.spell = false
+		vim.opt.wrap = false
+		vim.opt.linebreak = false
+		vim.opt.breakindent = false
+		-- Clear the mappings when leaving the buffer
+		local keys = { "j", "k", "0", "^", "$" }
+		for _, key in ipairs(keys) do
+			vim.keymap.del("n", key, { buffer = true })
+			vim.keymap.del("v", key, { buffer = true })
+		end
+	end,
+})
