@@ -115,10 +115,10 @@ autocmd({ "BufLeave" }, {
 		vim.opt.linebreak = false
 		vim.opt.breakindent = false
 		-- Clear the mappings when leaving the buffer
-		local keys = { "j", "k", "0", "^", "$" }
-		for _, key in ipairs(keys) do
-			vim.keymap.del("n", key, { buffer = true })
-			vim.keymap.del("v", key, { buffer = true })
-		end
+		-- local keys = { "j", "k", "0", "^", "$" }
+		-- for _, key in ipairs(keys) do
+		-- 	vim.keymap.del("n", key, { buffer = true })
+		-- 	vim.keymap.del("v", key, { buffer = true })
+		-- end
 	end,
 })
