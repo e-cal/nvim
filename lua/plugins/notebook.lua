@@ -79,10 +79,10 @@ return {
 		},
 		init = function()
 			local runner = require("quarto.runner")
-			vim.keymap.set("n", "<leader>mr", runner.run_cell, { desc = "run cell", silent = true })
-			vim.keymap.set("n", "<leader>ma", runner.run_above, { desc = "run cell and above", silent = true })
-			vim.keymap.set("n", "<leader>mA", runner.run_all, { desc = "run all cells", silent = true })
-			vim.keymap.set("n", "<leader>ml", runner.run_line, { desc = "run line", silent = true })
+			-- vim.keymap.set("n", "<leader>mr", runner.run_cell, { desc = "run cell", silent = true })
+			-- vim.keymap.set("n", "<leader>ma", runner.run_above, { desc = "run cell and above", silent = true })
+			-- vim.keymap.set("n", "<leader>mA", runner.run_all, { desc = "run all cells", silent = true })
+			-- vim.keymap.set("n", "<leader>ml", runner.run_line, { desc = "run line", silent = true })
 			-- vim.keymap.set("v", "<leader>r", runner.run_range, { desc = "run visual range", silent = true })
 			-- vim.keymap.set("n", "<leader>jA", function()
 			-- 	runner.run_all(true)
@@ -101,27 +101,27 @@ return {
 			vim.g.molten_output_virt_lines = true
 			vim.g.molten_image_provider = "image.nvim"
 
-			vim.keymap.set("n", "<leader>mi", "<cmd>MoltenInit<CR>", { desc = "evaluate operator" })
-			vim.keymap.set("n", "<leader>me", "<cmd>MoltenEvaluateOperator<CR>", { desc = "evaluate operator" })
-			vim.keymap.set("n", "<leader>mo", "<cmd>noautocmd MoltenEnterOutput<CR>", { desc = "open output window" })
-			-- vim.keymap.set("n", "<leader>mr", "<cmd>MoltenReevaluateCell<CR>", { desc = "re-eval cell" })
-			vim.keymap.set("n", "<leader>mh", "<cmd>MoltenHideOutput<CR>", { desc = "close output window" })
-			vim.keymap.set("n", "<leader>md", "<cmd>MoltenDelete<CR>", { desc = "delete Molten cell" })
-			vim.keymap.set("n", "<leader>mx", "<cmd>MoltenOpenInBrowser<CR>", { desc = "open output in browser" })
-			-- vim.keymap.set("v", "<leader>m", "<cmd>MoltenEvaluateVisual<CR>gv", { desc = "execute visual selection" })
+			-- vim.keymap.set("n", "<leader>mi", "<cmd>MoltenInit<CR>", { desc = "evaluate operator" })
+			-- vim.keymap.set("n", "<leader>me", "<cmd>MoltenEvaluateOperator<CR>", { desc = "evaluate operator" })
+			-- vim.keymap.set("n", "<leader>mo", "<cmd>noautocmd MoltenEnterOutput<CR>", { desc = "open output window" })
+			-- -- vim.keymap.set("n", "<leader>mr", "<cmd>MoltenReevaluateCell<CR>", { desc = "re-eval cell" })
+			-- vim.keymap.set("n", "<leader>mh", "<cmd>MoltenHideOutput<CR>", { desc = "close output window" })
+			-- vim.keymap.set("n", "<leader>md", "<cmd>MoltenDelete<CR>", { desc = "delete Molten cell" })
+			-- vim.keymap.set("n", "<leader>mx", "<cmd>MoltenOpenInBrowser<CR>", { desc = "open output in browser" })
+			-- -- vim.keymap.set("v", "<leader>m", "<cmd>MoltenEvaluateVisual<CR>gv", { desc = "execute visual selection" })
 
-			local hydra = require("hydra")
-			local utils = require("utils")
-			hydra({
-				name = "jump",
-				config = { invoke_on_body = true },
-				mode = "n",
-				body = "<leader>mj", -- this is the key that triggers the hydra
-				heads = {
-					{ "j", utils.keys("]b") },
-					{ "k", utils.keys("[b") },
-				},
-			})
+			-- local hydra = require("hydra")
+			-- local utils = require("utils")
+			-- hydra({
+			-- 	name = "jump",
+			-- 	config = { invoke_on_body = true },
+			-- 	mode = "n",
+			-- 	-- body = "<leader>mj", -- this is the key that triggers the hydra
+			-- 	heads = {
+			-- 		{ "j", utils.keys("]b") },
+			-- 		{ "k", utils.keys("[b") },
+			-- 	},
+			-- })
 
 			local default_notebook = [[
 {

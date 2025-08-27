@@ -7,10 +7,10 @@ return {
 			vim.fn["mkdp#util#install"]()
 		end,
 		keys = {
-			{ "<leader>mp", "<cmd>PreviewDoc<cr>", desc = "toggle preview" },
-			{ "<leader>ms", "1z=", desc = "fix spelling" },
-			{ "<leader>mz", "mz<cmd>CleanText<cr>'z", desc = "clean text" },
-			{ "<leader>mc", "<cmd>silent !md2pdf %<cr>", desc = "compile" },
+			-- { "<leader>mp", "<cmd>PreviewDoc<cr>", desc = "toggle preview" },
+			-- { "<leader>ms", "1z=", desc = "fix spelling" },
+			-- { "<leader>mz", "mz<cmd>CleanText<cr>'z", desc = "clean text" },
+			-- { "<leader>mc", "<cmd>silent !md2pdf %<cr>", desc = "compile" },
 		},
 	},
 	{
@@ -71,8 +71,8 @@ return {
 		"jbyuki/nabla.nvim",
 		lazy = false,
 		keys = {
-			{ "<leader>mP", "<cmd> lua require('nabla').popup()<cr>", desc = "popup math" },
-			{ "<leader>mt", "<cmd> lua require('nabla').toggle_virt()<cr>", desc = "toggle math" },
+			-- { "<leader>mP", "<cmd> lua require('nabla').popup()<cr>", desc = "popup math" },
+			-- { "<leader>mt", "<cmd> lua require('nabla').toggle_virt()<cr>", desc = "toggle math" },
 		},
 	},
 }

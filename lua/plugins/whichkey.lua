@@ -15,7 +15,7 @@ return {
 			{ "<leader>c", group = "chat", mode = { "n", "v" } },
 			{ "<leader>L", group = "llm", mode = { "n", "v" } },
 			{ "<leader>t", group = "telescope" },
-			{ "<leader>m", group = "markdown" },
+			-- { "<leader>m", group = "markdown" },
 			{ "<leader>w", group = "window" },
 			{ "<leader>r", group = "repl" },
 			{ "<leader>l", group = "lsp" },
