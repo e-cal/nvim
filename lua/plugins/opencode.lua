@@ -15,7 +15,7 @@ return {
     @diff 	        Git diff
     @grapple 	    grapple.nvim tags
     ]]
-    { '<leader>aa', function() require('opencode').ask() end, desc = 'plain message', },
+    { '<leader>aa', function() require('opencode').ask("@buffer ") end, desc = 'ask', },
     { '<leader>a<cr>', function() require('opencode').ask('@grapple ') end, desc = 'message w/ context (grapple)', mode = 'n', },
 
     { '<leader>at', function() require('opencode').toggle() end, desc = 'toggle', },

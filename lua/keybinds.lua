@@ -20,6 +20,7 @@ map("n", "<C-d>", "<C-d>zz")
 map("n", "<C-u>", "<C-u>zz")
 map("n", "<C-o>", "<C-o>zz")
 map("n", "<C-i>", "<C-i>zz")
+map("n", "<C-S-o>", "<C-i>zz")
 
 -- Quickfix
 map("n", "<C-k>", "<cmd>cprev<cr>")
