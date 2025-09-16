@@ -23,7 +23,7 @@ map("n", "<C-i>", "<C-i>zz")
 map("n", "<C-S-o>", "<C-i>zz")
 
 -- Quickfix
-map("n", "<C-k>", "<cmd>cprev<cr>")
+-- map("n", "<C-k>", "<cmd>cprev<cr>")
 map("n", "<C-j>", "<cmd>cnext<cr>")
 
 -- Auto set undo points on punctuation
