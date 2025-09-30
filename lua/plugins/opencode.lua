@@ -1,7 +1,5 @@
 return {
-	"e-cal/opencode.nvim",
-	dir = "~/projects/opencode.nvim",
-	-- "NickvanDyke/opencode.nvim",
+	"NickvanDyke/opencode.nvim",
 	dependencies = { { "folke/snacks.nvim", opts = { input = { enabled = true } } } },
 	-- opts = {},
 	keys = {
@@ -57,6 +55,8 @@ return {
 			end)
 			if not ok then
 				vim.notify(err, vim.log.levels.ERROR, { title = "opencode" })
+            else
+                vim.notify("Opencode connected", vim.log.levels.INFO, { title = "opencode" })
 			end
 		end, {})
 	end,
