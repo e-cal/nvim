@@ -17,7 +17,7 @@ return {
 		},
 		func_map = {
 			filter = "F",
-			filterr = "f",
+			filterr = "d",
 			fzffilter = "/",
 			nexthist = "l",
 			prevhist = "h",
