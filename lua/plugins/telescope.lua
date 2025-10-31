@@ -18,7 +18,9 @@ return {
 				hidden = true,
 				git_ignore = false,
 				no_ignore = true,
-				file_ignore_patterns = { "^.git/", "^.venv/" },
+				file_ignore_patterns = { "^%.venv/" },
+				deprioritize_patterns = { "^%.git/", "node_modules/", "README.md", "tests", "scripts" },
+				deprioritize_default_penalty = 0.1,
 			},
 			buffers = {
 				mappings = {
@@ -27,9 +29,12 @@ return {
 				},
 			},
 		},
+		extensions = { fzf = {} },
 	},
 	config = function(_, opts)
 		local actions = require("telescope.actions")
+
+		-- Merge extra mappings
 		local extra_opts = {
 			defaults = {
 				mappings = {
@@ -42,7 +47,68 @@ return {
 		}
 		opts = vim.tbl_deep_extend("force", opts, extra_opts)
 
-		-- Read .telescopeignore from project root
+		local function custom_sorter(picker_opts)
+			local sorters = require("telescope.sorters")
+			local base_sorter = sorters.get_fuzzy_file()
+
+			local pattern_defs = picker_opts.deprioritize_patterns
+			local default_penalty = picker_opts.deprioritize_default_penalty or 1000
+
+			local patterns = {}
+			if pattern_defs then
+				if #pattern_defs > 0 and type(pattern_defs[1]) == "table" then
+					for _, obj in ipairs(pattern_defs) do
+						if obj.pattern then
+							table.insert(patterns, {
+								pattern = obj.pattern,
+								penalty = obj.penalty or default_penalty,
+							})
+						end
+					end
+				else
+					for _, pat in ipairs(pattern_defs) do
+						table.insert(patterns, { pattern = pat, penalty = default_penalty })
+					end
+				end
+			end
+
+			local function penalty_for(path)
+				if not path then
+					return 0
+				end
+				for _, p in ipairs(patterns) do
+					if path:match(p.pattern) then
+						return p.penalty
+					end
+				end
+				return 0
+			end
+
+			local original_scoring = base_sorter.scoring_function
+
+			base_sorter.scoring_function = function(self, prompt, line, entry, ...)
+				local base = original_scoring(self, prompt, line, entry, ...)
+				if base == -1 or base < 0 then
+					return base
+				end
+				local path = (entry and (entry.path or entry.value)) or line
+				local extra = penalty_for(path)
+				if extra ~= 0 then
+					return base + extra
+				else
+					return base
+				end
+			end
+
+			return base_sorter
+		end
+
+		if opts.pickers and opts.pickers.find_files then
+			local p = opts.pickers.find_files
+			p.sorter = custom_sorter(p)
+		end
+
+		-- Read .telescopeignore and extend ignore patterns
 		local function get_git_root()
 			local dot_git = vim.fn.finddir(".git", ".;")
 			return dot_git ~= "" and vim.fn.fnamemodify(dot_git, ":h") or nil
@@ -50,20 +116,19 @@ return {
 		local root = get_git_root() or vim.fn.getcwd()
 		local ignore_file = root .. "/.telescopeignore"
 
-		local file = io.open(ignore_file, "r")
-		if file then
+		local f = io.open(ignore_file, "r")
+		if f then
 			local patterns = {}
-			for line in file:lines() do
-				line = line:gsub("^%s*(.-)%s*$", "%1") -- Trim whitespace
+			for line in f:lines() do
+				line = line:gsub("^%s*(.-)%s*$", "%1")
 				if line ~= "" and not line:match("^#") then
 					table.insert(patterns, line)
 				end
 			end
-			file:close()
-			if opts.pickers and opts.pickers.find_files then
-				opts.pickers.find_files.file_ignore_patterns = opts.pickers.find_files.file_ignore_patterns or {}
-				vim.list_extend(opts.pickers.find_files.file_ignore_patterns, patterns)
-			end
+			f:close()
+			local picker = opts.pickers.find_files
+			picker.file_ignore_patterns = picker.file_ignore_patterns or {}
+			vim.list_extend(picker.file_ignore_patterns, patterns)
 		end
 
 		require("telescope").setup(opts)
