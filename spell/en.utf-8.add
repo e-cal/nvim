@@ -639,3 +639,6 @@ EGB
 CFA
 varentropy
 LLMs
+parallelizable
+learnable
+unnormalized
