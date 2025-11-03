@@ -13,7 +13,7 @@ return {
 				require("luasnip.config").setup({ enable_autosnippets = true })
 				require("luasnip.loaders.from_lua").load({ paths = { "~/.config/nvim/snippets" } })
 
-                local ls = require("luasnip")
+				local ls = require("luasnip")
 				vim.keymap.set({ "i", "s" }, "<C-n>", function()
 					ls.jump(1)
 				end, { silent = true })
@@ -34,8 +34,8 @@ return {
 		local cmp = require("cmp")
 		cmp.setup({
 			sources = {
-			    { name = "parrot", priority = 100 },
-                { name = "path", priority = 100 },
+				{ name = "parrot", priority = 100 },
+				{ name = "path", priority = 100 },
 				{ name = "latex_symbols", priority = 100 },
 				{ name = "luasnip", priority = 95 },
 				{ name = "copilot", priority = 90 },
@@ -70,6 +70,7 @@ return {
 					behavior = cmp.ConfirmBehavior.Insert,
 					select = false,
 				}),
+                ['<C-h>'] = cmp.mapping.abort(),
 			},
 			snippet = {
 				expand = function(args)
@@ -123,5 +124,12 @@ return {
 		})
 		vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = Utils.get_hl("Conditional", "fg") })
 		vim.api.nvim_set_hl(0, "CmpItemKindSupermaven", { fg = Utils.get_hl("Conditional", "fg") })
+
+		cmp.event:on("menu_opened", function()
+			vim.b.copilot_suggestion_hidden = true
+		end)
+        cmp.event:on("menu_closed", function()
+          vim.b.copilot_suggestion_hidden = false
+        end)
 	end,
 }
