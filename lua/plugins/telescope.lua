@@ -19,7 +19,14 @@ return {
 				git_ignore = false,
 				no_ignore = true,
 				file_ignore_patterns = { "^%.venv/" },
-				deprioritize_patterns = { "^%.git/", "node_modules/", "README.md", "tests", "scripts" },
+				deprioritize_patterns = {
+					"^%.git/",
+					"node_modules/",
+					"README.md",
+					"tests",
+					"scripts",
+					"pyproject.toml",
+				},
 				deprioritize_default_penalty = 0.1,
 			},
 			buffers = {
