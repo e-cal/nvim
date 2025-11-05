@@ -52,12 +52,12 @@ return {
 				suggestion = {
 					enabled = true,
 					auto_trigger = true,
-					hide_during_completion = true,
+					hide_during_completion = false,
 					trigger_on_accept = true,
 					keymap = {
 						accept = "<C-j>",
-						accept_word = "<right>",
-						accept_line = false,
+						accept_word = "<C-S-j>",
+						accept_line = "<right>",
 						next = "<C-k>",
 						prev = "<C-l>",
 						-- dismiss = "<C-h>",

@@ -124,12 +124,5 @@ return {
 		})
 		vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = Utils.get_hl("Conditional", "fg") })
 		vim.api.nvim_set_hl(0, "CmpItemKindSupermaven", { fg = Utils.get_hl("Conditional", "fg") })
-
-		cmp.event:on("menu_opened", function()
-			vim.b.copilot_suggestion_hidden = true
-		end)
-        cmp.event:on("menu_closed", function()
-          vim.b.copilot_suggestion_hidden = false
-        end)
 	end,
 }
