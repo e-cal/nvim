@@ -18,10 +18,13 @@ return {
 				hidden = true,
 				git_ignore = false,
 				no_ignore = true,
-				file_ignore_patterns = { "^%.venv/" },
-				deprioritize_patterns = {
+				file_ignore_patterns = {
 					"^%.git/",
+					"^%.venv/",
+					"^%.telescopeignore",
 					"node_modules/",
+				},
+				deprioritize_patterns = {
 					"README.md",
 					"tests",
 					"scripts",
