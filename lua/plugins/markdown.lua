@@ -1,19 +1,5 @@
 return {
 	{
-		"iamcco/markdown-preview.nvim",
-		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-		ft = { "markdown" },
-		build = function()
-			vim.fn["mkdp#util#install"]()
-		end,
-		keys = {
-			-- { "<leader>mp", "<cmd>PreviewDoc<cr>", desc = "toggle preview" },
-			-- { "<leader>ms", "1z=", desc = "fix spelling" },
-			-- { "<leader>mz", "mz<cmd>CleanText<cr>'z", desc = "clean text" },
-			-- { "<leader>mc", "<cmd>silent !md2pdf %<cr>", desc = "compile" },
-		},
-	},
-	{
 		"MeanderingProgrammer/render-markdown.nvim",
 		opts = {
 			file_types = { "markdown" },
@@ -22,10 +8,10 @@ return {
 			code = {
 				sign = false,
 			},
-            heading = {
-                icons = { " ", " ", " " },
-                sign = false,
-            },
+			heading = {
+				icons = { " ", " ", " " },
+				sign = false,
+			},
 			bullet = { icons = { "•", "↳", "⟶ ", "⪧" } },
 			callout = {
 				question = { raw = "[?]", rendered = "󰘥  ", highlight = "RenderMarkdownInfo" },
