@@ -42,6 +42,9 @@ Utils.get_hl = function(hl_group, attr)
 	end
 
 	local color = vim.api.nvim_get_hl_by_name(hl_group, true)[attr]
+    if not color then
+        return "#000000"
+    end
 	color = string.format("#%06x", color)
 	return color
 end
