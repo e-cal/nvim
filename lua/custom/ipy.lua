@@ -102,5 +102,18 @@ vim.keymap.set(
     end,
     { noremap = true, silent = true, desc = "Run cell in ipython" }
 )
+vim.keymap.set(
+    "n",
+    "<leader>rf",
+    function()
+        -- mark location, select function (vaf keybind), run, return to mark
+        vim.api.nvim_command("normal! m'")
+        vim.api.nvim_feedkeys("vaf", "x", false)
+        M.run_selected_lines()
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "x", false)
+        vim.api.nvim_command("normal! g`'")
+    end,
+    { noremap = true, silent = true, desc = "Run function" }
+)
 
 return M
