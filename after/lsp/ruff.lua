@@ -30,6 +30,7 @@ return {
 					-- "F403", -- allow import *
 					"F405", -- allow import from __future__
 					"PD901", -- allow df as name
+                    "RUF001", -- allow ambiguous characters
 				},
 			},
 		},
