@@ -23,6 +23,7 @@ return {
 					"^%.venv/",
 					"^%.telescopeignore",
 					"node_modules/",
+                    "__pycache__/",
 				},
 				deprioritize_patterns = {
 					"README.md",
