@@ -9,7 +9,7 @@ return {
 				sign = false,
 			},
 			heading = {
-				icons = { " ", " ", " " },
+				icons = { " ", " ", " ", " " },
 				sign = false,
 			},
 			bullet = { icons = { "•", "↳", "⟶ ", "⪧" } },

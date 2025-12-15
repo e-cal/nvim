@@ -10,18 +10,25 @@ return {
 	},
 	keys = {
 		{
-			"<leader>ac",
+			"<leader>Oc",
 			function()
 				require("opencode").connect()
 			end,
-			desc = "Connect to opencode",
+			desc = "Connect",
 		},
 		{
-			"<leader>ad",
+			"<leader>Od",
 			function()
 				require("opencode").disconnect()
 			end,
-			desc = "Disconnect from opencode",
+			desc = "Disconnect",
+		},
+		{
+			"<leader>Op",
+			function()
+				require("opencode").send_smart_prompt()
+			end,
+			desc = "Prompt",
 		},
 	},
 }
