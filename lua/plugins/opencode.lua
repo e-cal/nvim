@@ -1,6 +1,6 @@
 return {
 	"e-cal/opencode.nvim",
-	dir = "~/projects/opencode.nvim",
+	--dir = "~/projects/opencode.nvim",
 	lazy = false,
 	opts = {
 		debug = false,

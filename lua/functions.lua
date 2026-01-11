@@ -134,19 +134,23 @@ OpenLast = function()
 end
 Utils.make_command("OpenLast")
 
+local session_dir = vim.fn.stdpath("data") .. "/sessions/"
+
 StoreSession = function()
 	local dir = string.gsub(vim.fn.getcwd(), "/", "_")
-	vim.cmd("mksession! /home/ecal/.local/share/nvim/sessions/" .. dir)
+	if vim.fn.isdirectory(session_dir) == 0 then
+		vim.fn.mkdir(session_dir, "p")
+	end
+	vim.cmd("mksession! " .. session_dir .. dir)
 end
 Utils.make_command("StoreSession")
 
 RestoreSession = function()
 	local dir = string.gsub(vim.fn.getcwd(), "/", "_")
-	local session = "/home/ecal/.local/share/nvim/sessions/"
-	if vim.fn.isdirectory(session) == 0 then
-		vim.fn.mkdir(session, "p")
+	if vim.fn.isdirectory(session_dir) == 0 then
+		vim.fn.mkdir(session_dir, "p")
 	end
-	local fp = session .. dir
+	local fp = session_dir .. dir
 	local f = io.open(fp, "r")
 	if f ~= nil then
 		vim.cmd("source " .. fp)

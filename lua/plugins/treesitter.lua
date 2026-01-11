@@ -1,21 +1,73 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
+	branch = "main",
 	build = ":TSUpdate",
 	dependencies = {
-		"nvim-treesitter/nvim-treesitter-textobjects",
-		"nvim-treesitter/playground",
+		-- Must use main branch to match nvim-treesitter's new API
+		{
+			"nvim-treesitter/nvim-treesitter-textobjects",
+			branch = "main",
+			config = function()
+				local select = require("nvim-treesitter-textobjects.select")
+				local move = require("nvim-treesitter-textobjects.move")
+
+				require("nvim-treesitter-textobjects").setup({
+					select = {
+						lookahead = true,
+						selection_modes = {
+							["@parameter.outer"] = "v",
+							["@function.outer"] = "V",
+							["@class.outer"] = "<c-v>",
+						},
+						include_surrounding_whitespace = true,
+					},
+					move = {
+						set_jumps = false,
+					},
+				})
+
+				-- Select keymaps
+				vim.keymap.set({ "x", "o" }, "af", function()
+					select.select_textobject("@function.outer", "textobjects")
+				end, { desc = "outer function" })
+				vim.keymap.set({ "x", "o" }, "if", function()
+					select.select_textobject("@function.inner", "textobjects")
+				end, { desc = "inner function" })
+				vim.keymap.set({ "x", "o" }, "as", function()
+					select.select_textobject("@local.scope", "locals")
+				end, { desc = "language scope" })
+				vim.keymap.set({ "x", "o" }, "i`", function()
+					select.select_textobject("@block.inner", "textobjects")
+				end, { desc = "inner block" })
+				vim.keymap.set({ "x", "o" }, "a`", function()
+					select.select_textobject("@block.outer", "textobjects")
+				end, { desc = "outer block" })
+
+				-- Move keymaps
+				vim.keymap.set({ "n", "x", "o" }, "]b", function()
+					move.goto_next_start("@block.inner", "textobjects")
+				end, { desc = "next block" })
+				vim.keymap.set({ "n", "x", "o" }, "[b", function()
+					move.goto_previous_start("@block.inner", "textobjects")
+				end, { desc = "previous block" })
+			end,
+		},
 		{
 			"nvim-treesitter/nvim-treesitter-context",
 			opts = {
 				max_lines = 0,
 				trim_scope = "inner",
 				multiline_threshold = 1,
-				-- separator = "─",
 			},
 		},
 	},
-	opts = {
-		ensure_installed = {
+	config = function()
+		-- nvim-treesitter main branch uses vim.treesitter directly
+		-- Parsers are auto-installed when needed, configure via vim.treesitter
+		vim.treesitter.language.register("markdown", "mdx")
+
+		-- Ensure commonly used parsers are available
+		local ensure_installed = {
 			"c",
 			"lua",
 			"vim",
@@ -24,64 +76,43 @@ return {
 			"python",
 			"markdown",
 			"markdown_inline",
-		},
-		sync_install = false,
-		auto_install = true,
-		ignore_install = { "latex" },
-		highlight = {
-			enable = true,
-			disable = function(lang, buf)
+		}
+
+		-- Install missing parsers
+		for _, lang in ipairs(ensure_installed) do
+			pcall(function()
+				if not pcall(vim.treesitter.language.inspect, lang) then
+					vim.cmd("TSInstall " .. lang)
+				end
+			end)
+		end
+
+		-- Configure highlight (enabled by default in nvim 0.10+)
+		-- Large file handling
+		vim.api.nvim_create_autocmd("BufReadPre", {
+			callback = function(args)
 				local max_filesize = 100 * 1024 -- 100 KB
-				local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+				local ok, stats = pcall(vim.uv.fs_stat, args.file)
 				if ok and stats and stats.size > max_filesize then
-					print("disabled TS highlight for large file")
-					return true
+					vim.treesitter.stop(args.buf)
+					print("Disabled treesitter for large file")
 				end
 			end,
-			additional_vim_regex_highlighting = false,
-		},
-		incremental_selection = {
-			enable = true,
-			keymaps = {
-				init_selection = "vs",
-				node_incremental = "n",
-				scope_incremental = "gs",
-				node_decremental = "P",
-			},
-		},
-		indent = { enable = true },
-		textobjects = {
-			move = {
-				enable = true,
-				set_jumps = false,
-				goto_next_start = {
-					["]b"] = { query = "@block.inner", desc = "next block" },
-				},
-				goto_previous_start = {
-					["[b"] = { query = "@block.inner", desc = "previous block" },
-				},
-			},
-			select = {
-				enable = true,
-				lookahead = true,
-				keymaps = {
-					["as"] = { query = "@scope", query_group = "locals", desc = "Select language scope" },
-					["af"] = "@function.outer",
-					["if"] = "@function.inner",
-					["i`"] = "@block.inner",
-					["a`"] = "@block.outer",
-				},
-				selection_modes = {
-					["@parameter.outer"] = "v", -- charwise
-					["@function.outer"] = "V", -- linewise
-					["@class.outer"] = "<c-v>", -- blockwise
-				},
-				include_surrounding_whitespace = true,
-			},
-		},
-	},
-	config = function(_, opts)
-		require("nvim-treesitter.configs").setup(opts)
+		})
+
+		-- Incremental selection keymaps
+		vim.keymap.set("n", "vs", function()
+			require("nvim-treesitter.incremental_selection").init_selection()
+		end, { desc = "Start incremental selection" })
+		vim.keymap.set("x", "n", function()
+			require("nvim-treesitter.incremental_selection").node_incremental()
+		end, { desc = "Increment selection" })
+		vim.keymap.set("x", "gs", function()
+			require("nvim-treesitter.incremental_selection").scope_incremental()
+		end, { desc = "Increment scope" })
+		vim.keymap.set("x", "P", function()
+			require("nvim-treesitter.incremental_selection").node_decremental()
+		end, { desc = "Decrement selection" })
 
 		local function get_python_cell()
 			local bufnr = vim.api.nvim_get_current_buf()
