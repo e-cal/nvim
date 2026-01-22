@@ -1,5 +1,6 @@
 return {
 		"e-cal/parrot.nvim",
+        enabled = false,
 		-- dir = "~/projects/parrot.nvim",
 		config = function(_, opts)
 			require("parrot").setup(opts)
