@@ -174,3 +174,58 @@ BufDeleteAll = function()
 end
 Utils.make_command("BufDeleteAll")
 vim.cmd('cabbrev bda BufDeleteAll')
+
+-- Reload a specific plugin config: :Reload opencode or :Reload (current file)
+Reload = function(name)
+	local config_dir = vim.fn.stdpath("config") .. "/lua"
+
+	-- If no name given, try to infer from current buffer
+	if not name or name == "" then
+		local bufname = vim.fn.expand("%:t:r")
+		local bufpath = vim.fn.expand("%:p")
+		if bufpath:match("/plugins/") then
+			name = bufname
+		else
+			vim.notify("Usage: :Reload <plugin_name> or run from a plugin file", vim.log.levels.WARN)
+			return
+		end
+	end
+
+	local plugin_file = config_dir .. "/plugins/" .. name .. ".lua"
+	if vim.fn.filereadable(plugin_file) == 0 then
+		vim.notify("Plugin file not found: " .. plugin_file, vim.log.levels.ERROR)
+		return
+	end
+
+	-- Clear the module from cache
+	package.loaded["plugins." .. name] = nil
+
+	-- Reload and run config
+	local ok, spec = pcall(dofile, plugin_file)
+	if ok and spec and spec.config and type(spec.config) == "function" then
+		local config_ok, err = pcall(spec.config)
+		if config_ok then
+			vim.notify("Reloaded: " .. name, vim.log.levels.INFO)
+		else
+			vim.notify("Error in config: " .. tostring(err), vim.log.levels.ERROR)
+		end
+	elseif not ok then
+		vim.notify("Error loading file: " .. tostring(spec), vim.log.levels.ERROR)
+	else
+		vim.notify("Reloaded: " .. name .. " (no config function)", vim.log.levels.INFO)
+	end
+end
+vim.api.nvim_create_user_command("Reload", function(opts)
+	Reload(opts.args)
+end, {
+	nargs = "?",
+	complete = function()
+		local plugins_dir = vim.fn.stdpath("config") .. "/lua/plugins"
+		local files = vim.fn.glob(plugins_dir .. "/*.lua", false, true)
+		local names = {}
+		for _, f in ipairs(files) do
+			table.insert(names, vim.fn.fnamemodify(f, ":t:r"))
+		end
+		return names
+	end,
+})

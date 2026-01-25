@@ -40,6 +40,17 @@ autocmd({ "BufEnter" }, {
     end,
 })
 
+augroup("json", { clear = true })
+autocmd({ "BufEnter" }, {
+	group = "json",
+	pattern = "*.json*",
+	callback = function()
+        vim.bo.shiftwidth = 2
+        vim.bo.tabstop = 2
+        vim.bo.softtabstop = 2
+    end,
+})
+
 augroup("python", { clear = true })
 autocmd({ "BufEnter" }, {
 	group = "python",
