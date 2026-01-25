@@ -106,7 +106,7 @@ return {
 		end, { desc = "Document function" })
 
 		vim.keymap.set("n", "<leader>aa", function()
-			oc.ask("")
+			oc.ask("", { submit = true })
 		end, { desc = "Ask" })
 
 		vim.keymap.set("n", "<leader>ah", function()
