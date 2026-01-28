@@ -33,11 +33,29 @@ autocmd({ "BufEnter" }, {
 	pattern = "*.md",
 	callback = function()
 		vim.cmd('syntax match markdownIgnore "\\v\\w_\\w"')
-        vim.bo.shiftwidth = 2
-        vim.bo.tabstop = 2
-        vim.bo.softtabstop = 2
-        vim.cmd("set spell")
-    end,
+		vim.bo.shiftwidth = 2
+		vim.bo.tabstop = 2
+		vim.bo.softtabstop = 2
+		vim.cmd("set spell")
+		-- Enable wrapping and linebreak
+		vim.opt_local.wrap = true
+		vim.opt_local.linebreak = true
+		vim.opt_local.breakindent = true
+		-- Disable auto newline at textwidth
+		vim.opt_local.formatoptions:remove("t")
+		-- Map movement keys to their screen-line equivalents
+		vim.keymap.set("n", "j", "gj", { buffer = true })
+		vim.keymap.set("n", "k", "gk", { buffer = true })
+		vim.keymap.set("n", "0", "g0", { buffer = true })
+		vim.keymap.set("n", "^", "g^", { buffer = true })
+		vim.keymap.set("n", "$", "g$", { buffer = true })
+		-- Same for visual mode
+		vim.keymap.set("v", "j", "gj", { buffer = true })
+		vim.keymap.set("v", "k", "gk", { buffer = true })
+		vim.keymap.set("v", "0", "g0", { buffer = true })
+		vim.keymap.set("v", "^", "g^", { buffer = true })
+		vim.keymap.set("v", "$", "g$", { buffer = true })
+	end,
 })
 
 augroup("json", { clear = true })
