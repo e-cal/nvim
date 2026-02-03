@@ -15,6 +15,7 @@ return {
 				enabled = "tmux",
 				tmux = {
 					options = "-h",
+                    auto_close = false,
 				},
 			},
 			events = {
