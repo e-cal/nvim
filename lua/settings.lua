@@ -1,4 +1,3 @@
-vim.cmd("syntax on")
 vim.cmd("set iskeyword+=-")
 vim.cmd("set shortmess+=c")
 vim.cmd("set inccommand=split")
@@ -36,8 +35,7 @@ vim.o.smarttab = true
 vim.o.autoindent = true
 vim.o.formatoptions = "jql"
 vim.cmd("filetype plugin indent on")
-vim.o.foldmethod = "expr"
-vim.o.foldexpr = "nvim_treesitter#foldexpr()"
+-- Folding is configured in treesitter.lua using vim.treesitter.foldexpr()
 vim.o.foldlevel = 99
 
 vim.o.fileencoding = "utf-8"
