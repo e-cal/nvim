@@ -1,12 +1,16 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
+	lazy = false,
 	branch = "main",
 	build = ":TSUpdate",
 	dependencies = {
-		-- Must use main branch to match nvim-treesitter's new API
 		{
 			"nvim-treesitter/nvim-treesitter-textobjects",
 			branch = "main",
+			init = function()
+				-- Disable built-in ftplugin mappings to avoid conflicts
+				vim.g.no_plugin_maps = true
+			end,
 			config = function()
 				local select = require("nvim-treesitter-textobjects.select")
 				local move = require("nvim-treesitter-textobjects.move")
@@ -62,11 +66,10 @@ return {
 		},
 	},
 	config = function()
-		-- nvim-treesitter main branch uses vim.treesitter directly
-		-- Parsers are auto-installed when needed, configure via vim.treesitter
+		-- Register mdx as markdown
 		vim.treesitter.language.register("markdown", "mdx")
 
-		-- Ensure commonly used parsers are available
+		-- Install parsers using new API
 		local ensure_installed = {
 			"c",
 			"lua",
@@ -78,24 +81,26 @@ return {
 			"markdown_inline",
 		}
 
-		-- Install missing parsers
-		for _, lang in ipairs(ensure_installed) do
-			pcall(function()
-				if not pcall(vim.treesitter.language.inspect, lang) then
-					vim.cmd("TSInstall " .. lang)
-				end
-			end)
-		end
+		-- Use new install API
+		require("nvim-treesitter").install(ensure_installed)
 
-		-- Configure highlight (enabled by default in nvim 0.10+)
-		-- Large file handling
-		vim.api.nvim_create_autocmd("BufReadPre", {
-			callback = function(args)
-				local max_filesize = 100 * 1024 -- 100 KB
-				local ok, stats = pcall(vim.uv.fs_stat, args.file)
-				if ok and stats and stats.size > max_filesize then
-					vim.treesitter.stop(args.buf)
-					print("Disabled treesitter for large file")
+		-- Enable treesitter highlighting for all filetypes
+		-- This is the key change - highlighting must be explicitly enabled
+		vim.api.nvim_create_autocmd("FileType", {
+			callback = function()
+				-- Try to start treesitter, silently fail if no parser
+				pcall(vim.treesitter.start)
+			end,
+		})
+
+		-- Configure treesitter-based folding
+		vim.api.nvim_create_autocmd("FileType", {
+			callback = function()
+				-- Only set if treesitter parser exists for this filetype
+				local ok = pcall(vim.treesitter.get_parser)
+				if ok then
+					vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+					vim.wo[0][0].foldmethod = "expr"
 				end
 			end,
 		})
@@ -184,12 +189,6 @@ return {
 		end, { nargs = "?" })
 
 		vim.api.nvim_set_keymap("n", "gC", "<cmd>SelectPythonCell<CR>", { noremap = true, silent = true })
-		-- vim.api.nvim_set_keymap(
-		-- 	"n",
-		-- 	"<leader>pc",
-		-- 	"<cmd>SelectPythonCell content<CR>",
-		-- 	{ noremap = true, silent = true }
-		-- )
 
 		function make_cell_textobject(include_delimiter)
 			return function()
