@@ -1,14 +1,32 @@
 return {
 	"e-cal/chat.nvim",
-	-- dir = "~/projects/chat.nvim",
+	dir = (function()
+		local path = vim.fn.expand("~/projects/chat.nvim")
+		if vim.fn.isdirectory(path) == 1 then
+			return path
+		end
+		return nil
+	end)(),
 	dependencies = {
 		"MunifTanjim/nui.nvim",
 	},
     lazy = false,
 	opts = {
         auto_scroll = false,
-        default = {
+        defaults = {
             model = "sonnet-latest",
+        },
+        providers = {
+            opencode = {
+                ["opus"] = "claude-opus-4-5",
+                ["sonnet-latest"] = "claude-sonnet-4-5",
+                ["minimax"] = "minimax-m2.1-free",
+                ["glm"] = "glm-4.7-free",
+                ["kimi"] = "kimi-k2.5-free",
+                ["gpt-5.2"] = "gpt-5.2",
+                ["codex"] = "gpt-5.2-codex",
+                ["codex-mini"] = "gpt-5.1-codex-mini",
+            }
         },
 	},
 	keys = {
