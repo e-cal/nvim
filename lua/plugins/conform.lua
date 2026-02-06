@@ -6,7 +6,8 @@ return {
 		formatters_by_ft = {
 			lua = { "stylua" },
 			sh = { "shfmt" },
-			python = { "yapf" },
+			python = { "autopep8" },
+			-- python = { "yapf" },
 			-- python = { "ruff_format" },
 			javascript = { "prettier" },
 			typescript = { "prettier" },
@@ -20,26 +21,32 @@ return {
 		},
 
 		formatters = {
-			yapf = {
-				prepend_args = {
-					"--style",
-					"{ \
-                        based_on_style: facebook, \
-                        column_limit: 160, \
-                        join_multiple_lines: true, \
-                        coalesce_brackets: false, \
-                        indent_dictionary_value: false, \
-                        allow_split_before_default_or_named_assigns: false, \
-                        allow_split_before_dict_value: false, \
-                        each_dict_entry_on_separate_line: false, \
-                        split_before_logical_operator: true, \
-                        blank_lines_around_top_level_definition: 2, \
-                        indent_width: 4, \
-                        split_before_dot: true, \
-                        split_penalty_for_added_line_split: 0 \
-                    }",
-				},
+			autopep8 = {
+				prepend_args = { "--ignore", "E501,E701" },
 			},
+			-- yapf = {
+			-- 	prepend_args = {
+			-- 		"--style",
+			-- 		"{ \
+			--             based_on_style: facebook, \
+			--             column_limit: 160, \
+			--             join_multiple_lines: true, \
+			--             coalesce_brackets: false, \
+			--             indent_dictionary_value: false, \
+			--             allow_split_before_default_or_named_assigns: false, \
+			--             allow_split_before_dict_value: false, \
+			--             each_dict_entry_on_separate_line: false, \
+			--             split_before_logical_operator: true, \
+			--             blank_lines_around_top_level_definition: 2, \
+			--             blank_line_before_nested_class_or_def: true, \
+			--             indent_width: 4, \
+			--             split_before_dot: true, \
+			--             split_before_first_argument: true, \
+			--             split_before_expression_after_opening_paren: true, \
+			--             split_penalty_for_added_line_split: 0 \
+			--         }",
+			-- 	},
+			-- },
 			ruff_format = {
                 append_args = { "--line-length", "140" },
 			},
