@@ -2,46 +2,54 @@ return {
 	"nickvandyke/opencode.nvim",
 	dir = "~/projects/opencode.nvim",
 	dependencies = { { "folke/snacks.nvim", opts = { input = {}, picker = {}, terminal = {} } } },
-	init = function()
+	config = function()
+		local templates = {
+			complete = "Follow any instructions in the selected code and complete the functionality:\n\n@code",
+			explain = "Explain the following code:\n\n@code",
+			yank = "@code\n\n",
+		}
+
+		---@type opencode.Opts
+		vim.g.opencode_opts = {
+			provider = {
+				enabled = "tmux",
+				tmux = {
+					options = "-h",
+					auto_close = false,
+				},
+			},
+			events = {
+				enabled = true,
+				reload = true,
+				permissions = { enabled = false },
+			},
+			contexts = {
+				["@code"] = function(ctx)
+					local buf = ctx.buf
+					local ref = ctx:this()
+					local ft = vim.bo[buf].filetype
+					local code
+					if ctx.range then
+						-- Visual selection or operator range
+						local from, to = ctx.range.from, ctx.range.to
+						if ctx.range.kind == "line" then
+							local lines = vim.api.nvim_buf_get_lines(buf, from[1] - 1, to[1], false)
+							code = table.concat(lines, "\n")
+						else
+							local text = vim.api.nvim_buf_get_text(buf, from[1] - 1, from[2], to[1] - 1, to[2] + 1, {})
+							code = table.concat(text, "\n")
+						end
+					else
+						-- Current line from cursor position
+						code = vim.api.nvim_buf_get_lines(buf, ctx.cursor[1] - 1, ctx.cursor[1], false)[1]
+					end
+					return ref .. "\n```" .. ft .. "\n" .. code .. "\n```"
+				end,
+			},
+		}
+
 		vim.o.autoread = true
 	end,
-	opts = {
-		provider = {
-			enabled = "tmux",
-			tmux = {
-				options = "-h",
-				auto_close = false,
-			},
-		},
-		events = {
-			enabled = true,
-			reload = true,
-			permissions = { enabled = false },
-		},
-		contexts = {
-			["@code"] = function(ctx)
-				local buf = ctx.buf
-				local ref = ctx:this()
-				local ft = vim.bo[buf].filetype
-				local code
-				if ctx.range then
-					-- Visual selection or operator range
-					local from, to = ctx.range.from, ctx.range.to
-					if ctx.range.kind == "line" then
-						local lines = vim.api.nvim_buf_get_lines(buf, from[1] - 1, to[1], false)
-						code = table.concat(lines, "\n")
-					else
-						local text = vim.api.nvim_buf_get_text(buf, from[1] - 1, from[2], to[1] - 1, to[2] + 1, {})
-						code = table.concat(text, "\n")
-					end
-				else
-					-- Current line from cursor position
-					code = vim.api.nvim_buf_get_lines(buf, ctx.cursor[1] - 1, ctx.cursor[1], false)[1]
-				end
-				return ref .. "\n```" .. ft .. "\n" .. code .. "\n```"
-			end,
-		},
-	},
 	keys = {
 		-- Visual mode
 		{
