@@ -3,8 +3,15 @@ return {
 	lazy = false,
 	dependencies = {
 		{
-			"nvim-telescope/telescope-fzf-native.nvim",
+			"natecraddock/telescope-zf-native.nvim",
 			build = "make",
+		},
+		{
+			"danielfalk/smart-open.nvim",
+			branch = "0.2.x",
+			dependencies = {
+				"kkharji/sqlite.lua",
+			},
 		},
 	},
 	opts = {
@@ -14,6 +21,7 @@ return {
 		},
 		pickers = {
 			find_files = {
+				find_command = { "fd", "--type", "f", "--strip-cwd-prefix", "--follow", "--changed-within", "30d" },
 				follow = true,
 				hidden = true,
 				git_ignore = false,
@@ -40,7 +48,16 @@ return {
 				},
 			},
 		},
-		extensions = { fzf = {} },
+		extensions = {
+			["zf-native"] = {
+				file = { enable = true, highlight_results = true, match_filename = true },
+				generic = { enable = true, highlight_results = true },
+			},
+			smart_open = {
+				match_algorithm = "fzy",
+				open_buffer_indicators = { previous = "󰎂 ", others = "󱋡 " },
+			},
+		},
 	},
 	config = function(_, opts)
 		local actions = require("telescope.actions")
@@ -142,11 +159,36 @@ return {
 			vim.list_extend(picker.file_ignore_patterns, patterns)
 		end
 
+		-- Point sqlite.lua to Nix's sqlite library (find dynamically to survive rebuilds)
+		local function find_sqlite_lib()
+			local handle = io.popen("nix eval --raw nixpkgs#sqlite.out 2>/dev/null")
+			if handle then
+				local path = handle:read("*a")
+				handle:close()
+				if path and path ~= "" then
+					return path .. "/lib/libsqlite3.dylib"
+				end
+			end
+			-- Fallback: search nix store for latest sqlite
+			handle = io.popen("ls -d /nix/store/*-sqlite-*/lib/libsqlite3.dylib 2>/dev/null | tail -1")
+			if handle then
+				local path = handle:read("*a"):gsub("%s+$", "")
+				handle:close()
+				if path and path ~= "" then
+					return path
+				end
+			end
+			return nil
+		end
+		vim.g.sqlite_clib_path = find_sqlite_lib()
+
 		require("telescope").setup(opts)
-		require("telescope").load_extension("fzf")
+		require("telescope").load_extension("zf-native")
+		require("telescope").load_extension("smart_open")
 	end,
 	keys = {
-		{ "<leader>o", "<cmd>Telescope find_files<cr>", desc = "open" },
+		{ "<leader>o", "<cmd>Telescope smart_open<cr>", desc = "open" },
+		{ "<leader>tf", "<cmd>Telescope find_files<cr>", desc = "open (all files)" },
 		{ "<leader>b", "<cmd>Telescope buffers<cr>", desc = "buffers" },
 		{ "<leader>t.", "<cmd>TelescopeSearchDotfiles<cr>", desc = "config" },
 		{ "<leader>tF", "<cmd>Telescope filetypes<cr>", desc = "filetypes" },
