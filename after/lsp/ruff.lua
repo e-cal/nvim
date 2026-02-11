@@ -9,7 +9,7 @@ return {
 					"W6", -- warnings
 					"E1", -- indentation
 					"E2", -- whitespace
-					"E501", -- line length
+					-- "E501", -- line length
 					"E71", -- value comparison
 					"E72", -- type comparison & exceptions
 					"E702", -- semicolons
@@ -29,8 +29,10 @@ return {
 					"E226", -- ignore whitespace before comments
 					-- "F403", -- allow import *
 					"F405", -- allow import from __future__
+					-- "F541", -- allow f string without vars
 					"PD901", -- allow df as name
                     "RUF001", -- allow ambiguous characters
+                    "RUF003", -- allow ambiguous characters
 				},
 			},
 		},

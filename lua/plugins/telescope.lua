@@ -21,7 +21,7 @@ return {
 		},
 		pickers = {
 			find_files = {
-				find_command = { "fd", "--type", "f", "--strip-cwd-prefix", "--follow", "--changed-within", "30d" },
+				find_command = { "fd", "--type", "f", "--strip-cwd-prefix", "--follow" },
 				follow = true,
 				hidden = true,
 				git_ignore = false,
@@ -131,10 +131,10 @@ return {
 			return base_sorter
 		end
 
-		if opts.pickers and opts.pickers.find_files then
-			local p = opts.pickers.find_files
-			p.sorter = custom_sorter(p)
-		end
+		-- if opts.pickers and opts.pickers.find_files then
+		-- 	local p = opts.pickers.find_files
+		-- 	p.sorter = custom_sorter(p)
+		-- end
 
 		-- Read .telescopeignore and extend ignore patterns
 		local function get_git_root()
@@ -191,8 +191,7 @@ return {
 		{ "<leader>tf", "<cmd>Telescope find_files<cr>", desc = "open (all files)" },
 		{ "<leader>b", "<cmd>Telescope buffers<cr>", desc = "buffers" },
 		{ "<leader>t.", "<cmd>TelescopeSearchDotfiles<cr>", desc = "config" },
-		{ "<leader>tF", "<cmd>Telescope filetypes<cr>", desc = "filetypes" },
-		{ "<leader>tg", "<cmd>Telescope git_branches<cr>", desc = "git branches" },
+		{ "<leader>tg", "<cmd>Telescope git_status<cr>", desc = "git changes" },
 		{ "<leader>tb", "<cmd>Telescope buffers<cr>", desc = "buffers" },
 		{ "<leader>tH", "<cmd>Telescope command_history<cr>", desc = "cmd history" },
 		{ "<leader>th", "<cmd>Telescope help_tags<cr>", desc = "help" },
@@ -201,7 +200,7 @@ return {
 		{ "<leader>tM", "<cmd>Telescope man_pages<cr>", desc = "man pages" },
 		{ "<leader>to", "<cmd>Telescope vim_options<cr>", desc = "options" },
 		{ "<leader>tT", "<cmd>Telescope live_grep<cr>", desc = "text" },
-		{ "<leader>tf", "<cmd>TelescopeSearchDir<cr>", desc = "search from" },
+		{ "<leader>tF", "<cmd>TelescopeSearchDir<cr>", desc = "search from" },
 		{ "<leader>tr", "<cmd>Telescope oldfiles<cr>", desc = "recents" },
 		{ "<leader>tp", "<cmd>Telescope registers<cr>", desc = "registers" },
 		{ "<leader>te", "<cmd>Telescope file_browser<cr>", desc = "fuzzy explorer" },
