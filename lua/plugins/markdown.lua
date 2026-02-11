@@ -61,4 +61,12 @@ return {
 			-- { "<leader>mt", "<cmd> lua require('nabla').toggle_virt()<cr>", desc = "toggle math" },
 		},
 	},
+	{
+		"3rd/diagram.nvim",
+		ft = { "markdown", "norg" },
+		dependencies = {
+			"3rd/image.nvim",
+		},
+		opts = {},
+	},
 }

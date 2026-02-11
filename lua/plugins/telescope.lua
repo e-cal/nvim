@@ -159,35 +159,20 @@ return {
 			vim.list_extend(picker.file_ignore_patterns, patterns)
 		end
 
-		-- Point sqlite.lua to Nix's sqlite library (find dynamically to survive rebuilds)
-		local function find_sqlite_lib()
-			local handle = io.popen("nix eval --raw nixpkgs#sqlite.out 2>/dev/null")
-			if handle then
-				local path = handle:read("*a")
-				handle:close()
-				if path and path ~= "" then
-					return path .. "/lib/libsqlite3.dylib"
-				end
-			end
-			-- Fallback: search nix store for latest sqlite
-			handle = io.popen("ls -d /nix/store/*-sqlite-*/lib/libsqlite3.dylib 2>/dev/null | tail -1")
-			if handle then
-				local path = handle:read("*a"):gsub("%s+$", "")
-				handle:close()
-				if path and path ~= "" then
-					return path
-				end
-			end
-			return nil
-		end
-		vim.g.sqlite_clib_path = find_sqlite_lib()
+		vim.g.sqlite_clib_path = "/nix/store/6yawzw96lhv44d6rfkk8l5k22srfc81q-sqlite-3.51.1/lib/libsqlite3.dylib"
 
 		require("telescope").setup(opts)
 		require("telescope").load_extension("zf-native")
 		require("telescope").load_extension("smart_open")
 	end,
 	keys = {
-		{ "<leader>o", "<cmd>Telescope smart_open<cr>", desc = "open" },
+		{
+			"<leader>o",
+			function()
+				require("telescope").extensions.smart_open.smart_open({ filename_first = false })
+			end,
+			desc = "open",
+		},
 		{ "<leader>tf", "<cmd>Telescope find_files<cr>", desc = "open (all files)" },
 		{ "<leader>b", "<cmd>Telescope buffers<cr>", desc = "buffers" },
 		{ "<leader>t.", "<cmd>TelescopeSearchDotfiles<cr>", desc = "config" },
