@@ -7,6 +7,25 @@ local autocmd = vim.api.nvim_create_autocmd
 augroup("global", { clear = true })
 autocmd({ "VimLeave" }, { group = "global", command = "StoreSession" })
 autocmd({ "BufEnter" }, { group = "global", command = "LspStart" })
+-- autocmd({ "VimEnter" }, {
+-- 	group = "global",
+-- 	callback = function()
+-- 		local oc = require("opencode")
+-- 		require("opencode.cli.server")
+-- 			.get(false)
+-- 			:next(function(server)
+-- 				vim.notify(
+-- 					"Connected to opencode on port " .. server.port,
+-- 					vim.log.levels.INFO,
+-- 					{ title = "opencode" }
+-- 				)
+-- 			end)
+-- 			:catch(function(err)
+-- 				vim.notify("Starting opencode...", vim.log.levels.INFO, { title = "opencode" })
+-- 				oc.start()
+-- 			end)
+-- 	end,
+-- })
 autocmd({ "CursorMoved" }, {
 	group = "global",
 	callback = function()

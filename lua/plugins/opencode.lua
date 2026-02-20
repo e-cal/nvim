@@ -3,18 +3,24 @@ return {
 	dir = "~/projects/opencode.nvim",
 	dependencies = { { "folke/snacks.nvim", opts = { input = {}, picker = {}, terminal = {} } } },
 	config = function()
-		local templates = {
-			complete = "Follow any instructions in the selected code and complete the functionality:\n\n@code",
-			explain = "Explain the following code:\n\n@code",
-			yank = "@code\n\n",
-		}
-
 		---@type opencode.Opts
 		vim.g.opencode_opts = {
+			ask = {
+				capture = "buffer",
+				buffer = {
+					linewrap = true,
+					submit_on_write = false,
+					submit_keys = {
+						n = { "<CR>" },
+						i = { "<C-s>" },
+					},
+				},
+			},
 			provider = {
 				enabled = "tmux",
 				tmux = {
 					options = "-h",
+					find_sibling = true,
 					auto_close = false,
 				},
 			},
@@ -66,15 +72,7 @@ return {
 		{
 			"<leader>aa",
 			function()
-				local oc = require("opencode")
-				local ctx = require("opencode.context").new()
-				vim.ui.input({ prompt = "Ask: " }, function(input)
-					if input and input ~= "" then
-						oc.prompt(input .. "\n\n@code", { context = ctx, submit = true })
-					else
-						ctx:resume()
-					end
-				end)
+				require("opencode").ask("\n\n@code", { submit = true })
 			end,
 			mode = "x",
 			desc = "Ask (selection)",
@@ -133,6 +131,13 @@ return {
 
 		-- Normal mode
 		{
+			"<leader>aa",
+			function()
+				require("opencode").ask("@buffer ", { submit = true })
+			end,
+			desc = "Ask",
+		},
+		{
 			"<leader>aD",
 			function()
 				require("opencode").prompt(
@@ -141,13 +146,6 @@ return {
 				)
 			end,
 			desc = "Document function",
-		},
-		{
-			"<leader>aa",
-			function()
-				require("opencode").ask("", { submit = true })
-			end,
-			desc = "Ask",
 		},
 		{
 			"<leader>ah",
@@ -232,14 +230,13 @@ return {
 			function()
 				local oc = require("opencode")
 				require("opencode.cli.server")
-					.get_port(false)
-					:next(function(port)
+					.get(false)
+					:next(function(server)
 						vim.notify(
-							"Connected to opencode on port " .. port,
+							"Connected to opencode on port " .. server.port,
 							vim.log.levels.INFO,
 							{ title = "opencode" }
 						)
-						require("opencode.events").subscribe()
 					end)
 					:catch(function(err)
 						vim.notify("Starting opencode...", vim.log.levels.INFO, { title = "opencode" })
