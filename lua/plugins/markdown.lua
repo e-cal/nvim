@@ -61,12 +61,40 @@ return {
 			-- { "<leader>mt", "<cmd> lua require('nabla').toggle_virt()<cr>", desc = "toggle math" },
 		},
 	},
-	{
-		"3rd/diagram.nvim",
-		ft = { "markdown", "norg" },
-		dependencies = {
-			"3rd/image.nvim",
-		},
-		opts = {},
-	},
+	-- {
+	-- 	"3rd/diagram.nvim",
+	-- 	ft = { "markdown", "norg" },
+	-- 	dependencies = {
+	-- 		"3rd/image.nvim",
+	-- 	},
+	-- 	opts = function()
+	-- 		local browser_candidates = {
+	-- 			"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+	-- 			"/Applications/Chromium.app/Contents/MacOS/Chromium",
+	-- 			"/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge",
+	-- 			"/Applications/Brave Browser.app/Contents/MacOS/Brave Browser",
+	-- 		}
+	--
+	-- 		local browser_path
+	-- 		for _, candidate in ipairs(browser_candidates) do
+	-- 			if vim.fn.filereadable(candidate) == 1 then
+	-- 				browser_path = candidate
+	-- 				break
+	-- 			end
+	-- 		end
+	--
+	-- 		local mermaid = {}
+	-- 		if browser_path then
+	-- 			local puppeteer_config = vim.fn.stdpath("cache") .. "/diagram-mermaid-puppeteer.json"
+	-- 			vim.fn.writefile({ vim.fn.json_encode({ executablePath = browser_path }) }, puppeteer_config)
+	-- 			mermaid.cli_args = { "-p", puppeteer_config }
+	-- 		end
+	--
+	-- 		return {
+	-- 			renderer_options = {
+	-- 				mermaid = mermaid,
+	-- 			},
+	-- 		}
+	-- 	end,
+	-- },
 }
