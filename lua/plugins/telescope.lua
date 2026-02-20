@@ -203,6 +203,7 @@ return {
 			end,
 			desc = "grep text",
 		},
-		{ "<leader>s", "<cmd>Telescope grep_string<cr>", mode = "v", desc = "search selection" },
+		{ "<leader>t", "<cmd>Telescope grep_string<cr>", mode = "v", desc = "search selection" },
+		{ "<leader>s", ":!awk '{print length, $0}' | sort -n | cut -d' ' -f2-<cr>gv", mode = "v", desc = "sort selection by length" },
 	},
 }
