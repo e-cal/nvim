@@ -33,6 +33,7 @@ return {
 					"PD901", -- allow df as name
                     "RUF001", -- allow ambiguous characters
                     "RUF003", -- allow ambiguous characters
+                    "RUF067", -- allow stuff in __init__.py
 				},
 			},
 		},

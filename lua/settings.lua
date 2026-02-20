@@ -57,11 +57,16 @@ vim.go.background = "dark"
 vim.cmd('let &t_8f = "\\<Esc>[38;2;%lu;%lu;%lum"')
 vim.cmd('let &t_8b = "\\<Esc>[48;2;%lu;%lu;%lum"')
 
-local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
-for type, icon in pairs(signs) do
-	local hl = "DiagnosticSign" .. type
-	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end
+vim.diagnostic.config({
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = " ",
+			[vim.diagnostic.severity.WARN] = " ",
+			[vim.diagnostic.severity.HINT] = " ",
+			[vim.diagnostic.severity.INFO] = " ",
+		},
+	},
+})
 
 -- disable stuff
 vim.g.loaded_gzip = 1
