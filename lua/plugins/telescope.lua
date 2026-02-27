@@ -62,6 +62,22 @@ return {
 	config = function(_, opts)
 		local actions = require("telescope.actions")
 
+		local function enforce_smart_open_cwd_bias()
+			local ok, DbClient = pcall(require, "telescope._extensions.smart_open.dbclient")
+			if not ok or DbClient._cwd_bias_patched then
+				return
+			end
+
+			local original_get_weights = DbClient.get_weights
+			DbClient.get_weights = function(self, default_weights)
+				local weights = original_get_weights(self, default_weights)
+				weights.project = math.max(weights.project or 0, 300)
+				return weights
+			end
+
+			DbClient._cwd_bias_patched = true
+		end
+
 		-- Merge extra mappings
 		local extra_opts = {
 			defaults = {
@@ -160,6 +176,7 @@ return {
 		end
 
 		vim.g.sqlite_clib_path = "/nix/store/6yawzw96lhv44d6rfkk8l5k22srfc81q-sqlite-3.51.1/lib/libsqlite3.dylib"
+		enforce_smart_open_cwd_bias()
 
 		require("telescope").setup(opts)
 		require("telescope").load_extension("zf-native")
