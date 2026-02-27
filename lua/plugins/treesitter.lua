@@ -99,8 +99,8 @@ return {
 				-- Only set if treesitter parser exists for this filetype
 				local ok = pcall(vim.treesitter.get_parser)
 				if ok then
-					vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
-					vim.wo[0][0].foldmethod = "expr"
+					vim.wo[0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+					vim.wo[0].foldmethod = "expr"
 				end
 			end,
 		})

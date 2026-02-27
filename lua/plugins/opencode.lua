@@ -1,27 +1,33 @@
 return {
 	"nickvandyke/opencode.nvim",
 	dir = "~/projects/opencode.nvim",
-	dependencies = { { "folke/snacks.nvim", opts = { input = {}, picker = {}, terminal = {} } } },
+	dependencies = {
+		{ "folke/snacks.nvim", opts = { input = {}, picker = {}, terminal = {} } },
+		{
+			"opencode-tmux.nvim",
+			dir = "~/projects/opencode-tmux.nvim",
+			opts = {
+				options = "-h",
+				find_sibling = true,
+				auto_close = false,
+			},
+		},
+	},
 	config = function()
+		vim.o.autoread = true
+	end,
+	init = function()
 		---@type opencode.Opts
 		vim.g.opencode_opts = {
 			ask = {
 				capture = "buffer",
 				buffer = {
 					linewrap = true,
-					submit_on_write = false,
+					submit_on_write = true,
 					submit_keys = {
 						n = { "<CR>" },
 						i = { "<C-s>" },
 					},
-				},
-			},
-			provider = {
-				enabled = "tmux",
-				tmux = {
-					options = "-h",
-					find_sibling = true,
-					auto_close = false,
 				},
 			},
 			events = {
@@ -53,8 +59,6 @@ return {
 				end,
 			},
 		}
-
-		vim.o.autoread = true
 	end,
 	keys = {
 		-- Visual mode
@@ -72,7 +76,7 @@ return {
 		{
 			"<leader>aa",
 			function()
-				require("opencode").ask("\n\n@code", { submit = true })
+				require("opencode").ask("@code", { submit = true })
 			end,
 			mode = "x",
 			desc = "Ask (selection)",
@@ -228,19 +232,15 @@ return {
 		{
 			"<leader>O",
 			function()
-				local oc = require("opencode")
 				require("opencode.cli.server")
-					.get(false)
+					.get()
 					:next(function(server)
-						vim.notify(
-							"Connected to opencode on port " .. server.port,
-							vim.log.levels.INFO,
-							{ title = "opencode" }
-						)
+						vim.notify("Connected to '" .. server.title .. "'", vim.log.levels.INFO, { title = "opencode" })
 					end)
 					:catch(function(err)
-						vim.notify("Starting opencode...", vim.log.levels.INFO, { title = "opencode" })
-						oc.start()
+						if err then
+							vim.notify(err, vim.log.levels.ERROR, { title = "opencode" })
+						end
 					end)
 			end,
 			desc = "Connect",
