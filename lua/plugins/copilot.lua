@@ -4,8 +4,26 @@ return {
 		"nvim-lua/plenary.nvim",
 		"hrsh7th/nvim-cmp",
 	},
+	lazy = false,
 	config = function()
-		require("codeium").setup({})
+		require("codeium").setup({
+			enable_cmp_source = true,
+			virtual_text = {
+				enabled = true,
+				manual = true,
+				key_bindings = {
+					accept = "<Right>",
+					accept_word = "<C-j>",
+					accept_line = false,
+					clear = "<C-k>",
+					next = "<C-n>",
+					prev = "<C-p>",
+				},
+			},
+		})
+		vim.keymap.set("i", "<C-l>", function()
+			require("codeium.virtual_text").complete()
+		end, {})
 	end,
 }
 

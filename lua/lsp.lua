@@ -2,16 +2,23 @@ vim.lsp.config("*", {
   capabilities = vim.lsp.protocol.make_client_capabilities()
 })
 
+-- Remove Neovim's built-in LSP default keymaps that conflict with gr prefix
+vim.keymap.del("n", "grr")
+vim.keymap.del("n", "gri")
+vim.keymap.del("n", "gra")
+vim.keymap.del("n", "grn")
+vim.keymap.del("n", "grt")
+
 local map = vim.keymap.set
 map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
 map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
 map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
 map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>")
 map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>")
-map("n", "<C-h>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
-map("n", "<C-p>", "<cmd>lua vim.diagnostic.jump( { count = -1, float = true })<CR>")
-map("n", "<C-n>", "<cmd>lua vim.diagnostic.jump({ count = 1, float = true })<CR>")
-map("n", "<C-k>", "<cmd>lua vim.diagnostic.open_float()<CR>")
+map("n", "gh", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
+map("n", "gp", "<cmd>lua vim.diagnostic.jump( { count = -1, float = true })<CR>")
+map("n", "gn", "<cmd>lua vim.diagnostic.jump({ count = 1, float = true })<CR>")
+map("n", "gk", "<cmd>lua vim.diagnostic.open_float()<CR>")
 -- map("n", "<C-l>", "<cmd>lua vim.diagnostic.open_float()<CR>")
 map("n", "<C-_>", function()
 	vim.lsp.buf.workspace_symbol(vim.fn.expand("<cword>"))
