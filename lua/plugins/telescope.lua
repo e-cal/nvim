@@ -62,22 +62,6 @@ return {
 	config = function(_, opts)
 		local actions = require("telescope.actions")
 
-		local function enforce_smart_open_cwd_bias()
-			local ok, DbClient = pcall(require, "telescope._extensions.smart_open.dbclient")
-			if not ok or DbClient._cwd_bias_patched then
-				return
-			end
-
-			local original_get_weights = DbClient.get_weights
-			DbClient.get_weights = function(self, default_weights)
-				local weights = original_get_weights(self, default_weights)
-				weights.project = math.max(weights.project or 0, 300)
-				return weights
-			end
-
-			DbClient._cwd_bias_patched = true
-		end
-
 		-- Merge extra mappings
 		local extra_opts = {
 			defaults = {
@@ -90,67 +74,6 @@ return {
 			},
 		}
 		opts = vim.tbl_deep_extend("force", opts, extra_opts)
-
-		local function custom_sorter(picker_opts)
-			local sorters = require("telescope.sorters")
-			local base_sorter = sorters.get_fuzzy_file()
-
-			local pattern_defs = picker_opts.deprioritize_patterns
-			local default_penalty = picker_opts.deprioritize_default_penalty or 1000
-
-			local patterns = {}
-			if pattern_defs then
-				if #pattern_defs > 0 and type(pattern_defs[1]) == "table" then
-					for _, obj in ipairs(pattern_defs) do
-						if obj.pattern then
-							table.insert(patterns, {
-								pattern = obj.pattern,
-								penalty = obj.penalty or default_penalty,
-							})
-						end
-					end
-				else
-					for _, pat in ipairs(pattern_defs) do
-						table.insert(patterns, { pattern = pat, penalty = default_penalty })
-					end
-				end
-			end
-
-			local function penalty_for(path)
-				if not path then
-					return 0
-				end
-				for _, p in ipairs(patterns) do
-					if path:match(p.pattern) then
-						return p.penalty
-					end
-				end
-				return 0
-			end
-
-			local original_scoring = base_sorter.scoring_function
-
-			base_sorter.scoring_function = function(self, prompt, line, entry, ...)
-				local base = original_scoring(self, prompt, line, entry, ...)
-				if base == -1 or base < 0 then
-					return base
-				end
-				local path = (entry and (entry.path or entry.value)) or line
-				local extra = penalty_for(path)
-				if extra ~= 0 then
-					return base + extra
-				else
-					return base
-				end
-			end
-
-			return base_sorter
-		end
-
-		-- if opts.pickers and opts.pickers.find_files then
-		-- 	local p = opts.pickers.find_files
-		-- 	p.sorter = custom_sorter(p)
-		-- end
 
 		-- Read .telescopeignore and extend ignore patterns
 		local function get_git_root()
@@ -176,7 +99,6 @@ return {
 		end
 
 		vim.g.sqlite_clib_path = "/nix/store/6yawzw96lhv44d6rfkk8l5k22srfc81q-sqlite-3.51.1/lib/libsqlite3.dylib"
-		enforce_smart_open_cwd_bias()
 
 		require("telescope").setup(opts)
 		require("telescope").load_extension("zf-native")
