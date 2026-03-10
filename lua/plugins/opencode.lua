@@ -10,6 +10,7 @@ return {
 				options = "-h",
 				find_sibling = true,
 				auto_close = false,
+                debug = false,
 			},
 		},
 	},
