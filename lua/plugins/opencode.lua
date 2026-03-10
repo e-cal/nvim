@@ -142,28 +142,11 @@ return {
 			desc = "Ask",
 		},
 		{
-			"<leader>aD",
-			function()
-				require("opencode").prompt(
-					"Add documentation comments to the function at @this. Only document this function, nothing else.",
-					{ submit = true }
-				)
-			end,
-			desc = "Document function",
-		},
-		{
 			"<leader>ah",
 			function()
 				require("opencode").ask("")
 			end,
 			desc = "Ask (here)",
-		},
-		{
-			"<leader>af",
-			function()
-				require("opencode").ask("@buffer ")
-			end,
-			desc = "Ask (file)",
 		},
 		{
 			"<leader>ab",
@@ -199,6 +182,16 @@ return {
 				require("opencode").ask("@visible ")
 			end,
 			desc = "Ask (visible)",
+		},
+		{
+			"<leader>aD",
+			function()
+				require("opencode").prompt(
+					"Add documentation comments to the function at @this. Only document this function, nothing else.",
+					{ submit = true }
+				)
+			end,
+			desc = "Document function",
 		},
 		{
 			"<leader>as",
