@@ -127,7 +127,7 @@ return {
 		-- file info
 		ins_left({
 			function()
-				return "█"
+				return "█"
 			end,
 			color = { fg = colors.bg_bright, bg = colors.bg },
 			padding = { left = 0, right = 0 },
@@ -177,7 +177,7 @@ return {
 		})
 		ins_left({
 			function()
-				return "█"
+				return "█"
 			end,
 			color = { fg = colors.bg_bright, bg = colors.bg },
 			padding = { left = 0, right = 0 },
@@ -260,7 +260,7 @@ return {
 			function()
 				return ""
 			end,
-			color = { fg = colors.normal, bg = colors.bg_bright },
+			color = { fg = colors.normal, bg = colors.bg },
 			padding = { left = 0, right = 0 },
 		})
 
