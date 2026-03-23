@@ -21,7 +21,7 @@ return {
 				},
 			},
 		})
-		vim.keymap.set("i", "<C-l>", function()
+		vim.keymap.set("i", "<C-s>", function()
 			require("codeium.virtual_text").complete()
 		end, {})
 	end,

@@ -2,20 +2,49 @@ return {
 	"nickvandyke/opencode.nvim",
 	dir = "~/projects/opencode.nvim",
 	dependencies = {
-		{ "folke/snacks.nvim", opts = { input = {}, picker = {}, terminal = {} } },
 		{
 			"opencode-tmux.nvim",
+			dependencies = {
+				{
+					"rcarriga/nvim-notify",
+					lazy = true,
+					opts = {
+						background_colour = "CursorLine",
+						render = "minimal",
+						stages = "fade",
+						top_down = false,
+					},
+					config = function(_, opts)
+						local notify = require("notify")
+						notify.setup(opts)
+						vim.notify = notify
+					end,
+				},
+			},
 			dir = "~/projects/opencode-tmux.nvim",
+			lazy = false,
 			opts = {
 				options = "-h",
 				find_sibling = true,
 				auto_close = false,
-                debug = false,
+				debug = true,
+				connect_keymap = "<leader>O",
+				connect_launch = false,
 			},
 		},
 	},
 	config = function()
 		vim.o.autoread = true
+		vim.api.nvim_create_autocmd("VimEnter", {
+			once = true,
+			callback = function()
+				vim.schedule(function()
+					pcall(function()
+						require("opencode-tmux").connect({ launch = false, notify_failure = false })
+					end)
+				end)
+			end,
+		})
 	end,
 	init = function()
 		---@type opencode.Opts
@@ -221,23 +250,6 @@ return {
 				require("opencode").command("session.half.page.down")
 			end,
 			desc = "Scroll down",
-		},
-
-		{
-			"<leader>O",
-			function()
-				require("opencode.cli.server")
-					.get()
-					:next(function(server)
-						vim.notify("Connected to '" .. server.title .. "'", vim.log.levels.INFO, { title = "opencode" })
-					end)
-					:catch(function(err)
-						if err then
-							vim.notify(err, vim.log.levels.ERROR, { title = "opencode" })
-						end
-					end)
-			end,
-			desc = "Connect",
 		},
 	},
 }

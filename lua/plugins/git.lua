@@ -19,5 +19,6 @@ return {
 		{ "<leader>gn", "<cmd>Git next_hunk<CR>", desc = "next hunk" },
 		{ "<leader>gp", "<cmd>Git prev_hunk<CR>", desc = "prev hunk" },
 		{ "<leader>gb", "<cmd>Git blame_line<CR>", desc = "blame" },
+		{ "<leader>ga", "<cmd>Git stage_hunk<CR>", desc = "stage hunk (add/unadd)" },
 	},
 }
