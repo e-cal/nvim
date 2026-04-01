@@ -62,6 +62,7 @@ autocmd({ "BufEnter" }, {
 		vim.opt_local.breakindent = true
 		-- Disable auto newline at textwidth
 		vim.opt_local.formatoptions:remove("t")
+		vim.opt_local.textwidth = 0
 		-- Map movement keys to their screen-line equivalents
 		vim.keymap.set("n", "j", "gj", { buffer = true })
 		vim.keymap.set("n", "k", "gk", { buffer = true })
