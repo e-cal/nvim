@@ -112,6 +112,14 @@ return {
 			desc = "Ask (selection)",
 		},
 		{
+			"<leader>an",
+			function()
+				require("opencode").ask("@code", { new = true, submit = true })
+			end,
+			mode = "x",
+			desc = "Ask New (selection)",
+		},
+		{
 			"<leader>ae",
 			function()
 				require("opencode").prompt("Explain the following code:\n\n@code", { submit = true })
@@ -170,6 +178,13 @@ return {
 				require("opencode").ask("@buffer ", { submit = true })
 			end,
 			desc = "Ask",
+		},
+		{
+			"<leader>an",
+			function()
+				require("opencode").ask("@buffer ", { new = true, submit = true })
+			end,
+			desc = "Ask New",
 		},
 		{
 			"<leader>ah",

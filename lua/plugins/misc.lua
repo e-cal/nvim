@@ -9,7 +9,7 @@ return {
 		"rcarriga/nvim-notify",
 		lazy = true,
 		opts = {
-            background_colour = "CursorLine",
+			background_colour = "CursorLine",
 			render = "minimal",
 			stages = "fade",
 			top_down = false,

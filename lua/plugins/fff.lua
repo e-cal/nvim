@@ -12,7 +12,53 @@ return {
 		},
 	},
 	config = function(_, opts)
-		require("fff").setup(opts)
+		local fff = require("fff")
+		fff.setup(opts)
+
+		local default_file_renderer = require("fff.file_renderer")
+		local fff_rust = require("fff.rust")
+		local fff_conf = require("fff.conf")
+
+		local function format_full_path(item, max_width)
+			local path = item.relative_path or item.path or item.name or ""
+			if type(path) ~= "string" then
+				path = tostring(path)
+			end
+
+			local config = fff_conf.get()
+			local strategy = config.layout and config.layout.path_shorten_strategy or "middle_number"
+			return fff_rust.shorten_path(path, max_width, strategy), ""
+		end
+
+		local function with_full_path_formatter(ctx, fn)
+			local original = ctx.format_file_display
+			ctx.format_file_display = format_full_path
+			local ok, result = pcall(fn)
+			ctx.format_file_display = original
+			if not ok then
+				error(result)
+			end
+			return result
+		end
+
+		local full_path_renderer = {
+			render_line = function(item, ctx, item_idx)
+				return with_full_path_formatter(ctx, function()
+					return default_file_renderer.render_line(item, ctx, item_idx)
+				end)
+			end,
+			apply_highlights = function(item, ctx, item_idx, buf, ns_id, line_idx, line_content)
+				return with_full_path_formatter(ctx, function()
+					return default_file_renderer.apply_highlights(item, ctx, item_idx, buf, ns_id, line_idx, line_content)
+				end)
+			end,
+		}
+
+		local find_files_original = fff.find_files
+		fff.find_files = function(find_opts)
+			local merged_opts = vim.tbl_deep_extend("force", { renderer = full_path_renderer }, find_opts or {})
+			return find_files_original(merged_opts)
+		end
 
 		local group = vim.api.nvim_create_augroup("FffEscBehavior", { clear = true })
 		vim.api.nvim_create_autocmd("FileType", {
