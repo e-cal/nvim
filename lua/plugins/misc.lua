@@ -7,13 +7,18 @@ return {
 	{ "tpope/vim-surround", event = "VeryLazy" },
 	{
 		"rcarriga/nvim-notify",
-		lazy = true,
+		lazy = false,
 		opts = {
 			background_colour = "CursorLine",
 			render = "minimal",
 			stages = "fade",
 			top_down = false,
 		},
+		config = function(_, opts)
+			local notify = require("notify")
+			notify.setup(opts)
+			vim.notify = notify
+		end,
 	},
 	{
 		"mbbill/undotree",
