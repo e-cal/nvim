@@ -6,11 +6,13 @@ return {
 	end)(),
 	handlers = {
 		-- ["textDocument/publishDiagnostics"] = function() end,
-		["textDocument/hover"] = vim.lsp.with(Utils.custom_hover, {
-			border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-			max_width = 120,
-			zindex = 500,
-		}),
+		["textDocument/hover"] = function(err, result, ctx, config)
+			return Utils.custom_hover(err, result, ctx, vim.tbl_extend("force", config or {}, {
+				border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+				max_width = 120,
+				zindex = 500,
+			}))
+		end,
 	},
 	settings = {
 		python = {

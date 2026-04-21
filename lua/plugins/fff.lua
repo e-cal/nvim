@@ -60,6 +60,46 @@ return {
 			return find_files_original(merged_opts)
 		end
 
+		local function find_files_or_quit(find_opts)
+			local picker_ui = require("fff.picker_ui")
+			local did_select = false
+			local select_original = picker_ui.select
+			local close_original = picker_ui.close
+			local merged_opts = vim.tbl_deep_extend("force", {
+				preview = {
+					enabled = false,
+				},
+			}, find_opts or {})
+
+			local function restore()
+				picker_ui.select = select_original
+				picker_ui.close = close_original
+			end
+
+			picker_ui.select = function(...)
+				did_select = true
+				restore()
+				return select_original(...)
+			end
+
+			picker_ui.close = function(...)
+				restore()
+				local result = close_original(...)
+				if not did_select then
+					vim.schedule(function()
+						vim.cmd("qa")
+					end)
+				end
+				return result
+			end
+
+			return fff.find_files(merged_opts)
+		end
+
+		vim.api.nvim_create_user_command("FffFindFilesOrQuit", function()
+			find_files_or_quit()
+		end, { desc = "Open fff and quit Neovim if canceled" })
+
 		local group = vim.api.nvim_create_augroup("FffEscBehavior", { clear = true })
 		vim.api.nvim_create_autocmd("FileType", {
 			group = group,
@@ -93,7 +133,11 @@ return {
 		{
 			"<leader>o",
 			function()
-				require("fff").find_files()
+				require("fff").find_files({
+					preview = {
+						enabled = false,
+					},
+				})
 			end,
 			desc = "files",
 		},

@@ -92,7 +92,7 @@ return {
 	end,
 	keys = {
 		{ "<leader>e", "<cmd>Neotree toggle<cr>", desc = "file tree" },
-		{ "<leader>?", "<cmd>Neotree reveal<cr>", desc = "show in tree" },
+		{ "<leader>E", "<cmd>Neotree reveal<cr>", desc = "show in tree" },
 		{ "<leader>ge", "<cmd>Neotree git_status<cr>", desc = "git file tree" },
 	},
 }

@@ -6,7 +6,6 @@ local autocmd = vim.api.nvim_create_autocmd
 --------------------------------------------------------------------------------
 augroup("global", { clear = true })
 autocmd({ "VimLeave" }, { group = "global", command = "StoreSession" })
-autocmd({ "BufEnter" }, { group = "global", command = "LspStart" })
 autocmd({ "CursorMoved" }, {
 	group = "global",
 	callback = function()

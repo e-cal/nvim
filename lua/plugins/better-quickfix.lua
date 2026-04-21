@@ -1,6 +1,10 @@
 return {
 	"kevinhwang91/nvim-bqf",
 	event = "VeryLazy",
+	keys = {
+		{ "<leader>qo", "<cmd>copen<cr>", desc = "Quickfix open" },
+		{ "<leader>qc", "<cmd>cclose<cr>", desc = "Quickfix close" },
+	},
 	opts = {
 		auto_resize_height = false,
 		filter = {
