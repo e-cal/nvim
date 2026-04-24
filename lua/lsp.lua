@@ -1,5 +1,14 @@
+local watchfiles = require("vim.lsp._watchfiles")
+
+-- Cursor can create a self-referential `.cursor/.cursor` symlink in workspaces.
+-- Excluding it keeps Neovim's LSP file watcher from stat'ing that loop on macOS.
+local cursor_exclude = vim.glob.to_lpeg("**/.cursor/**")
+if cursor_exclude then
+	watchfiles._poll_exclude_pattern = watchfiles._poll_exclude_pattern + cursor_exclude
+end
+
 vim.lsp.config("*", {
-  capabilities = vim.lsp.protocol.make_client_capabilities()
+	capabilities = vim.lsp.protocol.make_client_capabilities(),
 })
 
 -- Remove Neovim's built-in LSP default keymaps that conflict with gr prefix
