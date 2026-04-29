@@ -66,12 +66,11 @@ return {
 		},
 	},
 	config = function()
-		-- Register mdx as markdown
 		vim.treesitter.language.register("markdown", "mdx")
 
-		-- Install parsers using new API
 		local ensure_installed = {
 			"c",
+            "nu",
 			"lua",
 			"vim",
 			"vimdoc",
@@ -81,14 +80,10 @@ return {
 			"markdown_inline",
 		}
 
-		-- Use new install API
 		require("nvim-treesitter").install(ensure_installed)
 
-		-- Enable treesitter highlighting for all filetypes
-		-- This is the key change - highlighting must be explicitly enabled
 		vim.api.nvim_create_autocmd("FileType", {
 			callback = function()
-				-- Try to start treesitter, silently fail if no parser
 				pcall(vim.treesitter.start)
 			end,
 		})
@@ -96,7 +91,6 @@ return {
 		-- Configure treesitter-based folding
 		vim.api.nvim_create_autocmd("FileType", {
 			callback = function()
-				-- Only set if treesitter parser exists for this filetype
 				local ok = pcall(vim.treesitter.get_parser)
 				if ok then
 					vim.wo[0].foldexpr = "v:lua.vim.treesitter.foldexpr()"

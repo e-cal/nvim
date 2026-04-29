@@ -29,6 +29,7 @@ return {
 		"numToStr/Comment.nvim",
 		event = "VeryLazy",
 		config = function()
+			require("Comment.ft").set({ "nu", "nushell" }, "# %s")
 			require("Comment").setup()
 			-- idk why keys doesn't work for these but it don't
 			vim.api.nvim_set_keymap("n", "<leader>/", "gcc", { desc = "comment" })
