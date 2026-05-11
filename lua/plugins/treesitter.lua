@@ -69,13 +69,19 @@ return {
 		vim.treesitter.language.register("markdown", "mdx")
 
 		local ensure_installed = {
+            "lua",
+            "python",
 			"c",
+            "javascript",
+            "typescript",
             "nu",
-			"lua",
+            "bash",
+            "zsh",
 			"vim",
 			"vimdoc",
-			"query",
-			"python",
+            "json",
+            "yaml",
+            "dockerfile",
 			"markdown",
 			"markdown_inline",
 		}
