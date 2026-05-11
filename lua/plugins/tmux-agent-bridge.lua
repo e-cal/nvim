@@ -149,11 +149,11 @@ return {
 			desc = "Ask New",
 		},
 		{
-			"<leader>ah",
+			"<leader>al",
 			function()
-				require("tmux-agent-bridge").ask("")
+				require("tmux-agent-bridge").ask("@line ")
 			end,
-			desc = "Ask (here)",
+			desc = "Ask (line)",
 		},
 		{
 			"<leader>ab",
