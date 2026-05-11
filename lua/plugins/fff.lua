@@ -5,6 +5,7 @@ return {
 	end,
 	-- build = "nix run .#release",
 	opts = {
+		lazy_sync = false,
 		title = "Files",
 		prompt = "  ",
 		layout = {
@@ -126,6 +127,7 @@ return {
 		{
 			"ff",
 			function()
+				vim.cmd("FFFScan")
 				require("fff").find_files()
 			end,
 			desc = "files",
@@ -133,6 +135,7 @@ return {
 		{
 			"<leader>o",
 			function()
+				vim.cmd("FFFScan")
 				require("fff").find_files({
 					preview = {
 						enabled = false,
