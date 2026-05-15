@@ -1,6 +1,12 @@
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 
+vim.filetype.add({
+	extension = {
+		mdc = "markdown",
+	},
+})
+
 --------------------------------------------------------------------------------
 --                                   Global                                   --
 --------------------------------------------------------------------------------
@@ -29,7 +35,7 @@ autocmd({ "BufWinEnter", "BufRead", "BufNewFile" }, {
 augroup("markdown", { clear = true })
 autocmd({ "BufEnter" }, {
 	group = "markdown",
-	pattern = "*.md",
+	pattern = { "*.md", "*.mdc" },
 	callback = function()
 		vim.cmd('syntax match markdownIgnore "\\v\\w_\\w"')
 		vim.bo.shiftwidth = 2
