@@ -11,11 +11,11 @@ return {
 				debounce_ms = 300,
 			})
 		end,
-        keys = {
-            {"<leader>mp", "<cmd>MarkdownPreview<cr>", desc = "markdown preview"},
-            {"<leader>mr", "<cmd>MarkdownPreviewRefresh<cr>", desc = "markdown preview refresh"},
-            {"<leader>mq", "<cmd>MarkdownPreviewStop<cr>", desc = "markdown preview stop"},
-        },
+		keys = {
+			{ "<leader>mp", "<cmd>MarkdownPreview<cr>", desc = "markdown preview" },
+			{ "<leader>mr", "<cmd>MarkdownPreviewRefresh<cr>", desc = "markdown preview refresh" },
+			{ "<leader>mq", "<cmd>MarkdownPreviewStop<cr>", desc = "markdown preview stop" },
+		},
 	},
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
@@ -69,7 +69,7 @@ return {
 				bottom_pad = 0,
 			},
 		},
-		ft = { "markdown", "Avante" },
+		ft = { "markdown" },
 	},
 	{
 		"jbyuki/nabla.nvim",

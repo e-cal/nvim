@@ -11,5 +11,15 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup("plugins/", { change_detection = { enabled = false } })
+local specs = {}
+local plugin_files = vim.fn.glob(vim.fn.stdpath("config") .. "/lua/plugins/*.lua", false, true)
+table.sort(plugin_files)
+for _, file in ipairs(plugin_files) do
+	local spec = dofile(file)
+	if spec then
+		table.insert(specs, spec)
+	end
+end
+
+require("lazy").setup(specs, { change_detection = { enabled = false } })
 vim.cmd("hi TreesitterContextBottom gui=NONE")
