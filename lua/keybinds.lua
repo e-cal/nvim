@@ -1,12 +1,10 @@
--- General keymaps
-
 local map = vim.keymap.set
 
 -- Buffer navigation
-map("n", "<TAB>", function()
-	vim.cmd("silent! w")
-	vim.cmd("silent! e #")
-end)
+-- map("n", "<TAB>", function()
+-- 	vim.cmd("silent! w")
+-- 	vim.cmd("silent! e #")
+-- end)
 
 -- Scroll
 map("n", "<C-y>", "3<C-y>")
