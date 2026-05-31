@@ -1,3 +1,9 @@
+if vim.iter then
+	vim.tbl_flatten = function(t)
+		return vim.iter(t):flatten(math.huge):totable()
+	end
+end
+
 require("settings")
 require("keybinds")
 
@@ -8,7 +14,7 @@ if not vim.g.vscode then
 	require("auto")
 	require("lsp")
 
-    -- include all files in lua/custom/
+	-- include all files in lua/custom/
 	local dir = vim.fn.stdpath("config") .. "/lua/custom"
 	if vim.fn.isdirectory(dir) == 1 then
 		local files = vim.fn.glob(dir .. "/*.lua", false, true)
