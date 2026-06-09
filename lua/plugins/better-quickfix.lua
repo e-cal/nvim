@@ -5,6 +5,27 @@ return {
 		{ "<leader>qo", "<cmd>copen<cr>", desc = "Quickfix open" },
 		{ "<leader>qc", "<cmd>cclose<cr>", desc = "Quickfix close" },
 	},
+	config = function(_, opts)
+		require("bqf").setup(opts)
+
+		local handler = require("bqf.qfwin.handler")
+		local sessions = require("bqf.qfwin.session")
+		local open = handler.open
+
+		handler.open = function(...)
+			local qwinid = select(3, ...) or vim.api.nvim_get_current_win()
+			local session = sessions:get(qwinid)
+			local pwinid = session and session:previousWinid()
+
+			if pwinid and vim.api.nvim_win_is_valid(pwinid) then
+				vim.api.nvim_set_current_win(pwinid)
+				vim.cmd([[normal! m']])
+				vim.api.nvim_set_current_win(qwinid)
+			end
+
+			return open(...)
+		end
+	end,
 	opts = {
 		auto_resize_height = false,
 		filter = {
@@ -30,7 +51,7 @@ return {
 			ptoggleauto = "P",
 			ptoggleitem = "p",
 			open = "<cr>",
-            -- openc = "<CR>",
+			-- openc = "<CR>",
 			split = "s",
 			vsplit = "v",
 			stogglevm = "<Tab>",

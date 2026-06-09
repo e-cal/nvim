@@ -30,7 +30,7 @@ return {
 					"{ \
 			            based_on_style: facebook, \
 			            column_limit: 160, \
-			            join_multiple_lines: true, \
+			            join_multiple_lines: false, \
 			            coalesce_brackets: false, \
 			            indent_dictionary_value: false, \
 			            allow_split_before_default_or_named_assigns: false, \

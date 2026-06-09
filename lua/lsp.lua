@@ -19,8 +19,116 @@ vim.keymap.del("n", "grn")
 vim.keymap.del("n", "grt")
 
 local map = vim.keymap.set
+
+local type_definition_preview = {
+	buf = nil,
+	win = nil,
+	close_autocmd = nil,
+	focusing = false,
+}
+
+local function close_type_definition_preview()
+	if type_definition_preview.win and vim.api.nvim_win_is_valid(type_definition_preview.win) then
+		vim.api.nvim_win_close(type_definition_preview.win, true)
+	end
+	if type_definition_preview.close_autocmd then
+		pcall(vim.api.nvim_del_autocmd, type_definition_preview.close_autocmd)
+	end
+	type_definition_preview.buf = nil
+	type_definition_preview.win = nil
+	type_definition_preview.close_autocmd = nil
+	type_definition_preview.focusing = false
+end
+
+local function preview_type_definition()
+	if type_definition_preview.win and vim.api.nvim_win_is_valid(type_definition_preview.win) then
+		type_definition_preview.focusing = true
+		vim.api.nvim_set_current_win(type_definition_preview.win)
+		return
+	end
+
+	local source_buf = vim.api.nvim_get_current_buf()
+	local methods = { "textDocument/typeDefinition", "textDocument/definition" }
+	local clients = vim.lsp.get_clients({ bufnr = source_buf })
+	local offset_encoding = clients[1] and clients[1].offset_encoding or "utf-16"
+	local params = vim.lsp.util.make_position_params(0, offset_encoding)
+
+	local function request(method_index)
+		local method = methods[method_index]
+		if not method then
+			vim.notify("No type definition available")
+			return
+		end
+
+		vim.lsp.buf_request(source_buf, method, params, function(_, result, ctx)
+			if not result or vim.tbl_isempty(result) then
+				request(method_index + 1)
+				return
+			end
+
+			local location = vim.tbl_islist(result) and result[1] or result
+			local target_buf = vim.uri_to_bufnr(location.targetUri or location.uri)
+			local range = location.targetSelectionRange or location.range
+			local client = vim.lsp.get_client_by_id(ctx.client_id)
+			if not range or not client then
+				return
+			end
+
+			vim.fn.bufload(target_buf)
+			close_type_definition_preview()
+
+			local width = math.floor(vim.o.columns * 0.8)
+			local height = math.floor(vim.o.lines * 0.4)
+			local row = math.max(1, math.floor((vim.o.lines - height) / 2) - 1)
+			local col = math.floor((vim.o.columns - width) / 2)
+			local title = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(target_buf), ":~:.")
+
+			type_definition_preview.buf = target_buf
+			type_definition_preview.win = vim.api.nvim_open_win(target_buf, false, {
+				relative = "editor",
+				row = row,
+				col = col,
+				width = width,
+				height = height,
+				style = "minimal",
+				border = "rounded",
+				focusable = true,
+				title = title,
+				title_pos = "center",
+			})
+
+			vim.api.nvim_win_set_cursor(type_definition_preview.win, {
+				range.start.line + 1,
+				vim.lsp.util._get_line_byte_from_position(target_buf, range.start, client.offset_encoding),
+			})
+			vim.api.nvim_win_call(type_definition_preview.win, function()
+				vim.cmd("normal! zz")
+			end)
+			type_definition_preview.close_autocmd = vim.api.nvim_create_autocmd(
+				{ "CursorMoved", "InsertEnter", "BufLeave" },
+				{
+					buffer = source_buf,
+					once = true,
+					callback = function()
+						if type_definition_preview.focusing then
+							return
+						end
+						if vim.api.nvim_get_current_win() ~= type_definition_preview.win then
+							close_type_definition_preview()
+						end
+					end,
+				}
+			)
+		end)
+	end
+
+	request(1)
+end
+
 -- map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
 map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
+map("n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>")
+map("n", "<C-k>", preview_type_definition)
 map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
 map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>")
 map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>")

@@ -1,7 +1,7 @@
 return {
-	"e-cal/tmux-agent-bridge.nvim",
+	"e-cal/comlink.nvim",
 	dir = (function()
-		local path = vim.fn.expand("~/projects/tmux-agent-bridge.nvim")
+		local path = vim.fn.expand("~/projects/comlink.nvim")
 		if vim.fn.isdirectory(path) == 1 then
 			return path
 		end
@@ -16,7 +16,7 @@ return {
 			capture = "buffer",
 			buffer = {
 				linewrap = true,
-				submit_on_write = true,
+				submit_on_write = false,
 				submit_keys = {
 					n = { "<CR>" },
 					i = { "<C-s>" },
@@ -59,7 +59,7 @@ return {
 		{
 			"<leader>ac",
 			function()
-				require("tmux-agent-bridge").prompt(
+				require("comlink").prompt(
 					"Follow any instructions in the selected code and complete the functionality:\n\n@selection",
 					{ submit = true }
 				)
@@ -70,7 +70,7 @@ return {
 		{
 			"<leader>aa",
 			function()
-				require("tmux-agent-bridge").ask("@selection", { submit = true })
+				require("comlink").ask("@selection", { submit = true })
 			end,
 			mode = "x",
 			desc = "Ask (selection)",
@@ -78,7 +78,7 @@ return {
 		{
 			"<leader>an",
 			function()
-				require("tmux-agent-bridge").ask("@selection", { new = true, submit = true })
+				require("comlink").ask("@selection", { new = true, submit = true })
 			end,
 			mode = "x",
 			desc = "Ask New (selection)",
@@ -86,15 +86,23 @@ return {
 		{
 			"<leader>ae",
 			function()
-				require("tmux-agent-bridge").prompt("Explain the following code:\n\n@selection", { submit = true })
+				require("comlink").prompt("Explain the following code:\n\n@selection", { submit = true })
 			end,
 			mode = "x",
 			desc = "Explain selection",
 		},
 		{
+			"<leader>ad",
+			function()
+				require("comlink").ask("@selection\n\n@diagnostics ", { submit = true })
+			end,
+			mode = "x",
+			desc = "Ask (selection diagnostics)",
+		},
+		{
 			"<leader>ay",
 			function()
-				require("tmux-agent-bridge").ask("@selection\n\n")
+				require("comlink").ask("@selection\n\n")
 			end,
 			mode = "x",
 			desc = "Yank to prompt",
@@ -102,7 +110,7 @@ return {
 		{
 			"<leader>ar",
 			function()
-				require("tmux-agent-bridge").prompt("Review @this for correctness and readability", { submit = true })
+				require("comlink").prompt("Review @this for correctness and readability", { submit = true })
 			end,
 			mode = "x",
 			desc = "Review selection",
@@ -110,7 +118,7 @@ return {
 		{
 			"<leader>at",
 			function()
-				require("tmux-agent-bridge").prompt("Add tests for @this", { submit = true })
+				require("comlink").prompt("Add tests for @this", { submit = true })
 			end,
 			mode = "x",
 			desc = "Generate tests",
@@ -118,7 +126,7 @@ return {
 		{
 			"<leader>ao",
 			function()
-				require("tmux-agent-bridge").prompt("Optimize @this for performance and readability", { submit = true })
+				require("comlink").prompt("Optimize @this for performance and readability", { submit = true })
 			end,
 			mode = "x",
 			desc = "Optimize selection",
@@ -126,7 +134,7 @@ return {
 		{
 			"<leader>aD",
 			function()
-				require("tmux-agent-bridge").prompt(
+				require("comlink").prompt(
 					"Add documentation comments to @this. Only document this code, nothing else.",
 					{ submit = true }
 				)
@@ -137,63 +145,63 @@ return {
 		{
 			"<leader>aa",
 			function()
-				require("tmux-agent-bridge").ask("@buffer ", { submit = true })
+				require("comlink").ask("@buffer ", { submit = true })
 			end,
 			desc = "Ask",
 		},
 		{
 			"<leader>an",
 			function()
-				require("tmux-agent-bridge").ask("@buffer ", { new = true, submit = true })
+				require("comlink").ask("@buffer ", { new = true, submit = true })
 			end,
 			desc = "Ask New",
 		},
 		{
 			"<leader>al",
 			function()
-				require("tmux-agent-bridge").ask("@line ")
+				require("comlink").ask("@line ")
 			end,
 			desc = "Ask (line)",
 		},
 		{
 			"<leader>ab",
 			function()
-				require("tmux-agent-bridge").ask("@buffers ")
+				require("comlink").ask("@buffers ")
 			end,
 			desc = "Ask (buffers)",
 		},
 		{
 			"<leader>aq",
 			function()
-				require("tmux-agent-bridge").ask("@buffer @quickfix ")
+				require("comlink").ask("@buffer @quickfix ")
 			end,
 			desc = "Ask (quickfix)",
 		},
 		{
 			"<leader>ad",
 			function()
-				require("tmux-agent-bridge").ask("@diff ")
+				require("comlink").ask("@diff ")
 			end,
 			desc = "Ask (diff)",
 		},
 		{
 			"<leader>ae",
 			function()
-				require("tmux-agent-bridge").ask("@diagnostics ")
+				require("comlink").ask("@diagnostics ")
 			end,
 			desc = "Ask (diagnostics)",
 		},
 		{
 			"<leader>av",
 			function()
-				require("tmux-agent-bridge").ask("@visible ")
+				require("comlink").ask("@visible ")
 			end,
 			desc = "Ask (visible)",
 		},
 		{
 			"<leader>aD",
 			function()
-				require("tmux-agent-bridge").prompt(
+				require("comlink").prompt(
 					"Add documentation comments to the function at @this. Only document this function, nothing else.",
 					{ submit = true }
 				)
@@ -203,28 +211,28 @@ return {
 		{
 			"<leader>as",
 			function()
-				require("tmux-agent-bridge").select()
+				require("comlink").select()
 			end,
 			desc = "Select action",
 		},
 		{
 			"<leader>at",
 			function()
-				require("tmux-agent-bridge").toggle()
+				require("comlink").toggle()
 			end,
 			desc = "Toggle agent pane",
 		},
 		{
 			"<S-C-u>",
 			function()
-				require("tmux-agent-bridge").send_keys("PageUp", { agent = "opencode" })
+				require("comlink").send_keys("PageUp", { agent = "opencode" })
 			end,
 			desc = "Scroll up",
 		},
 		{
 			"<S-C-d>",
 			function()
-				require("tmux-agent-bridge").send_keys("PageDown", { agent = "opencode" })
+				require("comlink").send_keys("PageDown", { agent = "opencode" })
 			end,
 			desc = "Scroll down",
 		},
