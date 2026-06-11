@@ -16,8 +16,8 @@ return {
 		local fff = require("fff")
 		fff.setup(opts)
 
-		local default_file_renderer = require("fff.file_renderer")
-		local fff_rust = require("fff.rust")
+		local default_file_renderer = require("fff.picker_ui.file_renderer")
+		local fff_fuzzy = require("fff.fuzzy")
 		local fff_conf = require("fff.conf")
 
 		local function format_full_path(item, max_width)
@@ -28,7 +28,7 @@ return {
 
 			local config = fff_conf.get()
 			local strategy = config.layout and config.layout.path_shorten_strategy or "middle_number"
-			return fff_rust.shorten_path(path, max_width, strategy), ""
+			return fff_fuzzy.shorten_path(path, max_width, strategy), ""
 		end
 
 		local function with_full_path_formatter(ctx, fn)
@@ -50,7 +50,15 @@ return {
 			end,
 			apply_highlights = function(item, ctx, item_idx, buf, ns_id, line_idx, line_content)
 				return with_full_path_formatter(ctx, function()
-					return default_file_renderer.apply_highlights(item, ctx, item_idx, buf, ns_id, line_idx, line_content)
+					return default_file_renderer.apply_highlights(
+						item,
+						ctx,
+						item_idx,
+						buf,
+						ns_id,
+						line_idx,
+						line_content
+					)
 				end)
 			end,
 		}
@@ -62,7 +70,7 @@ return {
 		end
 
 		local function find_files_or_quit(find_opts)
-			local picker_ui = require("fff.picker_ui")
+			local picker_ui = require("fff.picker_ui.picker_ui")
 			local did_select = false
 			local select_original = picker_ui.select
 			local close_original = picker_ui.close
@@ -112,11 +120,16 @@ return {
 					end
 
 					vim.keymap.set("n", "<Esc>", function()
-						require("fff.picker_ui").close()
+						require("fff.picker_ui.picker_ui").close()
 					end, { buffer = event.buf, silent = true, desc = "Close fff" })
 
 					if vim.bo[event.buf].filetype == "fff_input" then
-						vim.keymap.set("i", "<Esc>", "<Esc>", { buffer = event.buf, silent = true, desc = "Exit insert in fff" })
+						vim.keymap.set(
+							"i",
+							"<Esc>",
+							"<Esc>",
+							{ buffer = event.buf, silent = true, desc = "Exit insert in fff" }
+						)
 					end
 				end)
 			end,
