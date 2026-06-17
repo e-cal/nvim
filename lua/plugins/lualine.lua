@@ -139,8 +139,25 @@ return {
 			padding = { left = 0, right = 1 },
 		}, true)
 
+		local stage_labels = {
+			["0"] = "[staged]",
+			["1"] = "[base]",
+			["2"] = "[ours]",
+			["3"] = "[theirs]",
+		}
+
 		local function get_filename()
-			local full_path = vim.fn.expand("%:p")
+			local full_path = vim.api.nvim_buf_get_name(0)
+			local diffview_stage, diffview_path = full_path:match("^diffview://.-/:([0-9]+):/(.+)$")
+			if diffview_path then
+				return (stage_labels[diffview_stage] or diffview_stage) .. " " .. diffview_path
+			end
+
+			local diffview_rev, diffview_file = full_path:match("^diffview://.-/([0-9a-f]+)/(.*)$")
+			if diffview_rev and diffview_file then
+				return "[" .. diffview_rev:sub(1, 7) .. "] " .. diffview_file
+			end
+
 			local cwd = vim.fn.getcwd()
 			local relative_path = full_path:gsub("^" .. vim.pesc(cwd) .. "/", "")
 			return relative_path
@@ -217,7 +234,7 @@ return {
 				local prt_status_info = require("parrot.config").get_status_info()
 				local model = prt_status_info.model:gsub(".*/", "")
 				while model:match("%-[0-9]+$") do
-				  model = model:gsub("%-[0-9]+$", "")
+					model = model:gsub("%-[0-9]+$", "")
 				end
 
 				local clients = vim.lsp.get_clients()
