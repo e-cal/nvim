@@ -7,6 +7,7 @@ return {
 			-- "pyright", -- temporarily disabled while trying ty
 			"ruff",
 			"ty",
+			-- "biome", -- Mason installs latest Biome, which can violate npm's before-date guard.
 			"ts_ls",
 			"bashls",
 		},

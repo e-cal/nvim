@@ -6,11 +6,11 @@ return {
 		formatters_by_ft = {
 			lua = { "stylua" },
 			sh = { "shfmt" },
-			-- python = { "autopep8" },
-			python = { "yapf" },
-			-- python = { "ruff_format" },
-			javascript = { "prettier" },
+			python = { "ruff_format" },
+			javascript = { "biome" },
+			javascriptreact = { "biome" },
 			typescript = { "prettier" },
+			vue = { "biome" },
 			html = { "prettier" },
 			css = { "prettier" },
 			markdown = { "prettier" },
@@ -48,8 +48,11 @@ return {
 			        }",
 				},
 			},
-			ruff_format = {
-                append_args = { "--line-length", "140" },
+			ruff_format = {},
+			biome = {
+				command = "npx",
+				args = { "biome", "check", "--write", "$FILENAME" },
+				stdin = false,
 			},
 			prettier = {
 				prepend_args = function()
