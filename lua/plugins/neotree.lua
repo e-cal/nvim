@@ -1,3 +1,5 @@
+local file_open_source
+
 return {
 	"nvim-neo-tree/neo-tree.nvim",
 	dependencies = {
@@ -71,9 +73,18 @@ return {
 		},
 		event_handlers = {
 			{
+				event = "file_open_requested",
+				handler = function(args)
+					file_open_source = args.state and args.state.name
+				end,
+			},
+			{
 				event = "file_opened",
 				handler = function(_)
-					require("neo-tree").close_all()
+					if file_open_source ~= "git_status" then
+						require("neo-tree").close_all()
+					end
+					file_open_source = nil
 				end,
 			},
 		},
