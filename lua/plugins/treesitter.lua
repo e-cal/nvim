@@ -74,6 +74,7 @@ return {
 			"c",
             "javascript",
             "typescript",
+            "tsx",
             "nu",
             "bash",
             "zsh",

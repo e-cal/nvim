@@ -53,6 +53,32 @@ return {
 					return pane.title:match("^OC | (.+)$") or pane.title
 				end,
 			},
+			omp = {
+				display_name = "Oh My Pi",
+				detect = {
+					title_patterns = { "^π" },
+					command_patterns = { "^omp$" },
+					process_patterns = { "[/ ]omp[%s]", "[/ ]omp$", "^omp$" },
+				},
+				launch_cmd = "omp",
+				clear_keys = { "C-a", "C-k" },
+				new_keys = { "C-a", "C-k", "/", "n", "e", "w", "Enter" },
+				submit_keys = { "Enter" },
+				display_title = function(pane)
+					return pane.title:match("^π%s*(.+)$") or pane.title
+				end,
+			},
+			arc = {
+				display_name = "Arc",
+				detect = {
+					command_patterns = { "^arc$" },
+					process_patterns = { "[/ ]arc[%s]", "[/ ]arc$", "^arc$", "/arc%-harness/" },
+				},
+				launch_cmd = "arc",
+				clear_keys = { "C-u" },
+				new_keys = { "C-x", "n" },
+				submit_keys = { "Enter" },
+			},
 		},
 	},
 	keys = {

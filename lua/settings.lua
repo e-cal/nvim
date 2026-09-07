@@ -19,6 +19,7 @@ vim.o.hlsearch = false
 vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.mouse = "a"
+vim.o.mousescroll = "ver:1,hor:6"
 vim.o.scrolloff = 8
 
 vim.o.swapfile = false
@@ -89,4 +90,3 @@ vim.g.loaded_rrhelper = 1
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_netrwSettings = 1
-

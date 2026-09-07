@@ -92,14 +92,6 @@ return {
 	config = function(_, opts)
 		require("neo-tree").setup(opts)
 		vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
-		vim.cmd([[
-                    highlight! link NeoTreeDirectoryIcon NvimTreeFolderIcon
-                    highlight! link NeoTreeDirectoryName NvimTreeFolderName
-                    highlight! link NeoTreeSymbolicLinkTarget NvimTreeSymlink
-                    highlight! link NeoTreeRootName NvimTreeRootFolder
-                    highlight! link NeoTreeDirectoryName NvimTreeOpenedFolderName
-                    highlight! link NeoTreeFileNameOpened NvimTreeOpenedFile
-                    ]])
 	end,
 	keys = {
 		{ "<leader>e", "<cmd>Neotree toggle<cr>", desc = "file tree" },
