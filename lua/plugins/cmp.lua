@@ -39,7 +39,6 @@ return {
 				{ name = "latex_symbols", priority = 100 },
 				{ name = "luasnip", priority = 95 },
 				{ name = "copilot", priority = 90 },
-				{ name = "codeium", priority = 90 },
 				{ name = "nvim_lsp", priority = 80 },
 				{ name = "nvim_lua", priority = 80 },
 				{ name = "buffer", priority = 50, keyword_length = 3 },
@@ -104,7 +103,6 @@ return {
 
 					vim_item.kind = ({
 						Copilot = "󰚩 Copilot",
-						Codeium = "󰚩 Codeim",
 						Text = "󰉿 Text",
 						Method = "󰆧 Method",
 						Function = "󰊕 Function",
@@ -137,6 +135,5 @@ return {
 			},
 		})
 		vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = Utils.get_hl("Conditional", "fg") })
-		vim.api.nvim_set_hl(0, "CmpItemKindCodeium", { fg = Utils.get_hl("Conditional", "fg") })
 	end,
 }
