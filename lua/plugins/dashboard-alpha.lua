@@ -12,7 +12,7 @@ return {
             "███████╗ ╚████╔╝ ██║██║ ╚═╝ ██║",
             "╚══════╝  ╚═══╝  ╚═╝╚═╝     ╚═╝",
         }
-        dashboard.section.header.opts.hl = "DashboardHeader"
+        dashboard.section.header.opts.hl = "AlphaHeader"
 
         local function button(sc, txt)
             -- replace <leader> in shortcut text with LDR for nicer printing
@@ -34,8 +34,8 @@ return {
                     cursor = 5,
                     width = 36,
                     align_shortcut = "right",
-                    hl = "DashboardCenter",
-                    hl_shortcut = "DashboardShortcut",
+                    hl = "AlphaButtons",
+                    hl_shortcut = "AlphaShortcut",
                 },
             }
         end
@@ -61,13 +61,14 @@ return {
                     cursor = 5,
                     width = 36,
                     align_shortcut = "right",
-                    hl = "DashboardCenter",
-                    hl_shortcut = "DashboardShortcut",
+                    hl = "AlphaButtons",
+                    hl_shortcut = "AlphaShortcut",
                 },
             },
         }
 
         dashboard.section.footer.val = "https://github.com/e-cal/evim"
+        dashboard.section.footer.opts.hl = "AlphaFooter"
 
         dashboard.config.layout[1].val = vim.fn.max({ 2, vim.fn.floor(vim.fn.winheight(0) * 0.2) })
         dashboard.config.layout[3].val = 5

@@ -6,7 +6,10 @@ return {
         name = "catppuccin",
 		priority = 100,
 		config = function()
-			vim.g.catppuccin_flavour = "macchiato"
+			require("catppuccin").setup({
+				flavour = "macchiato",
+				integrations = { alpha = true },
+			})
 			vim.cmd("colorscheme catppuccin")
 		end,
 	},
