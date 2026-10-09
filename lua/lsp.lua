@@ -143,11 +143,19 @@ map("n", "<leader>ln", "<cmd>lua vim.diagnostic.jump({ count = 1, float = true }
 map("n", "<leader>lp", "<cmd>lua vim.diagnostic.jump( { count = -1, float = true })<CR>")
 map("n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", { desc = "code actions" })
 -- map("n", "<leader>ll", "<cmd>lua require('lint').try_lint()<cr>", { desc = "lint" })
-map("n", "<leader>ll", "<cmd>Telescope diagnostics bufnr=0<cr>", { desc = "buffer diagnostics" })
+map("n", "<leader>ll", function()
+	vim.diagnostic.open_float({ scope = "line" })
+end, { desc = "line diagnostics" })
 map("n", "<leader>lc", "<cmd>lua vim.diagnostic.reset()<cr>", { desc = "clear diagnostics" })
 map("n", "<leader>lI", "mz<cmd>normal A  # type: ignore<cr>`z", { desc = "type: ignore" })
 map("n", "<leader>ld", "<cmd>Trouble diagnostics<cr>", { desc = "diagnostics" })
-map("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format({ timeout_ms=30000 })<cr>", { desc = "format" })
+map("n", "<leader>lf", function()
+	if require("gumloop").buffer_in(0, vim.fn.expand("~/gumloop")) then
+		require("gumloop").format({ timeout_ms = 30000, lsp_format = "fallback" })
+	else
+		vim.lsp.buf.format({ timeout_ms = 30000 })
+	end
+end, { desc = "format" })
 vim.keymap.set("n", "<leader>lF", function()
 	vim.lsp.buf.code_action({
 		filter = function(thing)
@@ -165,6 +173,7 @@ map("n", "<leader>ls", function()
 end, { desc = "document symbols" })
 map("n", "<leader>lS", "<cmd>Telescope lsp_workspace_symbols<cr>", { desc = "workspace symbols" })
 map("n", "<leader>lR", "<cmd>LspRestart<cr>", { desc = "restart lsp" })
+require("gumloop").setup_lsp()
 map("n", "<leader>lC", "<cmd>TSContextToggle<cr>", { desc = "toggle context" })
 -- diagnostics
 map("n", "<leader>lDa", "<cmd>Telescope diagnostics bufnr=0<cr>", { desc = "all" })

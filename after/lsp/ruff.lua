@@ -37,7 +37,10 @@ return {
 			-- 	},
 			-- },
 
-			configurationPreference = "filesystemFirst",
+			lint = {
+				ignore = { "UP006", "UP045", "UP035", "I001" },
+			},
+			configurationPreference = "editorFirst",
 		},
 	},
 	on_attach = function(client, bufnr)

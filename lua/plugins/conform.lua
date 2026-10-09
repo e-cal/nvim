@@ -2,32 +2,33 @@ return {
 	"stevearc/conform.nvim",
 	event = { "BufWritePre" },
 	cmd = { "ConformInfo" },
-	opts = {
-		formatters_by_ft = {
-			lua = { "stylua" },
-			sh = { "shfmt" },
-			python = { "ruff_format" },
-			javascript = { "biome" },
-			javascriptreact = { "biome" },
-			typescript = { "prettier" },
-			vue = { "biome" },
-			html = { "prettier" },
-			css = { "prettier" },
-			markdown = { "prettier" },
-			json = { "prettier" },
-			jsonc = { "prettier" },
-			nix = { "nixfmt" },
-			go = { "gofmt" },
-		},
-
-		formatters = {
-			autopep8 = {
-				prepend_args = { "--ignore", "E501,E701" },
+	opts = function()
+		return require("gumloop").conform({
+			formatters_by_ft = {
+				lua = { "stylua" },
+				sh = { "shfmt" },
+				python = { "ruff_format" },
+				javascript = { "biome" },
+				javascriptreact = { "biome" },
+				typescript = { "prettier" },
+				vue = { "biome" },
+				html = { "prettier" },
+				css = { "prettier" },
+				markdown = { "prettier" },
+				json = { "prettier" },
+				jsonc = { "prettier" },
+				nix = { "nixfmt" },
+				go = { "gofmt" },
 			},
-			yapf = {
-				prepend_args = {
-					"--style",
-					"{ \
+
+			formatters = {
+				autopep8 = {
+					prepend_args = { "--ignore", "E501,E701" },
+				},
+				yapf = {
+					prepend_args = {
+						"--style",
+						"{ \
 			            based_on_style: facebook, \
 			            column_limit: 160, \
 			            join_multiple_lines: false, \
@@ -46,41 +47,42 @@ return {
 			            split_penalty_for_added_line_split: 0 \
                         split_arguments_when_comma_terminated: true \
 			        }",
+					},
 				},
-			},
-			ruff_format = {},
-			biome = {
-				command = "npx",
-				args = { "biome", "check", "--write", "$FILENAME" },
-				stdin = false,
-			},
-			prettier = {
-				prepend_args = function()
-					if vim.fn.expand("%:e") == "chat" then
-						return { "--parser", "markdown" }
-					end
-				end,
-			},
-			injected = {
-				options = {
-					-- Set to true to ignore errors
-					ignore_errors = true,
-					-- Map of treesitter language to file extension
-					-- A temporary file name with this extension will be generated during formatting
-					-- because some formatters care about the filename.
-					lang_to_ext = {
-						bash = "sh",
-						python = "py",
-						latex = "tex",
-						markdown = "md",
-						rust = "rs",
-						javascript = "js",
-						typescript = "ts",
+				ruff_format = {},
+				biome = {
+					command = "npx",
+					args = { "biome", "check", "--write", "$FILENAME" },
+					stdin = false,
+				},
+				prettier = {
+					prepend_args = function()
+						if vim.fn.expand("%:e") == "chat" then
+							return { "--parser", "markdown" }
+						end
+					end,
+				},
+				injected = {
+					options = {
+						-- Set to true to ignore errors
+						ignore_errors = true,
+						-- Map of treesitter language to file extension
+						-- A temporary file name with this extension will be generated during formatting
+						-- because some formatters care about the filename.
+						lang_to_ext = {
+							bash = "sh",
+							python = "py",
+							latex = "tex",
+							markdown = "md",
+							rust = "rs",
+							javascript = "js",
+							typescript = "ts",
+						},
 					},
 				},
 			},
-		},
-	},
+		})
+	end,
 	init = function()
 		vim.api.nvim_create_user_command("Format", function(args)
 			local range = nil
@@ -91,8 +93,10 @@ return {
 					["end"] = { args.line2, end_line:len() },
 				}
 			end
-			require("conform").format({ async = true, lsp_fallback = true, range = range }, function()
-				vim.cmd("write")
+			require("gumloop").format({ async = true, lsp_format = "fallback", range = range }, function(err)
+				if not err then
+					vim.cmd("write")
+				end
 			end)
 		end, { range = true })
 	end,
