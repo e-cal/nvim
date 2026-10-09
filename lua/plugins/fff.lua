@@ -20,6 +20,14 @@ return {
 		local fff_fuzzy = require("fff.fuzzy")
 		local fff_conf = require("fff.conf")
 
+		-- Apply exclusions before ranking/pagination without adding them to the prompt.
+		for _, name in ipairs({ "fuzzy_search_files", "fuzzy_search_mixed", "live_grep" }) do
+			local search = fff_fuzzy[name]
+			fff_fuzzy[name] = function(query, ...)
+				return search("!*.pyc " .. (query or ""), ...)
+			end
+		end
+
 		local function format_full_path(item, max_width)
 			local path = item.relative_path or item.path or item.name or ""
 			if type(path) ~= "string" then
@@ -106,7 +114,8 @@ return {
 		end
 
 		vim.api.nvim_create_user_command("FffFindFilesOrQuit", function()
-			find_files_or_quit()
+			local query = vim.env.NVO_QUERY
+			find_files_or_quit(query and query ~= "" and { query = query } or nil)
 		end, { desc = "Open fff and quit Neovim if canceled" })
 
 		local group = vim.api.nvim_create_augroup("FffEscBehavior", { clear = true })
@@ -138,7 +147,7 @@ return {
 	lazy = false,
 	keys = {
 		{
-			"ff",
+			"fo",
 			function()
 				vim.cmd("FFFScan")
 				require("fff").find_files()
@@ -165,7 +174,7 @@ return {
 			desc = "live grep",
 		},
 		{
-			"fz",
+			"ff",
 			function()
 				require("fff").live_grep({
 					grep = {
