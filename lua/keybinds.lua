@@ -12,6 +12,18 @@ map("n", "<C-e>", "3<C-e>")
 
 -- Centering
 map("n", "n", "nzzzv")
+map("n", "gn", function()
+	return vim.wo.diff and "]czz" or "gn"
+end, { expr = true, desc = "next diff or select search match" })
+map("n", "gp", function()
+	return vim.wo.diff and "[czz" or "gp"
+end, { expr = true, desc = "previous diff or paste" })
+map("n", "zO", function()
+	return vim.wo.diff and "zR" or "zO"
+end, { expr = true, desc = "open all diff folds or current fold recursively" })
+map("n", "zC", function()
+	return vim.wo.diff and "zM" or "zC"
+end, { expr = true, desc = "close all diff folds or current fold recursively" })
 map("n", "N", "Nzzzv")
 map("n", "J", "mzJ`z")
 map("n", "<C-d>", "<C-d>zz")
