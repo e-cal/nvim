@@ -1,5 +1,12 @@
 return {
 	"mrjones2014/smart-splits.nvim",
+	lazy = false,
+	dependencies = {
+		{ "smart-splits-nvim/backend-tmux", main = "smart-splits-backend-tmux" },
+	},
+	opts = {
+		mux = { backend = "smart-splits-backend-tmux" },
+	},
 	keys = {
 		{ "<M-h>", "<cmd>lua require('smart-splits').move_cursor_left()<cr>", desc = "move left" },
 		{ "<M-l>", "<cmd>lua require('smart-splits').move_cursor_right()<cr>", desc = "move right" },
