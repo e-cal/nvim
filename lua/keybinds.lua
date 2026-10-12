@@ -46,6 +46,31 @@ map("n", "<leader>ww", "<C-w>q", { desc = "close split" })
 map("n", "<leader>wh", "<cmd>split<cr>", { desc = "split horizontal" })
 map("n", "<leader>wv", "<cmd>vsplit<cr>", { desc = "split vertical" })
 map("n", "<leader>wj", "<C-w>J<C-w>k<C-w>H<C-w>l<C-w>j", { desc = "move under" })
+map("n", "<leader>w=", function()
+	local preserved = {}
+	for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+		if vim.api.nvim_win_get_config(win).relative == "" then
+			local buf = vim.api.nvim_win_get_buf(win)
+			local buftype = vim.bo[buf].buftype
+			local filetype = vim.bo[buf].filetype
+			if (buftype ~= "" and buftype ~= "terminal") or filetype == "neo-tree" or filetype == "aerial" then
+				preserved[win] = { width = vim.wo[win].winfixwidth, height = vim.wo[win].winfixheight }
+				vim.wo[win].winfixwidth = true
+				vim.wo[win].winfixheight = true
+			end
+		end
+	end
+	local ok, err = pcall(vim.cmd, "wincmd =")
+	for win, options in pairs(preserved) do
+		if vim.api.nvim_win_is_valid(win) then
+			vim.wo[win].winfixwidth = options.width
+			vim.wo[win].winfixheight = options.height
+		end
+	end
+	if not ok then
+		error(err)
+	end
+end, { desc = "balance editor splits" })
 
 map("v", "<leader>p", '"_dP', { desc = "paste no copy" })
 map("v", "<leader>b", 'c**<C-r>"**<esc>', { desc = "bold" })
