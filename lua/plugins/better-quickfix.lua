@@ -8,6 +8,34 @@ return {
 	config = function(_, opts)
 		require("bqf").setup(opts)
 
+		vim.api.nvim_create_user_command("Filter", function(args)
+			local ok, pattern = pcall(vim.regex, args.args)
+			if not ok then
+				vim.notify(tostring(pattern), vim.log.levels.ERROR)
+				return
+			end
+
+			local list = vim.fn.getqflist({ items = 0, title = 0, context = 0, idx = 0 })
+			local items = {}
+			local idx = 0
+			for i, item in ipairs(list.items) do
+				local path = vim.fn.fnamemodify(vim.fn.bufname(item.bufnr), ":.")
+				if not pattern:match_str(path) then
+					table.insert(items, item)
+					if i <= list.idx then
+						idx = #items
+					end
+				end
+			end
+
+			vim.fn.setqflist({}, " ", {
+				items = items,
+				title = list.title .. " | Filter " .. args.args,
+				context = list.context,
+				idx = #items > 0 and math.max(1, idx) or 0,
+			})
+		end, { nargs = 1, desc = "Remove quickfix entries matching a path regex", force = true })
+
 		local handler = require("bqf.qfwin.handler")
 		local sessions = require("bqf.qfwin.session")
 		local open = handler.open
