@@ -1,8 +1,8 @@
 local M = {}
 
 local base = vim.fs.normalize(vim.fn.expand("~/gumloop"))
-M.backend = base .. "/backend/backend"
-M.frontend = base .. "/frontend"
+M.backend = base .. "/repos/backend/backend"
+M.frontend = base .. "/repos/frontend"
 
 function M.contains(path, root)
 	path = vim.fs.normalize(path)
