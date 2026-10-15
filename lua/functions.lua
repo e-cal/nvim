@@ -3,6 +3,14 @@ local api = vim.api
 
 vim.cmd('cabbrev f Format')
 
+_G.diff_edit_abbrev = function()
+	if vim.wo.diff and vim.fn.getcmdtype() == ':' and vim.fn.getcmdline() == 'edit' then
+		return 'diffoff!'
+	end
+	return 'edit'
+end
+vim.cmd([[cnoreabbrev <expr> edit v:lua.diff_edit_abbrev()]])
+
 -- Trim whitespace
 TrimWhitespace = function()
 	local patterns = {
