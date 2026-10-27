@@ -52,6 +52,25 @@ map("n", "gV", "`[v`]")
 
 vim.g.mapleader = " "
 
+map("n", "<leader>mp", function()
+	local path = vim.api.nvim_buf_get_name(0)
+	if path == "" or vim.bo.buftype ~= "" then
+		vim.notify("Save this buffer to a file before previewing", vim.log.levels.WARN)
+		return
+	end
+	if vim.fn.executable("mdweb") ~= 1 then
+		vim.notify("mdweb is not on PATH", vim.log.levels.ERROR)
+		return
+	end
+	vim.cmd("update")
+	vim.system({ "mdweb", "--toggle", path }, { text = true }, function(result)
+		vim.schedule(function()
+			local message = result.code == 0 and result.stdout or result.stderr
+			vim.notify(vim.trim(message or ""), result.code == 0 and vim.log.levels.INFO or vim.log.levels.ERROR)
+		end)
+	end)
+end, { desc = "toggle markdown preview" })
+
 -- map("n", "<leader>f", "<cmd>Format<cr>", { desc = "format" })
 map("n", "<leader>n", "<cmd>NewFile<cr>", { desc = "new buffer" })
 map("n", "<leader>ww", "<C-w>q", { desc = "close split" })
