@@ -49,12 +49,12 @@ autocmd({ "BufEnter" }, {
 		-- Disable auto newline at textwidth
 		vim.opt_local.formatoptions:remove("t")
 		vim.opt_local.textwidth = 0
-		-- Map movement keys to their screen-line equivalents
-		vim.keymap.set("n", "j", "gj", { buffer = true })
-		vim.keymap.set("n", "k", "gk", { buffer = true })
-		-- Same for visual mode
-		vim.keymap.set("v", "j", "gj", { buffer = true })
-		vim.keymap.set("v", "k", "gk", { buffer = true })
+		-- Use screen lines unless an explicit count requests real lines.
+		for _, key in ipairs({ "j", "k" }) do
+			vim.keymap.set({ "n", "v" }, key, function()
+				return vim.v.count == 0 and "g" .. key or key
+			end, { buffer = true, expr = true })
+		end
 	end,
 })
 
