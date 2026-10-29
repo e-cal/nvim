@@ -63,6 +63,91 @@ rex.resize = function(direction, opts)
 	}) ~= nil
 end
 
+local tern = {
+	name = "tern",
+	protocol_version = "3.0.0",
+	detect = function()
+		return vim.env.TERN_PANE ~= nil and vim.fn.executable("tern") == 1
+	end,
+}
+
+local function tern_command(args)
+	local result = vim.system(vim.list_extend({ "tern" }, args), { text = true, timeout = 1000 }):wait()
+	return result.code == 0 and result.stdout or nil
+end
+
+-- Leaf rectangles of a `tern inspect` split tree in unit coordinates; a Row
+-- split puts `a` left of `b`, a Column split puts `a` above `b`.
+local function tern_leaves(node, rect, leaves)
+	if node.Leaf then
+		table.insert(leaves, { id = node.Leaf, x = rect.x, y = rect.y, w = rect.w, h = rect.h })
+	elseif node.Split then
+		local split, r = node.Split, node.Split.ratio
+		if split.axis == "Row" then
+			tern_leaves(split.a, { x = rect.x, y = rect.y, w = rect.w * r, h = rect.h }, leaves)
+			tern_leaves(split.b, { x = rect.x + rect.w * r, y = rect.y, w = rect.w * (1 - r), h = rect.h }, leaves)
+		else
+			tern_leaves(split.a, { x = rect.x, y = rect.y, w = rect.w, h = rect.h * r }, leaves)
+			tern_leaves(split.b, { x = rect.x, y = rect.y + rect.h * r, w = rect.w, h = rect.h * (1 - r) }, leaves)
+		end
+	end
+	return leaves
+end
+
+-- The block sharing the most edge with this one in direction, as tmux picks.
+local function tern_neighbor(direction)
+	local ok, state = pcall(vim.json.decode, tern_command({ "inspect", "--json" }) or "")
+	local pane = tonumber(vim.env.TERN_PANE)
+	if not ok or not pane then
+		return nil
+	end
+	for _, session in ipairs(state.sessions or {}) do
+		for _, tab in ipairs(session.tabs or {}) do
+			local leaves = tern_leaves(tab.splits or {}, { x = 0, y = 0, w = 1, h = 1 }, {})
+			local current
+			for _, leaf in ipairs(leaves) do
+				if leaf.id == pane then
+					current = leaf
+				end
+			end
+			if current then
+				if tab.zoomed then
+					return nil
+				end
+				local horizontal = direction == "left" or direction == "right"
+				local best, best_overlap = nil, 1e-6
+				for _, leaf in ipairs(leaves) do
+					local touches = ({
+						left = leaf.x + leaf.w - current.x,
+						right = current.x + current.w - leaf.x,
+						up = leaf.y + leaf.h - current.y,
+						down = current.y + current.h - leaf.y,
+					})[direction]
+					local overlap = horizontal
+							and math.min(leaf.y + leaf.h, current.y + current.h) - math.max(leaf.y, current.y)
+						or math.min(leaf.x + leaf.w, current.x + current.w) - math.max(leaf.x, current.x)
+					if math.abs(touches) < 1e-6 and overlap > best_overlap then
+						best, best_overlap = leaf.id, overlap
+					end
+				end
+				return best
+			end
+		end
+	end
+end
+
+tern.move = function(direction)
+	local neighbor = tern_neighbor(direction)
+	return neighbor ~= nil and tern_command({ "focus", string.format("%d", neighbor) }) ~= nil
+end
+
+-- The CLI has no resize command; `tern ctl` runs the keymap action in the
+-- window showing this pane. Its reply can lag, so don't wait for it.
+tern.resize = function(direction)
+	vim.system({ "tern", "ctl", "plugins", "run", "resize_split:" .. direction })
+	return true
+end
+
 return {
 	"mrjones2014/smart-splits.nvim",
 	lazy = false,
@@ -70,7 +155,7 @@ return {
 		{ "smart-splits-nvim/backend-tmux", main = "smart-splits-backend-tmux" },
 	},
 	opts = {
-		mux = { backend = { "smart-splits-backend-tmux", rex } },
+		mux = { backend = { "smart-splits-backend-tmux", rex, tern } },
 	},
 	keys = {
 		{ "<M-h>", "<cmd>lua require('smart-splits').move_cursor_left()<cr>", desc = "move left" },
