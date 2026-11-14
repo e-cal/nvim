@@ -231,15 +231,18 @@ return {
 		-- lsp servers
 		ins_right({
 			function()
-				local prt_status_info = require("parrot.config").get_status_info()
-				local model = prt_status_info.model:gsub(".*/", "")
-				while model:match("%-[0-9]+$") do
-					model = model:gsub("%-[0-9]+$", "")
+				local model
+				local has_parrot, parrot_config = pcall(require, "parrot.config")
+				if has_parrot then
+					model = parrot_config.get_status_info().model:gsub(".*/", "")
+					while model:match("%-[0-9]+$") do
+						model = model:gsub("%-[0-9]+$", "")
+					end
 				end
 
 				local clients = vim.lsp.get_clients()
 				if next(clients) == nil then
-					return model
+					return model or ""
 				end
 
 				local msg = ""
@@ -252,7 +255,7 @@ return {
 					end
 				end
 
-				return msg .. " 󰚩 " .. model
+				return model and (msg .. " 󰚩 " .. model) or msg
 			end,
 			icon = "󱁤",
 			color = { fg = colors.fg_dark },
