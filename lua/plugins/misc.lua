@@ -48,7 +48,7 @@ return {
 		event = "VeryLazy",
 		enabled = function()
 			local max_filesize = 100 * 1024 -- 100 KB
-			local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(0))
+			local ok, stats = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(0))
 			if ok and stats and stats.size > max_filesize then
 				print("disabled matchwith (bracket matching) for large file")
 				return false

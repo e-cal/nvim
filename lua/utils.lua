@@ -35,18 +35,11 @@ Utils.make_augroups = function(definitions)
 end
 
 Utils.get_hl = function(hl_group, attr)
-	if attr == "fg" then
-		attr = "foreground"
-	elseif attr == "bg" then
-		attr = "background"
+	local color = vim.api.nvim_get_hl(0, { name = hl_group, link = false })[attr]
+	if not color then
+		return "#000000"
 	end
-
-	local color = vim.api.nvim_get_hl_by_name(hl_group, true)[attr]
-    if not color then
-        return "#000000"
-    end
-	color = string.format("#%06x", color)
-	return color
+	return string.format("#%06x", color)
 end
 
 Utils.merge = function(t1, t2)
@@ -153,8 +146,8 @@ Utils.custom_hover = function(_, result, ctx, config)
 	-- I personally don't care about this.
 	-- return require("vim.lsp.util").open_floating_preview(contents, "markdown", config)
 	local float_buf, win = require("vim.lsp.util").open_floating_preview(contents, "markdown", config)
-	vim.api.nvim_win_set_option(win, "conceallevel", 0)
-	vim.api.nvim_win_set_option(win, "linebreak", true)
+	vim.wo[win].conceallevel = 0
+	vim.wo[win].linebreak = true
 	return float_buf, win
 end
 

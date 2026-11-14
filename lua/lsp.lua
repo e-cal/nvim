@@ -66,7 +66,7 @@ local function preview_type_definition()
 				return
 			end
 
-			local location = vim.tbl_islist(result) and result[1] or result
+			local location = vim.islist(result) and result[1] or result
 			local target_buf = vim.uri_to_bufnr(location.targetUri or location.uri)
 			local range = location.targetSelectionRange or location.range
 			local client = vim.lsp.get_client_by_id(ctx.client_id)
