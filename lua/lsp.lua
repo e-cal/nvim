@@ -12,11 +12,9 @@ vim.lsp.config("*", {
 })
 
 -- Remove Neovim's built-in LSP default keymaps that conflict with gr prefix
-vim.keymap.del("n", "grr")
-vim.keymap.del("n", "gri")
-vim.keymap.del("n", "gra")
-vim.keymap.del("n", "grn")
-vim.keymap.del("n", "grt")
+for _, lhs in ipairs({ "grr", "gri", "gra", "grn", "grt", "grx" }) do
+	pcall(vim.keymap.del, "n", lhs)
+end
 
 local map = vim.keymap.set
 
@@ -165,28 +163,30 @@ vim.keymap.set("n", "<leader>lF", function()
 	})
 end, { desc = "Fix auto-fixable problems" })
 map("n", "<leader>lh", "<cmd>lua vim.lsp.buf.document_highlight()<cr>", { desc = "highlight symbol" })
-map("n", "<leader>l?", "<cmd>LspInfo<cr>", { desc = "lsp info" })
+map("n", "<leader>l?", "<cmd>checkhealth vim.lsp<cr>", { desc = "lsp info" })
 map("n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", { desc = "rename" })
 map("n", "<leader>lT", "<cmd>lua vim.lsp.buf.type_definition()<cr>", { desc = "type definition" })
 map("n", "<leader>ls", function()
 	vim.lsp.buf.workspace_symbol()
 end, { desc = "document symbols" })
-map("n", "<leader>lS", "<cmd>Telescope lsp_workspace_symbols<cr>", { desc = "workspace symbols" })
-map("n", "<leader>lR", "<cmd>LspRestart<cr>", { desc = "restart lsp" })
+map("n", "<leader>lS", function()
+	vim.lsp.buf.workspace_symbol("")
+end, { desc = "workspace symbols" })
+map("n", "<leader>lR", "<cmd>lsp restart<cr>", { desc = "restart lsp" })
 require("gumloop").setup_lsp()
-map("n", "<leader>lC", "<cmd>TSContextToggle<cr>", { desc = "toggle context" })
+map("n", "<leader>lC", "<cmd>TSContext toggle<cr>", { desc = "toggle context" })
 -- diagnostics
-map("n", "<leader>lDa", "<cmd>Telescope diagnostics bufnr=0<cr>", { desc = "all" })
-map("n", "<leader>lDe", "<cmd>Telescope diagnostics bufnr=0 severity=error<cr>", { desc = "errors" })
-map("n", "<leader>lDw", "<cmd>Telescope diagnostics bufnr=0 severity=warn<cr>", { desc = "warnings" })
-map("n", "<leader>lDi", "<cmd>Telescope diagnostics bufnr=0 severity=info<cr>", { desc = "info" })
-map("n", "<leader>lDh", "<cmd>Telescope diagnostics bufnr=0 severity=hint<cr>", { desc = "hint" })
--- workspace diagnostics
-map("n", "<leader>lDWa", "<cmd>Telescope diagnostics<cr>", { desc = "all" })
-map("n", "<leader>lDWe", "<cmd>Telescope diagnostics severity=error<cr>", { desc = "errors" })
-map("n", "<leader>lDWw", "<cmd>Telescope diagnostics severity=warn<cr>", { desc = "warnings" })
-map("n", "<leader>lDWi", "<cmd>Telescope diagnostics severity=info<cr>", { desc = "info" })
-map("n", "<leader>lDWh", "<cmd>Telescope diagnostics severity=hint<cr>", { desc = "hint" })
+local severity_filters = {
+	a = { "", "all" },
+	e = { " filter.severity=vim.diagnostic.severity.ERROR", "errors" },
+	w = { " filter.severity=vim.diagnostic.severity.WARN", "warnings" },
+	i = { " filter.severity=vim.diagnostic.severity.INFO", "info" },
+	h = { " filter.severity=vim.diagnostic.severity.HINT", "hint" },
+}
+for key, filter in pairs(severity_filters) do
+	map("n", "<leader>lD" .. key, "<cmd>Trouble diagnostics filter.buf=0" .. filter[1] .. "<cr>", { desc = filter[2] })
+	map("n", "<leader>lDW" .. key, "<cmd>Trouble diagnostics" .. filter[1] .. "<cr>", { desc = filter[2] })
+end
 -- workspace
 map("n", "<leader>lwa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", { desc = "add workspace" })
 map("n", "<leader>lwd", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", { desc = "remove workspace" })
