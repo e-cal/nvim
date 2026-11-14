@@ -106,19 +106,10 @@ return {
 			end,
 		})
 
-		-- Incremental selection keymaps
-		vim.keymap.set("n", "vs", function()
-			require("nvim-treesitter.incremental_selection").init_selection()
-		end, { desc = "Start incremental selection" })
-		vim.keymap.set("x", "n", function()
-			require("nvim-treesitter.incremental_selection").node_incremental()
-		end, { desc = "Increment selection" })
-		vim.keymap.set("x", "gs", function()
-			require("nvim-treesitter.incremental_selection").scope_incremental()
-		end, { desc = "Increment scope" })
-		vim.keymap.set("x", "P", function()
-			require("nvim-treesitter.incremental_selection").node_decremental()
-		end, { desc = "Decrement selection" })
+		-- Incremental selection through Neovim's built-in node selection (v_an, v_in)
+		vim.keymap.set("n", "vs", "van", { remap = true, desc = "Start incremental selection" })
+		vim.keymap.set("x", "n", "an", { remap = true, desc = "Increment selection" })
+		vim.keymap.set("x", "P", "in", { remap = true, desc = "Decrement selection" })
 
 		local function get_python_cell()
 			local bufnr = vim.api.nvim_get_current_buf()
