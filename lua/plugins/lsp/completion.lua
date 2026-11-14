@@ -83,7 +83,7 @@ return {
 					behavior = cmp.ConfirmBehavior.Insert,
 					select = false,
 				}),
-                ['<C-h>'] = cmp.mapping.abort(),
+				["<C-h>"] = cmp.mapping.abort(),
 			},
 			snippet = {
 				expand = function(args)

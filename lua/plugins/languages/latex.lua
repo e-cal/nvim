@@ -7,9 +7,9 @@ return {
 	init = function()
 		vim.g.vimtex_view_method = "zathura"
 
-        vim.g.vimtex_view_automatic = 0
+		vim.g.vimtex_view_automatic = 0
 		vim.g.vimtex_view_forward_search_on_start = 0
-        vim.g.vimtex_quickfix_enabled = 0
+		vim.g.vimtex_quickfix_enabled = 0
 
 		local augroup = vim.api.nvim_create_augroup
 		local autocmd = vim.api.nvim_create_autocmd

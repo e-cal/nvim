@@ -1,13 +1,12 @@
 local api = vim.api
 
-
-vim.cmd('cabbrev f Format')
+vim.cmd("cabbrev f Format")
 
 _G.diff_edit_abbrev = function()
-	if vim.wo.diff and vim.fn.getcmdtype() == ':' and vim.fn.getcmdline() == 'edit' then
-		return 'diffoff!'
+	if vim.wo.diff and vim.fn.getcmdtype() == ":" and vim.fn.getcmdline() == "edit" then
+		return "diffoff!"
 	end
-	return 'edit'
+	return "edit"
 end
 vim.cmd([[cnoreabbrev <expr> edit v:lua.diff_edit_abbrev()]])
 
@@ -160,40 +159,43 @@ end
 Utils.make_command("QuickfixToggle")
 
 BufDeleteAll = function()
-    vim.cmd[[w | let pos = getpos('.') | silent %bd | e# | bd# | call setpos('.', pos)]]
+	vim.cmd([[w | let pos = getpos('.') | silent %bd | e# | bd# | call setpos('.', pos)]])
 end
 Utils.make_command("BufDeleteAll")
-vim.cmd('cabbrev bda BufDeleteAll')
+vim.cmd("cabbrev bda BufDeleteAll")
 
--- Reload a specific plugin config: :Reload opencode or :Reload (current file)
+-- Reload a plugin spec's config: :Reload fff, or :Reload from inside a plugin spec file
+local function plugin_spec_files()
+	return vim.fn.glob(vim.fn.stdpath("config") .. "/lua/plugins/**/*.lua", false, true)
+end
+
 Reload = function(name)
-	local config_dir = vim.fn.stdpath("config") .. "/lua"
-
-	-- If no name given, try to infer from current buffer
 	if not name or name == "" then
-		local bufname = vim.fn.expand("%:t:r")
-		local bufpath = vim.fn.expand("%:p")
-		if bufpath:match("/plugins/") then
-			name = bufname
-		else
+		if not vim.fn.expand("%:p"):match("/plugins/") then
 			vim.notify("Usage: :Reload <plugin_name> or run from a plugin file", vim.log.levels.WARN)
 			return
 		end
+		name = vim.fn.expand("%:t:r")
 	end
 
-	local plugin_file = config_dir .. "/plugins/" .. name .. ".lua"
-	if vim.fn.filereadable(plugin_file) == 0 then
-		vim.notify("Plugin file not found: " .. plugin_file, vim.log.levels.ERROR)
+	local plugin_file
+	for _, file in ipairs(plugin_spec_files()) do
+		if vim.fn.fnamemodify(file, ":t:r") == name then
+			plugin_file = file
+		end
+	end
+	if not plugin_file then
+		vim.notify("Plugin file not found: " .. name, vim.log.levels.ERROR)
 		return
 	end
 
-	-- Clear the module from cache
-	package.loaded["plugins." .. name] = nil
-
-	-- Reload and run config
 	local ok, spec = pcall(dofile, plugin_file)
-	if ok and spec and spec.config and type(spec.config) == "function" then
-		local config_ok, err = pcall(spec.config)
+	if ok and spec and type(spec.config) == "function" then
+		local opts = spec.opts
+		if type(opts) == "function" then
+			opts = opts(spec, {})
+		end
+		local config_ok, err = pcall(spec.config, spec, opts)
 		if config_ok then
 			vim.notify("Reloaded: " .. name, vim.log.levels.INFO)
 		else
@@ -210,12 +212,8 @@ vim.api.nvim_create_user_command("Reload", function(opts)
 end, {
 	nargs = "?",
 	complete = function()
-		local plugins_dir = vim.fn.stdpath("config") .. "/lua/plugins"
-		local files = vim.fn.glob(plugins_dir .. "/*.lua", false, true)
-		local names = {}
-		for _, f in ipairs(files) do
-			table.insert(names, vim.fn.fnamemodify(f, ":t:r"))
-		end
-		return names
+		return vim.tbl_map(function(file)
+			return vim.fn.fnamemodify(file, ":t:r")
+		end, plugin_spec_files())
 	end,
 })

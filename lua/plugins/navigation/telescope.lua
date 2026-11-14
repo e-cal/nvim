@@ -1,6 +1,6 @@
 return {
 	"nvim-telescope/telescope.nvim",
-    enabled = false,
+	enabled = false,
 	lazy = false,
 	dependencies = {
 		{
@@ -32,7 +32,7 @@ return {
 					"^%.venv/",
 					"^%.telescopeignore",
 					"node_modules/",
-                    "__pycache__/",
+					"__pycache__/",
 				},
 				deprioritize_patterns = {
 					"README.md",
@@ -144,6 +144,11 @@ return {
 			desc = "grep text",
 		},
 		{ "<leader>t", "<cmd>Telescope grep_string<cr>", mode = "v", desc = "search selection" },
-		{ "<leader>s", ":!awk '{print length, $0}' | sort -n | cut -d' ' -f2-<cr>gv", mode = "v", desc = "sort selection by length" },
+		{
+			"<leader>s",
+			":!awk '{print length, $0}' | sort -n | cut -d' ' -f2-<cr>gv",
+			mode = "v",
+			desc = "sort selection by length",
+		},
 	},
 }

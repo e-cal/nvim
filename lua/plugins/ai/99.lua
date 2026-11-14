@@ -3,19 +3,17 @@ return {
 	dependencies = {
 		"hrsh7th/nvim-cmp",
 	},
-	config = function()
-		local ninety_nine_utils = require("99.utils")
-		ninety_nine_utils.random_file = function()
+	opts = {
+		model = "openai/gpt-5.3-codex",
+		md_files = {
+			"AGENTS.md",
+		},
+	},
+	config = function(_, opts)
+		require("99.utils").random_file = function()
 			return string.format("/tmp/99-%d", math.floor(math.random() * 10000))
 		end
-
-		local ninety_nine = require("99")
-		ninety_nine.setup({
-			model = "openai/gpt-5.3-codex",
-			md_files = {
-				"AGENTS.md",
-			},
-		})
+		require("99").setup(opts)
 	end,
 	keys = {
 		{

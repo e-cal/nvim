@@ -15,16 +15,16 @@ local autocmd = vim.api.nvim_create_autocmd
 --------------------------------------------------------------------------------
 -- Vanilla settings & keybinds (core config, no plugin deps)
 --------------------------------------------------------------------------------
-require("settings")
-require("keybinds")
+require("config.options")
+require("config.keymaps")
 
 --------------------------------------------------------------------------------
 -- Utils (no plugins; provides Utils.make_command for the vanilla commands below)
 --------------------------------------------------------------------------------
-require("utils")
+require("config.utils")
 
 --------------------------------------------------------------------------------
--- Vanilla user commands (subset of lua/functions.lua)
+-- Vanilla user commands (subset of lua/config/commands.lua)
 -- Skipped (plugin-dependent): Format/cabbrev, PreviewDoc (MarkdownPreview /
 -- Vimtex), TelescopeSearchDotfiles/Dir, Reload.
 --------------------------------------------------------------------------------
@@ -105,7 +105,7 @@ end
 Utils.make_command("CleanText")
 
 --------------------------------------------------------------------------------
--- Vanilla filetype autocommands (subset of lua/auto.lua)
+-- Vanilla filetype autocommands (subset of lua/config/autocmds.lua)
 -- Skipped (need lsp): the global CursorMoved `vim.lsp.buf.clear_references`.
 -- Skipped (no value inside the editor): VimLeave -> StoreSession.
 --------------------------------------------------------------------------------

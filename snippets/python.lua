@@ -15,7 +15,7 @@ return {
 		    exit(1)
         ]],
 			{ i(1, "key") },
-            { delimiters = "[]"}
+			{ delimiters = "[]" }
 		)
 	),
 	s(

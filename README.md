@@ -23,18 +23,24 @@
 
 
 
-## Make it yours
+## Layout
 
-- add/remove plugins with files in `plugins/`
-  - return the `lazy` plugin spec
-  - configuration & setup in the plugin spec (`mason` is the exception, configuration in `lsp.lua`)
-  - _most_ plugins are in their own file
-  - groups of plugins: `misc.lua`, `nav.lua`, `notebook.lua`, `theme.lua`
-- plugin related keymaps defined in the plugin spec
-- vanilla keymaps defined in `keymap.lua`
-- `auto.lua` - auto commands
-- `functions.lua` - user functions
-- `settings.lua` - (n)vim settings
-- `utils.lua` - useful lua functions
-- `snippets/` - custom snippets
-- `init.lua` - source any new top level files
+| Path | Contents |
+| --- | --- |
+| `init.lua` | Entry point; loads the modules below in order |
+| `vscode.lua` | Entry point for VS Code / Cursor (vscode-neovim); no plugins |
+| `lua/config/options.lua` | Editor options and diagnostic signs |
+| `lua/config/keymaps.lua` | Keymaps that need no plugin |
+| `lua/config/autocmds.lua` | Autocommands and per-filetype settings |
+| `lua/config/commands.lua` | User commands and command-line abbreviations |
+| `lua/config/lsp.lua` | LSP keymaps and client defaults |
+| `lua/config/highlights.lua` | Highlight overrides applied after the colorscheme |
+| `lua/config/lazy.lua` | lazy.nvim bootstrap; imports every `lua/plugins/<area>/` |
+| `lua/config/utils.lua` | Global `Utils` helpers and `P()` |
+| `lua/plugins/<area>/<plugin>.lua` | lazy.nvim specs, named after the main plugin, with their options and keymaps |
+| `lua/gumloop.lua` | Formatting and LSP overrides for buffers under `~/gumloop` |
+| `lua/tools/` | Small built-in tools: IPython runner, rsync-on-save |
+| `after/lsp/<server>.lua` | Per-server LSP settings |
+| `snippets/` | LuaSnip snippets |
+
+Plugin areas: `ai`, `editing`, `git`, `languages` (treesitter, markdown, notebooks, LaTeX), `lsp` (LSP, completion, formatting, diagnostics, debugging), `navigation` (pickers, file tree, motions, splits, quickfix), `ui`. Shared libraries are in `lua/plugins/libraries.lua`. `:Reload <plugin>` reruns a spec's config.

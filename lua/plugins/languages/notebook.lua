@@ -14,7 +14,7 @@ return {
 	},
 	{
 		"3rd/image.nvim",
-        enabled = false,
+		enabled = false,
 		opts = {
 			backend = "kitty",
 			integrations = {

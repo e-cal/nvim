@@ -1,26 +1,20 @@
+-- Some plugins still call vim.tbl_flatten, which warns on every startup in Nvim 0.12.
 if vim.iter then
 	vim.tbl_flatten = function(t)
 		return vim.iter(t):flatten(math.huge):totable()
 	end
 end
 
-require("settings")
-require("keybinds")
+require("config.options")
+require("config.keymaps")
 
 if not vim.g.vscode then
-	require("utils")
-	require("plugins")
-	require("functions")
-	require("auto")
-	require("lsp")
-
-	-- include all files in lua/custom/
-	local dir = vim.fn.stdpath("config") .. "/lua/custom"
-	if vim.fn.isdirectory(dir) == 1 then
-		local files = vim.fn.glob(dir .. "/*.lua", false, true)
-		for _, f in ipairs(files) do
-			local module = vim.fn.fnamemodify(f, ":t:r")
-			require("custom." .. module)
-		end
-	end
+	require("config.utils")
+	require("config.lazy")
+	require("config.commands")
+	require("config.autocmds")
+	require("config.lsp")
+	require("tools.ipython")
+	require("tools.remote_sync")
+	require("config.highlights")
 end
