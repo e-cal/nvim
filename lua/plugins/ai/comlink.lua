@@ -1,3 +1,15 @@
+local function ask(default, opts)
+	return function()
+		require("comlink").ask(default, opts)
+	end
+end
+
+local function prompt(text, opts)
+	return function()
+		require("comlink").prompt(text, opts or { submit = true })
+	end
+end
+
 return {
 	"e-cal/comlink.nvim",
 	dir = (function()
@@ -7,231 +19,88 @@ return {
 		end
 		return nil
 	end)(),
+	-- Loaded at startup so the file watcher reloads buffers that agents edit.
 	lazy = false,
 	dependencies = {
 		"rcarriga/nvim-notify",
 	},
 	opts = {
+		-- The terminal (Tern, Rex or tmux) is detected; set terminal = "tern" to force one.
+		agent = "pi", -- Started when no agent pane is beside Neovim; "omp" also works.
+		launch = {
+			direction = "right",
+			size = 40,
+		},
 		ask = {
-			capture = "buffer",
-			buffer = {
-				linewrap = true,
-				submit_on_write = false,
-				submit_keys = {
-					n = { "<CR>" },
-					i = { "<C-s>" },
-				},
-			},
-		},
-		watch = {
-			notify = true,
-			excluded_filetypes = {},
-		},
-		pane = {
-			launch = {
-				enabled = true,
-				agent = "opencode",
-				direction = "right",
-				size = "40%",
-				focus = false,
-				allow_passthrough = false,
-				auto_close = false,
-				wait_ms = 1200,
+			wrap = true,
+			submit_keys = {
+				n = { "<CR>" },
+				i = { "<C-s>" },
 			},
 		},
 		agents = {
-			opencode = {
-				detect = {
-					title_patterns = { "^OC" },
-					command_patterns = { "^opencode$" },
-				},
-				launch_cmd = "opencode",
-				clear_keys = { "C-k" },
-				new_keys = { "C-x", "n" },
-				submit_keys = { "Enter" },
-				display_title = function(pane)
-					return pane.title:match("^OC | (.+)$") or pane.title
-				end,
-			},
-			omp = {
-				display_name = "Oh My Pi",
-				detect = {
-					title_patterns = { "^π" },
-					command_patterns = { "^omp$" },
-					process_patterns = { "[/ ]omp[%s]", "[/ ]omp$", "^omp$" },
-				},
-				launch_cmd = "omp",
-				clear_keys = { "C-a", "C-k" },
-				new_keys = { "C-a", "C-k", "/", "n", "e", "w", "Enter" },
-				submit_keys = { "Enter" },
-				display_title = function(pane)
-					return pane.title:match("^π%s*(.+)$") or pane.title
-				end,
-			},
 			arc = {
-				display_name = "Arc",
-				detect = {
-					command_patterns = { "^arc$" },
-					process_patterns = { "[/ ]arc[%s]", "[/ ]arc$", "^arc$", "/arc%-harness/" },
+				name = "Arc",
+				cmd = "arc",
+				detect = function(pane)
+					for _, proc in ipairs(pane.processes) do
+						local cmdline = table.concat(proc.argv, " ")
+						if vim.fs.basename(proc.argv[1] or "") == "arc" or cmdline:find("/arc-harness/", 1, true) then
+							return true
+						end
+					end
+					return false
+				end,
+				keys = {
+					submit = { "enter" },
+					clear = { "ctrl+u" },
+					new = { "ctrl+x", "n" },
 				},
-				launch_cmd = "arc",
-				clear_keys = { "C-u" },
-				new_keys = { "C-x", "n" },
-				submit_keys = { "Enter" },
 			},
 		},
 	},
 	keys = {
 		{
 			"<leader>ac",
-			function()
-				require("comlink").prompt(
-					"Follow any instructions in the selected code and complete the functionality:\n\n@selection",
-					{ submit = true }
-				)
-			end,
+			prompt("Follow any instructions in the selected code and complete the functionality:\n\n@selection"),
 			mode = "x",
 			desc = "Complete",
 		},
-		{
-			"<leader>aa",
-			function()
-				require("comlink").ask("@selection", { submit = true })
-			end,
-			mode = "x",
-			desc = "Ask (selection)",
-		},
-		{
-			"<leader>an",
-			function()
-				require("comlink").ask("@selection", { new = true, submit = true })
-			end,
-			mode = "x",
-			desc = "Ask New (selection)",
-		},
-		{
-			"<leader>ae",
-			function()
-				require("comlink").prompt("Explain the following code:\n\n@selection", { submit = true })
-			end,
-			mode = "x",
-			desc = "Explain selection",
-		},
+		{ "<leader>aa", ask("@selection", { submit = true }), mode = "x", desc = "Ask (selection)" },
+		{ "<leader>an", ask("@selection", { new = true, submit = true }), mode = "x", desc = "Ask New (selection)" },
+		{ "<leader>ae", prompt("Explain the following code:\n\n@selection"), mode = "x", desc = "Explain selection" },
 		{
 			"<leader>ad",
-			function()
-				require("comlink").ask("@selection\n\n@diagnostics ", { submit = true })
-			end,
+			ask("@selection\n\n@diagnostics ", { submit = true }),
 			mode = "x",
 			desc = "Ask (selection diagnostics)",
 		},
-		{
-			"<leader>ay",
-			function()
-				require("comlink").ask("@selection\n\n")
-			end,
-			mode = "x",
-			desc = "Yank to prompt",
-		},
-		{
-			"<leader>ar",
-			function()
-				require("comlink").prompt("Review @this for correctness and readability", { submit = true })
-			end,
-			mode = "x",
-			desc = "Review selection",
-		},
-		{
-			"<leader>at",
-			function()
-				require("comlink").prompt("Add tests for @this", { submit = true })
-			end,
-			mode = "x",
-			desc = "Generate tests",
-		},
+		{ "<leader>ay", ask("@selection\n\n"), mode = "x", desc = "Yank to prompt" },
+		{ "<leader>ar", prompt("Review @this for correctness and readability"), mode = "x", desc = "Review selection" },
+		{ "<leader>at", prompt("Add tests for @this"), mode = "x", desc = "Generate tests" },
 		{
 			"<leader>ao",
-			function()
-				require("comlink").prompt("Optimize @this for performance and readability", { submit = true })
-			end,
+			prompt("Optimize @this for performance and readability"),
 			mode = "x",
 			desc = "Optimize selection",
 		},
 		{
 			"<leader>aD",
-			function()
-				require("comlink").prompt(
-					"Add documentation comments to @this. Only document this code, nothing else.",
-					{ submit = true }
-				)
-			end,
+			prompt("Add documentation comments to @this. Only document this code, nothing else."),
 			mode = "x",
 			desc = "Document selection",
 		},
-		{
-			"<leader>aa",
-			function()
-				require("comlink").ask("@buffer ", { submit = true })
-			end,
-			desc = "Ask",
-		},
-		{
-			"<leader>an",
-			function()
-				require("comlink").ask("@buffer ", { new = true, submit = true })
-			end,
-			desc = "Ask New",
-		},
-		{
-			"<leader>al",
-			function()
-				require("comlink").ask("@line ")
-			end,
-			desc = "Ask (line)",
-		},
-		{
-			"<leader>ab",
-			function()
-				require("comlink").ask("@buffers ")
-			end,
-			desc = "Ask (buffers)",
-		},
-		{
-			"<leader>aq",
-			function()
-				require("comlink").ask("@buffer @quickfix ")
-			end,
-			desc = "Ask (quickfix)",
-		},
-		{
-			"<leader>ad",
-			function()
-				require("comlink").ask("@diff ")
-			end,
-			desc = "Ask (diff)",
-		},
-		{
-			"<leader>ae",
-			function()
-				require("comlink").ask("@diagnostics ")
-			end,
-			desc = "Ask (diagnostics)",
-		},
-		{
-			"<leader>av",
-			function()
-				require("comlink").ask("@visible ")
-			end,
-			desc = "Ask (visible)",
-		},
+		{ "<leader>aa", ask("@buffer ", { submit = true }), desc = "Ask" },
+		{ "<leader>an", ask("@buffer ", { new = true, submit = true }), desc = "Ask New" },
+		{ "<leader>al", ask("@line "), desc = "Ask (line)" },
+		{ "<leader>ab", ask("@buffers "), desc = "Ask (buffers)" },
+		{ "<leader>aq", ask("@buffer @quickfix "), desc = "Ask (quickfix)" },
+		{ "<leader>ad", ask("@diff "), desc = "Ask (diff)" },
+		{ "<leader>ae", ask("@diagnostics "), desc = "Ask (diagnostics)" },
+		{ "<leader>av", ask("@visible "), desc = "Ask (visible)" },
 		{
 			"<leader>aD",
-			function()
-				require("comlink").prompt(
-					"Add documentation comments to the function at @this. Only document this function, nothing else.",
-					{ submit = true }
-				)
-			end,
+			prompt("Add documentation comments to the function at @this. Only document this function, nothing else."),
 			desc = "Document function",
 		},
 		{
@@ -249,18 +118,32 @@ return {
 			desc = "Toggle agent pane",
 		},
 		{
+			"<leader>af",
+			function()
+				require("comlink").focus()
+			end,
+			desc = "Focus agent pane",
+		},
+		{
+			"<leader>ap",
+			function()
+				require("comlink").pick()
+			end,
+			desc = "Pick agent pane",
+		},
+		{
 			"<S-C-u>",
 			function()
-				require("comlink").send_keys("PageUp", { agent = "opencode" })
+				require("comlink").send_keys("pageup")
 			end,
-			desc = "Scroll up",
+			desc = "Scroll agent up",
 		},
 		{
 			"<S-C-d>",
 			function()
-				require("comlink").send_keys("PageDown", { agent = "opencode" })
+				require("comlink").send_keys("pagedown")
 			end,
-			desc = "Scroll down",
+			desc = "Scroll agent down",
 		},
 	},
 }
