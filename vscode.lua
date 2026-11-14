@@ -26,7 +26,7 @@ require("utils")
 --------------------------------------------------------------------------------
 -- Vanilla user commands (subset of lua/functions.lua)
 -- Skipped (plugin-dependent): Format/cabbrev, PreviewDoc (MarkdownPreview /
--- Vimtex), PS (PackerSync), TelescopeSearchDotfiles/Chats/Dir, Reload.
+-- Vimtex), TelescopeSearchDotfiles/Dir, Reload.
 --------------------------------------------------------------------------------
 NewFile = function()
 	local name = vim.fn.input("File name: ", "", "file")

@@ -88,11 +88,6 @@ CleanText = function()
 end
 Utils.make_command("CleanText")
 
-PS = function()
-	api.nvim_command("PackerSync")
-end
-Utils.make_command("PS")
-
 NewFile = function()
 	local name = vim.fn.input("File name: ", "", "file")
 	api.nvim_command("e " .. name)
@@ -103,19 +98,6 @@ TelescopeSearchDotfiles = function()
 	require("telescope.builtin").find_files({ prompt_title = " Config ", cwd = "$DOTFILES/.config" })
 end
 Utils.make_command("TelescopeSearchDotfiles")
-
-TelescopeSearchChats = function()
-	require("telescope.builtin").grep_string({
-		prompt_title = " Chats ",
-		cwd = vim.fn.stdpath("data"):gsub("/$", "") .. "/gp/chats",
-		search = "# topic",
-	})
-	-- require("telescope.builtin").find_files({
-	-- 	prompt_title = " Chats ",
-	-- 	cwd = vim.fn.stdpath("data"):gsub("/$", "") .. "/gp/chats",
-	-- })
-end
-Utils.make_command("TelescopeSearchChats")
 
 TelescopeSearchDir = function()
 	local dir = vim.fn.input("Search from: ", "~/")
