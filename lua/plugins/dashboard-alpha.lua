@@ -42,10 +42,8 @@ return {
 
         dashboard.section.buttons.val = {
             button("LDR o", "  Find File  "),
-            button("LDR H", "󱡀  Harpoon  "),
-            button("LDR t r", "  History  "),
-            button("LDR t t", "󰺮  Find Text  "),
-            button("LDR t m", "  Bookmarks  "),
+            button("LDR M", "󱡀  Grapple  "),
+            button("f g", "󰺮  Find Text  "),
             button("LDR n", "  New File  "),
             {
                 type = "button",
