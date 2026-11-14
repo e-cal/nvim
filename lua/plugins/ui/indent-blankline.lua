@@ -10,13 +10,12 @@ return {
 		scope = { enabled = true, highlight = "IBLScope", injected_languages = true },
 	},
 	config = function(_, opts)
-		vim.cmd(string.format([[highlight IBLChar guifg=%s gui=nocombine]], Utils.get_hl("ColorColumn", "bg")))
-		vim.cmd(
-			string.format(
-				[[highlight IBLScope guifg=%s gui=nocombine]],
-				Utils.brightness_modifier(Utils.get_hl("IBLChar", "fg"), 50)
-			)
-		)
+		local hooks = require("ibl.hooks")
+		hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+			local char = Utils.get_hl("ColorColumn", "bg")
+			vim.api.nvim_set_hl(0, "IBLChar", { fg = char, nocombine = true })
+			vim.api.nvim_set_hl(0, "IBLScope", { fg = Utils.brightness_modifier(char, 50), nocombine = true })
+		end)
 		require("ibl").setup(opts)
 	end,
 	keys = { { "<leader>i", "<cmd>IBLToggle<cr>", desc = "toggle indent lines" } },
