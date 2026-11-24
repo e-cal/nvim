@@ -5,10 +5,10 @@ return {
 		local lualine = require("lualine")
 
 		local colors = {
-			normal = Utils.get_hl("Label", "fg"),
+			normal = Utils.get_hl("Keyword", "fg"),
 			insert = Utils.get_hl("String", "fg"),
 			replace = Utils.get_hl("Number", "fg"),
-			visual = Utils.get_hl("Special", "fg"),
+			visual = Utils.get_hl("Function", "fg"),
 			command = Utils.get_hl("Identifier", "fg"),
 			red = Utils.get_hl("Error", "fg"),
 			yellow = Utils.get_hl("WarningMsg", "fg"),
